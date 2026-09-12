@@ -1,0 +1,57 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets and private credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*token*
+*credentials*
+
+# Local configuration
+configs/local.yaml
+configs/local.yml
+
+# Model weights and caches
+models/
+checkpoints/
+.cache/
+huggingface/
+*.safetensors
+*.ckpt
+*.pth
+*.pt
+
+# Generated experiment data
+artifacts/
+results/
+outputs/
+logs/
+wandb/
+*.predictions.jsonl
+
+# Notebook caches
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python packaging
+*.egg-info/
+build/
+dist/
