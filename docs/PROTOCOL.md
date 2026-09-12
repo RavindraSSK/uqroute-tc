@@ -106,3 +106,75 @@ Additional leakage controls are:
 - Test results must not be used to choose uncertainty measures.
 - Related variants must remain together during confidence-interval resampling.
 - Any post-freeze protocol change must be documented.
+
+
+## 8. Model roles and revisions
+
+The planned principal small models are:
+
+- `Qwen/Qwen2.5-1.5B-Instruct`
+- `meta-llama/Llama-3.2-3B-Instruct`
+- `Qwen/Qwen2.5-7B-Instruct`
+
+The planned fallback model is:
+
+- `Qwen/Qwen2.5-14B-Instruct-AWQ`
+
+These models have fixed roles in the study. The three principal models produce the initial tool call, and the 14B model is the escalation target. Model weights remain frozen; UQRoute does not fine-tune them.
+
+Before main inference begins, each model's exact model revision, tokenizer revision, quantization method, numerical dtype, chat template, inference-engine version, and license/access status must be recorded in an experiment manifest.
+
+If a planned model cannot run within the available hardware or access constraints, the pilot report must document the failure and the resulting scope decision before the main study begins.
+
+## 9. Reference runner and UQRoute extensions
+
+The pinned RobustBench-TC `scripts/run_eval.py` remains the reference for sample loading, benchmark-specific message construction, multi-turn exclusion, transition injection, output parsing, and compatibility with the released scorer.
+
+At the pinned revision, the reference runner:
+
+- Uses an OpenAI-compatible endpoint, normally served by vLLM.
+- Uses prompt-based tool calling by default rather than native `tools=[...]` function calling.
+- Uses a default temperature of `0.001` and a default maximum completion length of 1,024 tokens.
+- Runs one request per case in static mode.
+- Runs an initial request followed by a fault-conditioned request in transition mode.
+- Saves raw output, parsed tool calls, and errors.
+- Supports file selection, case limits, checkpoint-style output, and resume by row identifier.
+
+UQRoute will preserve the benchmark's message-building and scoring semantics while extending the inference record with:
+
+- Canonical base-task identifier and population label.
+- Model and tokenizer identifiers and revisions.
+- Complete generation configuration.
+- Chosen-token log-probabilities and returned token-byte information.
+- Log-probability availability and alignment status.
+- Prompt-token and completion-token counts when available.
+- Per-request latency and total run time.
+- Finish reason, parsing status, retry count, and error details.
+- Raw output and parsed tool calls.
+- Dataset revision and UQRoute code revision.
+
+When log-probabilities are required by an experiment, a missing or malformed log-probability response must cause an explicit failure instead of silently producing a partial uncertainty score.
+
+Output writing must remain resumable. Re-running a completed batch must not duplicate successful records, and every record must retain enough configuration information to identify the run that produced it.
+
+## 10. Generation protocols
+
+### 10.1 Single-sample protocol
+
+The primary single-sample study will use near-deterministic decoding consistent with the reference runner. The initial candidate setting is temperature `0.001` with a maximum completion length of 1,024 tokens.
+
+The smoke test and feasibility pilot will verify model compatibility, output truncation, log-probability capture, byte alignment, memory use, and throughput. The final decoding settings will be frozen before main inference and recorded in the experiment manifest.
+
+Prompt-based tool calling is the primary protocol. Native function calling is not part of the primary comparison unless it is separately predeclared as an ablation, because it changes both the output channel and the availability of token-level evidence.
+
+### 10.2 Repeated-sample protocol
+
+Repeated-sample uncertainty will use ten generations per selected case. The sampling temperature, nucleus-sampling value, seed procedure, and subset size will be fixed before repeated-sample results are inspected.
+
+Each generated output will be parsed and converted to a canonical tool-call representation. Canonical-call frequencies will be used to calculate disagreement and entropy. Exact-string clustering will be retained as an ablation.
+
+The repeated-sample subset and the claims supported by it must be stated explicitly. Results from a subset will not be presented as if every benchmark case received ten samples.
+
+### 10.3 Invalid and incomplete generations
+
+Parsing failures, missing log-probabilities, truncated completions, request errors, and empty outputs are explicit recorded outcomes. They must not be silently removed from denominators.
