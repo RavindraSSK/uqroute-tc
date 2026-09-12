@@ -178,3 +178,127 @@ The repeated-sample subset and the claims supported by it must be stated explici
 ### 10.3 Invalid and incomplete generations
 
 Parsing failures, missing log-probabilities, truncated completions, request errors, and empty outputs are explicit recorded outcomes. They must not be silently removed from denominators.
+
+
+## 11. Uncertainty measures
+
+All uncertainty scores are oriented so that a larger value means greater uncertainty.
+
+For a generated sequence containing tokens indexed by `i = 1, ..., L`, let `log p_i` be the model-returned log-probability of the selected token.
+
+The planned single-sample measures are:
+
+- Sequence negative log-likelihood: `-sum(log p_i)`.
+- Mean token negative log-likelihood: `-sum(log p_i) / L`.
+- Maximum token surprisal: `max(-log p_i)`.
+- Meaningful-token negative log-likelihood: the mean negative log-likelihood over aligned tokens representing tool names, argument names, and argument values.
+
+The meaningful-token index set must be produced by an audited alignment procedure. If alignment fails or produces an empty set, the meaningful-token score is invalid and the failure is recorded.
+
+For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
+
+- Canonical-call entropy: `-sum(q_k * log(q_k))`.
+- Canonical disagreement: `1 - max(q_k)`.
+
+Exact-string entropy and disagreement will be retained as an ablation. Parser failures will be represented explicitly rather than discarded before clustering. The exact treatment of parser-failure clusters will be frozen after parser validation and before repeated-sample evaluation.
+
+## 12. Correctness and evaluation outcomes
+
+The released RobustBench-TC scorer is the primary source of tool-call correctness. UQRoute may adapt interfaces around the scorer but will not use ground-truth answers as routing inputs.
+
+A successfully parsed call is not automatically correct. Parsing status and task correctness are recorded as separate outcomes.
+
+For each evaluated case, the record must distinguish:
+
+- Successful request and correct tool call.
+- Successful request and incorrect tool call.
+- Parser failure.
+- Empty or truncated output.
+- Inference or transport error.
+- Missing or invalid uncertainty evidence.
+
+For transition evaluation, pass-one output, injection status, injected fault type, pass-two output, and final scored outcome are retained separately.
+
+## 13. Primary metrics
+
+The study will report:
+
+- Tool-call task success.
+- Parser-failure and inference-error rates.
+- AUROC and AUPRC for detecting incorrect calls, with incorrectness as the positive class.
+- Risk-coverage curves and area under the risk-coverage curve.
+- Fallback rate and achieved coverage.
+- High-confidence failure counts and rates under a predeclared definition.
+- Brier score and expected calibration error after fitting a monotonic confidence mapping on development data only.
+- End-to-end task success, latency, token use, GPU time, and estimated cost for routing policies.
+
+The confidence-mapping method, calibration-bin rule, and high-confidence-failure definition must be frozen before held-out evaluation.
+
+Results will be reported by model and condition. Aggregated results will not hide condition-specific failures. Individual perturbation types with small sample sizes will be labelled exploratory.
+
+## 14. Routing policies and baselines
+
+For an uncertainty score `U` and threshold `tau`, the deployable gate accepts the small-model call when `U <= tau` and escalates otherwise.
+
+Thresholds and any score transformations are selected using development data only. The threshold-selection rule must be fixed before held-out evaluation.
+
+The submitted comparisons are:
+
+- Small-model-only.
+- Fallback-model-only.
+- Always-cascade, which runs the small model and then always runs the fallback.
+- Matched-coverage random routing.
+- Global uncertainty gate.
+- Model-specific uncertainty gates.
+- Perturbation-class oracle thresholds for analysis only.
+- Correctness-oracle routing for analysis only.
+
+Oracle policies are diagnostic references, not deployable systems. They must not be described as practical routing methods.
+
+For static cases, one cached fallback output per case and frozen fallback configuration will be reused across policy comparisons. Recovery requests with different observed context are separate inference events and cannot reuse a context-incompatible fallback record.
+
+## 15. Cost accounting
+
+Every routing comparison must count all model calls required by that policy.
+
+For an escalated static case, total serving cost includes the initial small-model call, the fallback call, and measured routing overhead. For recovery, all initial, fault-conditioned, fallback, and repeated recovery calls are counted.
+
+The study will report:
+
+- Number of model calls.
+- Prompt and completion tokens when available.
+- Per-request and end-to-end latency.
+- GPU time under controlled hardware.
+- Estimated monetary cost under predeclared low, base, and high cost scenarios.
+
+Repeated-sample generation is excluded from single-sample serving cost unless a routing policy actually requires repeated samples at inference time.
+
+Timing results from different GPU types or materially different server settings will not be treated as directly comparable. Hardware and server configuration must accompany timing claims.
+
+## 16. Statistical analysis
+
+The base task is the dependence unit. Related perturbation variants are not treated as statistically independent tasks.
+
+Primary confidence intervals and paired policy comparisons will use a cluster bootstrap that resamples canonical base-task groups and retains all selected variants belonging to each sampled group. The number of bootstrap replicates, random seed, stratification rule, and interval method will be fixed before held-out evaluation.
+
+Point estimates, confidence intervals, denominators, and missing/error counts will be reported together. Development and held-out results will be clearly separated.
+
+Exploratory subgroup findings will be labelled as exploratory, especially when a perturbation type contains few base-task groups. The report will emphasize effect sizes and uncertainty intervals rather than relying only on significance tests.
+
+## 17. Protocol freeze and change control
+
+Before held-out evaluation, the following must be frozen:
+
+- Dataset revision, primary population, and sensitivity population.
+- Canonical identity rules and development/test split manifest.
+- Model and tokenizer revisions.
+- Prompt templates and generation settings.
+- Parser and token-alignment rules.
+- Uncertainty formulas and repeated-sample subset.
+- Correctness metrics and calibration procedure.
+- Routing policies and threshold-selection rule.
+- Cost scenarios and statistical procedure.
+
+After the freeze, any correction must be recorded in a change log with its reason, affected runs, and whether held-out results had been viewed. Exploratory analyses added after the freeze must be labelled post hoc.
+
+The protocol is complete only when all provisional choices have been resolved or explicitly approved as scoped exclusions.
