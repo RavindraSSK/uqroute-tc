@@ -62,7 +62,8 @@ The proposed primary population is the clean-anchored population containing 2,47
 
 The complete single-turn population containing 2,527 rows from 248 groups will be retained as a sensitivity population. It adds 50 perturbation-only rows from 49 groups that do not have clean counterparts in the released `clean.jsonl` file.
 
-The primary and sensitivity designations remain provisional until supervisor review and protocol freeze.
+
+The clean-anchored population is the primary population, and the complete single-turn population is the sensitivity population. Any later population change must be supported by a documented audit or feasibility finding and recorded in the protocol change log.
 
 ## 5. Base-task identity
 
