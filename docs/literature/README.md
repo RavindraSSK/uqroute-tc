@@ -23,9 +23,9 @@ The literature review addresses four connected areas:
 
 | ID | Paper | Role in UQRoute-TC | Status |
 |---|---|---|---|
-| P01 | [The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models](https://proceedings.mlr.press/v267/patil25a.html) | Tool-call tasks, structured correctness evaluation, and benchmark background | Not started |
-| P02 | [When Simulation Lies: A Sim-to-Real Benchmark and Domain-Randomized RL Recipe for Tool-Use Agents](https://arxiv.org/abs/2605.11928) | Primary deployment-perturbation benchmark and experimental population | Not started |
-| P03 | [ToolRobustBench: Stage-Wise Perturbation Evaluation and Failure Diagnosis for Tool-Calling Agents](https://arxiv.org/abs/2608.23635) | Recent robustness benchmark and failure-diagnosis comparison | Not started |
+| P01 | [The Berkeley Function Calling Leaderboard (BFCL): From Tool Use to Agentic Evaluation of Large Language Models](https://proceedings.mlr.press/v267/patil25a.html) | Tool-call tasks, structured correctness evaluation, and benchmark background | Reviewed |
+| P02 | [When Simulation Lies: A Sim-to-Real Benchmark and Domain-Randomized RL Recipe for Tool-Use Agents](https://arxiv.org/abs/2605.11928) | Primary deployment-perturbation benchmark and experimental population | Reviewed |
+| P03 | [ToolRobustBench: Stage-Wise Perturbation Evaluation and Failure Diagnosis for Tool-Calling Agents](https://arxiv.org/abs/2608.23635) | Recent robustness benchmark and failure-diagnosis comparison | Reviewed |
 
 ### Theme B — Language-model uncertainty
 
