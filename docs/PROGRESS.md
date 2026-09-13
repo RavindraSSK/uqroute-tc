@@ -82,6 +82,15 @@ Every completed component must include:
 | Clean-anchored population candidate | 2,477 rows / 199 groups |
 | Complete single-turn population | 2,527 rows / 248 groups |
 | Perturbation-only population | 50 rows / 49 groups |
+| Transition source population | 199 rows / 199 groups from `clean.jsonl` |
+| Runtime Transition fault types | 6: `timeout`, `rate_limit`, `auth_error`, `server_error`, `malformed_response`, `schema_drift` |
+| Runtime Transition variants | 6 per eligible source row and base-task group |
+| Runtime-generated Transition predictions | 1,194 |
+| Static Transition storage | 0 rows / 0 files |
+| Excluded multi-turn overlap with Transition source | 0 rows |
+| Transition-capable groups | 199 in the clean-anchored population / 199 in the full population |
+| Full-population groups without a Transition source | 49 |
+| Published prediction-total reconciliation | 2,527 + 1,194 = 3,721 predictions per model |
 | Unit tests | 11 passed |
 | Ruff | Passed |
 | Dependency check | Passed |

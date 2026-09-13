@@ -55,8 +55,9 @@ The released evaluation directory was audited using `src/uqroute_tc/data/audit.p
 | All retained single-turn records | 2,527 | 248 |
 | Clean-anchored primary candidate | 2,477 | 199 |
 | Perturbation-only records | 50 | 49 |
+| Runtime-generated Transition predictions | 1,194 | 199 |
 
-The paper and repository descriptions report a broader total of 3,721 cases. The pinned released directory contains 2,718 static records. This study therefore reports both the published description and the empirically audited release population instead of silently treating them as identical.
+The benchmark README describes 3,721 predictions per model in total, not 3,721 stored dataset rows. At the pinned revision, 2,718 records are stored in the static JSONL files. After excluding 191 multi-turn rows, 2,527 static single-turn records remain; the runtime-generated Transition population adds 1,194 predictions, so `2,527 + 1,194 = 3,721`. Adding the runtime predictions to all stored rows would instead give 3,912 because that sum includes the 191 excluded multi-turn rows.
 
 The proposed primary population is the clean-anchored population containing 2,477 rows from 199 base-task groups. It preserves the clean-task universe and its recognized perturbation variants.
 
@@ -100,6 +101,8 @@ The planned primary population will be divided into:
 
 The exact split ratio, deterministic seed, and benchmark-stratification procedure will be implemented, validated, and recorded before model-result analysis begins.
 
+The pinned runner generates Transition cases only from `clean.jsonl`. The 49 sensitivity-population groups without a clean source row cannot receive Transition cases. RQ3 is therefore scoped to the clean-anchored population of 199 base-task groups; the full 248-group population is not an RQ3 population.
+
 Additional leakage controls are:
 
 - Ground-truth calls may be used by the scorer but never by the router.
@@ -138,6 +141,8 @@ At the pinned revision, the reference runner:
 - Uses a default temperature of `0.001` and a default maximum completion length of 1,024 tokens.
 - Runs one request per case in static mode.
 - Runs an initial request followed by a fault-conditioned request in transition mode.
+- Records `prediction.transition_injected` as `false` when pass one errors or produces no tool call, and as `true` when a fault-conditioned second pass is attempted.
+- Mirrors the injection-status value in `perturbation.metadata.pass1_had_tool_calls`; transition-mode records retain `perturbation.mdp_category` as `transition` even when no fault was injected.
 - Saves raw output, parsed tool calls, and errors.
 - Supports file selection, case limits, checkpoint-style output, and resume by row identifier.
 
@@ -219,6 +224,8 @@ For each evaluated case, the record must distinguish:
 - Missing or invalid uncertainty evidence.
 
 For transition evaluation, pass-one output, injection status, injected fault type, pass-two output, and final scored outcome are retained separately.
+
+A transition-labelled record with `prediction.transition_injected == false` did not receive a fault. Such records are excluded from all RQ3 denominators and reported separately as a no-fault-injected count; they are not treated as recovery successes or failures.
 
 ## 13. Primary metrics
 
