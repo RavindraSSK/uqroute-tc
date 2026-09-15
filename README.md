@@ -2,29 +2,28 @@
 
 **Uncertainty-Gated Routing and Recovery for Reliable Tool Calling**
 
-UQRoute-TC studies whether a language model can recognize when its proposed tool call may be unreliable. Tool-calling models must choose the correct tool and produce valid arguments, but they can fail when instructions, tool descriptions, argument schemas, observations, or runtime responses change.
+## Project overview
 
-The system uses a smaller model for the first attempt. It accepts the proposed call when uncertainty is low and sends the original request to a stronger fallback model when uncertainty is high. Runtime failures, such as timeouts or malformed responses, are handled as a separate recovery problem. The study measures whether these decisions improve reliability enough to justify their added inference cost.
+UQRoute-TC studies whether a language model can recognize when its proposed tool call may be unreliable. Tool-calling models must select the correct tool and generate valid arguments, but changes to instructions, tool descriptions, schemas, observations, or runtime responses can cause incorrect calls even when the model appears confident.
 
-The models remain frozen. This project does not train a separate routing classifier.
+The system uses a smaller model for the first attempt. It accepts the call when uncertainty is low and sends uncertain requests to a stronger fallback model. Recovery after an observed runtime fault is evaluated separately. Using the official RobustBench-TC release, the project measures whether uncertainty-based routing improves reliability enough to justify the additional inference cost.
 
-## How the study works
+The models remain frozen, and the project does not train a separate routing classifier.
 
-1. Generate a tool call with a principal small model.
-2. Calculate uncertainty from the generated tokens or from repeated generations.
-3. Accept a low-uncertainty call or escalate an uncertain request to the fallback model.
-4. Evaluate post-fault recovery separately after an execution fault is observed.
-5. Compare task success, confident failures, coverage, fallback use, latency, GPU usage, and cost per successful task.
+## How it works
 
-## Benchmark
+1. A principal model generates a structured tool call.
+2. The system calculates uncertainty from token probabilities or repeated generations.
+3. A low-uncertainty call is accepted; an uncertain request is sent to the fallback model.
+4. Runtime faults receive a separate, bounded recovery evaluation.
 
-The evaluation uses the official [RobustBench-TC release](https://github.com/WillChow66/robustbench-tc-release) pinned at revision:
+## Study scope
+
+The benchmark is the official [RobustBench-TC release](https://github.com/WillChow66/robustbench-tc-release), pinned at revision:
 
 ```text
 d5d03180de41eb30a6c796d04a9bfbd9dad85c1d
 ```
-
-The audited study populations are:
 
 | Population | Rows | Base-task groups | Use |
 |---|---:|---:|---|
@@ -32,32 +31,17 @@ The audited study populations are:
 | Complete single-turn population | 2,527 | 248 | Sensitivity analysis |
 | Runtime-generated Transition predictions | 1,194 | 199 | Post-fault recovery |
 
-Transition cases are generated at runtime from the clean source rows. They are not stored in the static JSONL files. The benchmark's published total is reconciled as 2,527 retained single-turn records plus 1,194 runtime Transition predictions, giving 3,721 predictions per model.
-
-## Planned model roles
-
-Principal small models:
-
-- `Qwen/Qwen2.5-1.5B-Instruct`
-- `meta-llama/Llama-3.2-3B-Instruct`
-- `Qwen/Qwen2.5-7B-Instruct`
-
-Fallback model:
-
-- `Qwen/Qwen2.5-14B-Instruct-AWQ`
-
-Exact model revisions, tokenizer revisions, inference settings, and hardware details will be recorded after the feasibility pilot and before the main experiments.
+The benchmark clone, model weights, credentials, and generated experiment outputs are kept outside this repository.
 
 ## Current status
 
-Task 1 is in progress.
+**Task 1 is in progress. Full model experiments have not started.**
 
 Completed:
 
 - Python package and test structure
 - Base-task identity rules
-- Static benchmark population audit
-- Runtime Transition population audit
+- Static and runtime Transition population audits
 - Draft evaluation protocol
 - Benchmark-and-robustness literature foundation
 - Project task plan and weekly timeline
@@ -70,11 +54,11 @@ Next:
 - Run the model-feasibility pilot
 - Freeze the Task 1 protocol
 
-The [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1) tracks the five main tasks and their current subtasks.
+Progress is also tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
 
 ## Setup
 
-UQRoute-TC requires Python 3.10 through 3.13.
+UQRoute-TC supports Python 3.10 through 3.13.
 
 ```bash
 git clone https://github.com/RavindraSSK/uqroute-tc.git
@@ -94,37 +78,16 @@ On macOS or Linux:
 source .venv/bin/activate
 ```
 
-Install the package with the existing analysis, client, and development extras:
+Install the existing project extras and run the checks:
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -e ".[analysis,client,dev]"
-```
-
-Run the current checks:
-
-```bash
 ruff check .
 pytest -q
 ```
 
-The RobustBench-TC clone, model weights, credentials, and generated experiment outputs are kept outside this repository.
-
-## Repository guide
-
-- `src/uqroute_tc/data/`: benchmark identity and audit code
-- `src/uqroute_tc/parsing/`: canonical tool-call parsing
-- `src/uqroute_tc/uncertainty/`: uncertainty measures
-- `src/uqroute_tc/inference/`: model inference and run records
-- `src/uqroute_tc/routing/`: routing and recovery policies
-- `src/uqroute_tc/evaluation/`: metrics and evaluation
-- `tests/unit/`: unit tests
-- `docs/`: protocol, progress, task plan, timeline, and literature evidence
-- `paper/`: paper references and future manuscript material
-
-Some package areas are placeholders and will be implemented in their corresponding project tasks.
-
-## Project documents
+## Documentation
 
 - [Project description and tasks](docs/PROJECT_TASKS.md)
 - [Evaluation protocol](docs/PROTOCOL.md)
@@ -134,4 +97,4 @@ Some package areas are placeholders and will be implemented in their correspondi
 
 ## Expected outcome
 
-The final package will include a reproducible routing toolkit, experiment records, failure analysis, capstone report, presentation, and a submission-ready research paper. Submission will follow only after the experimental results and claims have been verified; publication acceptance depends on external peer review.
+The final package will include a reproducible routing toolkit, experiment records, failure analysis, capstone report, presentation, and a submission-ready research paper. Submission will follow after the experimental results and claims are verified. Publication acceptance depends on external peer review.
