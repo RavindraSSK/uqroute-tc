@@ -1,10 +1,10 @@
-# UQRoute-TC Project Progress
+# UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
 ## Current position
 
 Task 1 is in progress.
 
-The project foundation and benchmark population audit are complete. The next work is documenting the evaluation protocol and creating the development/test split.
+The project foundation, benchmark population audits, draft evaluation protocol, and primary/sensitivity population selection are complete. The next gate is to reproduce one published RobustBench-TC number. The grouped development/held-out split begins only after that result is independently verified.
 
 ## Completion standard
 
@@ -16,7 +16,6 @@ Every completed component must include:
 
 ## Task 1 — Benchmark and experiment engine
 
-- [x] Create the local `capstone-dev` branch.
 - [x] Create the Python package structure.
 - [x] Configure the local Python environment.
 - [x] Implement base-task identity rules.
@@ -24,9 +23,10 @@ Every completed component must include:
 - [x] Add identity and audit unit tests.
 - [x] Pass Ruff, pytest, and dependency checks.
 - [x] Create the local foundation commit.
-- [ ] Write the evaluation protocol.
-- [ ] Select the primary evaluation population.
-- [ ] Create grouped development/test partitions.
+- [x] Write the draft evaluation protocol.
+- [x] Select the primary and sensitivity evaluation populations in the draft protocol.
+- [ ] Reproduce one published RobustBench-TC number.
+- [ ] Create grouped development/held-out partitions.
 - [ ] Verify partition isolation.
 - [ ] Build the five-case experiment runner.
 - [ ] Capture and validate token log-probabilities.
@@ -45,7 +45,7 @@ Every completed component must include:
 
 ## Task 3 — Robustness study
 
-- [ ] Run the model and perturbation experiments.
+- [ ] Run the clean and static-perturbation experiments.
 - [ ] Calculate accuracy and failure-detection metrics.
 - [ ] Analyze risk–coverage and calibration.
 - [ ] Catalogue high-confidence failures.
@@ -96,14 +96,12 @@ Every completed component must include:
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
 
-## Pending decision
+## Protocol status
 
-The proposed primary population is the clean-anchored population containing 2,477 rows and 199 groups.
+The draft protocol selects the clean-anchored population containing 2,477 rows and 199 groups as the primary population and the complete single-turn population containing 2,527 rows and 248 groups as the sensitivity population.
 
-The complete single-turn population containing 2,527 rows and 248 groups can be used as a sensitivity analysis.
-
-This decision remains provisional until it is documented in the protocol and discussed with the supervisor.
+These selections remain subject to supervisor review and the Task 1 protocol freeze.
 
 ## Next action
 
-Create `docs/PROTOCOL.md`, document the evaluation population, and then implement a reproducible group-level development/test split.
+Reproduce and independently verify one published RobustBench-TC number. Only after that gate passes, create the reproducible group-level development/held-out split.

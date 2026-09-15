@@ -1,6 +1,4 @@
-# UQRoute-TC
-
-Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
+# UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
 ## Project Description
 
@@ -12,7 +10,11 @@ The project will use the official RobustBench-TC release rather than constructin
 
 ### Task 1: Reproduce the Benchmark and Freeze the Evaluation Protocol
 
-Set up the official RobustBench-TC benchmark and scoring workflow, pin the required code and model revisions, and verify the released dataset structure. Reproduce one published RobustBench-TC number as the first experimental gate before creating the grouped development and held-out split. Preserve clean and perturbed versions of each task under the same base-task identifier when creating development and held-out test splits. Build a resumable experiment runner that records prompts, model outputs, scores, timing, seeds, perturbation metadata, configuration values, and file or revision hashes. Run a small pilot to validate scoring consistency, parser compatibility, runtime behavior, and available GPU feasibility before freezing the evaluation population and protocol. Output: a reproduced benchmark number, verified grouped dataset split, reproducible benchmark runner, pilot evidence, and frozen evaluation protocol.
+Set up the official RobustBench-TC benchmark and scoring workflow, pin the required code and model revisions, and verify the released dataset structure.
+
+**First experimental gate:** Reproduce one published RobustBench-TC number.
+
+Complete and independently verify this gate before creating the grouped development and held-out split. Preserve clean and perturbed versions of each task under the same base-task identifier when creating development and held-out test splits. Build a resumable experiment runner that records prompts, model outputs, scores, timing, seeds, perturbation metadata, configuration values, and file or revision hashes. Run a small pilot to validate scoring consistency, parser compatibility, runtime behavior, and available GPU feasibility before freezing the evaluation population and protocol. Output: a reproduced benchmark number, verified grouped dataset split, reproducible benchmark runner, pilot evidence, and frozen evaluation protocol.
 
 ### Task 2: Implement Canonical Parsing and Function-Call Uncertainty
 
