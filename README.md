@@ -10,20 +10,16 @@ The system uses a smaller model for the first attempt. It accepts the call when 
 
 The models remain frozen, and the project does not train a separate routing classifier.
 
-## How it works
+## Workflow
 
 1. A principal model generates a structured tool call.
 2. The system calculates uncertainty from token probabilities or repeated generations.
 3. A low-uncertainty call is accepted; an uncertain request is sent to the fallback model.
 4. Runtime faults receive a separate, bounded recovery evaluation.
 
-## Study scope
+## Benchmark and scope
 
-The benchmark is the official [RobustBench-TC release](https://github.com/WillChow66/robustbench-tc-release), pinned at revision:
-
-```text
-d5d03180de41eb30a6c796d04a9bfbd9dad85c1d
-```
+The study uses the official [RobustBench-TC release](https://github.com/WillChow66/robustbench-tc-release) pinned at `d5d03180de41eb30a6c796d04a9bfbd9dad85c1d`.
 
 | Population | Rows | Base-task groups | Use |
 |---|---:|---:|---|
@@ -31,7 +27,7 @@ d5d03180de41eb30a6c796d04a9bfbd9dad85c1d
 | Complete single-turn population | 2,527 | 248 | Sensitivity analysis |
 | Runtime-generated Transition predictions | 1,194 | 199 | Post-fault recovery |
 
-The benchmark clone, model weights, credentials, and generated experiment outputs are kept outside this repository.
+The benchmark clone, model weights, credentials, and generated outputs are kept outside this repository.
 
 ## Current status
 
@@ -39,8 +35,7 @@ The benchmark clone, model weights, credentials, and generated experiment output
 
 Completed:
 
-- Python package and test structure
-- Base-task identity rules
+- Python package, environment, tests, and base-task identity rules
 - Static and runtime Transition population audits
 - Draft evaluation protocol
 - Benchmark-and-robustness literature foundation
@@ -54,7 +49,7 @@ Next:
 - Run the model-feasibility pilot
 - Freeze the Task 1 protocol
 
-Progress is also tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
+Progress is tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
 
 ## Setup
 
@@ -64,23 +59,13 @@ UQRoute-TC supports Python 3.10 through 3.13.
 git clone https://github.com/RavindraSSK/uqroute-tc.git
 cd uqroute-tc
 python -m venv .venv
-```
 
-Activate the environment on Windows Git Bash:
-
-```bash
+# Windows Git Bash
 source .venv/Scripts/activate
-```
 
-On macOS or Linux:
+# macOS or Linux
+# source .venv/bin/activate
 
-```bash
-source .venv/bin/activate
-```
-
-Install the existing project extras and run the checks:
-
-```bash
 python -m pip install --upgrade pip
 python -m pip install -e ".[analysis,client,dev]"
 ruff check .
@@ -97,4 +82,4 @@ pytest -q
 
 ## Expected outcome
 
-The final package will include a reproducible routing toolkit, experiment records, failure analysis, capstone report, presentation, and a submission-ready research paper. Submission will follow after the experimental results and claims are verified. Publication acceptance depends on external peer review.
+The final package will include a reproducible routing toolkit, experiment records, failure analysis, capstone report, presentation, and a submission-ready research paper. Submission will follow after the results and claims are verified. Publication acceptance depends on external peer review.
