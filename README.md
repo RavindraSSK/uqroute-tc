@@ -27,6 +27,8 @@ The study uses the official [RobustBench-TC release](https://github.com/WillChow
 | Complete single-turn population | 2,527 | 248 | Sensitivity analysis |
 | Runtime-generated Transition predictions | 1,194 | 199 | Post-fault recovery |
 
+The benchmark README reports 3,721 predictions per model. That is not a row count: 2,527 static single-turn records plus 1,194 runtime-generated Transition predictions. See [`docs/PROTOCOL.md`](docs/PROTOCOL.md) §4.
+
 The benchmark clone, model weights, credentials, and generated outputs are kept outside this repository.
 
 ## Current status
@@ -43,13 +45,15 @@ Completed:
 
 Next:
 
+- Reproduce one published RobustBench-TC number
 - Create and verify the grouped development and held-out split
 - Build the resumable experiment runner
 - Capture and validate token log-probabilities
 - Run the model-feasibility pilot
 - Freeze the Task 1 protocol
 
-Progress is tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
+Task state is tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
+Measured evidence is recorded in [`docs/PROGRESS.md`](docs/PROGRESS.md).
 
 ## Setup
 
