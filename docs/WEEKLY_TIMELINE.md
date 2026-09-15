@@ -1,6 +1,6 @@
 # UQRoute-TC Weekly Timeline
 
-This is a working schedule for personal progress tracking. Week 1 begins on September 7, 2026. Future dates are planning targets and may move if experiments or GPU access require more time.
+This is a working schedule for personal progress tracking. Future dates are planning targets and may move if experiments or GPU access require more time.
 
 | Week | Dates | Main task | Focus | Status |
 |---|---|---|---|---|
