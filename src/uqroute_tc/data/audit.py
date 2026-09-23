@@ -94,7 +94,7 @@ def _transition_runner_spec(run_eval_path: Path) -> dict[str, Any]:
         (
             node
             for node in tree.body
-            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+            if isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef)
             and node.name == "main"
         ),
         None,
@@ -194,7 +194,7 @@ def _published_prediction_total(repo_root: Path) -> tuple[int, str]:
             f"{readme_path}, found {sorted(totals)}"
         )
 
-    return next(iter(totals)), str(readme_path.relative_to(repo_root))
+    return next(iter(totals)), readme_path.relative_to(repo_root).as_posix()
 
 
 def _optional_object(value: Any) -> dict[str, Any] | None:
@@ -275,8 +275,8 @@ def audit_transition_release(repo_root: Path) -> dict[str, Any]:
 
     return {
         "dataset_revision": static_report["dataset_revision"],
-        "runner_file": str(run_eval_path.relative_to(repo_root)),
-        "transition_source_file": str(source_path.relative_to(repo_root)),
+        "runner_file": run_eval_path.relative_to(repo_root).as_posix(),
+        "transition_source_file": source_path.relative_to(repo_root).as_posix(),
         "fault_types": fault_types,
         "fault_type_count": len(fault_types),
         "skip_multi_turn_default": runner_spec["skip_multi_turn_default"],
