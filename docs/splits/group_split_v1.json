@@ -1,0 +1,1300 @@
+{
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "method": "sha256 rank of seed, population, benchmark, and canonical base ID",
+  "seed": 1729,
+  "test_fraction": "3/10",
+  "test_count_rule": "round half up within each population/benchmark stratum",
+  "excludes_multi_turn": true,
+  "group_counts": {
+    "primary": {
+      "test": 59,
+      "development": 140
+    },
+    "sensitivity_only": {
+      "test": 15,
+      "development": 34
+    }
+  },
+  "stratum_group_counts": {
+    "primary": {
+      "apibank": {
+        "test": 22,
+        "development": 52
+      },
+      "bfcl_v3": {
+        "test": 10,
+        "development": 22
+      },
+      "rotbench": {
+        "test": 6,
+        "development": 15
+      },
+      "toolalpaca": {
+        "test": 6,
+        "development": 15
+      },
+      "tooleyes": {
+        "development": 36,
+        "test": 15
+      }
+    },
+    "sensitivity_only": {
+      "bfcl_v3": {
+        "test": 15,
+        "development": 34
+      }
+    }
+  },
+  "row_counts": {
+    "primary": {
+      "test": 723,
+      "development": 1754
+    },
+    "sensitivity_only": {
+      "test": 15,
+      "development": 35
+    }
+  },
+  "assignments": {
+    "apibank__level1_101": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_103": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_13": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_149": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_150": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_159": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_165": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_166": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_174": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_180": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_182": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_184": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_185": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_190": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_191": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_193": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_2": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_200": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_212": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_213": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_217": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_227": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_231": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_233": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_238": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_24": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_251": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_252": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_262": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_265": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_293": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_30": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_301": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_327": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_340": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_348": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_354": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_357": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_36": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_370": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_375": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_378": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_379": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_387": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_395": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_42": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_44": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_46": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_64": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_71": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_74": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_78": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_8": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_87": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_88": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level1_9": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level1_93": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level2_11": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level2_18": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level2_23": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_107": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_112": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_121": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_122": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_124": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_15": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_23": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_26": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_32": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_39": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "apibank__level3_46": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_51": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_79": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "test"
+    },
+    "apibank__level3_89": {
+      "benchmark": "apibank",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_100": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_103": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_106": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_109": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_11": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_110": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_112": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_113": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_114": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_116": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_12": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_120": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_121": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_127": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_13": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_130": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_136": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_143": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_145": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_15": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_158": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_159": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_162": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_163": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_164": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_168": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_171": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_176": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_187": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_19": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_190": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_191": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_193": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_2": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_26": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_3": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_30": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_36": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_40": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_42": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_44": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_45": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_47": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_5": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_52": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_61": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_64": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_66": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_74": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_75": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_79": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_80": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_93": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_multiple__multiple_96": {
+      "benchmark": "bfcl_v3",
+      "population": "primary",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_101": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_105": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_110": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_121": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_135": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_138": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_144": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_145": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_150": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_152": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_153": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_154": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_156": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_157": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_164": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_166": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_196": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_197": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_2": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_39": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_5": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_70": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_77": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_87": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_9": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "test"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_93": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "bfcl_v3__BFCL_v3_parallel_multiple__parallel_multiple_96": {
+      "benchmark": "bfcl_v3",
+      "population": "sensitivity_only",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Can you analyze these websites using paper_rank: www.reddit.com, www.linkedin.com?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: Can you help me send an email to 873890848@qq.com using Zapier actions?I simply want to send a thank-you letter via Gmail.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: Can you tell me more about 'Utah' league?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Can you tell me the geographic information for this specific ip '10.0.0.1'?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: Could tell me 3 facts of cats and dogs?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Could you provide an estimate on rent for a three-bedroom house using Realty Mole’s real estate property database?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Fetch the latest quotes and metadata for a specific cryptocurrency using its CoinMarketCap ID=1.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Help me find the logarithm base 10 of '1000'.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: How did driver with ID “ricciardo” perform at circuit named “Marina Bay Street Circuit” during his career?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: How to say sorry in Korean?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: I need to analyze these texts for categorization: Text 1 - 'The stock market is expected to rise today'; Text 2 - 'New species of frog discovered in Amazon rainforest'; Text 3 - 'NASA plans next mission to Mars'.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: I'm interested in pursuing opportunities in software engineering-related fields. Could you briefly describe a company that I could apply to?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: I'm planning a trip to Rome next summer and I'm looking for hotels near points of interest like Colosseum or Vatican City which also offer free airport transportation.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Is there any social event available which requires high accessibility and is free of cost?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Please help me find the latest email I received from Kaggle in Gmail.": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: To which country does the city of Madrid belong and what is its population?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: Using the Python Interpreter in REPL mode, can we calculate square root of numbers from 1 to 10 using list comprehension? `[sqrt(i) for i in range(11)]`": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "test"
+    },
+    "rotbench__Turn 1: What is the MET value for an intense workout activity level?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: What is the stock price of 600104.SHH today?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "rotbench__Turn 1: What is the translation of the English phrase 'See you later' in Japanese?": {
+      "benchmark": "rotbench",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__AviationAPI__inst0": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__AviationAPI__inst1": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Cataas__inst1": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Cataas__inst2": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__CurrencyBeacon__inst7": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Free Dictionary__inst5": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Free Dictionary__inst6": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Nager.Date__inst1": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Nager.Date__inst13": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__Nager.Date__inst2": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Nager.Date__inst6": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__Random Useless Facts__inst2": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__WolframAlpha__inst10": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__WolframAlpha__inst5": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__WolframAlpha__inst9": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__airportsapi__inst0": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__airportsapi__inst3": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__apilayer weatherstack__inst1": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__apilayer weatherstack__inst3": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "toolalpaca__apilayer weatherstack__inst4": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "test"
+    },
+    "toolalpaca__apilayer weatherstack__inst9": {
+      "benchmark": "toolalpaca",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Are there any strategy games related to ancient civilizations?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Auto complete this keyword for me: tesla. Using yahoo finance.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can I get a list of all boards and their attributes on page number two with a page size of seven?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can I get daily historical data for Crude Oil Brent prices?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can we determine both age and nationality for a person named Vladimir?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Can we shorten this website's URL - https://www.google.com/, and then use the Paper Rank tool to analyze its domain?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Can we use Zapier actions to create a new event on my Google Calendar?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Can you explain how a car engine works?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can you help me by generating four UUIDs for the new virtual machines in our network?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can you provide detailed information from https://zhuanlan.zhihu.com/p/645388566?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can you recommend some applications like 'Adobe Photoshop'?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Can you show me a JSON representation of the catalog for the 'g' board in 4chan, limiting to only two threads and skipping the first one?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Could you display five boards from page three of 4chan along with their attributes?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Could you provide me with a list of entry-level positions?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Explore arXiv articles related to astrophysics with an emphasis on dark matter. Provide the first 3 results.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Explore e-prints focused on quantum physics and its applications in quantum computing through the arXiv API. Limit the results to 3.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Get me all latest Net Asset Value.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Give me a mapping of all cryptocurrencies to unique CoinMarketCap ids": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: How about sharing some humor with us by providing ten random jokes?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: How can I apply for the job with id eyJqb2JfdGl0bGUiOiJCYXJpc3RhIiwiaHRpZG9jaWQiOiJMV1J1RlY4ZHZka0FBQUFBQUFBQUFBPT0iLCJobCI6ImVuIiwiZmMiOiJFdmNCQ3JjQlFVMXJNbXhzU1c0NFUweEtZVGhJV1RsZlkwZEtUa2hVU0RsSlRWUTBWazQyUlZCUE5UTXdURzF1V1dkalYzazJjMU5WVXpGUExWTnRlWGQzTkRWWE1uazViMVl5YjFGcmQzcHljbkoxY2pGeU4zSlBkVGg2TTJock1tTlhlbWxxVm5OTFJVTkhaV2hDVjFWTFYycFRVVUp1ZDFCU1ozZFRaRzFFVGpCRWFHZG1PRk14V2xaNWIzUnVjV1p4ZVVabmNUVkVkMlZXZFhvNGIzQm9abXB1ZEZKVWNXRTVkMFJpVXpsaU56WmhaVjlwVVRGc1ZYbzRFaGRxTFdKWVdrcFFVVXBaYVZkM1ltdFFYemhsT1hOQmF4b2lRVXhGVXpsMVR6Qm9hWGRRUVZsMUxWaENhR3htTm5GV1RVVk1NalJaVkZNM1VRIiwiZmN2IjoiMyIsImZjX2lkIjoiZmNfMSIsImFwcGx5X2xpbmsiOnsidGl0bGUiOiIubkZnMmVie2ZvbnQtd2VpZ2h0OjUwMH0uQmk2RGRje2ZvbnQtd2VpZ2h0OjUwMH1BcHBseSBkaXJlY3RseSBvbiBJbmRlZWQiLCJsaW5rIjoiaHR0cHM6Ly93d3cuaW5kZWVkLmNvbS92aWV3am9iP2prPTk4MTdkOWMzMGUzNjEzZWJcdTAwMjZ1dG1fY2FtcGFpZ249Z29vZ2xlX2pvYnNfYXBwbHlcdTAwMjZ1dG1fc291cmNlPWdvb2dsZV9qb2JzX2FwcGx5XHUwMDI2dXRtX21lZGl1bT1vcmdhbmljIn19?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I am interested in articles that cover technology and IPOs.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I am interested in remote work opportunities as a content writer. Can you help me find some job listings?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: I am interested in working as an accountant with good benefits package. Can you recommend some jobs that fit this criteria?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I am looking for films with a style or genre similar to ‘Pulp Fiction’, can you help me find them?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I have some bash commands that create a new directory named 'testdir', navigate into it and then create a new file named 'testfile.txt'. Can you execute these commands for me? `mkdir testdir && cd testdir && touch testfile.txt`": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I hope to have some advice about 'studying'.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I need to analyze these domains: www.microsoft.com, www.apple.com. Could you use the paper rank tool for this?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I need two strings each of length 20 to test the input field on my application, can you help?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I will go to Seattle from Beijing next month. Can you make a recommendation on hotels and flight please?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: I'm looking for games similar to 'Minecraft', can you help me find some?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: I'm setting up multiple accounts and need different passwords, can you generate six passwords each of length 12 characters?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Is there a way for me to use Zapier actions to search for a specific document in my Google Drive?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Is there any random suggestion that could help me improve my communication skills?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: List all closed threads that no longer receive posts from archive of 'lit' board in 4chan?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Make a guess about Jane's gender.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Please extract different sections from this document using its URL - 'https://en.wikipedia.org/wiki/Climate_change'.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Please fetch the advice slip that has an id of 456.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Please help me merge '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/protect.pdf' and '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/world.pdf' to '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/merge.pdf'.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Please recommend some apps that can help with learning a new language.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Please tell me how similar string \"123456\" and \"abcdefg\" are.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Please tell me the definition of the word 'hello'.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Retrieve research papers on artificial intelligence ethics using the arXiv API. Provide the first 10 results.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Retrieve scientific publications about cyber security threats and solutions using the arXiv API, returning up to 2 results.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Search for e-prints related to the topic of genetic algorithms using the arXiv API. Display the first 3 results.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: Use the 'get_custom_ticker' tool to generate a custom index for ETHUSD only including Binance and Coinbase exchanges.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Using bash shell, can we print out current working directory path by executing this command `pwd` ?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: Utilize the 'get_custom_ticker' endpoint to create a custom index excluding Kraken exchange for ETHUSD pair.": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: What day is it today?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: What emotions are contained in the following text, 'Beneath the starry sky, serenity envelops the tranquil meadow, inviting contemplation and inner peace.'?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "development"
+    },
+    "tooleyes__Turn 1: What information is displayed in the Google immersive popup with page token 'eyJlaSI6IlN3clNZcmFlRnFETXdia1A0Y20zMkFvIiwiY2F0YWxvZ2lkIjoiMTU5NTU5MzkxODU0NTAwMDU3MjUiLCJ2YyI6IjI1OTQ0NzAwMTQxODE5NDE0ODgiLCJ2c2MiOiI2NjYyMzE2OTMzMjUwMjk2MDcwIiwiaGVhZGxpbmVPZmZlckRvY2lkIjoiMTMxOTk2NzY4MTI5MDY4NTQ5MDEiLCJpbWFnZURvY2lkIjoiMTgwMDcyMTg2NzgwOTA4Nzg3OTUiLCJyZHMiOiJQQ182MDUyMTgzNjI1MTU3Mzc5NjAxfFBST0RfUENfNjA1MjE4MzYyNTE1NzM3OTYwMSIsInF1ZXJ5IjoibWVucytzd2VhdGVyIn0='?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    },
+    "tooleyes__Turn 1: What is the weekly BOP value of the stock 'MSFT'?": {
+      "benchmark": "tooleyes",
+      "population": "primary",
+      "split": "test"
+    }
+  }
+}

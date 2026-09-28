@@ -31,29 +31,13 @@ The benchmark README reports 3,721 predictions per model. That is not a row coun
 
 The benchmark clone, model weights, credentials, and generated outputs are kept outside this repository.
 
-## Current status
+## Reproduction and split
 
-**Task 1 is in progress. Full model experiments have not started.**
-
-Completed:
-
-- Python package, environment, tests, and base-task identity rules
-- Static and runtime Transition population audits
-- Draft evaluation protocol
-- Benchmark-and-robustness literature foundation
-- Project task plan and weekly timeline
-
-Next:
-
-- Reproduce one published RobustBench-TC number
-- Create and verify the grouped development and held-out split
-- Build the resumable experiment runner
-- Capture and validate token log-probabilities
-- Run the model-feasibility pilot
-- Freeze the Task 1 protocol
-
-Task state is tracked on the [GitHub Project board](https://github.com/users/RavindraSSK/projects/8/views/1).
-Measured evidence is recorded in [`docs/PROGRESS.md`](docs/PROGRESS.md).
+The Llama 3B clean run scored 102/199 against the seeded leaderboard's 103/199.
+We accepted the one-case difference for the feasibility gate after seeing the
+result; it is a near reproduction, not an exact match. The [grouped split](docs/splits/group_split_v1.json)
+keeps all variants of a task together. See the [protocol](docs/PROTOCOL.md) for
+the method and [progress record](docs/PROGRESS.md) for measured results.
 
 ## Setup
 
