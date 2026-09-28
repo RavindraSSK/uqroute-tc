@@ -2,7 +2,7 @@
 
 ## Current position
 
-Task 1 is in progress.
+As of September 27, 2026, Task 1 is still in progress. The latest merged repository change is PR #24 (`57e381a`, September 22 UTC). No model inference result, reproduced accuracy, grouped split, or experiment runner has been committed since then. The Week 2 target was missed, and the planned Week 3 parser work has not started. See `docs/WEEKLY_TIMELINE.md` for revised working targets.
 
 The project foundation, benchmark population audits, draft evaluation protocol, and primary/sensitivity population selection are complete. The next gate is to reproduce one published RobustBench-TC number. The grouped development/held-out split begins only after that result is independently verified.
 
@@ -91,7 +91,7 @@ Every completed component must include:
 | Transition-capable groups | 199 in the clean-anchored population / 199 in the full population |
 | Full-population groups without a Transition source | 49 |
 | Published prediction-total reconciliation | 2,527 + 1,194 = 3,721 predictions per model |
-| Unit tests | 11 passed |
+| Unit tests | 13 passed in the last reported local run and PR #24 validation; not an inference result |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -105,3 +105,12 @@ These selections remain subject to supervisor review and the Task 1 protocol fre
 ## Next action
 
 Reproduce and independently verify one published RobustBench-TC number. Only after that gate passes, create the reproducible group-level development/held-out split.
+
+The released leaderboard lists clean accuracy `0.5729` for `Qwen2.5-1.5B-Instruct` as a candidate reproduction target. This is a published reference value, not a UQRoute result. Run the pinned reference inference and scorer, record the exact model/server settings and denominator, and compare the observed score. If the result differs, investigate and document the discrepancy before declaring the gate complete. The data audit alone does not satisfy the gate.
+
+## Schedule recovery (September 27 status review)
+
+- The repository has no evidence of Task 1 model reproduction, Task 2 parsing, or any Task 3/4 experiments. Keep their checkboxes open.
+- First restore the reference-model reproduction workflow on available GPU compute. Do not create the split or tune methods against benchmark results until the reproduction gate is independently verified.
+- After the gate, create and verify the grouped split, runner, and small feasibility pilot; then resolve provisional choices in the protocol before held-out testing.
+- Review the revised weekly targets after the first model run. GPU availability, inference throughput, and the course submission deadline can change the later targets; record any scope change before inspecting held-out results.
