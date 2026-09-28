@@ -33,7 +33,7 @@ The benchmark clone, model weights, credentials, and generated outputs are kept 
 
 ## Current status
 
-**As of September 27, 2026, Task 1 is in progress. The reproduction gate remains open; full model experiments have not started.** The original Week 2 and Week 3 targets slipped. See the [revised weekly timeline](docs/WEEKLY_TIMELINE.md) for recovery targets.
+**As of September 27, 2026, Task 1 is in progress. The reproduction gate remains open; full model experiments have not started.** The Week 2 and Week 3 targets slipped; the original dates remain in the [weekly timeline](docs/WEEKLY_TIMELINE.md).
 
 Completed:
 
