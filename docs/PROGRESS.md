@@ -26,9 +26,9 @@ Every completed component must include:
 - [x] Verify a published clean result within one case, with the post hoc tolerance disclosed.
 - [x] Create grouped development/held-out partitions.
 - [x] Verify partition isolation.
-- [ ] Build the five-case experiment runner.
+- [x] Implement the resumable five-case experiment runner.
 - [ ] Capture and validate token log-probabilities.
-- [ ] Verify scoring, saving, and resume behavior.
+- [ ] Verify scoring, saving, and resume behavior in Colab.
 - [ ] Run the model-feasibility pilot.
 - [ ] Freeze the Task 1 protocol.
 
@@ -96,6 +96,9 @@ Every completed component must include:
 | Primary split | 140 development / 59 test groups; 1,754 / 723 static rows |
 | Sensitivity-only split | 34 development / 15 test groups; 35 / 15 static rows |
 | Split validation | 16 tests pass; all 2,527 retained rows map to 248 groups without leakage; manifest regenerates identically |
+| Qwen 7B smoke check | Revision `a09a35458c702b33eeacc393d103063234e8bc28`; first five clean BFCL cases scored 5/5 with 0 inference errors. This is a feasibility check, not a full benchmark result. |
+| Qwen 7B token evidence | On the same five cases, all calls parsed and all visible-token log-probabilities were finite. Visible token bytes aligned after excluding the trailing `<|im_end|>` token. Saved in Colab Drive. |
+| Five-case runner | `src/uqroute_tc/inference/pilot.py` selects clean development cases, records token evidence, writes scorer-compatible output, and resumes without repeating completed cases. Three local unit tests pass; live Colab validation remains. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -108,6 +111,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Build the five-case experiment runner, verify token log-probability capture, saving and resume behavior, and freeze the remaining Task 1 settings before examining held-out perturbation results.
+Run the five-case runner on development cases in Colab, check official scoring and interruption/resume, then pilot Qwen 1.5B, Llama 3B, and the 14B fallback. Freeze the remaining Task 1 settings before examining held-out perturbation results.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
