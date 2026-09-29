@@ -2,9 +2,7 @@
 
 ## Current position
 
-Task 1 is in progress.
-
-The project foundation, benchmark population audits, draft evaluation protocol, and primary/sensitivity population selection are complete. The next gate is to reproduce one published RobustBench-TC number. The grouped development/held-out split begins only after that result is independently verified.
+The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
 
 ## Completion standard
 
@@ -25,12 +23,12 @@ Every completed component must include:
 - [x] Create the local foundation commit.
 - [x] Write the draft evaluation protocol.
 - [x] Select the primary and sensitivity evaluation populations in the draft protocol.
-- [ ] Reproduce one published RobustBench-TC number.
-- [ ] Create grouped development/held-out partitions.
-- [ ] Verify partition isolation.
-- [ ] Build the five-case experiment runner.
+- [x] Verify a published clean result within one case, with the post hoc tolerance disclosed.
+- [x] Create grouped development/held-out partitions.
+- [x] Verify partition isolation.
+- [x] Implement the resumable five-case experiment runner.
 - [ ] Capture and validate token log-probabilities.
-- [ ] Verify scoring, saving, and resume behavior.
+- [ ] Verify scoring, saving, and resume behavior in Colab.
 - [ ] Run the model-feasibility pilot.
 - [ ] Freeze the Task 1 protocol.
 
@@ -91,17 +89,28 @@ Every completed component must include:
 | Transition-capable groups | 199 in the clean-anchored population / 199 in the full population |
 | Full-population groups without a Transition source | 49 |
 | Published prediction-total reconciliation | 2,527 + 1,194 = 3,721 predictions per model |
-| Unit tests | 11 passed |
+| Llama 3B reference / observed | 103/199 (`0.5176`) / 102/199 (`0.5126`) strict clean accuracy |
+| Llama run settings | Model/tokenizer revision `0cb88a4f764b7a12671c53f0838cd831a0843b95`; temperature 0, 16 workers, 1,024 max tokens, BF16, L4, vLLM 0.30.0, PyTorch 2.13.0+cu130 |
+| Llama run integrity | 199 unique predictions, 199 scored IDs, no missing or extra clean IDs, 0 inference errors (checked in Colab) |
+| Grouped split | `docs/splits/group_split_v1.json`; seed 1729, 70/30 target, benchmark-stratified SHA-256 group ranking |
+| Primary split | 140 development / 59 test groups; 1,754 / 723 static rows |
+| Sensitivity-only split | 34 development / 15 test groups; 35 / 15 static rows |
+| Split validation | 16 tests pass; all 2,527 retained rows map to 248 groups without leakage; manifest regenerates identically |
+| Qwen 7B smoke check | Revision `a09a35458c702b33eeacc393d103063234e8bc28`; first five clean BFCL cases scored 5/5 with 0 inference errors. This is a feasibility check, not a full benchmark result. |
+| Qwen 7B token evidence | On the same five cases, all calls parsed and all visible-token log-probabilities were finite. Visible token bytes aligned after excluding the trailing `<|im_end|>` token. Saved in Colab Drive. |
+| Five-case runner | `src/uqroute_tc/inference/pilot.py` selects clean development cases, records token evidence, writes scorer-compatible output, and resumes without repeating completed cases. Three local unit tests pass; live Colab validation remains. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
 
 ## Protocol status
 
-The draft protocol selects the clean-anchored population containing 2,477 rows and 199 groups as the primary population and the complete single-turn population containing 2,527 rows and 248 groups as the sensitivity population.
+The draft protocol uses 199 clean-anchored groups for the primary population and all 248 single-turn groups for sensitivity analysis. The manifest assigns every group.
 
-These selections remain subject to supervisor review and the Task 1 protocol freeze.
+Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen before splitting. Report those clean scores descriptively. Use development groups for tuning and reserve unseen perturbed test cases for confirmatory analysis.
 
 ## Next action
 
-Reproduce and independently verify one published RobustBench-TC number. Only after that gate passes, create the reproducible group-level development/held-out split.
+Run the five-case runner on development cases in Colab, check official scoring and interruption/resume, then pilot Qwen 1.5B, Llama 3B, and the 14B fallback. Freeze the remaining Task 1 settings before examining held-out perturbation results.
+
+The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.

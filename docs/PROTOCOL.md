@@ -90,6 +90,18 @@ Stateful transition-recovery experiments will be conducted and reported separate
 
 ## 7. Partitioning and leakage prevention
 
+The Task 1 published-number gate uses a **post hoc, one-case tolerance** approved after
+the initial clean runs were viewed. A near reproduction is sufficient to start the
+grouped split only if the pinned reference runner and scorer process all 199 unique
+clean cases without errors, exact model and inference settings are recorded, and
+strict accuracy differs from the seeded leaderboard by no more than one case.
+This is a feasibility decision, not an exact reproduction of the published result.
+For `meta-llama/Llama-3.2-3B-Instruct`, the observed strict score is 102/199
+(`0.5126`) and the seeded leaderboard reports 103/199 (`0.5176`). The saved
+Colab check found 199 unique predictions and scores, with no missing or extra
+clean IDs. The release does not contain the seeded per-case predictions, so
+the differing case and its cause cannot be established from the release.
+
 Partitioning will occur at the canonical base-task level, not at the individual-row level.
 
 All clean, paraphrased, perturbed, and same-name variants belonging to a base task must remain in the same partition.
@@ -99,7 +111,25 @@ The planned primary population will be divided into:
 - Development groups used for engineering checks, uncertainty-method selection, calibration, and routing-threshold selection.
 - Held-out test groups used only after the parser, metrics, routing policies, and thresholds are frozen.
 
-The exact split ratio, deterministic seed, and benchmark-stratification procedure will be implemented, validated, and recorded before model-result analysis begins.
+The split in `docs/splits/group_split_v1.json` uses seed `1729` and a 70/30
+development/test target. Within each population and benchmark, base-task IDs
+are ranked by SHA-256 of the fixed seed, population, benchmark, and canonical ID.
+The benchmark for primary groups comes from their clean source row. The first
+`round_half_up(0.3 * n)` groups in each stratum go to test; the rest go to
+development. The primary population has 140
+development and 59 test groups (1,754 and 723 static rows). The 49
+sensitivity-only BFCL groups are split separately: 34 development and 15 test
+groups (35 and 15 static rows). Every variant follows its base-task group.
+Regenerate the manifest with `python -m uqroute_tc.data.split --data-dir
+<benchmark-clone>/hf_data/datasets/api_eval --output docs/splits/group_split_v1.json`.
+
+This split was fixed **after** aggregate clean-run results for Qwen 1.5B and
+Llama 3B, several Qwen clean case IDs, and a five-case Qwen 7B clean pilot
+had been viewed. Those clean results are not a fully untouched held-out test;
+report them descriptively and disclose this exposure. Method selection and
+threshold tuning must use development groups only. Confirmatory held-out
+claims must be limited to subsequently unseen perturbed cases under the
+frozen analysis protocol; do not inspect their test labels while developing.
 
 The pinned runner generates Transition cases only from `clean.jsonl`. The 49 sensitivity-population groups without a clean source row cannot receive Transition cases. RQ3 is therefore scoped to the clean-anchored population of 199 base-task groups; the full 248-group population is not an RQ3 population.
 
