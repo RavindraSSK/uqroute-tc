@@ -220,6 +220,16 @@ Parsing failures, missing log-probabilities, truncated completions, request erro
 
 All uncertainty scores are oriented so that a larger value means greater uncertainty.
 
+The provisional canonical-call implementation uses the pinned benchmark's
+`parse_tool_calls` output and does not replace or change the scorer's parser.
+It ignores mapping insertion order, but preserves tool names and case,
+argument names, nested value types and values, list order, and call order.
+Empty output, an explicit `[]`, malformed parsed calls, and nonempty outputs
+with no parsed calls remain distinct. The last category can contain both
+intentional no-tool replies and unrecognized syntax, so it is labelled
+`unparsed_or_no_call` pending the saved-output audit. These rules, including
+how that ambiguous category enters repeated-sample clustering, are not frozen.
+
 For a generated sequence containing tokens indexed by `i = 1, ..., L`, let `log p_i` be the model-returned log-probability of the selected token.
 
 The planned single-sample measures are:

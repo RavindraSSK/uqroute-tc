@@ -34,8 +34,8 @@ Every completed component must include:
 
 ## Task 2 — Parser and uncertainty engine
 
-- [ ] Implement canonical tool-call parsing.
-- [ ] Test equivalent and different tool calls.
+- [x] Implement canonical keys for the pinned benchmark parser's tool calls.
+- [x] Test equivalent and different tool calls.
 - [ ] Implement single-sample uncertainty measures.
 - [ ] Verify token-to-call alignment.
 - [ ] Implement ten-sample disagreement and entropy.
@@ -103,6 +103,7 @@ Every completed component must include:
 | Llama token-evidence recovery | All five Llama responses had a trailing `<|eot_id|>` log-probability token; excluding it made chosen-token bytes exactly match the visible UTF-8 output. Validator fix `8f919e3` admits this terminator only after exact byte alignment. Original invalid records were backed up by the corrected recovery notebook; the user reported five unique scored-ready records with valid token evidence. |
 | Qwen 14B AWQ fallback feasibility | The user reported five unique scored-ready records with valid token evidence on the L4, saved in `pilots/qwen25-14b-awq-feasibility-five-v1`. This establishes a serving/evidence feasibility check only; five cases cannot establish routing benefit or full benchmark accuracy. |
 | Four-model development audit | The user supplied the official case-score comparison for the same five clean development BFCL cases: Qwen 1.5B, Llama 3B, Qwen 7B, and Qwen 14B AWQ each scored 5/5. The fallback rescued 0/5 errors for each small model because all small-model predictions were correct. The audit notebook saved `pilots/four_model_pilot_audit.json` in Drive; the user-supplied table is summarized in `docs/evidence/four_model_five_case_summary.json`. This is a feasibility check, not a routing-effectiveness estimate. |
+| Canonical-call prototype | The pinned benchmark parser's output is converted into type-aware keys without altering scorer inputs. Seven focused unit tests pass. A direct compatibility check using the pinned parser found one shared key for equivalent Python, JSON, XML, ReAct, and ToolAlpaca examples. Actual saved pilot outputs still require a manual parser audit; the no-call versus unparsed distinction remains provisional. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -115,6 +116,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Record the 14B AWQ checkpoint as a feasible fallback candidate and finalize the remaining Task 1 settings. Then implement and validate the uncertainty/parser engine before a larger development experiment that includes small-model failures. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
+The 14B AWQ checkpoint is a feasible fallback candidate. Recover its exact pinned revision from the saved Drive manifest and finalize the remaining Task 1 settings before declaring a freeze. In Task 2, audit the parser against saved development outputs, implement token alignment and uncertainty measures, and choose the repeated-sample subset before larger development experiments. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
