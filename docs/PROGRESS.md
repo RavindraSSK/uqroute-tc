@@ -30,7 +30,7 @@ Every completed component must include:
 - [x] Capture and validate token log-probabilities on five development cases for each small model.
 - [x] Verify scoring and saving in Colab; verify the runner's resume path.
 - [x] Confirm that the proposed 14B AWQ fallback serves and yields five valid development records on the L4.
-- [ ] Freeze the Task 1 protocol.
+- [x] Freeze the Task 1 benchmark, model, split, and single-sample settings; keep later methods draft.
 
 ## Task 2 — Parser and uncertainty engine
 
@@ -102,6 +102,7 @@ Every completed component must include:
 | Small-model development pilot outputs | Qwen 7B: `pilots/qwen25-7b-dev-five-v1`; Qwen 1.5B: `pilots/qwen25-15b-dev-five-v1`; Llama 3B: `pilots/llama32-3b-dev-five-v1` under `/content/drive/MyDrive/UQRoute-TC/`. These are five-case development checks, not full benchmark reproductions. |
 | Llama token-evidence recovery | All five Llama responses had a trailing `<|eot_id|>` log-probability token; excluding it made chosen-token bytes exactly match the visible UTF-8 output. Validator fix `8f919e3` admits this terminator only after exact byte alignment. Original invalid records were backed up by the corrected recovery notebook; the user reported five unique scored-ready records with valid token evidence. |
 | Qwen 14B AWQ fallback feasibility | The user reported five unique scored-ready records with valid token evidence on the L4, saved in `pilots/qwen25-14b-awq-feasibility-five-v1`. This establishes a serving/evidence feasibility check only; five cases cannot establish routing benefit or full benchmark accuracy. |
+| Task 1 settings freeze | `docs/config/task1_single_sample_v1.json` records all four pinned model/tokenizer revisions and the benchmark/split/generation settings. The user read the fallback revision `539535859b135b0244c91f3e59816150c8056698` from the Drive pilot manifest on 2026-09-30. The 14B notebook is pinned to the same revision for a fresh run. This is a scoped Task 1 freeze; Task 2–4 methods and the full held-out protocol remain draft. |
 | Four-model development audit | The user supplied the official case-score comparison for the same five clean development BFCL cases: Qwen 1.5B, Llama 3B, Qwen 7B, and Qwen 14B AWQ each scored 5/5. The fallback rescued 0/5 errors for each small model because all small-model predictions were correct. The audit notebook saved `pilots/four_model_pilot_audit.json` in Drive; the user-supplied table is summarized in `docs/evidence/four_model_five_case_summary.json`. This is a feasibility check, not a routing-effectiveness estimate. |
 | Canonical-call prototype | The pinned benchmark parser's output is converted into type-aware keys without altering scorer inputs. Seven focused unit tests pass. A direct compatibility check using the pinned parser found one shared key for equivalent Python, JSON, XML, ReAct, and ToolAlpaca examples. Actual saved pilot outputs still require a manual parser audit; the no-call versus unparsed distinction remains provisional. |
 | Ruff | Passed |
@@ -110,12 +111,16 @@ Every completed component must include:
 
 ## Protocol status
 
-The draft protocol uses 199 clean-anchored groups for the primary population and all 248 single-turn groups for sensitivity analysis. The manifest assigns every group.
+The Task 1 subset is frozen: 199 clean-anchored groups for the primary
+population, all 248 single-turn groups for sensitivity analysis, the grouped
+split manifest, four model revisions/roles, and single-sample serving settings.
+The full protocol is still draft until parser, uncertainty, routing, and
+held-out analysis decisions are frozen.
 
 Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen before splitting. Report those clean scores descriptively. Use development groups for tuning and reserve unseen perturbed test cases for confirmatory analysis.
 
 ## Next action
 
-The 14B AWQ checkpoint is a feasible fallback candidate. Recover its exact pinned revision from the saved Drive manifest and finalize the remaining Task 1 settings before declaring a freeze. In Task 2, audit the parser against saved development outputs, implement token alignment and uncertainty measures, and choose the repeated-sample subset before larger development experiments. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
+Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. In Task 2, audit the parser against saved development outputs, implement token alignment and uncertainty measures, and choose the repeated-sample subset before larger development experiments. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.

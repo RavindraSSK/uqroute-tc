@@ -1,0 +1,76 @@
+{
+  "scope": "Task 1 benchmark, model roles, and single-sample generation; later methods remain draft",
+  "freeze_date": "2026-09-30",
+  "benchmark": {
+    "repository": "WillChow66/robustbench-tc-release",
+    "revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+    "data_directory": "hf_data/datasets/api_eval",
+    "primary_population": "199 clean-anchored groups, 2477 static rows",
+    "sensitivity_population": "248 single-turn groups, 2527 static rows",
+    "transition_population": "199 clean-anchored source groups only",
+    "split_manifest": "docs/splits/group_split_v1.json",
+    "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db"
+  },
+  "single_sample": {
+    "prompt_builder": "pinned scripts/run_eval.py build_messages",
+    "tool_call_mode": "prompt-based; no native tools argument",
+    "temperature": 0.001,
+    "max_tokens": 1024,
+    "logprobs": true,
+    "top_logprobs": 5,
+    "request_seed": null,
+    "seed_note": "The reference-style pilots did not set a per-request seed; log-probabilities and raw outputs are preserved for each run.",
+    "server": {
+      "engine": "vLLM",
+      "version": "0.30.0",
+      "max_model_len": 8192,
+      "gpu_memory_utilization": 0.88,
+      "chat_template": "vLLM default from the pinned model tokenizer; no override",
+      "pilot_gpu": "NVIDIA L4"
+    }
+  },
+  "models": [
+    {
+      "role": "small",
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "dtype": "bfloat16",
+      "quantization": "none",
+      "model_card_license_tag": "apache-2.0",
+      "pilot_access": "served"
+    },
+    {
+      "role": "small",
+      "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "model_revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+      "tokenizer_revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+      "dtype": "bfloat16",
+      "quantization": "none",
+      "model_card_license_tag": "llama3.2",
+      "pilot_access": "gated; user served with authorized HF_TOKEN"
+    },
+    {
+      "role": "small",
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "tokenizer_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+      "dtype": "bfloat16",
+      "quantization": "none",
+      "model_card_license_tag": "apache-2.0",
+      "pilot_access": "served"
+    },
+    {
+      "role": "fallback",
+      "model_id": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+      "model_revision": "539535859b135b0244c91f3e59816150c8056698",
+      "tokenizer_revision": "539535859b135b0244c91f3e59816150c8056698",
+      "dtype": "float16",
+      "quantization": "AWQ 4-bit checkpoint",
+      "model_card_license_tag": "apache-2.0",
+      "pilot_access": "served"
+    }
+  ],
+  "reproduction_run_note": "The separate 199-case Llama near reproduction used temperature 0, not this pilot/main single-sample setting.",
+  "evidence_note": "The user read and confirmed the fallback model and tokenizer revision from the saved Drive pilot manifest on 2026-09-30. The other pinned settings follow the committed Colab pilot notebooks."
+}
