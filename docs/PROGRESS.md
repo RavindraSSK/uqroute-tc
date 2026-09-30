@@ -27,9 +27,9 @@ Every completed component must include:
 - [x] Create grouped development/held-out partitions.
 - [x] Verify partition isolation.
 - [x] Implement the resumable five-case experiment runner.
-- [ ] Capture and validate token log-probabilities.
-- [ ] Verify scoring, saving, and resume behavior in Colab.
-- [ ] Run the model-feasibility pilot.
+- [x] Capture and validate token log-probabilities on five development cases for each small model.
+- [x] Verify scoring and saving in Colab; verify the runner's resume path.
+- [ ] Complete model feasibility by testing the proposed larger fallback on available hardware.
 - [ ] Freeze the Task 1 protocol.
 
 ## Task 2 — Parser and uncertainty engine
@@ -98,7 +98,9 @@ Every completed component must include:
 | Split validation | 16 tests pass; all 2,527 retained rows map to 248 groups without leakage; manifest regenerates identically |
 | Qwen 7B smoke check | Revision `a09a35458c702b33eeacc393d103063234e8bc28`; first five clean BFCL cases scored 5/5 with 0 inference errors. This is a feasibility check, not a full benchmark result. |
 | Qwen 7B token evidence | On the same five cases, all calls parsed and all visible-token log-probabilities were finite. Visible token bytes aligned after excluding the trailing `<|im_end|>` token. Saved in Colab Drive. |
-| Five-case runner | `src/uqroute_tc/inference/pilot.py` selects clean development cases, records token evidence, writes scorer-compatible output, and resumes without repeating completed cases. Three local unit tests pass; live Colab validation remains. |
+| Five-case runner | `src/uqroute_tc/inference/pilot.py` selects clean development cases, records token evidence, writes scorer-compatible output, and resumes without repeating completed cases. The three small-model five-case pilots completed in Colab; Qwen 7B and Qwen 1.5B completion was user-reported, and the Llama 3B final verification message was supplied. No aggregate five-case accuracy is recorded here. |
+| Small-model development pilot outputs | Qwen 7B: `pilots/qwen25-7b-dev-five-v1`; Qwen 1.5B: `pilots/qwen25-15b-dev-five-v1`; Llama 3B: `pilots/llama32-3b-dev-five-v1` under `/content/drive/MyDrive/UQRoute-TC/`. These are five-case development checks, not full benchmark reproductions. |
+| Llama token-evidence recovery | All five Llama responses had a trailing `<|eot_id|>` log-probability token; excluding it made chosen-token bytes exactly match the visible UTF-8 output. Validator fix `8f919e3` admits this terminator only after exact byte alignment. Original invalid records were backed up by the corrected recovery notebook; the user reported five unique scored-ready records with valid token evidence. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -111,6 +113,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Run the five-case runner on development cases in Colab, check official scoring and interruption/resume, then pilot Qwen 1.5B, Llama 3B, and the 14B fallback. Freeze the remaining Task 1 settings before examining held-out perturbation results.
+Run the 14B AWQ fallback feasibility check on the L4, retaining a failure log if serving fails. Then review the three small-model pilot scores and stored evidence, choose a feasible larger fallback, and freeze the remaining Task 1 settings before full experiments or held-out perturbation analysis.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
