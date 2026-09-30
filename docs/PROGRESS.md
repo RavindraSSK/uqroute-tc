@@ -36,9 +36,11 @@ Every completed component must include:
 
 - [x] Implement canonical keys for the pinned benchmark parser's tool calls.
 - [x] Test equivalent and different tool calls.
-- [ ] Implement single-sample uncertainty measures.
+- [x] Implement and validate the three whole-output single-sample token measures.
+- [ ] Implement meaningful-token uncertainty after token-to-call alignment.
 - [ ] Verify token-to-call alignment.
-- [ ] Implement ten-sample disagreement and entropy.
+- [x] Implement ten-sample canonical-call entropy and disagreement, with exact-string ablation.
+- [ ] Select the repeated-sample subset and generate ten outputs per case.
 - [ ] Freeze the parser and uncertainty protocol.
 
 ## Task 3 — Robustness study
@@ -105,6 +107,8 @@ Every completed component must include:
 | Task 1 settings freeze | `docs/config/task1_single_sample_v1.json` records all four pinned model/tokenizer revisions and the benchmark/split/generation settings. The user read the fallback revision `539535859b135b0244c91f3e59816150c8056698` from the Drive pilot manifest on 2026-09-30. The 14B notebook is pinned to the same revision for a fresh run. This is a scoped Task 1 freeze; Task 2–4 methods and the full held-out protocol remain draft. |
 | Four-model development audit | The user supplied the official case-score comparison for the same five clean development BFCL cases: Qwen 1.5B, Llama 3B, Qwen 7B, and Qwen 14B AWQ each scored 5/5. The fallback rescued 0/5 errors for each small model because all small-model predictions were correct. The audit notebook saved `pilots/four_model_pilot_audit.json` in Drive; the user-supplied table is summarized in `docs/evidence/four_model_five_case_summary.json`. This is a feasibility check, not a routing-effectiveness estimate. |
 | Canonical-call prototype | The pinned benchmark parser's output is converted into type-aware keys without altering scorer inputs. Seven focused unit tests pass. A direct compatibility check using the pinned parser found one shared key for equivalent Python, JSON, XML, ReAct, and ToolAlpaca examples. Actual saved pilot outputs still require a manual parser audit; the no-call versus unparsed distinction remains provisional. |
+| Week 4 CPU measures | Saved chosen-token responses are revalidated for exact visible-byte alignment before computing sequence NLL, mean token NLL, and maximum token surprisal. Ten-output canonical and exact-string clustering computes entropy in nats and disagreement with failed/empty outcomes in the denominator. Focused tests pass. Meaningful-token alignment and any ten-generation model run remain pending. |
+| Saved-output audit prepared | `src/uqroute_tc/parsing/audit.py` and `notebooks/UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` check the four saved five-case pilot folders on a CPU runtime; the actual Drive audit has not been run yet. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -121,6 +125,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. In Task 2, audit the parser against saved development outputs, implement token alignment and uncertainty measures, and choose the repeated-sample subset before larger development experiments. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
+Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. Run the CPU-only saved-pilot audit notebook, review its parser outcomes, then validate token-to-call alignment and define a repeated-sample subset before generating ten outputs per case. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.

@@ -9,6 +9,7 @@ These notebooks run five clean **development** cases from the pinned RobustBench
 | `UQRoute_TC_Qwen7B_Development_Pilot.ipynb` | Small-model pilot (Qwen 7B) |
 | `UQRoute_TC_Qwen14B_AWQ_Fallback_Feasibility.ipynb` | Larger fallback serving and evidence feasibility check |
 | `UQRoute_TC_Four_Model_Pilot_Audit.ipynb` | CPU-only audit of the four saved five-case pilots and official case scores |
+| `UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` | CPU-only Task 2 reparse and token-evidence check of the 20 saved records |
 
 Run one model notebook at a time. Each notebook pins its benchmark and pilot-code revisions, and the saved manifest records the run settings. The Llama notebook reads `HF_TOKEN` from Colab Secrets only if new inference is necessary. The notebooks are pilot checks, not full benchmark reproductions or held-out evaluations.
 
