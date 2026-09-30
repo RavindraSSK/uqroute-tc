@@ -4,7 +4,7 @@
 
 The Task 1 benchmark, population, split, model roles/revisions, and
 single-sample generation settings are frozen in
-`docs/config/task1_single_sample_v1.json` as of 2026-09-30. This document
+`docs/config/task1_single_sample_v1.json`. This document
 remains a draft for the Task 2 parser/uncertainty rules and Task 3–4 analysis,
 cost, routing, and recovery choices. The full protocol must be frozen before
 held-out evaluation begins.
