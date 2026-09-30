@@ -55,11 +55,11 @@ def token_evidence(choice: dict[str, Any]) -> dict[str, Any]:
     visible = tokens
     output = raw.encode("utf-8")
     rebuilt = b"".join(bytes(token["bytes"]) for token in visible)
-    if rebuilt != output and tokens[-1].get("token") == "<|im_end|>":
+    if rebuilt != output and tokens[-1].get("token") in {"<|im_end|>", "<|eot_id|>"}:
         visible = tokens[:-1]
         rebuilt = b"".join(bytes(token["bytes"]) for token in visible)
         if rebuilt == output:
-            result["excluded_trailing_token"] = "<|im_end|>"
+            result["excluded_trailing_token"] = tokens[-1]["token"]
     if rebuilt != output:
         result["reason"] = "chosen-token bytes do not match visible UTF-8 output"
         return result

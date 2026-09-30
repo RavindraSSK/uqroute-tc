@@ -46,6 +46,18 @@ class PilotTests(unittest.TestCase):
         choice["logprobs"]["content"][0] = _token("x")
         self.assertFalse(token_evidence(choice)["valid"])
 
+    def test_llama_trailing_eot_requires_exact_prefix_match(self):
+        choice = {
+            "message": {"content": "é"},
+            "logprobs": {"content": [_token("é"), _token("<|eot_id|>")]},
+        }
+        evidence = token_evidence(choice)
+        self.assertTrue(evidence["valid"])
+        self.assertEqual(evidence["excluded_trailing_token"], "<|eot_id|>")
+        self.assertEqual(evidence["visible_token_spans"], [[0, 2]])
+        choice["logprobs"]["content"][0] = _token("x")
+        self.assertFalse(token_evidence(choice)["valid"])
+
     def test_selection_does_not_take_held_out_case(self):
         samples = [{"id": key} for key in ("test", "dev1", "dev2")]
         split = {"assignments": {
