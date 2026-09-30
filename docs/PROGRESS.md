@@ -29,7 +29,7 @@ Every completed component must include:
 - [x] Implement the resumable five-case experiment runner.
 - [x] Capture and validate token log-probabilities on five development cases for each small model.
 - [x] Verify scoring and saving in Colab; verify the runner's resume path.
-- [ ] Complete model feasibility by testing the proposed larger fallback on available hardware.
+- [x] Confirm that the proposed 14B AWQ fallback serves and yields five valid development records on the L4.
 - [ ] Freeze the Task 1 protocol.
 
 ## Task 2 — Parser and uncertainty engine
@@ -101,6 +101,7 @@ Every completed component must include:
 | Five-case runner | `src/uqroute_tc/inference/pilot.py` selects clean development cases, records token evidence, writes scorer-compatible output, and resumes without repeating completed cases. The three small-model five-case pilots completed in Colab; Qwen 7B and Qwen 1.5B completion was user-reported, and the Llama 3B final verification message was supplied. No aggregate five-case accuracy is recorded here. |
 | Small-model development pilot outputs | Qwen 7B: `pilots/qwen25-7b-dev-five-v1`; Qwen 1.5B: `pilots/qwen25-15b-dev-five-v1`; Llama 3B: `pilots/llama32-3b-dev-five-v1` under `/content/drive/MyDrive/UQRoute-TC/`. These are five-case development checks, not full benchmark reproductions. |
 | Llama token-evidence recovery | All five Llama responses had a trailing `<|eot_id|>` log-probability token; excluding it made chosen-token bytes exactly match the visible UTF-8 output. Validator fix `8f919e3` admits this terminator only after exact byte alignment. Original invalid records were backed up by the corrected recovery notebook; the user reported five unique scored-ready records with valid token evidence. |
+| Qwen 14B AWQ fallback feasibility | The user reported five unique scored-ready records with valid token evidence on the L4, saved in `pilots/qwen25-14b-awq-feasibility-five-v1`. This establishes a serving/evidence feasibility check only; five cases cannot establish routing benefit or full benchmark accuracy. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
@@ -113,6 +114,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Run the 14B AWQ fallback feasibility check on the L4, retaining a failure log if serving fails. Then review the three small-model pilot scores and stored evidence, choose a feasible larger fallback, and freeze the remaining Task 1 settings before full experiments or held-out perturbation analysis.
+Audit the four saved pilot manifests, records, and scores together. The 14B AWQ checkpoint is a feasible fallback candidate; choose and freeze the fallback and remaining Task 1 settings before full experiments or held-out perturbation analysis. Five-case accuracy is descriptive only.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
