@@ -30,19 +30,22 @@ Every completed component must include:
 - [x] Capture and validate token log-probabilities on five development cases for each small model.
 - [x] Verify scoring and saving in Colab; verify the runner's resume path.
 - [x] Confirm that the proposed 14B AWQ fallback serves and yields five valid development records on the L4.
-- [ ] Freeze the Task 1 protocol.
+- [x] Freeze the Task 1 benchmark, model, split, and single-sample settings; keep later methods draft.
 
 ## Task 2 — Parser and uncertainty engine
 
-- [ ] Implement canonical tool-call parsing.
-- [ ] Test equivalent and different tool calls.
-- [ ] Implement single-sample uncertainty measures.
-- [ ] Verify token-to-call alignment.
-- [ ] Implement ten-sample disagreement and entropy.
+- [x] Implement canonical keys for the pinned benchmark parser's tool calls.
+- [x] Test equivalent and different tool calls.
+- [x] Implement and validate the three whole-output single-sample token measures.
+- [ ] Review and commit the locally tested meaningful-token score for BFCL Python-call output.
+- [ ] Verify token-to-call alignment across the supported output formats; the BFCL five-case pilot is checked.
+- [x] Implement ten-sample canonical-call entropy and disagreement, with exact-string ablation.
+- [ ] Review and commit the deterministic repeated-sample subset, then generate ten outputs per case; a 30-case development-only draft is prepared locally.
 - [ ] Freeze the parser and uncertainty protocol.
 
 ## Task 3 — Robustness study
 
+- [ ] Measure representative per-model throughput and available GPU capacity before full inference.
 - [ ] Run the clean and static-perturbation experiments.
 - [ ] Calculate accuracy and failure-detection metrics.
 - [ ] Analyze risk–coverage and calibration.
@@ -67,6 +70,21 @@ Every completed component must include:
 - [ ] Package the code and documentation.
 - [ ] Build the cached demonstration.
 - [ ] Complete the report and presentation.
+
+## Compute readiness
+
+The Colab L4 has served all four pinned models on five development cases each,
+including the 14B AWQ fallback. Colab Pro+ and Kaggle T4 are the planned
+inference resources; local CPU work covers scoring, analysis, figures, and
+writing. No additional GPU has been identified as required by the pilot.
+
+Full-run capacity is not yet measured. Running all four models once on each
+of the 2,477 primary static cases would require 9,908 generations. The draft
+30-case repeated-sample subset would add 900 generations across the three
+small models, before retries, recovery experiments, or other ablations. Run
+and time a representative batch for each model, record GPU hours and current
+platform quota, then schedule resumable batches. Reassess external compute
+only if those measurements show the available resources are insufficient.
 
 ## Verified evidence
 
@@ -102,18 +120,29 @@ Every completed component must include:
 | Small-model development pilot outputs | Qwen 7B: `pilots/qwen25-7b-dev-five-v1`; Qwen 1.5B: `pilots/qwen25-15b-dev-five-v1`; Llama 3B: `pilots/llama32-3b-dev-five-v1` under `/content/drive/MyDrive/UQRoute-TC/`. These are five-case development checks, not full benchmark reproductions. |
 | Llama token-evidence recovery | All five Llama responses had a trailing `<|eot_id|>` log-probability token; excluding it made chosen-token bytes exactly match the visible UTF-8 output. Validator fix `8f919e3` admits this terminator only after exact byte alignment. Original invalid records were backed up by the corrected recovery notebook; the user reported five unique scored-ready records with valid token evidence. |
 | Qwen 14B AWQ fallback feasibility | The user reported five unique scored-ready records with valid token evidence on the L4, saved in `pilots/qwen25-14b-awq-feasibility-five-v1`. This establishes a serving/evidence feasibility check only; five cases cannot establish routing benefit or full benchmark accuracy. |
+| Task 1 settings freeze | `docs/config/task1_single_sample_v1.json` records all four pinned model/tokenizer revisions and the benchmark/split/generation settings. The fallback revision `539535859b135b0244c91f3e59816150c8056698` was verified against the saved Drive pilot manifest. The 14B notebook is pinned to the same revision for a fresh run. This is a scoped Task 1 freeze; Task 2–4 methods and the full held-out protocol remain draft. |
+| Four-model development audit | The user supplied the official case-score comparison for the same five clean development BFCL cases: Qwen 1.5B, Llama 3B, Qwen 7B, and Qwen 14B AWQ each scored 5/5. The fallback rescued 0/5 errors for each small model because all small-model predictions were correct. The audit notebook saved `pilots/four_model_pilot_audit.json` in Drive; the user-supplied table is summarized in `docs/evidence/four_model_five_case_summary.json`. This is a feasibility check, not a routing-effectiveness estimate. |
+| Canonical-call prototype | The pinned benchmark parser's output is converted into type-aware keys without altering scorer inputs. A direct compatibility check using the pinned parser found one shared key for equivalent Python, JSON, XML, ReAct, and ToolAlpaca examples. The saved 20-prediction audit found 20 parsed calls matching saved calls and 20 valid single-sample scores. The no-call versus unparsed distinction remains provisional because these cases all parsed as calls. |
+| CPU uncertainty measures | Saved chosen-token responses are revalidated for exact visible-byte alignment before computing sequence NLL, mean token NLL, and maximum token surprisal. Ten-output canonical and exact-string clustering computes entropy in nats and disagreement with failed/empty outcomes in the denominator. Implementation is tested; any ten-generation model run remains pending. |
+| BFCL meaningful-token pilot | The 20 saved outputs from four models and five clean development BFCL cases have exact visible-byte alignment after excluding 15 `<|im_end|>` and five `<|eot_id|>` end tokens. A locally tested, uncommitted AST-to-parser draft accepted all 20; 317 visible tokens overlapped names or values, of which 55 also covered syntax or whitespace. This rule still requires review and a code commit; other formats and broader data remain unvalidated. |
+| Repeated-sample subset draft | A local, uncommitted deterministic selector identifies 15 distinct development groups, with a clean and a static-perturbation case from each: 30 cases across five benchmarks. Ten generations from each of three small models would be 900 model calls. The selection remains draft; no ten-generation results have been produced. |
+| Saved-output audit | `src/uqroute_tc/parsing/audit.py` and `notebooks/UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` audited four saved five-case pilot folders on a CPU runtime. The user supplied the 20-record audit showing 20 parser statuses `calls`, 20 saved-call matches, and 20 valid single-sample scores. |
 | Ruff | Passed |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
 
 ## Protocol status
 
-The draft protocol uses 199 clean-anchored groups for the primary population and all 248 single-turn groups for sensitivity analysis. The manifest assigns every group.
+The Task 1 subset is frozen: 199 clean-anchored groups for the primary
+population, all 248 single-turn groups for sensitivity analysis, the grouped
+split manifest, four model revisions/roles, and single-sample serving settings.
+The full protocol is still draft until parser, uncertainty, routing, and
+held-out analysis decisions are frozen.
 
 Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen before splitting. Report those clean scores descriptively. Use development groups for tuning and reserve unseen perturbed test cases for confirmatory analysis.
 
 ## Next action
 
-Audit the four saved pilot manifests, records, and scores together. The 14B AWQ checkpoint is a feasible fallback candidate; choose and freeze the fallback and remaining Task 1 settings before full experiments or held-out perturbation analysis. Five-case accuracy is descriptive only.
+Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. Extend token-to-call alignment beyond the BFCL Python-call pilot, finalize the repeated-sample subset, and measure representative GPU throughput before larger inference runs. Generate ten outputs per selected case after the sampling settings are fixed. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.

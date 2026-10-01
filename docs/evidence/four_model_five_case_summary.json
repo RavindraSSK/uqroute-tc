@@ -1,0 +1,65 @@
+{
+  "scope": "same five clean development BFCL cases; feasibility only",
+  "evidence_source": "four-model Colab audit output supplied by user on 2026-09-30",
+  "drive_audit_path": "MyDrive/UQRoute-TC/pilots/four_model_pilot_audit.json",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "case_ids": [
+    "bfcl_v3__BFCL_v3_multiple__multiple_66",
+    "bfcl_v3__BFCL_v3_multiple__multiple_13",
+    "bfcl_v3__BFCL_v3_multiple__multiple_42",
+    "bfcl_v3__BFCL_v3_multiple__multiple_45",
+    "bfcl_v3__BFCL_v3_multiple__multiple_64"
+  ],
+  "models": {
+    "Qwen 1.5B": {
+      "n": 5,
+      "correct": 5,
+      "case_correct": {
+        "bfcl_v3__BFCL_v3_multiple__multiple_66": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_13": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_42": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_45": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_64": true
+      }
+    },
+    "Llama 3B": {
+      "n": 5,
+      "correct": 5,
+      "case_correct": {
+        "bfcl_v3__BFCL_v3_multiple__multiple_66": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_13": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_42": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_45": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_64": true
+      }
+    },
+    "Qwen 7B": {
+      "n": 5,
+      "correct": 5,
+      "case_correct": {
+        "bfcl_v3__BFCL_v3_multiple__multiple_66": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_13": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_42": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_45": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_64": true
+      }
+    },
+    "Qwen 14B AWQ": {
+      "n": 5,
+      "correct": 5,
+      "case_correct": {
+        "bfcl_v3__BFCL_v3_multiple__multiple_66": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_13": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_42": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_45": true,
+        "bfcl_v3__BFCL_v3_multiple__multiple_64": true
+      }
+    }
+  },
+  "fallback_rescues_by_small_model": {
+    "Qwen 1.5B": 0,
+    "Llama 3B": 0,
+    "Qwen 7B": 0
+  },
+  "interpretation": "No small-model errors occurred among these five cases; fallback rescue effectiveness and routing thresholds are untested."
+}

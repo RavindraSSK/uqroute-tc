@@ -2,7 +2,12 @@
 
 ## Protocol status
 
-This document is the draft evaluation protocol for the UQRoute-TC capstone. It will be frozen before held-out evaluation begins.
+The Task 1 benchmark, population, split, model roles/revisions, and
+single-sample generation settings are frozen in
+`docs/config/task1_single_sample_v1.json`. This document
+remains a draft for the Task 2 parser/uncertainty rules and Task 3–4 analysis,
+cost, routing, and recovery choices. The full protocol must be frozen before
+held-out evaluation begins.
 
 Any later change must record:
 
@@ -144,19 +149,30 @@ Additional leakage controls are:
 
 ## 8. Model roles and revisions
 
-The planned principal small models are:
+The frozen principal small models are:
 
 - `Qwen/Qwen2.5-1.5B-Instruct`
 - `meta-llama/Llama-3.2-3B-Instruct`
 - `Qwen/Qwen2.5-7B-Instruct`
 
-The planned fallback model is:
+The frozen fallback model is:
 
 - `Qwen/Qwen2.5-14B-Instruct-AWQ`
 
 These models have fixed roles in the study. The three principal models produce the initial tool call, and the 14B model is the escalation target. Model weights remain frozen; UQRoute does not fine-tune them.
 
-Before main inference begins, each model's exact model revision, tokenizer revision, quantization method, numerical dtype, chat template, inference-engine version, and license/access status must be recorded in an experiment manifest.
+The Task 1 configuration records all four exact model/tokenizer revisions,
+including `539535859b135b0244c91f3e59816150c8056698` for the 14B AWQ
+fallback (read by the user from the saved Drive pilot manifest). It also
+records the quantization, numerical dtype, vLLM version, default chat-template
+selection, and observed pilot access. The model-card license tags are recorded
+from the [Qwen 1.5B](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct),
+[Qwen 7B](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct),
+[Qwen 14B AWQ](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct-AWQ), and
+[Llama 3.2](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct) model
+cards; Llama was accessed through the user's gated-model token. The code does
+not bundle model weights or credentials. Each main experiment manifest must
+also record the exact run configuration and code revision.
 
 If a planned model cannot run within the available hardware or access constraints, the pilot report must document the failure and the resulting scope decision before the main study begins.
 
@@ -197,9 +213,20 @@ Output writing must remain resumable. Re-running a completed batch must not dupl
 
 ### 10.1 Single-sample protocol
 
-The primary single-sample study will use near-deterministic decoding consistent with the reference runner. The initial candidate setting is temperature `0.001` with a maximum completion length of 1,024 tokens.
+The primary single-sample study uses the frozen Task 1 settings: temperature
+`0.001`, maximum completion length 1,024 tokens, chosen-token log-probabilities
+with `top_logprobs=5`, prompt-based tool calling, and the pinned benchmark's
+message builder. The vLLM server setting is version `0.30.0`, maximum model
+length 8,192, and GPU memory utilization `0.88`. No per-request seed was set
+in the reference-style pilots; this is a recorded limitation for stochastic
+reproduction. The separate 199-case Llama near reproduction used temperature
+`0` and is not conflated with the five-case pilot or main single-sample setting.
 
-The smoke test and feasibility pilot will verify model compatibility, output truncation, log-probability capture, byte alignment, memory use, and throughput. The final decoding settings will be frozen before main inference and recorded in the experiment manifest.
+The five-case pilots verified serving, scorer output, and valid token evidence
+on the L4. They do not establish throughput or absence of truncation across
+the full population; larger development runs must record those outcomes and
+would require a logged protocol amendment if the frozen setting proves
+infeasible. Main inference will record the same settings in each run manifest.
 
 Prompt-based tool calling is the primary protocol. Native function calling is not part of the primary comparison unless it is separately predeclared as an ablation, because it changes both the output channel and the availability of token-level evidence.
 
@@ -219,6 +246,16 @@ Parsing failures, missing log-probabilities, truncated completions, request erro
 ## 11. Uncertainty measures
 
 All uncertainty scores are oriented so that a larger value means greater uncertainty.
+
+The provisional canonical-call implementation uses the pinned benchmark's
+`parse_tool_calls` output and does not replace or change the scorer's parser.
+It ignores mapping insertion order, but preserves tool names and case,
+argument names, nested value types and values, list order, and call order.
+Empty output, an explicit `[]`, malformed parsed calls, and nonempty outputs
+with no parsed calls remain distinct. The last category can contain both
+intentional no-tool replies and unrecognized syntax, so it is labelled
+`unparsed_or_no_call` pending the saved-output audit. These rules, including
+how that ambiguous category enters repeated-sample clustering, are not frozen.
 
 For a generated sequence containing tokens indexed by `i = 1, ..., L`, let `log p_i` be the model-returned log-probability of the selected token.
 
@@ -325,18 +362,20 @@ Exploratory subgroup findings will be labelled as exploratory, especially when a
 
 ## 17. Protocol freeze and change control
 
-Before held-out evaluation, the following must be frozen:
+The Task 1 subset (dataset/populations/split, model roles and revisions,
+prompt-based single-sample generation settings) is frozen in
+`docs/config/task1_single_sample_v1.json`. Before held-out evaluation, the
+remaining choices must also be frozen:
 
-- Dataset revision, primary population, and sensitivity population.
-- Canonical identity rules and development/test split manifest.
-- Model and tokenizer revisions.
-- Prompt templates and generation settings.
 - Parser and token-alignment rules.
 - Uncertainty formulas and repeated-sample subset.
 - Correctness metrics and calibration procedure.
 - Routing policies and threshold-selection rule.
 - Cost scenarios and statistical procedure.
 
-After the freeze, any correction must be recorded in a change log with its reason, affected runs, and whether held-out results had been viewed. Exploratory analyses added after the freeze must be labelled post hoc.
+Any correction to the frozen Task 1 subset or later full freeze must be
+recorded in a change log with its reason, affected runs, and whether held-out
+results had been viewed. Exploratory analyses added after the full freeze must
+be labelled post hoc.
 
 The protocol is complete only when all provisional choices have been resolved or explicitly approved as scoped exclusions.

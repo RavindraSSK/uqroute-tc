@@ -2,14 +2,14 @@
 
 ## Weekly timeline
 
-This is a working schedule for personal progress tracking. Future dates are planning targets and may move if experiments or GPU access require more time.
+This schedule tracks the project milestones. Dates are planning targets and may move as experiments progress.
 
 | Week | Dates | Main task | Focus | Status |
 |---|---|---|---|---|
 | Week 1 | Sep 7-13 | Task 1 | Project setup, benchmark and Transition audits, literature foundation, and draft protocol | Done |
-| Week 2 | Sep 14-20 | Task 1 | Reproduce one published RobustBench-TC number; then create the grouped split, basic runner, model pilot, and protocol freeze | In progress |
-| Week 3 | Sep 21-27 | Task 2 | Canonical tool-call parser | Not started |
-| Week 4 | Sep 28-Oct 4 | Task 2 | Single-sample and repeated-sample uncertainty measures | Not started |
+| Week 2 | Sep 14-20 | Task 1 | Near reproduction of a published RobustBench-TC result, grouped split, pilot runner, model pilots, and scoped Task 1 freeze | Done |
+| Week 3 | Sep 21-27 | Task 2 | Canonical tool-call parser | In progress |
+| Week 4 | Sep 28-Oct 4 | Task 2 | Single-sample and repeated-sample uncertainty measures | In progress |
 | Week 5 | Oct 5-11 | Task 3 | Clean and static-perturbation experiments | Not started |
 | Week 6 | Oct 12-18 | Task 3 | Static-perturbation metrics, held-out evaluation, and failure analysis | Not started |
 | Week 7 | Oct 19-25 | Task 4 | Uncertainty gate, fallback routing, and Transition recovery | Not started |
@@ -18,3 +18,8 @@ This is a working schedule for personal progress tracking. Future dates are plan
 | Week 10 | Nov 9-15 | Task 5 | Toolkit release, report, presentation, and research-paper preparation | Not started |
 
 A week is marked **Done** only after its completed work and supporting evidence have been committed to the repository.
+
+Current focus: audit the saved model outputs, validate token-to-call alignment,
+and then select and generate the repeated-sample subset. The five-case pilots
+establish inference and evidence feasibility; repeated-sample analysis remains
+to be run.
