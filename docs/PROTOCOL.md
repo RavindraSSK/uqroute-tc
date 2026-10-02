@@ -297,7 +297,7 @@ include syntax as well as content, the procedure reports which selected
 tokens also cover punctuation or whitespace. It rejects truncated responses,
 unsupported syntax, mismatched parser calls, missing probabilities, and
 unaligned bytes. This rule has been checked on the 20 saved outputs from five
-BFCL development cases across four models. JSON, XML, and mixed output
+BFCL development cases across four models. Other JSON, XML, and mixed output
 formats still need alignment validation before this measure can be used
 across the full benchmark. The selection rule remains draft.
 
@@ -315,6 +315,42 @@ with valid token evidence and received official scores of 0/4. The released
 parser returned a call in the RoTBench and ToolEyes cases, and no call in the
 other two. These cases establish neither a cross-benchmark accuracy estimate
 nor a complete alignment rule for XML/JSON and mixed outputs.
+
+A further local APIBank draft accepts either one standalone JSON object or
+one fenced JSON object after an optional balanced `<think>` block. The object
+must contain only `name` and `parameters`, have no duplicate JSON keys, and
+reconstruct exactly the pinned parser's call. It selects the tool-name value
+and the argument keys and values from the JSON source bytes. Both saved Qwen
+1.5B APIBank development candidates passed: 50 and 14 selected tokens with
+no boundary crossings. The two exported ToolAlpaca candidates did not
+support unambiguous alignment: their outputs mix prose with example JSON,
+and the benchmark parser extracted example content as calls in one case.
+They retain whole-output uncertainty, while meaningful-token uncertainty is
+unavailable. The full bounded audit contained 12 clean development cases per
+benchmark. All 24 were complete with valid token evidence and saved-call
+agreement. APIBank had 11 parsed calls and 7 officially correct predictions;
+ToolAlpaca had 4 parsed calls and 1 correct prediction. The ToolAlpaca
+prediction with three parsed calls scored correct because the expected call
+was present; the two additional names came from an example list. The four
+exported token-level candidates were the first two parsed calls in each
+benchmark, so they are a selected diagnostic. The 24 file-order development
+cases are not a population accuracy or parser-coverage estimate. The pinned
+parser and official scorer remain unchanged.
+
+For the current evaluation, ToolAlpaca has no meaningful-token score. Its
+explanatory prose, sample requests, and example responses do not establish a
+trustworthy span for every call returned by the released parser. A parser hit
+or an official correct score does not change that eligibility rule. The score
+is recorded as unavailable, with the format reason, for every ToolAlpaca
+case; no example-derived span or zero/imputed uncertainty is substituted.
+Valid token evidence still supports the three whole-output scores. Routing
+comparisons that include ToolAlpaca must use a measure available for all
+included cases; meaningful-token results may be reported separately on
+eligible formats with their eligible and ineligible counts. This scoped
+exclusion does not change the benchmark's parsing or correctness labels.
+Repeated-sample canonical calls will continue to reflect the released parser,
+including extra calls extracted from examples; their effect must be reviewed
+when the repeated-sample outputs are audited.
 
 For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
 
