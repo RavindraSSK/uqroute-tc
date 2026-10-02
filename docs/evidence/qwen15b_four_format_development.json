@@ -1,0 +1,64 @@
+{
+  "scope": "one clean development case each from APIBank, RotBench, ToolAlpaca, and ToolEyes",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "source": "user-reported Colab output from the format audit notebook and pinned RobustBench-TC scorer",
+  "drive_directory": "/content/drive/MyDrive/UQRoute-TC/pilots/qwen25-15b-format-dev-four-v1",
+  "react_evidence_sha256": "d2010fa369bf730ab1a8b6f9019979fb7e01da3ff87370a524f13318ad851987",
+  "react_evidence_note": "The user supplied an extracted JSON with raw output, parsed calls, finish reason, and chosen-token records for the two ReAct cases. The raw token arrays remain outside Git.",
+  "records_complete": 4,
+  "invalid_token_evidence": 0,
+  "official_correct": 0,
+  "cases": [
+    {
+      "benchmark": "apibank",
+      "id": "apibank__level3_89",
+      "parser_status": "unparsed_or_no_call",
+      "parsed_call_count": 0,
+      "correct": false,
+      "score": 0.0
+    },
+    {
+      "benchmark": "rotbench",
+      "id": "rotbench__Turn 1: Could you provide an estimate on rent for a three-bedroom house using Realty Mole’s real estate property database?",
+      "parser_status": "calls",
+      "parsed_call_count": 1,
+      "parsed_action": "finish",
+      "correct": false,
+      "score": 0.0,
+      "react_alignment": {
+        "valid": true,
+        "visible_token_count": 47,
+        "excluded_trailing_token": "<|im_end|>",
+        "selected_token_count": 11,
+        "boundary_crossing_token_count": 2,
+        "mean_token_nll": 0.9673841134906318
+      }
+    },
+    {
+      "benchmark": "toolalpaca",
+      "id": "toolalpaca__Nager.Date__inst6",
+      "parser_status": "unparsed_or_no_call",
+      "parsed_call_count": 0,
+      "correct": false,
+      "score": 0.0
+    },
+    {
+      "benchmark": "tooleyes",
+      "id": "tooleyes__Turn 1: Can you explain how a car engine works?",
+      "parser_status": "calls",
+      "parsed_call_count": 1,
+      "parsed_action": "explain_engine",
+      "correct": false,
+      "score": 0.0,
+      "react_alignment": {
+        "valid": true,
+        "visible_token_count": 54,
+        "excluded_trailing_token": "<|im_end|>",
+        "selected_token_count": 6,
+        "boundary_crossing_token_count": 1,
+        "mean_token_nll": 0.42062897994825715
+      }
+    }
+  ],
+  "interpretation_limit": "Four deliberately selected development cases are a format diagnostic, not an accuracy estimate. Valid token evidence and a completed request do not imply a correct prediction. The committed BFCL-only rule marked all four unsupported; the local ReAct draft aligned only the two parsed calls."
+}

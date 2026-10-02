@@ -234,6 +234,22 @@ Prompt-based tool calling is the primary protocol. Native function calling is no
 
 Repeated-sample uncertainty will use ten generations per selected case. The sampling temperature, nucleus-sampling value, seed procedure, and subset size will be fixed before repeated-sample results are inspected.
 
+The proposed diagnostic subset is selected without prediction values or
+correctness labels by `src/uqroute_tc/data/repeated_subset.py`: three distinct
+development groups in each of BFCL, APIBank, RotBench, ToolAlpaca, and
+ToolEyes. Each group contributes its clean row and one perturbation, giving
+15 groups and 30 static cases. For each benchmark the perturbation choices
+are query paraphrase, redundant tools, and CD_AB. ToolEyes has no CD_AB rows,
+so its third choice is realistic typos. Eligible groups are ranked by SHA-256
+of the selector version, seed 1729, benchmark, perturbation file, and base ID;
+previously selected groups in the benchmark are skipped. The current pinned
+release and split produce selection digest
+`082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67`
+over the compact, sorted-key JSON case list. At ten generations for each of
+three small models, this is 900 calls. The 30 cases are a limited diagnostic
+subset, and any claims about the full population require its larger evaluation.
+This selection and the remaining generation settings are draft until approved.
+
 Each generated output will be parsed and converted to a canonical tool-call representation. Canonical-call frequencies will be used to calculate disagreement and entropy. Exact-string clustering will be retained as an ablation.
 
 The repeated-sample subset and the claims supported by it must be stated explicitly. Results from a subset will not be presented as if every benchmark case received ten samples.
@@ -267,6 +283,38 @@ The planned single-sample measures are:
 - Meaningful-token negative log-likelihood: the mean negative log-likelihood over aligned tokens representing tool names, argument names, and argument values.
 
 The meaningful-token index set must be produced by an audited alignment procedure. If alignment fails or produces an empty set, the meaningful-token score is invalid and the failure is recorded.
+
+The current BFCL Python-call draft parses the complete visible output as a
+single call or a list of calls with literal keyword arguments. It verifies
+that the reconstructed calls match the pinned benchmark parser's type-aware
+canonical key, and that the returned chosen-token bytes exactly reconstruct
+the UTF-8 output after any verified final end token is removed. It maps the
+source byte spans for tool names, argument names, and argument values to
+visible tokens. String quotes are excluded for nonempty simple literals;
+empty-string quotes represent the otherwise zero-length value. A token is
+selected if it overlaps a meaningful span. Because token boundaries can
+include syntax as well as content, the procedure reports which selected
+tokens also cover punctuation or whitespace. It rejects truncated responses,
+unsupported syntax, mismatched parser calls, missing probabilities, and
+unaligned bytes. This rule has been checked on the 20 saved outputs from five
+BFCL development cases across four models. JSON, XML, and mixed output
+formats still need alignment validation before this measure can be used
+across the full benchmark. The selection rule remains draft.
+
+A local ReAct alignment draft handles a single `Action:` and `Action Input:`
+pair with one complete JSON object for RoTBench and ToolEyes. It requires the
+extracted call to match the pinned parser and selects the action name, JSON
+argument names, and JSON argument values by UTF-8 byte spans. Trailing text,
+multiple actions, non-JSON inputs, and parser disagreement invalidate the
+meaningful-token score. Local tests pass. The saved Qwen 1.5B RoTBench and
+ToolEyes development responses both passed exact token-byte and call-alignment
+checks: 11 and 6 selected tokens, with 2 and 1 tokens crossing syntax
+boundaries respectively. Four Qwen 1.5B clean development
+diagnostic cases across APIBank, RoTBench, ToolAlpaca, and ToolEyes completed
+with valid token evidence and received official scores of 0/4. The released
+parser returned a call in the RoTBench and ToolEyes cases, and no call in the
+other two. These cases establish neither a cross-benchmark accuracy estimate
+nor a complete alignment rule for XML/JSON and mixed outputs.
 
 For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
 

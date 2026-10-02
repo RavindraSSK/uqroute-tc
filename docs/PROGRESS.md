@@ -37,10 +37,11 @@ Every completed component must include:
 - [x] Implement canonical keys for the pinned benchmark parser's tool calls.
 - [x] Test equivalent and different tool calls.
 - [x] Implement and validate the three whole-output single-sample token measures.
-- [ ] Review and commit the locally tested meaningful-token score for BFCL Python-call output.
-- [ ] Verify token-to-call alignment across the supported output formats; the BFCL five-case pilot is checked.
+- [x] Review and commit the meaningful-token score for BFCL Python-call output.
+- [ ] Verify token-to-call alignment across supported output formats; BFCL and two ReAct saved responses are checked, while XML/JSON and broader outputs remain pending.
 - [x] Implement ten-sample canonical-call entropy and disagreement, with exact-string ablation.
-- [ ] Review and commit the deterministic repeated-sample subset, then generate ten outputs per case; a 30-case development-only draft is prepared locally.
+- [x] Review and commit the deterministic 30-case development repeated-sample subset.
+- [ ] Fix repeated-sample generation settings and generate ten outputs per case.
 - [ ] Freeze the parser and uncertainty protocol.
 
 ## Task 3 — Robustness study
@@ -124,10 +125,11 @@ only if those measurements show the available resources are insufficient.
 | Four-model development audit | The user supplied the official case-score comparison for the same five clean development BFCL cases: Qwen 1.5B, Llama 3B, Qwen 7B, and Qwen 14B AWQ each scored 5/5. The fallback rescued 0/5 errors for each small model because all small-model predictions were correct. The audit notebook saved `pilots/four_model_pilot_audit.json` in Drive; the user-supplied table is summarized in `docs/evidence/four_model_five_case_summary.json`. This is a feasibility check, not a routing-effectiveness estimate. |
 | Canonical-call prototype | The pinned benchmark parser's output is converted into type-aware keys without altering scorer inputs. A direct compatibility check using the pinned parser found one shared key for equivalent Python, JSON, XML, ReAct, and ToolAlpaca examples. The saved 20-prediction audit found 20 parsed calls matching saved calls and 20 valid single-sample scores. The no-call versus unparsed distinction remains provisional because these cases all parsed as calls. |
 | CPU uncertainty measures | Saved chosen-token responses are revalidated for exact visible-byte alignment before computing sequence NLL, mean token NLL, and maximum token surprisal. Ten-output canonical and exact-string clustering computes entropy in nats and disagreement with failed/empty outcomes in the denominator. Implementation is tested; any ten-generation model run remains pending. |
-| BFCL meaningful-token pilot | The 20 saved outputs from four models and five clean development BFCL cases have exact visible-byte alignment after excluding 15 `<|im_end|>` and five `<|eot_id|>` end tokens. A locally tested, uncommitted AST-to-parser draft accepted all 20; 317 visible tokens overlapped names or values, of which 55 also covered syntax or whitespace. This rule still requires review and a code commit; other formats and broader data remain unvalidated. |
-| Repeated-sample subset draft | A local, uncommitted deterministic selector identifies 15 distinct development groups, with a clean and a static-perturbation case from each: 30 cases across five benchmarks. Ten generations from each of three small models would be 900 model calls. The selection remains draft; no ten-generation results have been produced. |
+| BFCL meaningful-token pilot | The 20 saved outputs from four models and five clean development BFCL cases have exact visible-byte alignment after excluding 15 `<|im_end|>` and five `<|eot_id|>` end tokens. The committed AST-to-parser rule accepted all 20; 317 visible tokens overlapped names or values, of which 55 also covered syntax or whitespace. The broader-format rule remains under development. |
+| Four-format development diagnostic | Qwen 1.5B produced four complete, byte-aligned records on one clean development case each from APIBank, RotBench, ToolAlpaca, and ToolEyes. The user reported official scores of 0/4. The released parser returned one call each for RotBench and ToolEyes and no call for APIBank and ToolAlpaca. All four were outside the committed BFCL-only meaningful-token rule. A local ReAct draft matched the two saved parsed calls and token streams: RotBench 11 selected / 2 boundary-crossing tokens; ToolEyes 6 / 1. This is a format and failure-case diagnostic, not an accuracy estimate; compact evidence is in `docs/evidence/qwen15b_four_format_development.json`. |
+| Repeated-sample subset | The committed deterministic selector identifies 15 distinct development groups, with a clean and a static-perturbation case from each: 30 cases across five benchmarks. Ten generations from each of three small models would be 900 model calls. The selection and sampling settings remain draft in the protocol; no ten-generation results have been produced. |
 | Saved-output audit | `src/uqroute_tc/parsing/audit.py` and `notebooks/UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` audited four saved five-case pilot folders on a CPU runtime. The user supplied the 20-record audit showing 20 parser statuses `calls`, 20 saved-call matches, and 20 valid single-sample scores. |
-| Ruff | Passed |
+| Ruff | Passed on the previous committed gate; unavailable locally for the current draft. |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
 
@@ -143,6 +145,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. Extend token-to-call alignment beyond the BFCL Python-call pilot, finalize the repeated-sample subset, and measure representative GPU throughput before larger inference runs. Generate ten outputs per selected case after the sampling settings are fixed. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
+Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. Audit parseable XML/JSON outputs for APIBank and ToolAlpaca before extending meaningful-token scoring. Fix repeated-sample generation settings and measure representative GPU throughput before larger inference runs. Generate ten outputs per selected case after the sampling settings are fixed. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
