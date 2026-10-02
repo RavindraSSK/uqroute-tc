@@ -11,6 +11,52 @@ def tokens(parts):
 
 
 class AlignmentTests(unittest.TestCase):
+    def test_apibank_standalone_json_selects_call_fields(self):
+        raw = '{"name":"AddAgenda","parameters":{"token":"x","count":2}}'
+        chosen = tokens([
+            ('{"name":"', 9), ('AddAgenda', .1), ('","parameters":{"', 9),
+            ('token', .2), ('":"', 9), ('x', .3), ('","', 9),
+            ('count', .4), ('":', 9), ('2', .5), ('}}', 9),
+        ])
+        parsed = [{'name': 'AddAgenda', 'parameters': {'token': 'x', 'count': 2}}]
+        score = meaningful_token_score(raw, parsed, chosen, 'stop', 'apibank')
+        self.assertEqual(score.selected_token_indices, (1, 3, 5, 7, 9))
+        self.assertEqual(score.boundary_crossing_token_indices, ())
+        self.assertAlmostEqual(score.mean_token_nll, .3)
+
+    def test_apibank_fenced_json_excludes_thought_and_uses_utf8_bytes(self):
+        raw = ('<think>Looking up a date.</think>\n\n```plaintext\n'
+               '{"name":"QueryHistoryToday","parameters":{"city":"München"}}\n```')
+        start = raw.index('{"name"')
+        chosen = tokens([
+            (raw[:start], 9), (raw[start:], .2), ('<|im_end|>', 9),
+        ])
+        parsed = [{'name': 'QueryHistoryToday',
+                   'parameters': {'city': 'München'}}]
+        score = meaningful_token_score(raw, parsed, chosen, 'stop', 'apibank')
+        self.assertEqual(score.selected_token_indices, (1,))
+        self.assertEqual(score.boundary_crossing_token_indices, (1,))
+        data = raw.encode('utf-8')
+        self.assertEqual([data[a:b].decode('utf-8') for a,b in score.tool_name_spans],
+                         ['QueryHistoryToday'])
+        self.assertEqual([data[a:b].decode('utf-8') for a,b in score.argument_value_spans],
+                         ['München'])
+
+    def test_apibank_rejects_ambiguous_json(self):
+        parsed = [{'name': 'F', 'parameters': {}}]
+        for raw in (
+            'Here is the call: {"name":"F","parameters":{}}',
+            '{"name":"F","name":"G","parameters":{}}',
+            '{"name":"F","parameters":{}} and another call',
+        ):
+            with self.subTest(raw=raw), self.assertRaises(ValueError):
+                meaningful_token_score(raw, parsed, tokens([(raw, .1)]),
+                                       'stop', 'apibank')
+        raw = '{"name":"F","parameters":{}}'
+        with self.assertRaisesRegex(ValueError, 'does not match'):
+            meaningful_token_score(raw, [{'name': 'G', 'parameters': {}}],
+                                   tokens([(raw, .1)]), 'stop', 'apibank')
+
     def test_react_name_and_json_arguments(self):
         raw = ('Thought: A tool is needed.\nAction: explain_engine\n'
                'Action Input: {"engine_type":"gasoline"}')

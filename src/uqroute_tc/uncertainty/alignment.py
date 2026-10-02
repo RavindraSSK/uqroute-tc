@@ -1,4 +1,4 @@
-"""Conservative syntax-to-token alignment for BFCL and ReAct tool calls.
+"""Conservative syntax-to-token alignment for BFCL, ReAct, and APIBank JSON.
 
 Unsupported outputs never receive a partial meaningful-token score.
 """
@@ -23,6 +23,11 @@ _REACT_INPUT = re.compile(r"^[ \t]*Action(?:[ \t]*Code)?[ \t]*Input[ \t]*:[ \t]*
                           re.IGNORECASE | re.MULTILINE)
 _JSON_ATOM = re.compile(
     r'"(?:[^"\\]|\\.)*"|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|\b(?:true|false|null)\b'
+)
+_PLAIN_JSON = re.compile(r"\s*(?P<json>\{.*\})\s*", re.DOTALL)
+_FENCED_JSON = re.compile(
+    r"\s*(?:<think>[^{}]*</think>\s*)?```(?:json|plaintext)?[ \t]*\r?\n"
+    r"(?P<json>\{.*\})[ \t]*\r?\n```\s*", re.DOTALL | re.IGNORECASE
 )
 
 
@@ -98,6 +103,121 @@ def _react_spans(
     return names, arguments, values
 
 
+def _unique_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON key")
+        result[key] = value
+    return result
+
+
+def _json_fields(
+    source: str, decoder: json.JSONDecoder
+) -> dict[str, tuple[Any, tuple[int, int], tuple[int, int]]]:
+    """Return decoded fields and character spans for one complete JSON object."""
+    pos = 0
+
+    def skip_space() -> None:
+        nonlocal pos
+        while pos < len(source) and source[pos].isspace():
+            pos += 1
+
+    skip_space()
+    if pos >= len(source) or source[pos] != "{":
+        raise ValueError("expected a JSON object")
+    pos += 1
+    fields: dict[str, tuple[Any, tuple[int, int], tuple[int, int]]] = {}
+    while True:
+        skip_space()
+        if pos < len(source) and source[pos] == "}":
+            pos += 1
+            break
+        key_start = pos
+        try:
+            key, pos = decoder.raw_decode(source, pos)
+        except json.JSONDecodeError as exc:
+            raise ValueError("invalid JSON object key") from exc
+        if not isinstance(key, str) or key in fields:
+            raise ValueError("duplicate or non-string JSON object key")
+        key_span = (key_start, pos)
+        skip_space()
+        if pos >= len(source) or source[pos] != ":":
+            raise ValueError("missing JSON object colon")
+        pos += 1
+        skip_space()
+        value_start = pos
+        try:
+            value, pos = decoder.raw_decode(source, pos)
+        except json.JSONDecodeError as exc:
+            raise ValueError("invalid JSON object value") from exc
+        fields[key] = (value, key_span, (value_start, pos))
+        skip_space()
+        if pos < len(source) and source[pos] == ",":
+            pos += 1
+            continue
+        if pos < len(source) and source[pos] == "}":
+            pos += 1
+            break
+        raise ValueError("invalid JSON object separator")
+    if source[pos:].strip():
+        raise ValueError("trailing text after JSON object")
+    return fields
+
+
+def _apibank_json_spans(
+    raw_output: str, parsed_calls: list[dict[str, Any]]
+) -> tuple[list[tuple[int, int]], list[tuple[int, int]], list[tuple[int, int]]]:
+    """Align one standalone or fenced APIBank JSON tool call, excluding thought text."""
+    match = _PLAIN_JSON.fullmatch(raw_output) or _FENCED_JSON.fullmatch(raw_output)
+    if match is None:
+        raise ValueError("output is not one standalone or fenced APIBank JSON call")
+    source = match.group("json")
+    decoder = json.JSONDecoder(object_pairs_hook=_unique_pairs)
+    fields = _json_fields(source, decoder)
+    if set(fields) != {"name", "parameters"}:
+        raise ValueError("API-Bank JSON must contain only name and parameters")
+    name, _, name_chars = fields["name"]
+    params, _, params_chars = fields["parameters"]
+    if not isinstance(name, str) or not name or not isinstance(params, dict):
+        raise ValueError("invalid APIBank JSON call fields")
+    if canonical_key([{"name": name, "parameters": params}]) != canonical_key(parsed_calls):
+        raise ValueError("JSON call does not match the benchmark parser")
+
+    def byte_span(start: int, end: int) -> tuple[int, int]:
+        start += match.start("json")
+        end += match.start("json")
+        return (len(raw_output[:start].encode("utf-8")),
+                len(raw_output[:end].encode("utf-8")))
+
+    names = [byte_span(name_chars[0] + 1, name_chars[1] - 1)]
+    arguments: list[tuple[int, int]] = []
+    values: list[tuple[int, int]] = []
+    params_source = source[params_chars[0]:params_chars[1]]
+    for key, (value, key_span, value_span) in _json_fields(params_source, decoder).items():
+        key_start, key_end = key_span
+        if key:
+            key_start += 1
+            key_end -= 1
+        arguments.append(byte_span(params_chars[0] + key_start,
+                                   params_chars[0] + key_end))
+        value_source = params_source[value_span[0]:value_span[1]]
+        if not isinstance(value, (str, int, float, bool, list, dict)) and value is not None:
+            raise ValueError("unsupported JSON argument type")
+        for atom in _JSON_ATOM.finditer(value_source):
+            atom_start, atom_end = atom.span()
+            is_key = atom.group().startswith('"') and re.match(
+                r"\s*:", value_source[atom.end():]
+            )
+            if atom.group().startswith('"') and len(atom.group()) > 2:
+                atom_start += 1
+                atom_end -= 1
+            span = byte_span(params_chars[0] + value_span[0] + atom_start,
+                             params_chars[0] + value_span[0] + atom_end)
+            (arguments if is_key else values).append(span)
+    return names, arguments, values
+
+
 def meaningful_token_score(
     raw_output: str,
     parsed_calls: list[dict[str, Any]],
@@ -105,7 +225,7 @@ def meaningful_token_score(
     finish_reason: str,
     benchmark: str = "bfcl_v3",
 ) -> MeaningfulTokenScore:
-    """Match AST name/value byte spans to visible chosen-token log-probabilities.
+    """Match verified tool name and argument byte spans to visible tokens.
 
     A token overlapping a meaningful byte is included in full. Boundary
     crossing indices expose the resulting punctuation contamination.
@@ -120,6 +240,9 @@ def meaningful_token_score(
         raise ValueError(f"invalid token evidence: {evidence['reason']}")
     if benchmark in {"rotbench", "tooleyes"}:
         names, arguments, values = _react_spans(raw_output, parsed_calls)
+        return _score_spans(evidence, chosen_tokens, names, arguments, values)
+    if benchmark == "apibank":
+        names, arguments, values = _apibank_json_spans(raw_output, parsed_calls)
         return _score_spans(evidence, chosen_tokens, names, arguments, values)
     if benchmark != "bfcl_v3":
         raise ValueError(f"unsupported benchmark for meaningful-token alignment: {benchmark}")

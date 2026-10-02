@@ -1,0 +1,80 @@
+{
+  "scope": "four exported parsed-call candidates from Qwen 1.5B clean development cases",
+  "source": "user-supplied xml_json_alignment_evidence.json exported by the development notebook",
+  "source_sha256": "601203f980dcea272736593360c9b577f6e96fd6dedf47995797aa0d7f03e273",
+  "full_audit_sha256": "2b1f340e1c446fbceff73d758910710e5acbef6fd53ef2ecb1f91d3d0a409ef6",
+  "drive_directory": "/content/drive/MyDrive/UQRoute-TC/pilots/qwen25-15b-xml-json-dev-24-v1",
+  "full_audit": {
+    "scope": "12 clean primary-development cases per benchmark, selected in pinned file order after excluding the earlier four-case audit",
+    "case_count": 24,
+    "unique_case_count": 24,
+    "complete_with_valid_token_evidence": 24,
+    "parser_matches_saved": 24,
+    "split_and_benchmark_revision_validated": true,
+    "by_benchmark": {
+      "apibank": {
+        "cases": 12,
+        "parser_calls": 11,
+        "unparsed_or_no_call": 1,
+        "official_correct": 7
+      },
+      "toolalpaca": {
+        "cases": 12,
+        "parser_calls": 4,
+        "unparsed_or_no_call": 8,
+        "official_correct": 1
+      }
+    }
+  },
+  "cases": [
+    {
+      "benchmark": "apibank",
+      "id": "apibank__level1_185",
+      "format": "standalone JSON tool call",
+      "parsed_call_count": 1,
+      "official_correct": false,
+      "visible_token_count": 85,
+      "excluded_trailing_token": "<|im_end|>",
+      "alignment_valid": true,
+      "selected_token_count": 50,
+      "boundary_crossing_token_count": 0,
+      "mean_token_nll": 0.054240033845685785
+    },
+    {
+      "benchmark": "apibank",
+      "id": "apibank__level1_78",
+      "format": "fenced JSON tool call after a balanced think block",
+      "parsed_call_count": 1,
+      "official_correct": false,
+      "visible_token_count": 69,
+      "excluded_trailing_token": "<|im_end|>",
+      "alignment_valid": true,
+      "selected_token_count": 14,
+      "boundary_crossing_token_count": 0,
+      "mean_token_nll": 0.007691247788865699
+    },
+    {
+      "benchmark": "toolalpaca",
+      "id": "toolalpaca__Nager.Date__inst2",
+      "format": "prose with a tool example and a second example list",
+      "parsed_call_count": 3,
+      "official_correct": true,
+      "visible_token_count": 142,
+      "excluded_trailing_token": "<|im_end|>",
+      "alignment_valid": false,
+      "reason": "The pinned parser returned the expected tool call and two example country names. The official scorer accepted the expected call despite the extras; no unambiguous complete call span covers the parsed result."
+    },
+    {
+      "benchmark": "toolalpaca",
+      "id": "toolalpaca__AviationAPI__inst1",
+      "format": "prose and multiple example JSON blocks",
+      "parsed_call_count": 1,
+      "official_correct": false,
+      "visible_token_count": 333,
+      "excluded_trailing_token": "<|im_end|>",
+      "alignment_valid": false,
+      "reason": "The parsed call is not an unambiguous standalone tool invocation in the visible output."
+    }
+  ],
+  "interpretation_limit": "The four token-evidence candidates were selected as the first two parsed calls per benchmark; their scores are not representative. The full 24-case audit gives descriptive counts for this file-order development sample, not population accuracy or parser-coverage estimates. The original token arrays remain outside Git."
+}
