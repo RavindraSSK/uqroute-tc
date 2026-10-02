@@ -1,6 +1,6 @@
 """Conservative syntax-to-token alignment for BFCL, ReAct, and APIBank JSON.
 
-Unsupported outputs never receive a partial meaningful-token score.
+ToolAlpaca mixed outputs have no trusted call spans and cannot be scored here.
 """
 
 from __future__ import annotations
@@ -238,6 +238,8 @@ def meaningful_token_score(
                                "logprobs": {"content": chosen_tokens}})
     if not evidence["valid"]:
         raise ValueError(f"invalid token evidence: {evidence['reason']}")
+    if benchmark == "toolalpaca":
+        raise ValueError("ToolAlpaca meaningful-token alignment is unavailable")
     if benchmark in {"rotbench", "tooleyes"}:
         names, arguments, values = _react_spans(raw_output, parsed_calls)
         return _score_spans(evidence, chosen_tokens, names, arguments, values)

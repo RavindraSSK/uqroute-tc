@@ -101,7 +101,7 @@ class AlignmentTests(unittest.TestCase):
                                    [{'name': 'finish', 'parameters': {'answer': 'No'}}],
                                    tokens([(raw + '\nObservation: done', .2)]),
                                    'stop', 'rotbench')
-        with self.assertRaisesRegex(ValueError, 'unsupported benchmark'):
+        with self.assertRaisesRegex(ValueError, 'ToolAlpaca meaningful-token alignment is unavailable'):
             meaningful_token_score(raw, [], chosen, 'stop', 'toolalpaca')
 
     def test_selects_semantics_and_reports_mixed_syntax_tokens(self):

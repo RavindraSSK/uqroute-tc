@@ -38,7 +38,7 @@ Every completed component must include:
 - [x] Test equivalent and different tool calls.
 - [x] Implement and validate the three whole-output single-sample token measures.
 - [x] Review and commit the meaningful-token score for BFCL Python-call output.
-- [ ] Verify token-to-call alignment across supported output formats; BFCL, two ReAct responses, and two APIBank JSON responses are checked. ToolAlpaca mixed outputs remain unresolved.
+- [ ] Verify token-to-call alignment across supported output formats; BFCL, two ReAct responses, and two APIBank JSON responses are checked. ToolAlpaca is scoped out of meaningful-token scoring because the saved mixed outputs do not provide trusted call spans. APIBank XML and other unverified formats remain pending.
 - [x] Implement ten-sample canonical-call entropy and disagreement, with exact-string ablation.
 - [x] Review and commit the deterministic 30-case development repeated-sample subset.
 - [ ] Fix repeated-sample generation settings and generate ten outputs per case.
@@ -146,6 +146,6 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. Audit ToolAlpaca parser coverage and mixed outputs before choosing a conservative meaningful-token policy for them. Fix repeated-sample generation settings and measure representative GPU throughput before larger inference runs. Generate ten outputs per selected case after the sampling settings are fixed. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
+Task 1 settings are frozen, with the 14B AWQ checkpoint as the feasible fallback candidate. ToolAlpaca meaningful-token uncertainty is scoped out following the saved-output audit; whole-output scores remain available. Fix repeated-sample generation settings and measure representative GPU throughput before larger inference runs. Generate ten outputs per selected case after the sampling settings are fixed. Keep held-out perturbation groups untouched until methods and thresholds are frozen. The five-case pilot did not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.

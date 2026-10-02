@@ -337,6 +337,21 @@ benchmark, so they are a selected diagnostic. The 24 file-order development
 cases are not a population accuracy or parser-coverage estimate. The pinned
 parser and official scorer remain unchanged.
 
+For the current evaluation, ToolAlpaca has no meaningful-token score. Its
+explanatory prose, sample requests, and example responses do not establish a
+trustworthy span for every call returned by the released parser. A parser hit
+or an official correct score does not change that eligibility rule. The score
+is recorded as unavailable, with the format reason, for every ToolAlpaca
+case; no example-derived span or zero/imputed uncertainty is substituted.
+Valid token evidence still supports the three whole-output scores. Routing
+comparisons that include ToolAlpaca must use a measure available for all
+included cases; meaningful-token results may be reported separately on
+eligible formats with their eligible and ineligible counts. This scoped
+exclusion does not change the benchmark's parsing or correctness labels.
+Repeated-sample canonical calls will continue to reflect the released parser,
+including extra calls extracted from examples; their effect must be reviewed
+when the repeated-sample outputs are audited.
+
 For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
 
 - Canonical-call entropy: `-sum(q_k * log(q_k))`.
