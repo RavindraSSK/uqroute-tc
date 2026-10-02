@@ -297,9 +297,24 @@ include syntax as well as content, the procedure reports which selected
 tokens also cover punctuation or whitespace. It rejects truncated responses,
 unsupported syntax, mismatched parser calls, missing probabilities, and
 unaligned bytes. This rule has been checked on the 20 saved outputs from five
-BFCL development cases across four models. JSON, XML, ReAct, and mixed output
-formats still need their own alignment validation before this measure can be
-used across the full benchmark. The selection rule remains draft.
+BFCL development cases across four models. JSON, XML, and mixed output
+formats still need alignment validation before this measure can be used
+across the full benchmark. The selection rule remains draft.
+
+A local ReAct alignment draft handles a single `Action:` and `Action Input:`
+pair with one complete JSON object for RoTBench and ToolEyes. It requires the
+extracted call to match the pinned parser and selects the action name, JSON
+argument names, and JSON argument values by UTF-8 byte spans. Trailing text,
+multiple actions, non-JSON inputs, and parser disagreement invalidate the
+meaningful-token score. Local tests pass. The saved Qwen 1.5B RoTBench and
+ToolEyes development responses both passed exact token-byte and call-alignment
+checks: 11 and 6 selected tokens, with 2 and 1 tokens crossing syntax
+boundaries respectively. Four Qwen 1.5B clean development
+diagnostic cases across APIBank, RoTBench, ToolAlpaca, and ToolEyes completed
+with valid token evidence and received official scores of 0/4. The released
+parser returned a call in the RoTBench and ToolEyes cases, and no call in the
+other two. These cases establish neither a cross-benchmark accuracy estimate
+nor a complete alignment rule for XML/JSON and mixed outputs.
 
 For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
 

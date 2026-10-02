@@ -1,12 +1,12 @@
-"""Strict BFCL syntax-to-token alignment for meaningful-token uncertainty.
+"""Conservative syntax-to-token alignment for BFCL and ReAct tool calls.
 
-This draft accepts complete Python-style BFCL calls only. Other output formats
-require separate audited rules; failures never receive a partial score.
+Unsupported outputs never receive a partial meaningful-token score.
 """
 
 from __future__ import annotations
 
 import ast
+import json
 import math
 import re
 from dataclasses import dataclass
@@ -17,6 +17,13 @@ from uqroute_tc.parsing.canonical import canonical_key
 
 _SIMPLE_STRING = re.compile(rb'''(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')''', re.DOTALL)
 _DOTTED_NAME = re.compile(rb"[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*")
+_REACT_ACTION = re.compile(r"^[ \t]*Action(?:[ \t]*Code)?[ \t]*:[ \t]*([^\r\n]+)",
+                           re.IGNORECASE | re.MULTILINE)
+_REACT_INPUT = re.compile(r"^[ \t]*Action(?:[ \t]*Code)?[ \t]*Input[ \t]*:[ \t]*",
+                          re.IGNORECASE | re.MULTILINE)
+_JSON_ATOM = re.compile(
+    r'"(?:[^"\\]|\\.)*"|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|\b(?:true|false|null)\b'
+)
 
 
 @dataclass(frozen=True)
@@ -46,11 +53,57 @@ def _merge(spans: list[tuple[int, int]]) -> list[tuple[int, int]]:
     return merged
 
 
+def _react_spans(
+    raw_output: str, parsed_calls: list[dict[str, Any]]
+) -> tuple[list[tuple[int, int]], list[tuple[int, int]], list[tuple[int, int]]]:
+    """Accept one complete ReAct Action/Input pair with a JSON object input."""
+    actions = list(_REACT_ACTION.finditer(raw_output))
+    inputs = list(_REACT_INPUT.finditer(raw_output))
+    if len(actions) != 1 or len(inputs) != 1 or actions[0].end() > inputs[0].start():
+        raise ValueError("expected one ReAct Action followed by one Action Input")
+    action_text = actions[0].group(1)
+    if re.fullmatch(r"[A-Za-z_]\w*", action_text.strip()) is None:
+        raise ValueError("ReAct action name is not a plain identifier")
+    name = action_text.strip()
+    name_start = actions[0].start(1) + len(action_text) - len(action_text.lstrip())
+    decoder = json.JSONDecoder()
+    input_start = inputs[0].end()
+    try:
+        params, length = decoder.raw_decode(raw_output[input_start:])
+    except json.JSONDecodeError as exc:
+        raise ValueError("ReAct Action Input is not JSON") from exc
+    if not isinstance(params, dict) or raw_output[input_start + length:].strip():
+        raise ValueError("ReAct Action Input must be one complete JSON object")
+    if canonical_key([{"name": name, "parameters": params}]) != canonical_key(parsed_calls):
+        raise ValueError("ReAct call does not match the benchmark parser")
+
+    def byte_span(start: int, end: int) -> tuple[int, int]:
+        return (len(raw_output[:start].encode("utf-8")),
+                len(raw_output[:end].encode("utf-8")))
+
+    names = [byte_span(name_start, name_start + len(name))]
+    arguments: list[tuple[int, int]] = []
+    values: list[tuple[int, int]] = []
+    input_text = raw_output[input_start:input_start + length]
+    for match in _JSON_ATOM.finditer(input_text):
+        atom = match.group()
+        start, end = input_start + match.start(), input_start + match.end()
+        is_key = atom.startswith('"') and re.match(r"\s*:", input_text[match.end():])
+        if atom.startswith('"') and len(atom) > 2:
+            start += 1
+            end -= 1
+        (arguments if is_key else values).append(byte_span(start, end))
+    if not arguments and params:
+        raise ValueError("ReAct JSON argument spans are unavailable")
+    return names, arguments, values
+
+
 def meaningful_token_score(
     raw_output: str,
     parsed_calls: list[dict[str, Any]],
     chosen_tokens: list[dict[str, Any]],
     finish_reason: str,
+    benchmark: str = "bfcl_v3",
 ) -> MeaningfulTokenScore:
     """Match AST name/value byte spans to visible chosen-token log-probabilities.
 
@@ -65,6 +118,11 @@ def meaningful_token_score(
                                "logprobs": {"content": chosen_tokens}})
     if not evidence["valid"]:
         raise ValueError(f"invalid token evidence: {evidence['reason']}")
+    if benchmark in {"rotbench", "tooleyes"}:
+        names, arguments, values = _react_spans(raw_output, parsed_calls)
+        return _score_spans(evidence, chosen_tokens, names, arguments, values)
+    if benchmark != "bfcl_v3":
+        raise ValueError(f"unsupported benchmark for meaningful-token alignment: {benchmark}")
     raw_bytes = raw_output.encode("utf-8")
     line_starts = [0]
     for line in raw_output.splitlines(keepends=True):
@@ -118,6 +176,16 @@ def meaningful_token_score(
     if canonical_key(ast_calls) != canonical_key(parsed_calls):
         raise ValueError("AST calls do not match the benchmark parser")
 
+    return _score_spans(evidence, chosen_tokens, names, arguments, values)
+
+
+def _score_spans(
+    evidence: dict[str, Any],
+    chosen_tokens: list[dict[str, Any]],
+    names: list[tuple[int, int]],
+    arguments: list[tuple[int, int]],
+    values: list[tuple[int, int]],
+) -> MeaningfulTokenScore:
     semantic_spans = _merge(names + arguments + values)
     selected = []
     boundary = []

@@ -11,6 +11,53 @@ def tokens(parts):
 
 
 class AlignmentTests(unittest.TestCase):
+    def test_react_name_and_json_arguments(self):
+        raw = ('Thought: A tool is needed.\nAction: explain_engine\n'
+               'Action Input: {"engine_type":"gasoline"}')
+        chosen = tokens([
+            ('Thought: A tool is needed.\nAction: ', 9),
+            ('explain_engine', .1), ('\nAction Input: {', 9),
+            ('"engine_type"', .2), (':"', 9), ('gasoline', .3), ('"}', 9),
+        ])
+        parsed = [{'name': 'explain_engine',
+                   'parameters': {'engine_type': 'gasoline'}}]
+        score = meaningful_token_score(raw, parsed, chosen, 'stop', 'tooleyes')
+        self.assertEqual(score.selected_token_indices, (1, 3, 5))
+        self.assertEqual(score.boundary_crossing_token_indices, (3,))
+        self.assertAlmostEqual(score.mean_token_nll, .2)
+
+    def test_react_nested_json_and_unicode_byte_spans(self):
+        raw = ('Thought: Check.\nAction: ask_to_user\n'
+               'Action Input: {"question":"München", "extra":[true, 3]}')
+        parsed = [{'name': 'ask_to_user', 'parameters': {
+            'question': 'München', 'extra': [True, 3]}}]
+        score = meaningful_token_score(raw, parsed, tokens([(raw, .4)]),
+                                       'stop', 'rotbench')
+        self.assertEqual(score.selected_token_indices, (0,))
+        self.assertEqual(score.boundary_crossing_token_indices, (0,))
+        start = len(raw[:raw.index('München')].encode('utf-8'))
+        self.assertIn((start, start + len('München'.encode('utf-8'))),
+                      score.argument_value_spans)
+
+    def test_react_rejects_mismatched_or_ambiguous_calls(self):
+        raw = 'Action: finish\nAction Input: {"answer":"No"}'
+        chosen = tokens([(raw, .2)])
+        with self.assertRaisesRegex(ValueError, 'does not match'):
+            meaningful_token_score(raw, [{'name': 'ask_to_user', 'parameters': {}}],
+                                   chosen, 'stop', 'rotbench')
+        with self.assertRaisesRegex(ValueError, 'one ReAct Action'):
+            meaningful_token_score(raw + '\nAction: finish',
+                                   [{'name': 'finish', 'parameters': {'answer': 'No'}}],
+                                   tokens([(raw + '\nAction: finish', .2)]),
+                                   'stop', 'rotbench')
+        with self.assertRaisesRegex(ValueError, 'complete JSON object'):
+            meaningful_token_score(raw + '\nObservation: done',
+                                   [{'name': 'finish', 'parameters': {'answer': 'No'}}],
+                                   tokens([(raw + '\nObservation: done', .2)]),
+                                   'stop', 'rotbench')
+        with self.assertRaisesRegex(ValueError, 'unsupported benchmark'):
+            meaningful_token_score(raw, [], chosen, 'stop', 'toolalpaca')
+
     def test_selects_semantics_and_reports_mixed_syntax_tokens(self):
         raw = "[weather(city='München', days=2)]"
         chosen = tokens([
