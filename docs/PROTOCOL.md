@@ -426,6 +426,31 @@ claim general APIBank markup coverage. This is a two-response diagnostic
 selected after the earlier output audit; official scoring and parsing are
 unchanged.
 
+The CPU re-audit of all 24 saved Qwen 1.5B APIBank/ToolAlpaca clean
+development outputs found 24 complete, byte-aligned records with unchanged
+parser outcomes. Eight of the 12 APIBank outputs were eligible for the bounded
+meaningful-token score, with no selected tokens crossing a syntax boundary.
+Three further APIBank outputs parsed as calls but fell outside the supported
+complete-call formats, and one had no parsed call. None of the 12 ToolAlpaca
+outputs were eligible under the scoped exclusion. The 24 cases were selected
+in file order for development; these counts are not a population coverage or
+accuracy estimate. Compact evidence is in
+`docs/evidence/qwen15b_alignment_coverage_dev24_summary.json`.
+
+Two of the three parsed APIBank responses outside the earlier rule were then
+exported with full token evidence. One has ordinary prose without a competing
+call marker before a single fenced JSON call; the other has a separate,
+balanced fenced thought block before one JSON call. A bounded extension
+accepts those layouts only when the complete JSON object matches the released
+parser's call and the chosen-token bytes reconstruct the visible output.
+Both selected development responses aligned: five selected tokens each, zero
+boundary crossings. The remaining `<tool>GetUserToken</tool>` response stays
+ineligible because its parsed call drops the nonempty source arguments. This
+extension was designed after inspecting the development audit, so its two
+accepted cases are exploratory evidence. The full 24-case run has not yet
+been rescored under it. Compact evidence is in
+`docs/evidence/apibank_remaining_alignment.json`.
+
 For the current evaluation, ToolAlpaca has no meaningful-token score. Its
 explanatory prose, sample requests, and example responses do not establish a
 trustworthy span for every call returned by the released parser. A parser hit
