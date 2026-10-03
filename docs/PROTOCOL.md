@@ -232,7 +232,74 @@ Prompt-based tool calling is the primary protocol. Native function calling is no
 
 ### 10.2 Repeated-sample protocol
 
-Repeated-sample uncertainty will use ten generations per selected case. The sampling temperature, nucleus-sampling value, seed procedure, and subset size will be fixed before repeated-sample results are inspected.
+Repeated-sample uncertainty uses ten independent one-choice requests per
+selected case. The draft settings in
+`docs/config/task2_repeated_sampling_v1.json` are temperature `0.7`, `top_p`
+`1.0`, 1,024 maximum completion tokens, chosen-token log probabilities with
+five alternatives, and `seed = 1729 + sample_index` for indices 0–9. The
+seed list is shared across cases and models, while requests and responses are
+recorded separately by case, model, and sample index. Prompt construction,
+model revisions, server version, and context limit follow frozen Task 1.
+The repeated setting intentionally differs from the near-greedy Task 1
+single-sample setting: it estimates variation among possible calls. The
+selected tokens' log probabilities are saved for auditing but the repeated
+entropy and disagreement use the ten parsed outcomes, not those probabilities.
+Matching seeds identify the sample slots and control their request-level
+randomness. Online vLLM does not guarantee identical outputs on rerun because
+scheduling can affect sampling; the saved responses are the analysis inputs. One
+selected clean BFCL development case on Qwen 1.5B is the initial serving and
+resume check before the larger repeated run. This check is not an accuracy
+estimate or a throughput estimate for all benchmarks.
+The versioned vLLM references document the per-request seed, sampling
+parameters, and online reproducibility limits:
+https://docs.vllm.ai/en/v0.30.0/api/vllm/sampling_params/ and
+https://docs.vllm.ai/en/v0.30.0/usage/reproducibility/.
+
+The first Qwen 1.5B clean BFCL development check produced ten user-reported
+complete records with valid token evidence and ten parsed-call statuses. Its
+canonical cluster sizes were `(9, 1)`, with disagreement `0.1`. This checks
+the request and clustering path for one case. The saved ten-response Drive
+audit has not been independently inspected here.
+
+The uploaded 30-case Qwen 1.5B development audits report 300 saved sample
+slots under the pinned split and selection: 299 complete and one truncated.
+The original audit computed canonical scores for 29 cases and explicitly
+reported the incomplete clean RoTBench case. The status-aware audit reports
+zero validation-error cases and scores all 30, assigning the truncated slot
+its own outcome key in the ten-slot denominator. The previously unscored
+RoTBench case has canonical cluster sizes `(2, 2, 1, 1, 1, 1, 1, 1)`, entropy
+`2.0253` nats, and disagreement `0.8`; its nine complete outputs and one
+truncation are retained. Every previously reported score for the other 29
+cases matches the first audit. The truncated partial text is not treated as a
+valid call even if it happens to parse. These checks compare uploaded audits;
+the saved raw Drive records were checked by the Colab audit, not inspected
+locally.
+The uploaded Llama 3B status-aware audit uses the same 30 case identities,
+split digest, generation settings, and ten seeds. It reports 297 complete and
+three truncated slots, with all 30 cases scored and no validation-error cases.
+The three truncated slots are explicit outcomes in two RoTBench cases and one
+ToolEyes case. These observations are development diagnostics, not correctness
+or held-out results; the raw Drive records were checked by the Colab audit,
+while the uploaded summary was checked locally for totals and score arithmetic.
+The uploaded Qwen 7B status-aware audit completes the same development
+subset: 300 complete slots, 30 cases scored, and no validation-error cases.
+Its case identities, split and sampling settings match the other two model
+audits. Across the three uploaded audits, 900 saved slots yield 896 complete
+responses, four truncated responses, and 90 model–case cluster scores. These
+are development diagnostics; they neither estimate official tool-call
+accuracy nor select a routing threshold. The truncation handling was added
+after the first Qwen 1.5B development outputs were inspected and must be
+declared as an exploratory method decision before held-out evaluation.
+The `code_revision` in these run manifests pins the generation-side project
+checkout. The status-aware audit calculation is recorded in the corresponding
+notebook source and the draft `src/uqroute_tc/uncertainty/repeated.py` update;
+the compact evidence summaries in `docs/evidence/` retain hashes of the
+uploaded audit files for comparison.
+Raw text with invalid token-probability evidence remains eligible for
+probability-free canonical clustering if it is otherwise complete, with the
+invalid evidence flagged separately. Request errors are counted as an
+explicit status. These rules remain under development review; the held-out
+population has not been used to choose them.
 
 The proposed diagnostic subset is selected without prediction values or
 correctness labels by `src/uqroute_tc/data/repeated_subset.py`: three distinct
@@ -248,7 +315,7 @@ release and split produce selection digest
 over the compact, sorted-key JSON case list. At ten generations for each of
 three small models, this is 900 calls. The 30 cases are a limited diagnostic
 subset, and any claims about the full population require its larger evaluation.
-This selection and the remaining generation settings are draft until approved.
+This selection and these generation settings remain draft until reviewed.
 
 Each generated output will be parsed and converted to a canonical tool-call representation. Canonical-call frequencies will be used to calculate disagreement and entropy. Exact-string clustering will be retained as an ablation.
 
@@ -297,7 +364,7 @@ include syntax as well as content, the procedure reports which selected
 tokens also cover punctuation or whitespace. It rejects truncated responses,
 unsupported syntax, mismatched parser calls, missing probabilities, and
 unaligned bytes. This rule has been checked on the 20 saved outputs from five
-BFCL development cases across four models. Other JSON, XML, and mixed output
+BFCL development cases across four models. Most JSON, markup, and mixed output
 formats still need alignment validation before this measure can be used
 across the full benchmark. The selection rule remains draft.
 
@@ -336,6 +403,20 @@ exported token-level candidates were the first two parsed calls in each
 benchmark, so they are a selected diagnostic. The 24 file-order development
 cases are not a population accuracy or parser-coverage estimate. The pinned
 parser and official scorer remain unchanged.
+
+A separate export from that same development run contains two APIBank outputs
+with tool markup. A bounded draft rule accepts one fenced `<toolcall
+tool="...">` line followed by one complete JSON object when the name and
+arguments reconstruct exactly the released parser's call. It selects the
+tool name and JSON argument names and values from visible UTF-8 bytes. The
+saved `ModifyReminder` response passed with 45 selected tokens and no
+boundary-crossing tokens. A saved `<tool>GetUserToken</tool>` response contains
+nonempty JSON arguments, while the released parser saved an empty argument
+mapping. Its meaningful-token score is unavailable because the response and
+parsed call do not have trusted complete alignment. The current rule does not
+claim general APIBank markup coverage. This is a two-response diagnostic
+selected after the earlier output audit; official scoring and parsing are
+unchanged.
 
 For the current evaluation, ToolAlpaca has no meaningful-token score. Its
 explanatory prose, sample requests, and example responses do not establish a

@@ -11,6 +11,41 @@ def tokens(parts):
 
 
 class AlignmentTests(unittest.TestCase):
+    def test_apibank_fenced_toolcall_aligns_name_and_json_arguments(self):
+        raw = ('```plaintext\n<think>Call the tool.</think>\n'
+               '<toolcall tool="ModifyReminder">\n{"city":"München"}\n```')
+        chosen = tokens([
+            ('```plaintext\n<think>Call the tool.</think>\n<toolcall tool="', 8),
+            ('ModifyReminder', .1), ('">\n{"', 8), ('city', .2),
+            ('":"', 8), ('München', .3), ('"}\n```', 8),
+        ])
+        parsed = [{'name': 'ModifyReminder', 'parameters': {'city': 'München'}}]
+        score = meaningful_token_score(raw, parsed, chosen, 'stop', 'apibank')
+        self.assertEqual(score.selected_token_indices, (1, 3, 5))
+        self.assertEqual(score.boundary_crossing_token_indices, ())
+        self.assertAlmostEqual(score.mean_token_nll, .2)
+        data = raw.encode('utf-8')
+        self.assertEqual([data[a:b].decode('utf-8') for a, b in score.argument_value_spans],
+                         ['München'])
+
+    def test_apibank_markup_requires_exact_parser_call(self):
+        raw = ('```plaintext\n<toolcall tool="ModifyReminder">\n'
+               '{"token":"abc"}\n```')
+        with self.assertRaisesRegex(ValueError, 'does not match'):
+            meaningful_token_score(raw, [{'name': 'ModifyReminder', 'parameters': {}}],
+                                   tokens([(raw, .2)]), 'stop', 'apibank')
+        other = '```plaintext\n<tool>GetUserToken</tool>\n{"username":"JohnDoe"}\n```'
+        with self.assertRaises(ValueError):
+            meaningful_token_score(other, [{'name': 'GetUserToken', 'parameters': {}}],
+                                   tokens([(other, .2)]), 'stop', 'apibank')
+        for malformed in (
+            '```plaintext\n<toolcall tool="F">\n{"x":1,"x":2}\n```',
+            '```plaintext\n<toolcall tool="F">\n{"x":1}\n```\nextra',
+        ):
+            with self.subTest(raw=malformed), self.assertRaises(ValueError):
+                meaningful_token_score(malformed, [{'name': 'F', 'parameters': {'x': 1}}],
+                                       tokens([(malformed, .2)]), 'stop', 'apibank')
+
     def test_apibank_standalone_json_selects_call_fields(self):
         raw = '{"name":"AddAgenda","parameters":{"token":"x","count":2}}'
         chosen = tokens([
