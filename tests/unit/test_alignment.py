@@ -77,6 +77,47 @@ class AlignmentTests(unittest.TestCase):
         self.assertEqual([data[a:b].decode('utf-8') for a,b in score.argument_value_spans],
                          ['München'])
 
+    def test_apibank_fenced_json_after_plain_prose_or_separate_think_fence(self):
+        body = ('```json\n{"name":"Dictionary",'
+                '"parameters":{"keyword":"perplexed"}}\n```')
+        parsed = [{'name': 'Dictionary', 'parameters': {'keyword': 'perplexed'}}]
+        prefixes = (
+            'I will look up the definition.\n\n',
+            'I will check München first.\n\n',
+            '```plaintext\n<think>Look up the definition.</think>\n```\n',
+        )
+        for prefix in prefixes:
+            with self.subTest(prefix=prefix):
+                raw = prefix + body
+                score = meaningful_token_score(raw, parsed,
+                                               tokens([(prefix, 9), (body, .2)]),
+                                               'stop', 'apibank')
+                self.assertEqual(score.selected_token_indices, (1,))
+                self.assertEqual(score.boundary_crossing_token_indices, (1,))
+                data = raw.encode('utf-8')
+                self.assertEqual([data[a:b].decode() for a,b in score.tool_name_spans],
+                                 ['Dictionary'])
+                self.assertEqual([data[a:b].decode() for a,b in score.argument_name_spans],
+                                 ['keyword'])
+                self.assertEqual([data[a:b].decode() for a,b in score.argument_value_spans],
+                                 ['perplexed'])
+
+    def test_apibank_rejects_ambiguous_preamble_before_fenced_json(self):
+        suffix = '```json\n{"name":"F","parameters":{}}\n```'
+        parsed = [{'name': 'F', 'parameters': {}}]
+        for prefix in (
+            '```json\n{"name":"G","parameters":{}}\n```\n',
+            'Action: F\nAction Input: {}\n',
+            'A second call F(x=2) is possible.\n',
+            'I could also use Action: G.\n',
+            '<tool>G</tool>\n',
+            '```plaintext\n<think>incomplete\n```\n',
+        ):
+            raw = prefix + suffix
+            with self.subTest(prefix=prefix), self.assertRaises(ValueError):
+                meaningful_token_score(raw, parsed, tokens([(raw, .2)]),
+                                       'stop', 'apibank')
+
     def test_apibank_rejects_ambiguous_json(self):
         parsed = [{'name': 'F', 'parameters': {}}]
         for raw in (

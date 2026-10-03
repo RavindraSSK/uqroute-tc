@@ -1,0 +1,48 @@
+{
+  "scope": "Two Qwen 1.5B clean development APIBank outputs, selected after the 24-case coverage audit",
+  "source": "user-uploaded apibank_remaining_alignment_evidence.json",
+  "source_sha256": "fa7fbbf3dcc4b0cd8bb1c315d74eabcc87502052f1a3169270309d712ed397a6",
+  "source_manifest_sha256": "d51ba41039d86f84e8e54f1b6c73f3c2c49ac506f14521259714356e99858bf0",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "source_code_revision": "bb4126441f849213dc7726b6319ac2a2e3e258cf",
+  "prior_coverage_audit_sha256": "777a0e8e8f63db1765613f74aa509fd01a413f1caea8b70362aa2b270937586e",
+  "validated_byte_alignment_cases": 2,
+  "accepted": [
+    {
+      "case_id": "apibank__level3_26",
+      "visible_token_count": 87,
+      "selected_token_count": 5,
+      "boundary_crossing_token_count": 0,
+      "mean_token_nll": 0.0007445364342856919,
+      "tool_names": [
+        "OrganizationMembers"
+      ],
+      "argument_names": [
+        "organization"
+      ],
+      "argument_values": [
+        "Tencent"
+      ]
+    },
+    {
+      "case_id": "apibank__level1_217",
+      "visible_token_count": 63,
+      "selected_token_count": 5,
+      "boundary_crossing_token_count": 0,
+      "mean_token_nll": 0.0001667694417619714,
+      "tool_names": [
+        "Dictionary"
+      ],
+      "argument_names": [
+        "keyword"
+      ],
+      "argument_values": [
+        "perplexed"
+      ]
+    }
+  ],
+  "interpretation_limit": "Selected development examples, not representative format coverage or correctness. A bounded preamble rule reuses the pinned parser call; the separate <tool> mismatch remains unavailable. The 24 saved outputs have not yet been rerun end-to-end under the expanded rule."
+}

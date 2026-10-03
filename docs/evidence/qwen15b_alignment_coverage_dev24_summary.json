@@ -1,0 +1,108 @@
+{
+  "scope": "Qwen 1.5B saved alignment-eligibility audit on 12 APIBank and 12 ToolAlpaca clean development cases; no new inference",
+  "source": "user-uploaded alignment_coverage_audit_v1.json",
+  "source_sha256": "777a0e8e8f63db1765613f74aa509fd01a413f1caea8b70362aa2b270937586e",
+  "source_manifest_sha256": "d51ba41039d86f84e8e54f1b6c73f3c2c49ac506f14521259714356e99858bf0",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "source_code_revision": "bb4126441f849213dc7726b6319ac2a2e3e258cf",
+  "audit_code_revision": "73f541c857542b3d50cf9df1c7969b06b0644381",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "validated_against": "user-uploaded xml_json_format_audit.json (24 matching case IDs, parser status, saved-call agreement, and token-evidence flags)",
+  "cases": 24,
+  "complete_and_byte_aligned": 24,
+  "parser_matches_saved": 24,
+  "by_benchmark": {
+    "apibank": {
+      "cases": 12,
+      "parser_status_counts": {
+        "calls": 11,
+        "unparsed_or_no_call": 1
+      },
+      "meaningful_token_status_counts": {
+        "valid": 8,
+        "unavailable": 4
+      },
+      "unavailable_reasons": {
+        "output is not one standalone or fenced APIBank JSON call": 3,
+        "no trusted parsed call: unparsed_or_no_call": 1
+      }
+    },
+    "toolalpaca": {
+      "cases": 12,
+      "parser_status_counts": {
+        "unparsed_or_no_call": 8,
+        "calls": 4
+      },
+      "meaningful_token_status_counts": {
+        "unavailable": 12
+      },
+      "unavailable_reasons": {
+        "no trusted parsed call: unparsed_or_no_call": 8,
+        "ToolAlpaca meaningful-token alignment is unavailable": 4
+      }
+    }
+  },
+  "valid_apibank_cases": [
+    {
+      "case_id": "apibank__level1_185",
+      "selected_tokens": 50,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_78",
+      "selected_tokens": 14,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_262",
+      "selected_tokens": 17,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_293",
+      "selected_tokens": 18,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_180",
+      "selected_tokens": 15,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_340",
+      "selected_tokens": 5,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_378",
+      "selected_tokens": 45,
+      "boundary_crossing_tokens": 0
+    },
+    {
+      "case_id": "apibank__level1_46",
+      "selected_tokens": 27,
+      "boundary_crossing_tokens": 0
+    }
+  ],
+  "unavailable_apibank_cases": [
+    {
+      "case_id": "apibank__level3_26",
+      "reason": "output is not one standalone or fenced APIBank JSON call"
+    },
+    {
+      "case_id": "apibank__level1_301",
+      "reason": "output is not one standalone or fenced APIBank JSON call"
+    },
+    {
+      "case_id": "apibank__level1_166",
+      "reason": "no trusted parsed call: unparsed_or_no_call"
+    },
+    {
+      "case_id": "apibank__level1_217",
+      "reason": "output is not one standalone or fenced APIBank JSON call"
+    }
+  ],
+  "interpretation_limit": "Development-only file-order audit. Eligibility is not correctness or a representative coverage estimate. Three parsed APIBank outputs need full response inspection before a rule is changed. ToolAlpaca remains out of scope for meaningful-token scoring; no unavailable score is imputed."
+}

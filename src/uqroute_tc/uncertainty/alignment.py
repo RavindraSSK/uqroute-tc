@@ -29,6 +29,19 @@ _FENCED_JSON = re.compile(
     r"\s*(?:<think>[^{}]*</think>\s*)?```(?:json|plaintext)?[ \t]*\r?\n"
     r"(?P<json>\{.*\})[ \t]*\r?\n```\s*", re.DOTALL | re.IGNORECASE
 )
+_FENCED_JSON_WITH_PREFIX = re.compile(
+    r"(?P<prefix>.*?)```(?:json|plaintext)?[ \t]*\r?\n"
+    r"(?P<json>\{.*\})[ \t]*\r?\n```\s*", re.DOTALL | re.IGNORECASE
+)
+_FENCED_THINK_PREFIX = re.compile(
+    r"\s*```plaintext[ \t]*\r?\n<think>[^<>{}]*</think>[ \t]*\r?\n```\s*",
+    re.DOTALL | re.IGNORECASE,
+)
+_PROSE_PREFIX = re.compile(r"[^\[\]{}<>`]*", re.DOTALL)
+_CALL_LIKE_PROSE = re.compile(
+    r"\b(?:Action(?:\s+Code)?(?:\s+Input)?|tool[_ ]?call)\s*:|"
+    r"\b[A-Za-z_]\w*\s*\(", re.IGNORECASE
+)
 _FENCED_TOOLCALL = re.compile(
     r'\s*```plaintext[ \t]*\r?\n(?:<think>[^<>]*</think>\s*)?'
     r'<toolcall[ \t]+tool="(?P<name>[A-Za-z_]\w*)">[ \t]*\r?\n'
@@ -173,10 +186,17 @@ def _json_fields(
 def _apibank_json_spans(
     raw_output: str, parsed_calls: list[dict[str, Any]]
 ) -> tuple[list[tuple[int, int]], list[tuple[int, int]], list[tuple[int, int]]]:
-    """Align one standalone or fenced APIBank JSON tool call, excluding thought text."""
+    """Align one complete APIBank JSON call with a bounded non-call preamble."""
     match = _PLAIN_JSON.fullmatch(raw_output) or _FENCED_JSON.fullmatch(raw_output)
     if match is None:
-        raise ValueError("output is not one standalone or fenced APIBank JSON call")
+        match = _FENCED_JSON_WITH_PREFIX.fullmatch(raw_output)
+        if match is None:
+            raise ValueError("output is not one standalone or fenced APIBank JSON call")
+        prefix = match.group("prefix")
+        plain_prose = (_PROSE_PREFIX.fullmatch(prefix) is not None
+                       and _CALL_LIKE_PROSE.search(prefix) is None)
+        if not (plain_prose or _FENCED_THINK_PREFIX.fullmatch(prefix)):
+            raise ValueError("unsupported preamble before APIBank JSON call")
     source = match.group("json")
     decoder = json.JSONDecoder(object_pairs_hook=_unique_pairs)
     fields = _json_fields(source, decoder)
