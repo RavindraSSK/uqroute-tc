@@ -46,6 +46,26 @@ class RepeatedTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "exactly 10"):
             cluster_scores([])
 
+    def test_truncated_generation_is_a_distinct_cluster_even_if_text_parses(self):
+        outputs = ["tool a 2"] * 10
+        statuses = ["complete"] * 9 + ["truncated"]
+        scores = repeated_scores(outputs, "bfcl_v3", self.parse,
+                                 generation_statuses=statuses)
+        self.assertEqual(scores.canonical.cluster_sizes, (9, 1))
+        self.assertEqual(scores.exact_string.cluster_sizes, (9, 1))
+        self.assertEqual(scores.statuses[-1], "truncated")
+        self.assertAlmostEqual(scores.canonical.disagreement, .1)
+
+    def test_invalid_token_evidence_does_not_discard_a_parseable_output(self):
+        outputs = ["tool a 2"] * 10
+        statuses = ["complete"] * 9 + ["invalid_evidence"]
+        scores = repeated_scores(outputs, "bfcl_v3", self.parse,
+                                 generation_statuses=statuses)
+        self.assertEqual(scores.canonical.cluster_sizes, (10,))
+        with self.assertRaisesRegex(ValueError, "exactly 10"):
+            repeated_scores(outputs, "bfcl_v3", self.parse,
+                            generation_statuses=statuses[:-1])
+
 
 if __name__ == "__main__":
     unittest.main()

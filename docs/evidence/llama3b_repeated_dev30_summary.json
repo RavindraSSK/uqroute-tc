@@ -1,0 +1,172 @@
+{
+  "scope": "Llama 3B ten-generation diagnostic on the 30 selected development cases across five benchmarks",
+  "source": "user-uploaded repeated_dev30_status_audit (1).json",
+  "source_sha256": "2791d098560e882b049160ce35d7e76441bc8e7deba92ca35d5b91987464be16",
+  "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+  "model_revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
+  "code_revision": "7c178b4c038e6af44a5c4a6599a5d3bf390e0bbf",
+  "settings": {
+    "engine_version": "0.30.0",
+    "dtype": "bfloat16",
+    "max_model_len": 8192,
+    "temperature": 0.7,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "logprobs": true,
+    "top_logprobs": 5,
+    "sample_seeds": [
+      1729,
+      1730,
+      1731,
+      1732,
+      1733,
+      1734,
+      1735,
+      1736,
+      1737,
+      1738
+    ],
+    "request_n": 1
+  },
+  "selected_cases": 30,
+  "scored_cases": 30,
+  "total_slots": 300,
+  "request_status_counts": {
+    "complete": 297,
+    "truncated": 3
+  },
+  "parser_status_counts": {
+    "calls": 251,
+    "unparsed_or_no_call": 49
+  },
+  "validation_error_cases": 0,
+  "by_benchmark": {
+    "apibank": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 58,
+        "unparsed_or_no_call": 2
+      }
+    },
+    "bfcl_v3": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    },
+    "rotbench": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 58,
+        "truncated": 2
+      },
+      "parser_status_counts": {
+        "calls": 51,
+        "unparsed_or_no_call": 9
+      }
+    },
+    "toolalpaca": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 22,
+        "unparsed_or_no_call": 38
+      }
+    },
+    "tooleyes": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 59,
+        "truncated": 1
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    }
+  },
+  "truncated_cases": [
+    {
+      "benchmark": "rotbench",
+      "source_file": "clean.jsonl",
+      "case_id": "rotbench__Turn 1: What is the MET value for an intense workout activity level?",
+      "record_status_counts": {
+        "complete": 9,
+        "truncated": 1
+      },
+      "canonical_cluster_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "canonical_entropy_nats": 2.3025850929940455,
+      "canonical_disagreement": 0.9
+    },
+    {
+      "benchmark": "rotbench",
+      "source_file": "CD_AB.jsonl",
+      "case_id": "rotbench__Turn 1: What is the MET value for an intense workout activity level?",
+      "record_status_counts": {
+        "complete": 9,
+        "truncated": 1
+      },
+      "canonical_cluster_sizes": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "canonical_entropy_nats": 2.3025850929940455,
+      "canonical_disagreement": 0.9
+    },
+    {
+      "benchmark": "tooleyes",
+      "source_file": "clean.jsonl",
+      "case_id": "tooleyes__Turn 1: Give me a mapping of all cryptocurrencies to unique CoinMarketCap ids",
+      "record_status_counts": {
+        "complete": 9,
+        "truncated": 1
+      },
+      "canonical_cluster_sizes": [
+        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "canonical_entropy_nats": 1.7480673485460894,
+      "canonical_disagreement": 0.6
+    }
+  ],
+  "verification": "The uploaded summary was checked locally for selection and generation settings, unique case identities, ten slots per case, request and parser totals, truncated outcomes, and canonical entropy/disagreement arithmetic. The raw Drive records were validated by the Colab audit but were not uploaded for local reinspection. Parser status and clustering do not measure official correctness."
+}

@@ -1,0 +1,129 @@
+{
+  "scope": "Qwen 1.5B ten-generation diagnostic on 30 selected development cases across five benchmarks",
+  "source": "user-uploaded repeated_dev30_audit.json",
+  "source_sha256": "ee528f371a7473ce9932fa8a2b6a1dc6b0fc75518e835683a89088469b63f185",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "code_revision": "7c178b4c038e6af44a5c4a6599a5d3bf390e0bbf",
+  "settings": {
+    "engine_version": "0.30.0",
+    "temperature": 0.7,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "logprobs": true,
+    "top_logprobs": 5,
+    "sample_seeds": [
+      1729,
+      1730,
+      1731,
+      1732,
+      1733,
+      1734,
+      1735,
+      1736,
+      1737,
+      1738
+    ],
+    "request_n": 1
+  },
+  "selected_cases": 30,
+  "total_slots": 300,
+  "request_status_counts": {
+    "complete": 299,
+    "truncated": 1
+  },
+  "parser_status_counts": {
+    "unparsed_or_no_call": 48,
+    "calls": 252
+  },
+  "complete_cases_in_uploaded_audit": 29,
+  "by_benchmark": {
+    "apibank": {
+      "selected_cases": 6,
+      "scored_cases_in_uploaded_audit": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "unparsed_or_no_call": 12,
+        "calls": 48
+      }
+    },
+    "bfcl_v3": {
+      "selected_cases": 6,
+      "scored_cases_in_uploaded_audit": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 59,
+        "unparsed_or_no_call": 1
+      }
+    },
+    "rotbench": {
+      "selected_cases": 6,
+      "scored_cases_in_uploaded_audit": 5,
+      "request_status_counts": {
+        "complete": 59,
+        "truncated": 1
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    },
+    "toolalpaca": {
+      "selected_cases": 6,
+      "scored_cases_in_uploaded_audit": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "unparsed_or_no_call": 35,
+        "calls": 25
+      }
+    },
+    "tooleyes": {
+      "selected_cases": 6,
+      "scored_cases_in_uploaded_audit": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    }
+  },
+  "incomplete_cases": [
+    {
+      "benchmark": "rotbench",
+      "source_file": "clean.jsonl",
+      "case_id": "rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.",
+      "record_status_counts": {
+        "complete": 9,
+        "truncated": 1
+      }
+    }
+  ],
+  "status_aware_audit": {
+    "source": "user-uploaded repeated_dev30_status_audit.json",
+    "source_sha256": "183d4698e59adb6b4d9e2cb47661386a2c06fbf1d447831ce14674d664cb35b3",
+    "scored_cases": 30,
+    "validation_error_cases": 0,
+    "request_status_counts": {"complete": 299, "truncated": 1},
+    "per_case_sample_slots": 10,
+    "unchanged_scores_for_previously_scored_cases": 29,
+    "newly_scored_case": {
+      "benchmark": "rotbench",
+      "source_file": "clean.jsonl",
+      "case_id": "rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.",
+      "record_status_counts": {"complete": 9, "truncated": 1},
+      "canonical_cluster_sizes": [2, 2, 1, 1, 1, 1, 1, 1],
+      "canonical_entropy_nats": 2.0253262207700677,
+      "canonical_disagreement": 0.8
+    }
+  },
+  "interpretation_limit": "The status-aware audit retains the truncated response as its own outcome in the ten-slot denominator. The two uploaded audit summaries were compared locally; raw Drive records were validated within Colab but were not uploaded for local reinspection. The diagnostic subset is development-only; parser statuses and cluster frequencies do not measure official correctness."
+}

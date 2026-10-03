@@ -1,0 +1,20 @@
+{
+  "scope": "development-only repeated-sample diagnostic; settings pending review",
+  "subset_selector": "src/uqroute_tc/data/repeated_subset.py",
+  "subset_selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
+  "subset_cases": 30,
+  "small_models": 3,
+  "generations_per_case": 10,
+  "request_mode": "one independent chat completion per sample index",
+  "temperature": 0.7,
+  "top_p": 1.0,
+  "max_tokens": 1024,
+  "logprobs": true,
+  "top_logprobs": 5,
+  "seed_rule": "seed = 1729 + sample_index; indices 0 through 9, shared across cases and models",
+  "sample_seeds": [1729, 1730, 1731, 1732, 1733, 1734, 1735, 1736, 1737, 1738],
+  "request_n": 1,
+  "prompt_and_model_revisions": "docs/config/task1_single_sample_v1.json",
+  "pilot": "one selected clean development BFCL case with Qwen 1.5B",
+  "pilot_report": "user reported 10/10 complete with valid token evidence, canonical cluster sizes (9, 1), disagreement 0.1; Drive audit not yet independently inspected"
+}

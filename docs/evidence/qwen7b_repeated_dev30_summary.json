@@ -1,0 +1,100 @@
+{
+  "scope": "Qwen 7B ten-generation diagnostic on the 30 selected development cases across five benchmarks",
+  "source": "user-uploaded repeated_dev30_status_audit (2).json",
+  "source_sha256": "fdefda2a61af50bd76b2295ed1b223d85adb27df919992dd0a55d3a1ba46842d",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
+  "code_revision": "7c178b4c038e6af44a5c4a6599a5d3bf390e0bbf",
+  "settings": {
+    "engine_version": "0.30.0",
+    "dtype": "bfloat16",
+    "max_model_len": 8192,
+    "temperature": 0.7,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "logprobs": true,
+    "top_logprobs": 5,
+    "sample_seeds": [
+      1729,
+      1730,
+      1731,
+      1732,
+      1733,
+      1734,
+      1735,
+      1736,
+      1737,
+      1738
+    ],
+    "request_n": 1
+  },
+  "selected_cases": 30,
+  "scored_cases": 30,
+  "total_slots": 300,
+  "request_status_counts": {
+    "complete": 300
+  },
+  "parser_status_counts": {
+    "calls": 251,
+    "unparsed_or_no_call": 49
+  },
+  "validation_error_cases": 0,
+  "by_benchmark": {
+    "apibank": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    },
+    "bfcl_v3": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    },
+    "rotbench": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 50,
+        "unparsed_or_no_call": 10
+      }
+    },
+    "toolalpaca": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "unparsed_or_no_call": 39,
+        "calls": 21
+      }
+    },
+    "tooleyes": {
+      "selected_cases": 6,
+      "scored_cases": 6,
+      "request_status_counts": {
+        "complete": 60
+      },
+      "parser_status_counts": {
+        "calls": 60
+      }
+    }
+  },
+  "verification": "The uploaded summary was checked locally against the two prior audits for case selection and sampling settings; unique case identities, ten slots per case, request/parser totals, and canonical entropy/disagreement arithmetic were checked. The raw Drive records were validated by the Colab audit but were not uploaded for local reinspection. Parser outcomes and clusters are not official correctness."
+}
