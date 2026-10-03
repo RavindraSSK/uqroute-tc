@@ -1,5 +1,5 @@
 {
-  "scope": "development-only repeated-sample diagnostic; settings pending review",
+  "scope": "frozen repeated-sample diagnostic settings and status policy; full Task 2 protocol remains draft",
   "subset_selector": "src/uqroute_tc/data/repeated_subset.py",
   "subset_selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
   "subset_cases": 30,
@@ -16,5 +16,18 @@
   "request_n": 1,
   "prompt_and_model_revisions": "docs/config/task1_single_sample_v1.json",
   "pilot": "one selected clean development BFCL case with Qwen 1.5B",
-  "pilot_report": "user reported 10/10 complete with valid token evidence, canonical cluster sizes (9, 1), disagreement 0.1; Drive audit not yet independently inspected"
+  "pilot_report": "user reported 10/10 complete with valid token evidence, canonical cluster sizes (9, 1), disagreement 0.1; Drive audit not independently inspected",
+  "status_policy": {
+    "expected_slots_per_case": 10,
+    "complete": "cluster the pinned parser's type-aware canonical call key; exact-string ablation uses the visible output",
+    "invalid_evidence": "if text is otherwise complete, retain its parser/canonical outcome for probability-free clustering; invalidate token-probability scores separately",
+    "truncated": "one truncated canonical outcome regardless of whether partial text parses; exact-string ablation keeps status and partial visible text",
+    "request_error": "one request-error canonical outcome for a terminal failed slot; exact-string ablation keeps status and any saved text; retry on resume without adding a slot",
+    "empty": "distinct canonical outcome for blank visible text",
+    "explicit_no_calls": "distinct canonical outcome only for a visible []",
+    "unparsed_or_no_call": "one canonical outcome for nonempty text with no calls from the pinned parser, without inferring whether no tool was intended",
+    "parse_failure": "one canonical outcome for parser errors or invalid parsed-call structures",
+    "denominator": "keep all ten slots, including failed or incomplete outcomes; do not impute missing token scores"
+  },
+  "decision_context": "Frozen after reviewing the three 30-case development audits: 900 slots, 896 complete and four truncated, 90 model-case cluster scores; truncation handling was added after inspecting Qwen 1.5B development output. No held-out perturbation groups were used."
 }

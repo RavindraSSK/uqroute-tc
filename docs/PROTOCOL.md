@@ -5,9 +5,12 @@
 The Task 1 benchmark, population, split, model roles/revisions, and
 single-sample generation settings are frozen in
 `docs/config/task1_single_sample_v1.json`. This document
-remains a draft for the Task 2 parser/uncertainty rules and Task 3–4 analysis,
-cost, routing, and recovery choices. The full protocol must be frozen before
-held-out evaluation begins.
+remains a draft for the remaining Task 2 parser/uncertainty rules and Task 3–4
+analysis, cost, routing, and recovery choices. The full protocol must be
+frozen before held-out evaluation begins.
+The repeated-sample subset, generation settings, and status policy are frozen
+separately in `docs/config/task2_repeated_sampling_v1.json` after review of
+development-only audits.
 
 Any later change must record:
 
@@ -287,9 +290,9 @@ Its case identities, split and sampling settings match the other two model
 audits. Across the three uploaded audits, 900 saved slots yield 896 complete
 responses, four truncated responses, and 90 model–case cluster scores. These
 are development diagnostics; they neither estimate official tool-call
-accuracy nor select a routing threshold. The truncation handling was added
-after the first Qwen 1.5B development outputs were inspected and must be
-declared as an exploratory method decision before held-out evaluation.
+accuracy nor select a routing threshold. Truncation handling was added after
+the first Qwen 1.5B development outputs were inspected. That retrospective
+development decision is disclosed here and frozen before held-out evaluation.
 The `code_revision` in these run manifests pins the generation-side project
 checkout. The status-aware audit calculation is recorded in the corresponding
 notebook source and the draft `src/uqroute_tc/uncertainty/repeated.py` update;
@@ -298,10 +301,10 @@ uploaded audit files for comparison.
 Raw text with invalid token-probability evidence remains eligible for
 probability-free canonical clustering if it is otherwise complete, with the
 invalid evidence flagged separately. Request errors are counted as an
-explicit status. These rules remain under development review; the held-out
-population has not been used to choose them.
+explicit status. The repeated-sample status policy is now frozen; the
+held-out population was not used to choose it.
 
-The proposed diagnostic subset is selected without prediction values or
+The diagnostic subset is selected without prediction values or
 correctness labels by `src/uqroute_tc/data/repeated_subset.py`: three distinct
 development groups in each of BFCL, APIBank, RotBench, ToolAlpaca, and
 ToolEyes. Each group contributes its clean row and one perturbation, giving
@@ -315,7 +318,9 @@ release and split produce selection digest
 over the compact, sorted-key JSON case list. At ten generations for each of
 three small models, this is 900 calls. The 30 cases are a limited diagnostic
 subset, and any claims about the full population require its larger evaluation.
-This selection and these generation settings remain draft until reviewed.
+The subset and generation settings are frozen after the three 30-case
+development audits. They apply to the diagnostic subset only; any later
+change requires a recorded protocol revision before held-out evaluation.
 
 Each generated output will be parsed and converted to a canonical tool-call representation. Canonical-call frequencies will be used to calculate disagreement and entropy. Exact-string clustering will be retained as an ablation.
 
@@ -330,15 +335,18 @@ Parsing failures, missing log-probabilities, truncated completions, request erro
 
 All uncertainty scores are oriented so that a larger value means greater uncertainty.
 
-The provisional canonical-call implementation uses the pinned benchmark's
+The canonical-call implementation uses the pinned benchmark's
 `parse_tool_calls` output and does not replace or change the scorer's parser.
 It ignores mapping insertion order, but preserves tool names and case,
 argument names, nested value types and values, list order, and call order.
 Empty output, an explicit `[]`, malformed parsed calls, and nonempty outputs
 with no parsed calls remain distinct. The last category can contain both
 intentional no-tool replies and unrecognized syntax, so it is labelled
-`unparsed_or_no_call` pending the saved-output audit. These rules, including
-how that ambiguous category enters repeated-sample clustering, are not frozen.
+`unparsed_or_no_call`. The saved development audits do not establish whether
+those outputs intended no tool. For repeated-sample scoring, all outputs in
+that ambiguous category share one explicit cluster; this policy is frozen
+for the diagnostic subset, without treating it as an official correctness
+label.
 
 For a generated sequence containing tokens indexed by `i = 1, ..., L`, let `log p_i` be the model-returned log-probability of the selected token.
 
@@ -433,12 +441,25 @@ Repeated-sample canonical calls will continue to reflect the released parser,
 including extra calls extracted from examples; their effect must be reviewed
 when the repeated-sample outputs are audited.
 
-For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the planned repeated-sample measures are:
+For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the repeated-sample measures are:
 
 - Canonical-call entropy: `-sum(q_k * log(q_k))`.
 - Canonical disagreement: `1 - max(q_k)`.
 
-Exact-string entropy and disagreement will be retained as an ablation. Parser failures will be represented explicitly rather than discarded before clustering. The exact treatment of parser-failure clusters will be frozen after parser validation and before repeated-sample evaluation.
+Exact-string entropy and disagreement are retained as an ablation. Each case
+has exactly ten slots in both denominators. Complete outputs are grouped by
+the pinned parser's type-aware call key; blank outputs, explicit `[]`, other
+nonempty outputs without parsed calls, and parser failures form four separate
+status keys. A truncated slot has one status key even if its partial text
+parses as a call; a terminal request-error slot has its own status key. For
+the exact-string ablation, incomplete/error slots retain their status and
+saved visible text in the key. On resume, a request error may be retried in
+the same slot. A complete output with invalid token-probability evidence
+still contributes its parsed call or parser status to probability-free
+clustering, while its token-probability scores remain invalid. These choices
+were reviewed against 900 development slots and are frozen in
+`docs/config/task2_repeated_sampling_v1.json`; they do not establish
+correctness or a routing threshold.
 
 ## 12. Correctness and evaluation outcomes
 
