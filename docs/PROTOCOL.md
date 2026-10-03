@@ -364,7 +364,7 @@ include syntax as well as content, the procedure reports which selected
 tokens also cover punctuation or whitespace. It rejects truncated responses,
 unsupported syntax, mismatched parser calls, missing probabilities, and
 unaligned bytes. This rule has been checked on the 20 saved outputs from five
-BFCL development cases across four models. Other JSON, XML, and mixed output
+BFCL development cases across four models. Most JSON, markup, and mixed output
 formats still need alignment validation before this measure can be used
 across the full benchmark. The selection rule remains draft.
 
@@ -403,6 +403,20 @@ exported token-level candidates were the first two parsed calls in each
 benchmark, so they are a selected diagnostic. The 24 file-order development
 cases are not a population accuracy or parser-coverage estimate. The pinned
 parser and official scorer remain unchanged.
+
+A separate export from that same development run contains two APIBank outputs
+with tool markup. A bounded draft rule accepts one fenced `<toolcall
+tool="...">` line followed by one complete JSON object when the name and
+arguments reconstruct exactly the released parser's call. It selects the
+tool name and JSON argument names and values from visible UTF-8 bytes. The
+saved `ModifyReminder` response passed with 45 selected tokens and no
+boundary-crossing tokens. A saved `<tool>GetUserToken</tool>` response contains
+nonempty JSON arguments, while the released parser saved an empty argument
+mapping. Its meaningful-token score is unavailable because the response and
+parsed call do not have trusted complete alignment. The current rule does not
+claim general APIBank markup coverage. This is a two-response diagnostic
+selected after the earlier output audit; official scoring and parsing are
+unchanged.
 
 For the current evaluation, ToolAlpaca has no meaningful-token score. Its
 explanatory prose, sample requests, and example responses do not establish a

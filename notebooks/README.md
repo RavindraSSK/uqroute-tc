@@ -12,6 +12,7 @@ The model pilot notebooks run five clean **development** BFCL cases from the pin
 | `UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` | CPU-only Task 2 reparse and token-evidence check of the 20 saved records |
 | `UQRoute_TC_Qwen15B_Format_Development_Audit.ipynb` | Four clean development cases across APIBank, RotBench, ToolAlpaca, and ToolEyes; saved parser audit and official per-case scores |
 | `UQRoute_TC_Qwen15B_XML_JSON_Development_Audit.ipynb` | Up to 24 additional clean development cases across APIBank and ToolAlpaca; parser audit and selected token-evidence export |
+| `UQRoute_TC_APIBank_Markup_Alignment_Export.ipynb` | CPU-only export of two saved APIBank development responses with `<tool>` or `<toolcall>` markup and chosen-token evidence |
 | `UQRoute_TC_Qwen15B_Repeated_Sample_Development_Check.ipynb` | Ten seeded requests on one selected clean development BFCL case; saved response and clustering check before the full repeated subset |
 | `UQRoute_TC_Qwen15B_Repeated_Development_Subset.ipynb` | Ten seeded requests per case for Qwen 1.5B on the 30-case development subset, with resumable saving and a compact cluster audit |
 | `UQRoute_TC_Qwen15B_Repeated_Status_Audit.ipynb` | CPU-only audit of the saved 30-case run; includes truncated and request-error slots explicitly in the canonical clusters |

@@ -1,4 +1,4 @@
-"""Conservative syntax-to-token alignment for BFCL, ReAct, and APIBank JSON.
+"""Conservative syntax-to-token alignment for BFCL, ReAct, and APIBank calls.
 
 ToolAlpaca mixed outputs have no trusted call spans and cannot be scored here.
 """
@@ -28,6 +28,11 @@ _PLAIN_JSON = re.compile(r"\s*(?P<json>\{.*\})\s*", re.DOTALL)
 _FENCED_JSON = re.compile(
     r"\s*(?:<think>[^{}]*</think>\s*)?```(?:json|plaintext)?[ \t]*\r?\n"
     r"(?P<json>\{.*\})[ \t]*\r?\n```\s*", re.DOTALL | re.IGNORECASE
+)
+_FENCED_TOOLCALL = re.compile(
+    r'\s*```plaintext[ \t]*\r?\n(?:<think>[^<>]*</think>\s*)?'
+    r'<toolcall[ \t]+tool="(?P<name>[A-Za-z_]\w*)">[ \t]*\r?\n'
+    r'(?P<json>\{.*\})[ \t]*\r?\n```\s*', re.DOTALL
 )
 
 
@@ -218,6 +223,49 @@ def _apibank_json_spans(
     return names, arguments, values
 
 
+def _apibank_toolcall_spans(
+    raw_output: str, parsed_calls: list[dict[str, Any]]
+) -> tuple[list[tuple[int, int]], list[tuple[int, int]], list[tuple[int, int]]]:
+    """Align one fenced APIBank toolcall only if its JSON matches the parser."""
+    match = _FENCED_TOOLCALL.fullmatch(raw_output)
+    if match is None:
+        raise ValueError("output is not one fenced APIBank toolcall with JSON arguments")
+    name, source = match.group("name"), match.group("json")
+    decoder = json.JSONDecoder(object_pairs_hook=_unique_pairs)
+    fields = _json_fields(source, decoder)
+    params = {key: item[0] for key, item in fields.items()}
+    if canonical_key([{"name": name, "parameters": params}]) != canonical_key(parsed_calls):
+        raise ValueError("markup call does not match the benchmark parser")
+
+    def byte_span(start: int, end: int) -> tuple[int, int]:
+        return (len(raw_output[:start].encode("utf-8")),
+                len(raw_output[:end].encode("utf-8")))
+
+    names = [byte_span(match.start("name"), match.end("name"))]
+    arguments: list[tuple[int, int]] = []
+    values: list[tuple[int, int]] = []
+    for key, (_, key_span, value_span) in fields.items():
+        key_start, key_end = key_span
+        if key:
+            key_start += 1
+            key_end -= 1
+        arguments.append(byte_span(match.start("json") + key_start,
+                                   match.start("json") + key_end))
+        value_source = source[value_span[0]:value_span[1]]
+        for atom in _JSON_ATOM.finditer(value_source):
+            atom_start, atom_end = atom.span()
+            is_key = atom.group().startswith('"') and re.match(
+                r"\s*:", value_source[atom.end():]
+            )
+            if atom.group().startswith('"') and len(atom.group()) > 2:
+                atom_start += 1
+                atom_end -= 1
+            span = byte_span(match.start("json") + value_span[0] + atom_start,
+                             match.start("json") + value_span[0] + atom_end)
+            (arguments if is_key else values).append(span)
+    return names, arguments, values
+
+
 def meaningful_token_score(
     raw_output: str,
     parsed_calls: list[dict[str, Any]],
@@ -244,7 +292,10 @@ def meaningful_token_score(
         names, arguments, values = _react_spans(raw_output, parsed_calls)
         return _score_spans(evidence, chosen_tokens, names, arguments, values)
     if benchmark == "apibank":
-        names, arguments, values = _apibank_json_spans(raw_output, parsed_calls)
+        if _FENCED_TOOLCALL.fullmatch(raw_output):
+            names, arguments, values = _apibank_toolcall_spans(raw_output, parsed_calls)
+        else:
+            names, arguments, values = _apibank_json_spans(raw_output, parsed_calls)
         return _score_spans(evidence, chosen_tokens, names, arguments, values)
     if benchmark != "bfcl_v3":
         raise ValueError(f"unsupported benchmark for meaningful-token alignment: {benchmark}")

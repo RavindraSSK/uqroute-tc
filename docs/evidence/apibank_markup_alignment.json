@@ -1,0 +1,39 @@
+{
+  "scope": "Two saved Qwen 1.5B clean APIBank development responses with fenced tool markup",
+  "source": "user-uploaded apibank_markup_alignment_evidence (1).json",
+  "source_sha256": "92d7320ea8020008715949f381118678f78ca8c7581fbd4341365bf21857e5d0",
+  "source_manifest_sha256": "d51ba41039d86f84e8e54f1b6c73f3c2c49ac506f14521259714356e99858bf0",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "code_revision": "bb4126441f849213dc7726b6319ac2a2e3e258cf",
+  "verified_byte_alignment_cases": 2,
+  "accepted": {
+    "case_id": "apibank__level1_378",
+    "format": "one fenced <toolcall tool=\"ModifyReminder\"> followed by JSON arguments",
+    "selected_tokens": 45,
+    "boundary_crossing_tokens": 0,
+    "mean_token_nll": 0.04483553345402732,
+    "tool_names": [
+      "ModifyReminder"
+    ],
+    "argument_names": [
+      "token",
+      "content",
+      "time"
+    ]
+  },
+  "unavailable": {
+    "case_id": "apibank__level1_301",
+    "format": "fenced <tool>GetUserToken</tool> followed by JSON arguments",
+    "saved_parser_calls": [
+      {
+        "name": "GetUserToken",
+        "parameters": {}
+      }
+    ],
+    "reason": "The saved parser dropped the nonempty JSON arguments. No trusted complete call-to-source alignment is available under the bounded rule."
+  },
+  "interpretation_limit": "This is a selected two-response development diagnostic, not a coverage or accuracy estimate. The official parser and scorer are unchanged; unverified APIBank formats and ToolAlpaca mixed responses do not receive an imputed meaningful-token score."
+}
