@@ -1,0 +1,121 @@
+{
+  "scope": "Qwen 1.5B saved expanded-alignment re-audit; 12 APIBank and 12 ToolAlpaca clean development cases",
+  "source": "user-uploaded alignment_coverage_audit_v2.json",
+  "source_sha256": "267ab08ef8100fcee70e9d0bb14b7604c9658fe9ce1b9d04c34a8209322fc66e",
+  "source_manifest_sha256": "d51ba41039d86f84e8e54f1b6c73f3c2c49ac506f14521259714356e99858bf0",
+  "prior_audit_sha256": "777a0e8e8f63db1765613f74aa509fd01a413f1caea8b70362aa2b270937586e",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "source_code_revision": "bb4126441f849213dc7726b6319ac2a2e3e258cf",
+  "audit_code_revision": "d1be571d7cb65802ecc77d7440bc9dc4a98851c0",
+  "audit_script_sha256": "2eff3b5c51be2cb7e4a1c17d0d9e9731fec90aa8c03e96299c8a1167bdc24375",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "cases": 24,
+  "complete_and_byte_aligned": 24,
+  "parser_matches_saved": 24,
+  "by_benchmark": {
+    "apibank": {
+      "cases": 12,
+      "parser_status_counts": {
+        "calls": 11,
+        "unparsed_or_no_call": 1
+      },
+      "meaningful_token_status_counts": {
+        "valid": 10,
+        "unavailable": 2
+      },
+      "unavailable_reasons": {
+        "output is not one standalone or fenced APIBank JSON call": 1,
+        "no trusted parsed call: unparsed_or_no_call": 1
+      }
+    },
+    "toolalpaca": {
+      "cases": 12,
+      "parser_status_counts": {
+        "unparsed_or_no_call": 8,
+        "calls": 4
+      },
+      "meaningful_token_status_counts": {
+        "unavailable": 12
+      },
+      "unavailable_reasons": {
+        "no trusted parsed call: unparsed_or_no_call": 8,
+        "ToolAlpaca meaningful-token alignment is unavailable": 4
+      }
+    }
+  },
+  "comparison": {
+    "newly_eligible_case_ids": [
+      "apibank__level3_26",
+      "apibank__level1_217"
+    ],
+    "regressed_case_ids": [],
+    "previous_valid_scores_changed": [],
+    "validation_error_cases": 0
+  },
+  "valid_apibank_cases": [
+    {
+      "case_id": "apibank__level1_185",
+      "selected_token_count": 50,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_78",
+      "selected_token_count": 14,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_262",
+      "selected_token_count": 17,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level3_26",
+      "selected_token_count": 5,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_293",
+      "selected_token_count": 18,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_180",
+      "selected_token_count": 15,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_340",
+      "selected_token_count": 5,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_378",
+      "selected_token_count": 45,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_217",
+      "selected_token_count": 5,
+      "boundary_crossing_token_count": 0
+    },
+    {
+      "case_id": "apibank__level1_46",
+      "selected_token_count": 27,
+      "boundary_crossing_token_count": 0
+    }
+  ],
+  "unavailable_apibank_cases": [
+    {
+      "case_id": "apibank__level1_301",
+      "reason": "output is not one standalone or fenced APIBank JSON call"
+    },
+    {
+      "case_id": "apibank__level1_166",
+      "reason": "no trusted parsed call: unparsed_or_no_call"
+    }
+  ],
+  "verification_scope": "All uploaded per-case summary fields, identities, prior comparisons, count arithmetic, split membership, and audit-script fingerprint were checked locally. The full chosen-token records were revalidated in Colab; only the eight earlier exported raw responses were replayed locally.",
+  "interpretation_limit": "Development format eligibility only. The expanded rule follows inspection of these cases. Eligibility is not official correctness or population coverage. Unavailable scores are not imputed."
+}
