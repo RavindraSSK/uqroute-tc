@@ -39,7 +39,7 @@ class RepeatedSubsetTests(unittest.TestCase):
             self.assertEqual(len(selected), 30)
             self.assertEqual(len({row["base_id"] for row in selected}), 15)
             self.assertTrue(all(not row["base_id"].endswith("case_4") for row in selected))
-            for first, second in zip(selected[::2], selected[1::2]):
+            for first, second in zip(selected[::2], selected[1::2], strict=True):
                 self.assertEqual(first["base_id"], second["base_id"])
                 self.assertEqual(first["source_file"], "clean.jsonl")
                 self.assertNotEqual(second["source_file"], "clean.jsonl")

@@ -8,8 +8,9 @@ import json
 import subprocess
 import sys
 from collections import Counter
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from uqroute_tc.inference.pilot import _atomic_json, _record_path
 from uqroute_tc.parsing.canonical import parse_prediction
