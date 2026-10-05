@@ -406,6 +406,14 @@ exports yields the same 27 eligible scores and three unavailable outcomes as
 the prior implementation, including unchanged scores on both saved ReAct
 responses. No held-out output was used to choose this correction.
 
+Behavior-preserving lint maintenance is recorded separately in
+`docs/config/task2_implementation_maintenance_v1.json`. The original Task 2
+freeze and its source hashes remain unchanged; the maintenance record maps
+changed file hashes to that freeze. Import and annotation cleanup, an unused
+loop-name change, and explicit `zip(..., strict=False)` preserve the scoring
+rules. The 30-response replay retains all 27 eligible scores and three
+unavailable outcomes. Source/test Ruff checks and all 53 tests pass.
+
 A bounded APIBank rule accepts either one standalone JSON object or
 one fenced JSON object after an optional balanced `<think>` block. The object
 must contain only `name` and `parameters`, have no duplicate JSON keys, and

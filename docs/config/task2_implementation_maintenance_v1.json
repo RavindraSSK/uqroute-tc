@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "scope": "Behavior-preserving lint maintenance of the frozen Task 2 implementation",
+  "effective_when": "Approved and committed",
+  "frozen_config": "docs/config/task2_uncertainty_v1.json",
+  "frozen_config_sha256": "dd006a8e8a229177f296ad1a2203debf18a6ba4dc159da911378c65c83dc8eda",
+  "frozen_main_revision": "34b5ccee2d3d5f4550bd27e8365eb4c296c679f2",
+  "method_change": false,
+  "reason": "Resolve nine source/test Ruff findings: import ordering, collections.abc annotation imports, unused loop name, explicit zip strictness and test formatting.",
+  "compatibility": "Production zip explicitly uses strict=False, preserving its previous default. The test fixture uses strict=True for equal-sized clean/perturbed pairs. Score formulas, parser eligibility, generation settings and status policy are unchanged.",
+  "implementation_file_changes": {
+    "src/uqroute_tc/inference/pilot.py": {
+      "frozen_sha256": "9b3f5e08abf983ff6e880eed4b51aae3f4fe1884c3794c03f0e62ac462fc746e",
+      "maintenance_sha256": "b7c1c56c035dab08d077e42021c45052e81f9b4558b4224ca36914d055f84aad"
+    },
+    "src/uqroute_tc/parsing/canonical.py": {
+      "frozen_sha256": "530835dc464ea17423ac137ec025409f0cef1ddfa370fb49c7b6d3c0e9344c25",
+      "maintenance_sha256": "64c9af5dd93c957ec88d26b736847213bd56f1232a2f603e1025037b42bbb80d"
+    },
+    "src/uqroute_tc/uncertainty/alignment.py": {
+      "frozen_sha256": "6eb224b1752182fb72618bc0b7832f1178e9d969966c6353574c1bdc38937aa6",
+      "maintenance_sha256": "8a2832836da6e20906c74551a17c34814ef4c6e3bab9fd2f56cbe2874e2c2f1c"
+    },
+    "src/uqroute_tc/uncertainty/repeated.py": {
+      "frozen_sha256": "ae13f1e35c6214b1d66d321782285e8ef5d8894ecb81bf5e57a235333d61cc2e",
+      "maintenance_sha256": "df58714c586dafd7b816ef04c59046972c9c45b5c77217a835e09da2067ebdd9"
+    }
+  },
+  "validation": {
+    "python_version": "3.12",
+    "ruff_version": "0.16.10",
+    "ruff_command": "python -m ruff check src tests",
+    "ruff_result": "All checks passed",
+    "pytest_version": "8.4.2",
+    "pytest_command": "python -m pytest -q",
+    "pytest_tests_passed": 53,
+    "saved_response_replay": {
+      "saved_responses": 30,
+      "unchanged_eligible_scores": 27,
+      "unchanged_unavailable_outcomes": 3
+    }
+  },
+  "held_out_results_used": false
+}

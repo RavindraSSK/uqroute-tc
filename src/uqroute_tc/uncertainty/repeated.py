@@ -5,8 +5,9 @@ from __future__ import annotations
 import json
 import math
 from collections import Counter
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from typing import Any, Callable, Sequence
+from typing import Any
 
 from uqroute_tc.parsing.canonical import CanonicalPrediction, parse_prediction
 

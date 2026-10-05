@@ -263,8 +263,8 @@ def main() -> None:
 
     # Import the pinned release's message builder and parser without copying its rules.
     sys.path.insert(0, str(benchmark_root / "scripts"))
-    from run_eval import build_messages, load_samples, parse_tool_calls  # noqa: PLC0415
     from openai import OpenAI  # noqa: PLC0415
+    from run_eval import build_messages, load_samples, parse_tool_calls  # noqa: PLC0415
 
     selected = select_clean_development_cases(
         load_samples(data_dir / "clean.jsonl"), split, args.limit

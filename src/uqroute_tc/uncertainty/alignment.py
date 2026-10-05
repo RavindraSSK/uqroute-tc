@@ -387,7 +387,9 @@ def _score_spans(
     boundary = []
     visible = (chosen_tokens[:-1] if evidence["excluded_trailing_token"]
                else chosen_tokens)
-    for i, ((start, end), token) in enumerate(zip(evidence["visible_token_spans"], visible)):
+    for i, ((start, end), _token) in enumerate(
+        zip(evidence["visible_token_spans"], visible, strict=False)
+    ):
         covered = sum(max(0, min(end, b) - max(start, a)) for a, b in semantic_spans)
         if covered:
             selected.append(i)

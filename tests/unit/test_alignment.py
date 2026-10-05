@@ -158,7 +158,7 @@ class AlignmentTests(unittest.TestCase):
         self.assertEqual(score.selected_token_indices, (0,))
         self.assertEqual(score.boundary_crossing_token_indices, (0,))
         start = len(raw[:raw.index('München')].encode('utf-8'))
-        self.assertIn((start, start + len('München'.encode('utf-8'))),
+        self.assertIn((start, start + len('München'.encode())),
                       score.argument_value_spans)
 
     def test_react_rejects_mismatched_or_ambiguous_calls(self):
@@ -177,7 +177,9 @@ class AlignmentTests(unittest.TestCase):
                                    [{'name': 'finish', 'parameters': {'answer': 'No'}}],
                                    tokens([(raw + '\nObservation: done', .2)]),
                                    'stop', 'rotbench')
-        with self.assertRaisesRegex(ValueError, 'ToolAlpaca meaningful-token alignment is unavailable'):
+        with self.assertRaisesRegex(
+            ValueError, 'ToolAlpaca meaningful-token alignment is unavailable'
+        ):
             meaningful_token_score(raw, [], chosen, 'stop', 'toolalpaca')
 
     def test_react_rejects_duplicate_argument_keys_even_when_parser_keeps_last(self):
