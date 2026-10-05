@@ -180,6 +180,20 @@ class AlignmentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'ToolAlpaca meaningful-token alignment is unavailable'):
             meaningful_token_score(raw, [], chosen, 'stop', 'toolalpaca')
 
+    def test_react_rejects_duplicate_argument_keys_even_when_parser_keeps_last(self):
+        for arguments, parameters in (
+            ('{"city":"Boston","city":"Paris"}', {'city': 'Paris'}),
+            ('{"details":{"city":"Boston","city":"Paris"}}',
+             {'details': {'city': 'Paris'}}),
+        ):
+            raw = 'Action: weather\nAction Input: ' + arguments
+            parsed = [{'name': 'weather', 'parameters': parameters}]
+            for benchmark in ('rotbench', 'tooleyes'):
+                with self.subTest(benchmark=benchmark, arguments=arguments):
+                    with self.assertRaisesRegex(ValueError, 'duplicate JSON key'):
+                        meaningful_token_score(raw, parsed, tokens([(raw, .2)]),
+                                               'stop', benchmark)
+
     def test_selects_semantics_and_reports_mixed_syntax_tokens(self):
         raw = "[weather(city='München', days=2)]"
         chosen = tokens([

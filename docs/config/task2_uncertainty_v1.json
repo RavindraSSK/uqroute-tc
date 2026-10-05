@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "scope": "Task 2 parser and uncertainty definitions; full evaluation, calibration, routing, recovery, and cost decisions remain draft",
+  "effective_when": "Approved and committed; subsequent method changes require a recorded protocol revision",
+  "implementation_base_revision": "cbb0c8ca2467ab2b5a13b24df483c2b37723cff1",
+  "implementation_files_sha256": {
+    "src/uqroute_tc/inference/pilot.py": "9b3f5e08abf983ff6e880eed4b51aae3f4fe1884c3794c03f0e62ac462fc746e",
+    "src/uqroute_tc/parsing/canonical.py": "530835dc464ea17423ac137ec025409f0cef1ddfa370fb49c7b6d3c0e9344c25",
+    "src/uqroute_tc/uncertainty/single.py": "6ca9b72fad4b306fd1bdbfaad4058715ea5eaa9362c923239a63dfdce6c4f6f9",
+    "src/uqroute_tc/uncertainty/alignment.py": "6eb224b1752182fb72618bc0b7832f1178e9d969966c6353574c1bdc38937aa6",
+    "src/uqroute_tc/uncertainty/repeated.py": "ae13f1e35c6214b1d66d321782285e8ef5d8894ecb81bf5e57a235333d61cc2e"
+  },
+  "reference_parser": {
+    "repository": "WillChow66/robustbench-tc-release",
+    "revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+    "path": "scripts/run_eval.py",
+    "function": "parse_tool_calls",
+    "file_sha256": "e305a816c96ed574ad18ca90871775721fd79fcf3533a60077b26d1fdeef20d8",
+    "scoring": "Official parsing and correctness labels are preserved; successful parsing is not correctness"
+  },
+  "canonicalization": {
+    "entry_point": "uqroute_tc.parsing.canonical.parse_prediction",
+    "mapping_insertion_order": "ignored",
+    "preserved": [
+      "tool names and case",
+      "argument names",
+      "nested value types and values",
+      "list order",
+      "tuple versus list",
+      "call order"
+    ],
+    "parser_statuses": {
+      "calls": "at least one valid parsed call",
+      "empty": "blank visible output",
+      "no_calls": "visible output is exactly [] after trimming whitespace",
+      "unparsed_or_no_call": "other nonempty output without parsed calls; tool intent is not inferred",
+      "parse_failure": "parser exception or invalid parsed-call structure"
+    },
+    "nonfinite_argument_values": "canonicalization fails"
+  },
+  "single_sample": {
+    "entry_point": "uqroute_tc.uncertainty.single.single_sample_scores",
+    "logarithm": "natural log",
+    "orientation": "larger values mean greater uncertainty",
+    "scores": {
+      "sequence_nll": "-sum(log p_i) over visible chosen tokens",
+      "mean_token_nll": "sequence_nll / visible_token_count",
+      "max_token_surprisal": "max(-log p_i) over visible chosen tokens"
+    },
+    "validity": [
+      "record status is complete",
+      "exactly one saved response choice",
+      "completion is not truncated",
+      "all visible chosen-token byte arrays exactly reconstruct the UTF-8 response",
+      "all visible chosen-token log-probabilities are finite",
+      "visible token sequence is nonempty",
+      "saved token count, spans, end-token exclusion and numeric scores agree with recomputed evidence"
+    ],
+    "numeric_recheck_tolerance": {
+      "rel_tol": 1e-12,
+      "abs_tol": 1e-12
+    },
+    "end_token_exclusion": {
+      "allowed_tokens": [
+        "<|im_end|>",
+        "<|eot_id|>"
+      ],
+      "rule": "Remove only one final allowed token when full bytes differ and removing it yields exact visible-output byte alignment"
+    },
+    "parser_dependency": "Whole-output scores can remain valid for complete nonempty responses without a parsed call"
+  },
+  "meaningful_token": {
+    "entry_point": "uqroute_tc.uncertainty.alignment.meaningful_token_score",
+    "score_field": "mean_token_nll",
+    "formula": "-sum(log p_i for selected visible tokens) / selected_token_count",
+    "validity": [
+      "nonempty visible response with exact byte-aligned finite chosen-token evidence",
+      "completion is not truncated",
+      "source-reconstructed calls equal the pinned parser calls under the type-aware canonical key",
+      "at least one visible token overlaps a supported source span"
+    ],
+    "supported_formats": {
+      "bfcl_v3": "Complete Python call or list of calls, plain or dotted tool names, literal keyword values; positional arguments, expansions and unsupported string syntax are rejected",
+      "rotbench": "One ReAct Action or Action Code name followed by one Action Input or Action Code Input JSON object; trailing text, multiple actions and duplicate JSON keys at any depth are rejected",
+      "tooleyes": "Same bounded single-action ReAct rule as rotbench",
+      "apibank": "One standalone or fenced JSON object containing only name and parameters, optionally with the audited bounded thought/prose prefix; or one audited fenced toolcall layout with a JSON argument object. Duplicate JSON keys at any depth and parser disagreement are rejected",
+      "toolalpaca": "Unavailable for all outputs under the scoped exclusion"
+    },
+    "selected_spans": "Tool names, argument names and argument values from the supported source layout; simple nonempty string quotes are excluded, while empty-string quotes represent the value",
+    "bfcl_composite_values": "The full literal value span is selected, including its internal punctuation; JSON layouts select scalar/key atoms instead",
+    "token_selection": "A visible token overlapping any selected byte span is included in full once",
+    "boundary_metadata": "Selected-token indices, source spans and tokens extending outside the selected spans are retained",
+    "unsupported_layout": "Record an unavailable score and reason; do not infer a span from parser success or an official correct score",
+    "eligible_comparisons": "Report eligible and ineligible counts; meaningful-token comparisons apply only where this measure is available"
+  },
+  "repeated_sample": {
+    "settings_and_status_policy": "docs/config/task2_repeated_sampling_v1.json",
+    "scope": "The existing 30-case development diagnostic only; new evaluation subsets require a recorded revision",
+    "entry_point": "uqroute_tc.uncertainty.repeated.repeated_scores",
+    "expected_samples": 10,
+    "scores": {
+      "canonical_entropy_nats": "-sum(q_k * log(q_k)), q_k = canonical cluster size / 10",
+      "canonical_disagreement": "1 - largest canonical cluster size / 10",
+      "exact_string_entropy_nats": "Same entropy formula over exact visible-output clusters with incomplete/error status keys",
+      "exact_string_disagreement": "Same disagreement formula over exact visible-output clusters with incomplete/error status keys"
+    },
+    "ablation": "Exact-string entropy and disagreement",
+    "denominator": "All ten slots, including explicit parser, empty, truncated and request-error outcomes",
+    "invalid_probability_evidence": "Complete visible text retains its canonical/parser outcome for probability-free clustering; token-probability scores stay invalid"
+  },
+  "unavailable_evidence": {
+    "numeric_imputation": "none; unavailable scores have a status and reason, never a numeric zero or substituted measure",
+    "reporting": "Retain all cases in request and correctness summaries; report score eligibility and use eligible cases for score-specific numeric metrics",
+    "future_routing": "A gate response to missing evidence requires a separate Task 4 rule before held-out routing evaluation"
+  },
+  "decision_context": {
+    "timing": "Chosen after development outputs were inspected; no held-out perturbation groups were used to design these methods",
+    "format_evidence": [
+      "docs/evidence/qwen15b_four_format_development.json",
+      "docs/evidence/apibank_toolalpaca_format_alignment.json",
+      "docs/evidence/apibank_markup_alignment.json",
+      "docs/evidence/apibank_remaining_alignment.json",
+      "docs/evidence/qwen15b_alignment_reaudit_dev24_summary.json"
+    ],
+    "bfcl_evidence": "20 saved development responses across four model pilots; chosen-token records remain in Drive",
+    "repeated_evidence": [
+      "docs/evidence/qwen15b_repeated_dev30_summary.json",
+      "docs/evidence/llama3b_repeated_dev30_summary.json",
+      "docs/evidence/qwen7b_repeated_dev30_summary.json"
+    ],
+    "freeze_review_correction": "Reject duplicate ReAct JSON keys, including nested keys, because overwritten values do not provide trusted complete call alignment. Synthetic regression cases cover both supported ReAct benchmarks.",
+    "limits": "Development eligibility and implementation evidence do not establish official accuracy, population format coverage, detection quality, or routing benefit",
+    "validation": {
+      "focused_unit_tests_passed": 31,
+      "saved_response_replay": {
+        "saved_responses": 30,
+        "unchanged_eligible_scores": 27,
+        "unchanged_unavailable_outcomes": 3
+      },
+      "replay_source_sha256": {
+        "task2_alignment_inputs_v1.json": "a46ca7d37c11e7e72f3b843ef39ac9bacd5ec0fa96e23aa86fa4e7200e0197c4",
+        "react_alignment_evidence.json": "d2010fa369bf730ab1a8b6f9019979fb7e01da3ff87370a524f13318ad851987",
+        "xml_json_alignment_evidence.json": "601203f980dcea272736593360c9b577f6e96fd6dedf47995797aa0d7f03e273",
+        "apibank_markup_alignment_evidence (1).json": "92d7320ea8020008715949f381118678f78ca8c7581fbd4341365bf21857e5d0",
+        "apibank_remaining_alignment_evidence.json": "fa7fbbf3dcc4b0cd8bb1c315d74eabcc87502052f1a3169270309d712ed397a6"
+      },
+      "full_suite": "User-reported Windows local pytest verification: 53 passed"
+    }
+  }
+}
