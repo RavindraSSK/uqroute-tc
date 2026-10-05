@@ -4,10 +4,12 @@
 
 The Task 1 benchmark, population, split, model roles/revisions, and
 single-sample generation settings are frozen in
-`docs/config/task1_single_sample_v1.json`. This document
-remains a draft for the remaining Task 2 parser/uncertainty rules and Task 3–4
-analysis, cost, routing, and recovery choices. The full protocol must be
-frozen before held-out evaluation begins.
+`docs/config/task1_single_sample_v1.json`. The Task 2 parser, canonical keys,
+token-evidence validation, uncertainty definitions, and supported-format
+eligibility are recorded in `docs/config/task2_uncertainty_v1.json`; that
+freeze takes effect on its reviewed, approved commit. This document remains
+a draft for Task 3–4 analysis, calibration, cost, routing, and recovery
+choices. The full protocol must be frozen before held-out evaluation begins.
 The repeated-sample subset, generation settings, and status policy are frozen
 separately in `docs/config/task2_repeated_sampling_v1.json` after review of
 development-only audits.
@@ -236,7 +238,7 @@ Prompt-based tool calling is the primary protocol. Native function calling is no
 ### 10.2 Repeated-sample protocol
 
 Repeated-sample uncertainty uses ten independent one-choice requests per
-selected case. The draft settings in
+selected case. The frozen diagnostic settings in
 `docs/config/task2_repeated_sampling_v1.json` are temperature `0.7`, `top_p`
 `1.0`, 1,024 maximum completion tokens, chosen-token log probabilities with
 five alternatives, and `seed = 1729 + sample_index` for indices 0–9. The
@@ -295,7 +297,7 @@ the first Qwen 1.5B development outputs were inspected. That retrospective
 development decision is disclosed here and frozen before held-out evaluation.
 The `code_revision` in these run manifests pins the generation-side project
 checkout. The status-aware audit calculation is recorded in the corresponding
-notebook source and the draft `src/uqroute_tc/uncertainty/repeated.py` update;
+notebook source and the committed `src/uqroute_tc/uncertainty/repeated.py` implementation;
 the compact evidence summaries in `docs/evidence/` retain hashes of the
 uploaded audit files for comparison.
 Raw text with invalid token-probability evidence remains eligible for
@@ -350,7 +352,7 @@ label.
 
 For a generated sequence containing tokens indexed by `i = 1, ..., L`, let `log p_i` be the model-returned log-probability of the selected token.
 
-The planned single-sample measures are:
+The single-sample definitions recorded in the Task 2 freeze are:
 
 - Sequence negative log-likelihood: `-sum(log p_i)`.
 - Mean token negative log-likelihood: `-sum(log p_i) / L`.
@@ -359,7 +361,7 @@ The planned single-sample measures are:
 
 The meaningful-token index set must be produced by an audited alignment procedure. If alignment fails or produces an empty set, the meaningful-token score is invalid and the failure is recorded.
 
-The current BFCL Python-call draft parses the complete visible output as a
+The BFCL Python-call rule parses the complete visible output as a
 single call or a list of calls with literal keyword arguments. It verifies
 that the reconstructed calls match the pinned benchmark parser's type-aware
 canonical key, and that the returned chosen-token bytes exactly reconstruct
@@ -375,14 +377,14 @@ unaligned bytes. This rule has been checked on the 20 saved outputs from five
 BFCL development cases across four models. The separate bounded ReAct and
 APIBank rules have the development evidence below; other layouts receive an
 unavailable meaningful-token score. These checks do not establish general
-format coverage. The selection rule remains draft until the remaining Task 2
-decisions are frozen.
+format coverage. The configuration pins the source-file fingerprints and
+score definitions so later method changes can be identified explicitly.
 
-A local ReAct alignment draft handles a single `Action:` and `Action Input:`
+A bounded ReAct alignment rule handles a single `Action:` and `Action Input:`
 pair with one complete JSON object for RoTBench and ToolEyes. It requires the
 extracted call to match the pinned parser and selects the action name, JSON
 argument names, and JSON argument values by UTF-8 byte spans. Trailing text,
-multiple actions, non-JSON inputs, and parser disagreement invalidate the
+multiple actions, non-JSON inputs, duplicate JSON keys at any depth, and parser disagreement invalidate the
 meaningful-token score. Local tests pass. The saved Qwen 1.5B RoTBench and
 ToolEyes development responses both passed exact token-byte and call-alignment
 checks: 11 and 6 selected tokens, with 2 and 1 tokens crossing syntax
@@ -393,7 +395,18 @@ parser returned a call in the RoTBench and ToolEyes cases, and no call in the
 other two. These cases establish neither a cross-benchmark accuracy estimate
 nor a complete alignment rule for XML/JSON and mixed outputs.
 
-A further local APIBank draft accepts either one standalone JSON object or
+Freeze review identified an ambiguity in the earlier ReAct JSON decoder:
+repeated keys kept the last value, while source alignment included overwritten
+values as well. The rule now rejects duplicate keys, including nested keys,
+for both RoTBench and ToolEyes. This correction affects meaningful-token
+eligibility only; the pinned parser and official correctness labels retain
+their existing behavior. Four synthetic checks cover duplicate keys at both
+depths in the two ReAct benchmarks. Replaying the 30 available saved raw
+exports yields the same 27 eligible scores and three unavailable outcomes as
+the prior implementation, including unchanged scores on both saved ReAct
+responses. No held-out output was used to choose this correction.
+
+A bounded APIBank rule accepts either one standalone JSON object or
 one fenced JSON object after an optional balanced `<think>` block. The object
 must contain only `name` and `parameters`, have no duplicate JSON keys, and
 reconstruct exactly the pinned parser's call. It selects the tool-name value
@@ -415,7 +428,7 @@ cases are not a population accuracy or parser-coverage estimate. The pinned
 parser and official scorer remain unchanged.
 
 A separate export from that same development run contains two APIBank outputs
-with tool markup. A bounded draft rule accepts one fenced `<toolcall
+with tool markup. A bounded rule accepts one fenced `<toolcall
 tool="...">` line followed by one complete JSON object when the name and
 arguments reconstruct exactly the released parser's call. It selects the
 tool name and JSON argument names and values from visible UTF-8 bytes. The
@@ -485,6 +498,16 @@ exclusion does not change the benchmark's parsing or correctness labels.
 Repeated-sample canonical calls will continue to reflect the released parser,
 including extra calls extracted from examples; their effect must be reviewed
 when the repeated-sample outputs are audited.
+
+Unavailable token-probability scores retain their status and reason; no
+numeric zero or replacement measure is imputed. Request and correctness
+summaries retain all cases. Score-specific numeric analyses report the
+eligible population and unavailable counts. The four whole-output or aligned
+single-sample definitions and the repeated-sample definitions are fixed by
+the Task 2 configuration; choosing a gate measure, calibration mapping,
+threshold, or missing-evidence routing action belongs to the later protocol
+freeze. The 30-case repeated-sample settings remain scoped to their existing
+development diagnostic.
 
 For ten repeated generations, canonical tool calls are grouped into clusters. If canonical cluster `k` has empirical frequency `q_k`, the repeated-sample measures are:
 
@@ -595,16 +618,19 @@ Exploratory subgroup findings will be labelled as exploratory, especially when a
 
 The Task 1 subset (dataset/populations/split, model roles and revisions,
 prompt-based single-sample generation settings) is frozen in
-`docs/config/task1_single_sample_v1.json`. Before held-out evaluation, the
-remaining choices must also be frozen:
+`docs/config/task1_single_sample_v1.json`. Task 2 definitions and their
+implementation fingerprints are recorded in
+`docs/config/task2_uncertainty_v1.json`; its scoped freeze takes effect on the
+reviewed, approved commit. Repeated-sample diagnostic settings and status
+handling are already frozen in `docs/config/task2_repeated_sampling_v1.json`.
+Before held-out evaluation, the remaining choices must also be frozen:
 
-- Parser and token-alignment rules.
-- Uncertainty formulas and repeated-sample subset.
 - Correctness metrics and calibration procedure.
 - Routing policies and threshold-selection rule.
+- Missing-evidence routing and bounded post-fault recovery rules.
 - Cost scenarios and statistical procedure.
 
-Any correction to the frozen Task 1 subset or later full freeze must be
+Any correction to the frozen Task 1 or Task 2 methods or later full freeze must be
 recorded in a change log with its reason, affected runs, and whether held-out
 results had been viewed. Exploratory analyses added after the full freeze must
 be labelled post hoc.

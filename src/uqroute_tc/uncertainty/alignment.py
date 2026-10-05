@@ -89,7 +89,7 @@ def _react_spans(
         raise ValueError("ReAct action name is not a plain identifier")
     name = action_text.strip()
     name_start = actions[0].start(1) + len(action_text) - len(action_text.lstrip())
-    decoder = json.JSONDecoder()
+    decoder = json.JSONDecoder(object_pairs_hook=_unique_pairs)
     input_start = inputs[0].end()
     try:
         params, length = decoder.raw_decode(raw_output[input_start:])

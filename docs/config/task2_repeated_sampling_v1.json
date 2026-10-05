@@ -1,5 +1,5 @@
 {
-  "scope": "frozen repeated-sample diagnostic settings and status policy; full Task 2 protocol remains draft",
+  "scope": "frozen repeated-sample diagnostic settings and status policy; parser and uncertainty definitions are recorded separately in task2_uncertainty_v1.json",
   "subset_selector": "src/uqroute_tc/data/repeated_subset.py",
   "subset_selection_digest": "082e150679277d7d55eaa88b0b82cb236a82a32a0d6853c2cae8dc307b41fa67",
   "subset_cases": 30,
