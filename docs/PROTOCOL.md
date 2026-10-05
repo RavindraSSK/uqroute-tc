@@ -372,9 +372,11 @@ include syntax as well as content, the procedure reports which selected
 tokens also cover punctuation or whitespace. It rejects truncated responses,
 unsupported syntax, mismatched parser calls, missing probabilities, and
 unaligned bytes. This rule has been checked on the 20 saved outputs from five
-BFCL development cases across four models. Most JSON, markup, and mixed output
-formats still need alignment validation before this measure can be used
-across the full benchmark. The selection rule remains draft.
+BFCL development cases across four models. The separate bounded ReAct and
+APIBank rules have the development evidence below; other layouts receive an
+unavailable meaningful-token score. These checks do not establish general
+format coverage. The selection rule remains draft until the remaining Task 2
+decisions are frozen.
 
 A local ReAct alignment draft handles a single `Action:` and `Action Input:`
 pair with one complete JSON object for RoTBench and ToolEyes. It requires the
@@ -447,9 +449,27 @@ Both selected development responses aligned: five selected tokens each, zero
 boundary crossings. The remaining `<tool>GetUserToken</tool>` response stays
 ineligible because its parsed call drops the nonempty source arguments. This
 extension was designed after inspecting the development audit, so its two
-accepted cases are exploratory evidence. The full 24-case run has not yet
-been rescored under it. Compact evidence is in
+accepted cases are exploratory evidence. The full 24-case run was subsequently
+re-audited under it. Compact evidence for the selected response replay is in
 `docs/evidence/apibank_remaining_alignment.json`.
+
+The uploaded v2 re-audit covers the same 24 saved development responses and
+uses alignment code revision `d1be571d7cb65802ecc77d7440bc9dc4a98851c0`.
+All 24 records remain complete, with valid token evidence and saved-parser
+agreement. APIBank eligibility increases from eight to ten of its 12 cases:
+only `apibank__level3_26` and `apibank__level1_217` become eligible. Their scores
+match the earlier selected-response replay. The eight previously valid scores
+remain unchanged, with zero regressions and zero reported validation errors.
+All ten eligible APIBank responses have zero boundary-crossing tokens.
+The `<tool>` argument mismatch and the no-parsed-call response remain
+unavailable. ToolAlpaca remains ineligible on all 12 cases. Local validation
+checked case identities, split membership, count arithmetic, prior comparisons,
+and the exact audit-script fingerprint; full chosen-token records were
+revalidated in Colab. Compact evidence is in
+`docs/evidence/qwen15b_alignment_reaudit_dev24_summary.json`. The expansion
+followed inspection of development cases. These eligibility counts do not
+establish correctness or population coverage, and no held-out cases were used
+to choose the rule.
 
 For the current evaluation, ToolAlpaca has no meaningful-token score. Its
 explanatory prose, sample requests, and example responses do not establish a
