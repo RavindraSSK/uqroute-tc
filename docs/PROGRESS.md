@@ -2,14 +2,30 @@
 
 ## Current position
 
+Task 1 and Task 2 are complete within their recorded scope. The benchmark,
+split, model settings, parser, and uncertainty definitions are frozen.
+Task 2 was approved and published in
+[`b03ddf4`](https://github.com/RavindraSSK/uqroute-tc/commit/b03ddf49eacfebeff69ca65014e5b0a36e708c40),
+with 53 tests passing in the local Windows verification.
+
+| Stage | Status |
+|---|---|
+| Task 1 — Benchmark and experiment engine | Complete; settings frozen |
+| Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
+| Task 3 — Robustness study | Next; representative throughput measurement and broader evaluation pending |
+| Task 4 — Routing and recovery | Pending |
+| Task 5 — Final package | Pending |
+
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
 
 Task 2 has working single-sample and repeated-sample measures, with scoped
 development evidence for the conservative alignment rules. The expanded
 APIBank rule has been re-audited on all 24 saved APIBank/ToolAlpaca format
-responses. Its final parser and uncertainty configuration takes effect on
-the reviewed, approved freeze commit. The next experimental step is measuring
-representative per-model throughput on development cases.
+responses. The recorded exclusions remain part of the frozen methods:
+ToolAlpaca has no meaningful-token score, and unsupported or ambiguous
+formats retain an unavailable status. The next experimental step is measuring
+representative per-model throughput on development cases. Held-out perturbed
+evaluation has not begun.
 
 ## Completion standard
 
@@ -51,7 +67,7 @@ Every completed component must include:
 - [x] Validate ten seeded requests on one selected clean development BFCL case with Qwen 1.5B; all ten user-reported records were complete, byte-aligned, and parsed as calls.
 - [x] Complete the selected 30-case development repeated-sample subset for all three small models. Uploaded status-aware audits score all 30 cases for each model.
 - [x] Review and freeze the repeated-sample settings and status policy before held-out evaluation. The truncation policy was added after inspecting Qwen 1.5B development outputs and is disclosed as a retrospective development decision.
-- [x] Record the parser and uncertainty freeze in `docs/config/task2_uncertainty_v1.json`, effective on its reviewed, approved commit. It pins the implementation fingerprints, score formulas, format eligibility, and unavailable-evidence rules. ReAct duplicate JSON keys are rejected during the freeze review; Task 3–4 analysis, calibration, routing, and recovery decisions remain draft.
+- [x] Approve and publish the parser and uncertainty freeze in `docs/config/task2_uncertainty_v1.json` at commit `b03ddf4`. It pins the implementation fingerprints, score formulas, format eligibility, and unavailable-evidence rules. The full patched suite passed 53 tests on Windows. ReAct duplicate JSON keys are rejected; Task 3–4 analysis, calibration, routing, and recovery decisions remain draft.
 
 ## Task 3 — Robustness study
 
@@ -146,9 +162,9 @@ only if those measurements show the available resources are insufficient.
 | Qwen 7B repeated-sample run | The uploaded status-aware audit uses the same 30 selected development cases, split, and ten seeds as the other small models. It reports 300 complete slots, 30/30 cases scored, and zero validation-error cases. Local checks confirmed unique case identities, settings, totals, and canonical score arithmetic; raw Drive records were validated in Colab but not uploaded. Parser statuses total 251 `calls` and 49 `unparsed_or_no_call`; these are not correctness labels. Compact evidence: `docs/evidence/qwen7b_repeated_dev30_summary.json`. |
 | Three-model repeated-sample development total | The three uploaded audits account for 900 saved model responses on 30 shared cases: 896 complete, four truncated, and 90/90 model–case cluster scores with zero reported validation-error cases. The per-model records remain distinct; these diagnostic cluster scores do not establish tool-call accuracy, detection quality, or a routing threshold. |
 | Repeated-sample settings and status freeze | `docs/config/task2_repeated_sampling_v1.json` fixes the development-only 30-case subset, ten seeds, generation parameters, ten-slot denominators, parser-status clusters, truncation/error handling, and exact-string ablation. This decision followed inspection of all three development audits; the truncation rule followed inspection of Qwen 1.5B outputs. Parser and uncertainty definitions are recorded separately in `docs/config/task2_uncertainty_v1.json`. |
-| Task 2 method freeze review | `docs/config/task2_uncertainty_v1.json` records the pinned official parser, type-aware canonical keys, three whole-output scores, the scoped meaningful-token score, repeated-sample definitions, and unavailable-evidence rules. The freeze review rejects duplicate ReAct JSON keys, including nested keys, before meaningful-token scoring. All 31 focused parser/uncertainty tests pass, and the user verified the full patched suite on Windows with 53 tests passing. A local replay of 30 available saved raw responses preserves all 27 eligible scores and three unavailable outcomes. The source hashes and development decision context are recorded in the configuration. This scoped freeze takes effect on the reviewed, approved commit; held-out analysis and routing choices remain draft. |
+| Task 2 method freeze | Approved and published at `b03ddf4`. `docs/config/task2_uncertainty_v1.json` records the pinned official parser, type-aware canonical keys, three whole-output scores, the scoped meaningful-token score, repeated-sample definitions, and unavailable-evidence rules. The freeze rejects duplicate ReAct JSON keys, including nested keys, before meaningful-token scoring. All 31 focused parser/uncertainty tests pass, and the user verified the full patched suite on Windows with 53 tests passing. A local replay of 30 available saved raw responses preserves all 27 eligible scores and three unavailable outcomes. The source hashes and development decision context are recorded in the configuration. Held-out analysis and routing choices remain draft. |
 | Saved-output audit | `src/uqroute_tc/parsing/audit.py` and `notebooks/UQRoute_TC_Task2_Saved_Pilot_Audit.ipynb` audited four saved five-case pilot folders on a CPU runtime. The user supplied the 20-record audit showing 20 parser statuses `calls`, 20 saved-call matches, and 20 valid single-sample scores. |
-| Ruff | Passed on the previous committed gate; unavailable locally for the current draft. |
+| Ruff | The earlier foundation gate passed; no passing full-branch Ruff result is recorded for the Task 2 freeze. |
 | Dependency check | Passed |
 | Foundation commit | `ac01cbc` |
 
@@ -157,8 +173,8 @@ only if those measurements show the available resources are insufficient.
 The Task 1 subset is frozen: 199 clean-anchored groups for the primary
 population, all 248 single-turn groups for sensitivity analysis, the grouped
 split manifest, four model revisions/roles, and single-sample serving settings.
-Task 2 definitions are recorded in `docs/config/task2_uncertainty_v1.json`,
-effective on the reviewed, approved freeze commit. The full protocol remains
+Task 2 definitions are frozen in `docs/config/task2_uncertainty_v1.json`
+by the approved, published commit `b03ddf4`. The full protocol remains
 draft until calibration, routing, recovery, cost, and held-out analysis
 decisions are frozen.
 
@@ -166,6 +182,16 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-After local verification and approval of the Task 2 freeze commit, measure representative per-model throughput on development cases, record GPU time and request outcomes, and schedule resumable inference batches. Use the frozen model and single-sample settings, with the 14B AWQ checkpoint as the feasible fallback candidate. ToolAlpaca meaningful-token uncertainty remains scoped out; whole-output scores remain available. Complete the broader development clean and perturbation runs before selecting calibration and gate thresholds. Keep held-out perturbation groups untouched until the remaining analysis and routing decisions are frozen. The five-case pilot did not test whether escalation helps.
+Start Task 3 with a representative Qwen 1.5B development batch on Colab L4.
+Record elapsed inference time, prompt and completion tokens, GPU time, and
+request outcomes. Repeat the same timing procedure for Llama 3B, Qwen 7B,
+and the Qwen 14B AWQ fallback. Use those measurements and available platform
+quota to schedule resumable development inference batches.
+
+Use the frozen model and single-sample settings. Complete the broader
+development clean and perturbation runs before selecting calibration and
+gate thresholds. Keep held-out perturbation groups untouched until the
+remaining analysis and routing decisions are frozen. The five-case pilot did
+not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
