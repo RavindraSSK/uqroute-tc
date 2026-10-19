@@ -12,7 +12,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Started; Qwen 1.5B throughput evidence checked; other timings and broader evaluation pending |
+| Task 3 — Robustness study | Started; Qwen 1.5B and Llama 3B timing artifacts checked; other timings and broader evaluation pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -24,7 +24,10 @@ APIBank rule has been re-audited on all 24 saved APIBank/ToolAlpaca format
 responses. The recorded exclusions remain part of the frozen methods:
 ToolAlpaca has no meaningful-token score, and unsupported or ambiguous
 formats retain an unavailable status. Qwen 1.5B has a checked 69-case
-development throughput diagnostic. Llama 3B timing is the next unverified run;
+development throughput diagnostic. Llama 3B has a checked fresh 69-request run:
+61 complete and eight truncated outcomes in 508.11 seconds. Both fresh server
+logs show requested temperature 0.001 clamped to 0.01; this effective setting
+must be disclosed without rewriting the frozen request configuration.
 Qwen 7B and the 14B AWQ timing runs remain pending. Held-out perturbed
 evaluation has not begun. Literature review completion remains separate from
 these implementation milestones; see `docs/literature/EVIDENCE_MATRIX.md`.
@@ -123,7 +126,8 @@ only if those measurements show the available resources are insufficient.
 |---|---|
 | Qwen 1.5B throughput diagnostic | 69 primary development cases (5 clean / 64 perturbed), 51 canonical groups, 69 nonempty benchmark/file strata, 17 files. Original summary reports 69 complete attempts in 106.46709268199993 s, with 74,949 prompt and 7,164 completion tokens; observed GPU window at least 769.8995201580001 s. Settings/source fingerprints, split membership, arithmetic and 69 HTTP-200 generation requests checked. Raw attempt evidence was not locally replayed; official correctness is unscored. See `docs/evidence/qwen15b_throughput_dev69_summary.json`. |
 | Throughput resume limitation | Later pasted aggregate has 2 sessions, the same 69 attempts/tokens, and 208.10106126399978 s total session wall time. Aggregate rate includes checking overhead; retain the original run for fresh timing. Later per-session processed/resumed records still need inspection. |
-| Task 3 runner and Llama timing preparation | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook published at `d031146`, pins the original runner, prints the model/output folder and flags resume-only sessions. Notebook preparation is not a completed Llama run. |
+| Task 3 runner and Llama timing | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook at `d031146` produced 69 fresh requests: 61 complete, eight truncated, 508.107638493 s; 76,347 prompt / 18,056 completion tokens. Manifest/session/runtime/log checked, including 69 HTTP 200 responses; raw attempt replay and correctness remain pending. See `docs/evidence/llama3b_throughput_dev69_summary.json`. |
+| Server temperature observation | Fresh Qwen and Llama logs each contain 69 warnings: requested temperature 0.001 is clamped to 0.01 by the server. Frozen request settings are preserved; effective settings must accompany reported results. |
 | Benchmark revision | `d5d03180de41eb30a6c796d04a9bfbd9dad85c1d` |
 | Static JSONL files | 17 |
 | Stored rows | 2,718 |
@@ -190,9 +194,10 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Verify the separately configured Llama 3B development timing run on Colab L4,
-then measure Qwen 7B and the Qwen 14B AWQ fallback on the same selection.
-The Qwen 1.5B timing evidence is checked; a later resume must not be reported
+Audit the eight Llama truncations from saved attempt records on a CPU runtime;
+retain their outcomes and the frozen 1,024-token cap. Then measure Qwen 7B and
+the Qwen 14B AWQ fallback on the same selection and requested settings.
+The Qwen 1.5B and Llama timing artifacts are checked; a later resume must not be reported
 as fresh inference or replace the original speed measurement. Record individual
 session outcomes, setup/observed allocation time, tokens, and current quota.
 Use those measurements to schedule resumable development inference batches.
