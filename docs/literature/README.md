@@ -82,7 +82,7 @@ Preserve the Task 1/Task 2 freeze files; document later amendments separately.
 
 For paper drafting, use the literature notes for related work, `../PROTOCOL.md`
 for methods, and `../evidence/` plus `../PROGRESS.md` for results and provenance.
-The Qwen 1.5B throughput evidence is a runtime diagnostic, not tool-call accuracy
+The Qwen 1.5B and Llama 3B throughput evidence is a runtime diagnostic, not tool-call accuracy
 or demonstrated routing benefit. Illustrative comparison graphs made during
 planning are not experimental figures and must not enter the results section.
 
