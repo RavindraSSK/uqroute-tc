@@ -115,5 +115,53 @@
     "Complete is an execution/token-evidence status, not a correctness label.",
     "Observed GPU window is a wall-time lower bound, not kernel-active time or complete allocated time.",
     "No Llama 3B, Qwen 7B or 14B AWQ throughput result has been verified at this checkpoint."
-  ]
+  ],
+  "server_temperature_observation": {
+    "requested_temperature": 0.001,
+    "effective_temperature_reported_by_server": 0.01,
+    "warning_count": 69,
+    "source": "835ebc8e99c34dc49862ee1d34859900-server (1).log",
+    "source_sha256": "9faaf66146a15885366ed6b491cca6a75672a55735a07b52a139bf6ea6803a9d",
+    "note": "Server clamps requested temperature; original frozen request configuration is preserved."
+  },
+  "later_resume_runtime_observation": {
+    "runtime_metadata": {
+      "run_id": "4b263a533a244c34a1d12606836ce0b0",
+      "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+      "model_key": "qwen15b",
+      "gpu": "NVIDIA L4, 23034 MiB",
+      "observed_gpu_start_utc": "2026-10-19T18:55:22.915233+00:00",
+      "server_command": [
+        "vllm",
+        "serve",
+        "Qwen/Qwen2.5-1.5B-Instruct",
+        "--revision",
+        "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "--tokenizer-revision",
+        "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+        "--dtype",
+        "bfloat16",
+        "--max-model-len",
+        "8192",
+        "--gpu-memory-utilization",
+        "0.88",
+        "--port",
+        "8000"
+      ],
+      "torch_version": "2.13.0+cu130",
+      "vllm_version": "0.30.0",
+      "openai_version": "2.54.0",
+      "status": "runner_finished",
+      "startup_seconds": 160.02109024499987,
+      "observed_setup_seconds": 177.533287342,
+      "runner_exit_code": 0,
+      "observed_gpu_window_seconds_lower_bound": 286.0578841399997,
+      "observed_gpu_window_hours_lower_bound": 0.07946052337222215,
+      "note": "Observed one-GPU wall window, not kernel-active time or full billed allocation. Runtime remains allocated until disconnected."
+    },
+    "chat_request_count_in_uploaded_log": 0,
+    "runtime_sha256": "09e90ec58a21e1253811d8f3134b0385b5cb131042c8bb1ecd84ef22bc49f2b9",
+    "server_log_sha256": "42a29691ac7afaadfec4312c8238343633369c328ff9ec95367184126312f769",
+    "scope_limit": "No session processed/resumed file supplied for this later Qwen invocation. Log supports no fresh generation; do not call aggregate rate independent throughput."
+  }
 }
