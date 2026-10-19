@@ -1,0 +1,119 @@
+{
+  "scope": "Development-only throughput diagnostic; not correctness, failure detection or routing effectiveness",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "task1_config_sha256": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+  "runner_sha256": "15d38331c15246fb32aaf8f182f020edd27108119a9f9a8e4d33f115a2ce2f88",
+  "selection": {
+    "method": "SHA-256 identity ranking within benchmark x static source file, per_stratum=1, seed namespace 1729",
+    "cases": 69,
+    "clean_cases": 5,
+    "static_perturbed_cases": 64,
+    "canonical_development_groups": 51,
+    "nonempty_strata": 69,
+    "source_files": 17,
+    "eligible_primary_development_rows": 1754
+  },
+  "original_single_session_summary": {
+    "attempt_count": 69,
+    "status_counts": {
+      "complete": 69
+    },
+    "session_count": 1,
+    "unfinished_sessions": 0,
+    "measured_attempt_seconds": 104.0550568979993,
+    "measured_batch_wall_seconds": 106.46709268199993,
+    "known_token_totals": {
+      "prompt_tokens": 74949,
+      "completion_tokens": 7164,
+      "total_tokens": 82113
+    },
+    "missing_usage_attempts": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "completed_attempts_per_batch_second": 0.6480875758117289,
+    "completion_tokens_per_batch_second": 67.28839700166995,
+    "single_gpu_batch_allocation_hours_proxy": 0.029574192411666648,
+    "limitations": [
+      "Sequential client timings include prompt building, parsing and saving overhead.",
+      "Batch wall time is not GPU kernel-active time or total allocated runtime.",
+      "Setup, downloads, warm-up and idle GPU allocation are recorded separately in Colab.",
+      "Interrupted attempts have unknown elapsed time and possibly unknown billed tokens.",
+      "Coverage-stratified subset is not population-weighted; no accuracy/routing claim."
+    ]
+  },
+  "runtime_metadata": {
+    "run_id": "835ebc8e99c34dc49862ee1d34859900",
+    "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+    "model_key": "qwen15b",
+    "gpu": "NVIDIA L4, 23034 MiB",
+    "observed_gpu_start_utc": "2026-10-14T04:26:09.117468+00:00",
+    "server_command": [
+      "vllm",
+      "serve",
+      "Qwen/Qwen2.5-1.5B-Instruct",
+      "--revision",
+      "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "--tokenizer-revision",
+      "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "--dtype",
+      "bfloat16",
+      "--max-model-len",
+      "8192",
+      "--gpu-memory-utilization",
+      "0.88",
+      "--port",
+      "8000"
+    ],
+    "torch_version": "2.13.0+cu130",
+    "vllm_version": "0.30.0",
+    "openai_version": "2.54.0",
+    "status": "runner_finished",
+    "startup_seconds": 230.03023884999993,
+    "observed_setup_seconds": 658.0359633329999,
+    "runner_exit_code": 0,
+    "observed_gpu_window_seconds_lower_bound": 769.8995201580001,
+    "observed_gpu_window_hours_lower_bound": 0.2138609778216667,
+    "note": "Observed one-GPU wall window, not kernel-active time or full billed allocation. Runtime remains allocated until disconnected."
+  },
+  "source_artifact_sha256": {
+    "manifest.json": "90e2eeb9cfdab2e352ef74458b654d1cce445c71279fd4ccd1cbba9c1b86789d",
+    "summary.json": "102da04a87b6a5b2855d0d08660d5dd0a8fcb8772632a075b47dc4363afdd5bb",
+    "835ebc8e99c34dc49862ee1d34859900.json": "bbf831296798f8544bded13fe1653128de07702952851711dbca9e488b342856",
+    "835ebc8e99c34dc49862ee1d34859900-server.log": "9faaf66146a15885366ed6b491cca6a75672a55735a07b52a139bf6ea6803a9d"
+  },
+  "evidence_location": "MyDrive/UQRoute-TC/throughput/qwen15b-static-strata-v1; runtime metadata under qwen15b-runtime-metadata",
+  "local_validation": {
+    "checked": [
+      "Frozen model/split/config and runner fingerprints",
+      "69 unique file-qualified keys; all resolve to primary development groups",
+      "Summary arithmetic and token totals",
+      "Server log: pinned settings and 69 POST /v1/chat/completions HTTP 200 responses",
+      "Duplicate supplied server logs are byte-identical"
+    ],
+    "not_checked": [
+      "Raw per-attempt token evidence was not supplied/replayed locally",
+      "Official correctness scores were not supplied",
+      "Full GPU allocation/billing and current platform quota were not supplied"
+    ]
+  },
+  "later_resume_observation": {
+    "source": "User-pasted aggregate summary, not a second uploaded artifact set",
+    "sessions": 2,
+    "attempts": 69,
+    "measured_batch_wall_seconds": 208.10106126399978,
+    "known_token_totals_unchanged": true,
+    "interpretation": "Do not treat cumulative throughput after resume as a fresh inference-speed measurement. Per-session processed/resumed records are still needed to audit the later session."
+  },
+  "limits": [
+    "Coverage-stratified diagnostic is not population-weighted; do not extrapolate full-run hours from its unweighted mean.",
+    "Complete is an execution/token-evidence status, not a correctness label.",
+    "Observed GPU window is a wall-time lower bound, not kernel-active time or complete allocated time.",
+    "No Llama 3B, Qwen 7B or 14B AWQ throughput result has been verified at this checkpoint."
+  ]
+}
