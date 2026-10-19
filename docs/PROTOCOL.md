@@ -233,6 +233,13 @@ the full population; larger development runs must record those outcomes and
 would require a logged protocol amendment if the frozen setting proves
 infeasible. Main inference will record the same settings in each run manifest.
 
+Server-log review on 2026-10-19 found that vLLM 0.30.0 clamps requested
+temperature `0.001` to `0.01`. Each fresh Qwen 1.5B and Llama 3B throughput
+log contains 69 corresponding warnings. Report both the requested and
+server-reported effective temperatures. This is an observed implementation
+limitation, not a new requested setting; preserve the frozen configuration.
+Earlier pilots are not independently reclassified without their server logs.
+
 Prompt-based tool calling is the primary protocol. Native function calling is not part of the primary comparison unless it is separately predeclared as an ablation, because it changes both the output channel and the availability of token-level evidence.
 
 ### 10.2 Repeated-sample protocol
@@ -657,9 +664,22 @@ and source-artifact hashes are in
 A later user-pasted two-session aggregate retains 69 attempts and the same
 tokens but reports 208.10106126399978 seconds. Its per-session processed/resumed
 files have not been reviewed. It is not another independent speed measurement.
-Llama 3B timing is prepared in the separately named notebook at `d031146`;
-no result for that timing run, Qwen 7B, or the 14B AWQ fallback is established
-here. Full-run feasibility and current platform quota remain pending. Do not
+The newly supplied later Qwen runtime log contains zero chat-generation
+requests, supporting a resume-only interpretation; its session file remains
+unavailable. Llama 3B completed a fresh session with 69 processed and zero
+resumed requests: 61 complete and eight truncated outcomes, 508.107638493
+seconds batch wall, and 76,347 prompt / 18,056 completion tokens. The observed
+GPU window is at least 965.222259864 seconds including setup. Its selected
+case keys, source hashes, split and frozen settings match Qwen's manifest;
+69 HTTP 200 responses and summary arithmetic were checked. Shutdown errors
+follow SIGTERM after the session finished and are not generation failures.
+Raw attempt evidence has not been replayed locally; the eight truncated case
+identities and official correctness remain unverified. Retain truncations and
+their token/time cost without silently increasing the frozen 1,024-token cap.
+Compact evidence: `docs/evidence/llama3b_throughput_dev69_summary.json`.
+The temperature clamp applies to both fresh runs. Their different tokenizers
+and output lengths prevent treating token/s as a controlled model-speed test.
+Qwen 7B and 14B AWQ timing, full-run feasibility and current quota remain pending. Do not
 extrapolate population runtime from this unweighted diagnostic mean alone.
 
 ## 16. Statistical analysis
