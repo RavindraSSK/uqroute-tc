@@ -44,17 +44,31 @@ Additional papers will be included only when they directly support a research qu
 
 | Protocol component | Supporting evidence | Evidence established | Remaining question | Status |
 |---|---|---|---|---|
-| Benchmark selection | P01, P02 | BFCL provides structured tool-call tasks; RobustBench-TC adds deployment perturbations | None for primary benchmark selection | Defined in draft protocol |
-| Evaluation population | P02 and local dataset audit | The paper-level population must be distinguished from the pinned released files | Confirm feasibility using the audited primary population | Defined in draft protocol |
-| Correctness scoring | P01, P02, P03 | Tool selection, argument structure, and execution outcomes require structured scoring | Validate the released scorer against inspected examples | Defined in draft protocol |
-| Single-sample uncertainty | Pending uncertainty literature | Token probabilities can provide an inference-time signal | Select and validate exact formulas | Pending |
-| Repeated-sample uncertainty | Pending uncertainty literature | Equivalent outputs should not be treated as different only because of wording or formatting | Define canonical clusters and parser-failure treatment | Pending |
-| Canonical-call clustering | P01; pending P04 | Structured equivalence is more meaningful than raw-string equality | Validate equivalence rules for every supported format | Pending |
+| Benchmark selection | P01, P02 | BFCL provides structured tool-call tasks; RobustBench-TC adds deployment perturbations | No benchmark change proposed | Task 1 selection frozen |
+| Evaluation population | P02 and local dataset audit | Released rows, runtime predictions, and canonical groups are distinguished; grouped development/test split validated | Broader development throughput and current quota remain to be measured across models | Task 1 population/split frozen |
+| Correctness scoring | P01, P02, P03 and local scorer checks | Structured scoring is separate from parsing and successful inference; near reproduction and diagnostic scores are recorded | Broader Task 3 official correctness scoring remains pending | Scorer pinned; full results pending |
+| Single-sample uncertainty | P04–P06 literature review pending; local Task 2 evidence | Three whole-output scores and a scoped meaningful-token score are implemented and frozen | Complete literature justification; evaluate error detection and calibration | Methods frozen; literature and Task 3 effectiveness pending |
+| Repeated-sample uncertainty | P04–P06 literature review pending; local Task 2 evidence | Ten-slot canonical/exact-string entropy and disagreement implemented; status policy tested on 900 development slots | Complete literature justification; assess predictive value and sampling overhead | Methods and diagnostic subset frozen; effectiveness pending |
+| Canonical-call clustering | P01; P04 review pending; local Task 2 evidence | Type-aware keys follow the pinned parser, with explicit ambiguous/no-call clusters and scoped alignment exclusions | Complete semantic-uncertainty comparison; preserve distinction from correctness | Task 2 definitions frozen; literature synthesis pending |
 | Calibration | Pending uncertainty literature | No conclusion established yet | Define confidence mapping and calibration metrics | Pending |
 | Risk-coverage analysis | Pending selective-prediction literature | No conclusion established yet | Define coverage, selective risk, and threshold-selection procedure | Pending |
 | Routing baselines | Pending routing literature | No conclusion established yet | Finalize fair uncertainty and random-routing comparisons | Pending |
 | Cost accounting | Pending routing literature | All model calls must be represented in policy comparisons | Define latency, GPU-time, and cost scenarios | Pending |
 | Post-fault recovery | P02, P03 | Runtime feedback occurs after execution and must be analyzed separately | Define bounded recovery policies and complete cost accounting | Defined in draft protocol |
+
+## Implementation-to-paper checkpoints
+
+| Checkpoint | Literature link | Code / local evidence | Protocol location | Paper use and limit |
+|---|---|---|---|---|
+| Published-number near reproduction and grouped split | P01, P02 | `../PROGRESS.md`; `../splits/group_split_v1.json`; `../config/task1_single_sample_v1.json` | §§3–10 | Methods and reproducibility; 102/199 versus 103/199 is a disclosed near reproduction, not an exact match |
+| Frozen parser and uncertainty engine | P01; P04–P06 reviews pending | `../../src/uqroute_tc/parsing/`; `../../src/uqroute_tc/uncertainty/`; `../config/task2_uncertainty_v1.json`; `../config/task2_repeated_sampling_v1.json` | §§11–12 | Implementation and development validation; no demonstrated error-detection or routing advantage yet |
+| Qwen 1.5B static throughput diagnostic | P02 supplies the benchmark; cost/routing literature P08–P09 still needs review | `../../src/uqroute_tc/inference/throughput.py`; `../TASK3_THROUGHPUT.md`; `../evidence/qwen15b_throughput_dev69_summary.json` | §15 | Runtime feasibility: 69 development cases, not an accuracy estimate; retain setup and resume overhead separately |
+| Llama 3B throughput preparation | Same benchmark/cost links as above | `../../notebooks/UQRoute_TC_Task3_Llama3B_Throughput.ipynb` | §15 | Prepared notebook only; no Llama throughput result verified at this checkpoint |
+
+These local checkpoints do not upgrade any paper to `Reviewed` or establish a
+new research gap. Before claiming novelty, complete the relevant routing and
+uncertainty reviews and compare question, signal, routing stage, perturbation
+setting, and measured outcomes. Model names alone are not a contribution.
 
 ## Review quality checks
 
