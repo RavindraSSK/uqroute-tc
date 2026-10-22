@@ -85,6 +85,18 @@ official correctness (P01), while remaining a local descriptive diagnosis
 Cost/routing literature reviews P08–P09 remain pending; protocol §15 records
 the accounting and evidence limitations.
 
+The 14B AWQ diagnostic in
+`../evidence/qwen14b_awq_throughput_dev69_summary.json` completes timing
+collection for the four frozen models. Five APIBank records contain internal
+generated special tokens absent from visible text; the frozen validator
+retains unavailable probability scores. Two holiday responses truncate with
+valid evidence. This is a local measurement/representation limitation, not
+a published-paper result or causal finding about quantization. P04–P06
+reviews must distinguish score definitions from evidence availability, while
+P08–P09 cost/routing reviews must account for all attempted calls and unavailable
+signals. Protocol §15 retains statuses/costs; Task 4 missing-evidence routing
+remains to be frozen. Full correctness and routing benefit are unmeasured.
+
 These local checkpoints do not upgrade any paper to `Reviewed` or establish a
 new research gap. Before claiming novelty, complete the relevant routing and
 uncertainty reviews and compare question, signal, routing stage, perturbation
@@ -98,5 +110,6 @@ setting, and measured outcomes. Model names alone are not a contribution.
 - Limitations are recorded before using a paper to justify a decision.
 - Closely related work is compared by research question, benchmark, signal, routing stage, and metrics.
 - Entries are revised when later evidence changes their interpretation.
+
 
 
