@@ -1,5 +1,15 @@
 # UQRoute-TC Literature Evidence Matrix
 
+## Corrected research-track claim boundary
+
+The [main-experiment proposal](../research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)
+and [development audit design](../research_track_v1/DEVELOPMENT_POPULATION_AUDIT_PLAN_V1.md)
+separate released-reference compliance, ToolEyes name relevance and
+cost/latency preference. They introduce no new literature findings and do not
+establish real tool execution, model superiority or routing benefit. Full
+corrected-development coverage, operational thresholds and held-out evaluation
+remain pending. Existing reproduction evidence retains its original scope.
+
 ## Purpose
 
 This matrix connects reviewed research to verifiable evidence and a concrete role in UQRoute-TC.

@@ -1,0 +1,70 @@
+{
+  "plan_version": "uqroute-main-experiment-plan-1.0.0",
+  "baseline_commit": "344234f156dd4ea2fc1f6713330cf02ded38d5f1",
+  "status": "proposal_not_frozen",
+  "main_experiment_ready": false,
+  "inference_enabled": false,
+  "held_out_access_enabled": false,
+  "training_enabled": false,
+  "existing_official_labels_immutable": true,
+  "existing_split_unchanged": true,
+  "data_access_for_this_package": "none",
+  "historical_population_metadata": {
+    "source": "docs/PROTOCOL.md at baseline_commit; not independently re-audited here",
+    "primary_development_groups": 140,
+    "primary_development_static_rows": 1754,
+    "sensitivity_only_development_groups": 34,
+    "sensitivity_only_development_rows": 35,
+    "corrected_full_development_rows_verified": null
+  },
+  "diagnostic_scope": {"corrected_cases": 69, "corrected_gpu_smoke_cases": 8, "not_a_full_development_audit": true},
+  "reporting_panels": {
+    "official_reference_compliance": {"benchmarks": ["apibank", "bfcl_v3", "rotbench", "toolalpaca"], "labels": "unchanged released Boolean correctness", "semantic_execution_claim": false},
+    "tool_name_relevance": {"benchmarks": ["tooleyes"], "pooled_into_primary_compliance": false, "semantic_execution_claim": false},
+    "cost_latency_preference": {"source_file_stems": ["CD", "CD_AB", "CD_NT", "TD", "TD_AB", "TD_NT"], "overlaps_reference_panel": true, "objective_detected_and_not_detected_separate": true, "labels": "unchanged released reference preference; no semantic-equivalence claim"},
+    "supplementary_all_benchmark": {"enabled": true, "label": "mixed released benchmark matches, not common task success"}
+  },
+  "models": {
+    "small": ["Qwen/Qwen2.5-1.5B-Instruct", "meta-llama/Llama-3.2-3B-Instruct", "Qwen/Qwen2.5-7B-Instruct"],
+    "fallback": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+    "revision_authority": "docs/config/task1_single_sample_v1.json",
+    "fallback_advantage_assumed": false
+  },
+  "frozen_method_boundaries": {
+    "task2_definitions_unchanged": true,
+    "toolalpaca_meaningful_token_score": "unavailable under existing scoped exclusion",
+    "repeated_sampling_current_scope": "existing 30-case diagnostic only; expansion requires amendment",
+    "generation_requested_temperature": 0.001,
+    "server_effective_temperature": "record from logs; previously observed 0.01 clamp",
+    "completion_token_cap": 1024,
+    "automatic_retries": false
+  },
+  "proposed_analysis": {
+    "positive_class": "official reference error",
+    "ranking_population": "eligible evidence only; conditional denominators shown",
+    "primary_score_candidate": "mean_token_nll; not yet selected/frozen",
+    "metrics": ["reference compliance", "error AUROC", "average precision with error-prevalence baseline", "reference-error risk versus accepted coverage", "fallback rate", "paired fallback rescues and harms", "request/token/latency accounting"],
+    "primary_weighting_candidate": "row-weighted within each panel; benchmark-macro sensitivity; not a population-generalization claim",
+    "threshold_selection_candidate": "grouped development cross-validation with deterministic ties; operating objective/budget unresolved",
+    "confidence_intervals_candidate": {"unit": "canonical base-task groups", "paired_policy_resampling": true, "stratify_by": "benchmark", "replicates": 10000, "seed": 1729, "level": 0.95, "method": "percentile", "status": "proposal_not_frozen"},
+    "unavailable_scores": null,
+    "impute_missing_scores": false,
+    "oracle_policies": "analysis-only, never deployable routing",
+    "timing_claim": "cached sequential replay estimate unless actual cascade timings are measured"
+  },
+  "decisions": [
+    {"id": "development_export", "status": "pending", "requires": "Development-only export, canonical membership evidence and full inventory hashes; no held-out examples in audit input"},
+    {"id": "full_prompt_repair", "status": "pending", "requires": "Commit/version the repair adapter; apply fail-closed repairs to full development inventory; unrepairable rows retained with reasons"},
+    {"id": "reference_objectives", "status": "pending", "requires": "Full development reference/objective audit, disposition ledger and no implicit cost objective inferred from gold"},
+    {"id": "population_pairing", "status": "pending", "requires": "Predeclare primary/sensitivity populations, exclusions, coverage denominators and paired clean/perturbed join policy"},
+    {"id": "generation_evidence", "status": "pending", "requires": "Four-model corrected feasibility and Task 2 evidence replay; no relabeling old outputs after prompt changes"},
+    {"id": "gate_measure", "status": "pending", "requires": "Select one primary score on development data and state supported eligibility/format boundaries"},
+    {"id": "gate_missing_acceptance", "status": "pending", "requires": "Specify missing-score action, invalid/partial output handling, fallback terminal behavior and fallback harm accounting"},
+    {"id": "threshold_objective", "status": "pending", "requires": "Fix escalation budget or reference-error objective, grouped development selection, ties, infeasibility and no-benefit behavior"},
+    {"id": "baselines", "status": "pending", "requires": "Finalize feasible baselines and random-routing seeds; record amendments for any reduced original scope"},
+    {"id": "statistics_calibration", "status": "pending", "requires": "Fix weighting, bootstrap, small-stratum/one-class/tie handling; decide calibration mapping and bins or explicit scope amendment"},
+    {"id": "cost_feasibility", "status": "pending", "requires": "Feasibility and call budget from full development inventory; token/time proxies, overhead and missing-usage policy"},
+    {"id": "repeated_recovery_scope", "status": "pending", "requires": "Explicit decisions for repeated-sample expansion and RQ3 recovery; no implicit claim they are complete"},
+    {"id": "final_freeze", "status": "pending", "requires": "Reviewed implementation/configuration hashes, chronology/exposure disclosure and a separate reviewed freeze artifact"}
+  ]
+}

@@ -1,5 +1,15 @@
 # UQRoute-TC Evaluation Protocol
 
+## Corrected research-track planning addendum
+
+The proposed [main-experiment protocol](research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)
+and [development-population audit plan](research_track_v1/DEVELOPMENT_POPULATION_AUDIT_PLAN_V1.md)
+are based on commit `344234f`. They separate official reference compliance,
+ToolEyes relevance and overlapping cost/latency-preference reporting. They do
+not replace the released-pipeline reproduction record or enable main inference
+or held-out access. Remaining decisions are recorded in
+`docs/research_track_v1/main_experiment_plan_v1.json`.
+
 ## Protocol status
 
 The Task 1 benchmark, population, split, model roles/revisions, and
