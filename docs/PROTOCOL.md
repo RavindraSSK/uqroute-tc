@@ -713,7 +713,35 @@ The 68 complete raw responses were not supplied and their statuses/usage
 cannot be independently rebuilt from raw attempts. Evidence and source hashes:
 `docs/evidence/qwen7b_throughput_dev69_summary.json`.
 
-The 14B AWQ timing, full-run feasibility and current quota remain pending. Do not
+The 14B AWQ fallback's fresh session has 69 requests: 62 complete, five
+invalid-evidence and two truncated outcomes. Batch wall is 480.565455616 s;
+usage is 74,949 prompt / 12,067 completion tokens, and observed GPU window
+is at least 1,018.707215394 s including setup. Exact model/tokenizer revision,
+FP16/AWQ serving configuration, shared case identities/source hashes, split
+membership, summary arithmetic and 69 HTTP 200 responses were checked.
+The server reports the same requested 0.001 to effective 0.01 temperature clamp.
+
+All seven supplied non-complete records reproduce their frozen-validator
+results. The five APIBank evidence failures span three base tasks. Their
+finite chosen-token streams include internal `<|im_start|>` tokens (counts
+2, 2, 2, 71 and 124), plus one final `<|im_end|>`, absent from visible text.
+Removing both marker types reconstructs visible bytes as a forensic check,
+but internal-token removal is outside the frozen rule. All five probability
+scores therefore remain unavailable; original statuses and incurred costs
+are preserved. No causal attribution to AWQ, dtype or perturbation is made.
+The two ToolAlpaca holiday responses belong to one group, terminate at the
+1,024-token cap and replay valid evidence. Official correctness is unscored.
+The 62 complete raw records were not supplied for local replay. Evidence:
+`docs/evidence/qwen14b_awq_throughput_dev69_summary.json`.
+
+Across four summaries, 276 attempts comprise 260 complete, 11 truncated and
+five invalid-evidence outcomes. Completion status is not accuracy; compare
+hardware, quantization, dtype and output lengths alongside runtime. A CPU-only
+full saved-record audit precedes correctness and uncertainty-effectiveness
+analysis. No held-out response, routing policy or missing-evidence gate is
+selected by this timing diagnostic. The Task 2 validation rule is unchanged.
+
+Full-run feasibility and current quota remain pending. Do not
 extrapolate population runtime from this unweighted diagnostic mean alone.
 
 ## 16. Statistical analysis
@@ -757,5 +785,6 @@ Qwen development diagnostic and later resume summary; it does not retroactively
 freeze Task 3–4 analysis choices or change frozen Task 1/Task 2 definitions.
 Paper-review status is independent of implementation completion. Jev comparison
 and adaptive sampling remain proposals until separately reviewed and scoped.
+
 
 
