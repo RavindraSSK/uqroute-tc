@@ -4,6 +4,7 @@ The model pilot notebooks run five clean **development** BFCL cases from the pin
 
 | Notebook | Role |
 |---|---|
+| `UQRoute_TC_Task3_Qwen14B_AWQ_Throughput.ipynb` | Pinned 14B AWQ fallback L4 timing diagnostic on the same development selection; no routing-effectiveness claim |
 | `UQRoute_TC_Task3_Llama3B_Throughput.ipynb` | Pinned Llama 3B L4 throughput diagnostic; separate model/output guards and session accounting |
 | `UQRoute_TC_Llama3B_Saved_Throughput_Audit.ipynb` | CPU-only saved-attempt audit/export; full truncated records reviewed separately |
 | `UQRoute_TC_Task3_Qwen7B_Throughput.ipynb` | Pinned Qwen 7B L4 throughput diagnostic on the same 69 development cases; records server temperature-clamp observations |
@@ -28,4 +29,5 @@ The model pilot notebooks run five clean **development** BFCL cases from the pin
 Run one model notebook at a time. Each notebook pins its benchmark and pilot-code revisions, and the saved manifest records the run settings. Llama inference reads `HF_TOKEN` from Colab Secrets. The notebooks are development checks, not full benchmark reproductions or held-out evaluations.
 
 The earlier Llama pilot notebook is superseded by the fixed notebook here. The four-model audit completed on the saved artifacts; its compact, user-reported five-case score table is in `docs/evidence/`.
+
 
