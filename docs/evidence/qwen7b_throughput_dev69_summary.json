@@ -1,0 +1,155 @@
+{
+  "scope": "Development-only static coverage diagnostic; official correctness and routing effectiveness unmeasured",
+  "model_id": "Qwen/Qwen2.5-7B-Instruct",
+  "model_revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "freeze_sha256": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+  "selection": {
+    "cases": 69,
+    "canonical_development_groups": 51,
+    "clean_cases": 5,
+    "static_perturbed_cases": 64,
+    "nonempty_strata": 69,
+    "source_files": 17,
+    "eligible_rows": 1754,
+    "case_keys_match_llama_audit": true
+  },
+  "source_hashes_recorded_in_manifest": {
+    "CD.jsonl": "b59e04f347d436eb6086707769f392c56df3162368fc08b9c28a71002fe846d6",
+    "CD_AB.jsonl": "8a0168ffaf6166778e4d60b34f0d88f47e9b3623542165a94448bc985bc53336",
+    "CD_NT.jsonl": "90367e65c420f26c51d2b72449f3f971299a5d907c706d5ca42346e93b9d5352",
+    "TD.jsonl": "575a81a2741dfdb5ed0bc43648e3d9513b3f92e593b65ef9fd10197affd9eeb4",
+    "TD_AB.jsonl": "052c3d66f63667d4ab5c2ee2cdaa134da3ce819667e0388f56b78846daf07dc7",
+    "TD_NT.jsonl": "3649fc27ea25e71516743e4b421b8d1e058053c8d6ed4c65d9a8ebdb1b8f8ae2",
+    "clean.jsonl": "adebd94f65ce291371078a27cbda75deab015e236dc3f0b96904ef8de34d9cd7",
+    "paraphrase_parameter_description.jsonl": "f79d23c7675493f4c19cf5166a1eccf707ffae3431b4e323035a1d8044cd2bf5",
+    "paraphrase_tool_description.jsonl": "ecf214044e52c2dca54158d9a768bace811b101cf02b506a2b66de33c62f2f7c",
+    "query_paraphrase.jsonl": "2887de13adb610e5e6f33c8b72067c98eedb9a5bd7d897e19d5a26e3f6c883e6",
+    "realistic_typos.jsonl": "9876eeb48baac43eeefd7f1e33ddcc0cdf10f84a21baedfc8589a0c80fc75a3f",
+    "redundant.jsonl": "59bdb85934b2605be187ef5e461b0f2c5d96aa852174350c93b0aa568cbe1753",
+    "same_name_A.jsonl": "051bc56e4951b07a127cc993d1cc143b671cd7c60c01ef534f809f6166c2bb8e",
+    "same_name_B.jsonl": "32c3067e6811a18050f349c9b2d9220e88089e6f36a28d20d88ce8929fe4557a",
+    "same_name_C.jsonl": "965b534ae666e502c06672f72793f328d2a26a57cac37f882e39b0d8c5b0e6bc",
+    "same_name_D.jsonl": "f6cd87bedd93028e16952c5c4b3bf145ed71058c003cb7740f95dbe2ade89c63",
+    "same_name_E.jsonl": "d3a0c108e40001f81f994572f86d55f6f7097dc5bc03baa62c8691b419619556"
+  },
+  "summary": {
+    "attempt_count": 69,
+    "status_counts": {
+      "truncated": 1,
+      "complete": 68
+    },
+    "session_count": 1,
+    "unfinished_sessions": 0,
+    "measured_attempt_seconds": 658.325396063,
+    "measured_batch_wall_seconds": 661.167963701,
+    "known_token_totals": {
+      "prompt_tokens": 74949,
+      "completion_tokens": 11226,
+      "total_tokens": 86175
+    },
+    "missing_usage_attempts": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "completed_attempts_per_batch_second": 0.10284829836484885,
+    "completion_tokens_per_batch_second": 16.979044080055782,
+    "single_gpu_batch_allocation_hours_proxy": 0.18365776769472222,
+    "limitations": [
+      "Sequential client timings include prompt building, parsing and saving overhead.",
+      "Batch wall time is not GPU kernel-active time or total allocated runtime.",
+      "Setup, downloads, warm-up and idle GPU allocation are recorded separately in Colab.",
+      "Interrupted attempts have unknown elapsed time and possibly unknown billed tokens.",
+      "Coverage-stratified subset is not population-weighted; no accuracy/routing claim."
+    ]
+  },
+  "session": {
+    "id": "ca9f2f1aaeb74285a71c19b431a9e046",
+    "started_utc": "2026-10-22T04:25:00.566004+00:00",
+    "status": "finished",
+    "processed": 69,
+    "resumed": 0,
+    "finished_utc": "2026-10-22T04:36:01.743020+00:00",
+    "batch_wall_seconds": 661.167963701
+  },
+  "runtime_metadata": {
+    "run_id": "1a37a168293142babdef7847e8c5a9d7",
+    "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+    "model_key": "qwen7b",
+    "gpu": "NVIDIA L4, 23034 MiB",
+    "observed_gpu_start_utc": "2026-10-22T04:15:48.718880+00:00",
+    "server_command": [
+      "/usr/local/bin/vllm",
+      "serve",
+      "Qwen/Qwen2.5-7B-Instruct",
+      "--revision",
+      "a09a35458c702b33eeacc393d103063234e8bc28",
+      "--tokenizer-revision",
+      "a09a35458c702b33eeacc393d103063234e8bc28",
+      "--dtype",
+      "bfloat16",
+      "--max-model-len",
+      "8192",
+      "--gpu-memory-utilization",
+      "0.88",
+      "--port",
+      "8000"
+    ],
+    "torch_version": "2.13.0+cu130",
+    "vllm_version": "0.30.0",
+    "openai_version": "2.54.0",
+    "status": "runner_finished",
+    "startup_seconds": 285.0376720030001,
+    "observed_setup_seconds": 544.20969957,
+    "runner_exit_code": 0,
+    "observed_gpu_window_seconds_lower_bound": 1214.4356539999999,
+    "observed_gpu_window_hours_lower_bound": 0.3373432372222222,
+    "requested_temperature": 0.001,
+    "temperature_clamp_warning_count": 69,
+    "effective_temperature_reported_by_server": 0.01,
+    "note": "Observed one-GPU wall window, not kernel-active time or full billed allocation. Runtime remains allocated until disconnected."
+  },
+  "truncation": {
+    "case_key": "paraphrase_tool_description.jsonl:toolalpaca__Nager.Date__inst6",
+    "base_id": "toolalpaca__Nager.Date__inst6",
+    "benchmark": "toolalpaca",
+    "source_file": "paraphrase_tool_description.jsonl",
+    "usage": {
+      "completion_tokens": 1024,
+      "prompt_tokens": 1243,
+      "total_tokens": 2267,
+      "completion_tokens_details": null,
+      "prompt_tokens_details": null
+    },
+    "elapsed_seconds": 58.949218151000196,
+    "finish_reason": "length",
+    "token_evidence_replayed_valid": true,
+    "saved_parser_call_count": 10,
+    "observation": "Response contains a function-like call with year/country arguments, then model-generated holiday result-like content and a trailing summary; reaches the token limit. Saved parser extracts ten holiday names as call names.",
+    "also_truncated_in_llama": true,
+    "official_correctness_scored": false
+  },
+  "validation": {
+    "successful_chat_http_responses": 69,
+    "temperature_clamp_warnings": 69,
+    "requested_temperature": 0.001,
+    "server_reported_effective_temperature": 0.01,
+    "manifest_frozen_settings_and_split_membership_checked": true,
+    "summary_arithmetic_checked": true,
+    "full_truncated_token_evidence_replayed": true,
+    "limits": "68 complete raw records were not supplied. Aggregate statuses/usage cannot be independently rebuilt from all attempts. Source hashes are recorded from the manifest; source files were not rehashed locally. Official parser/scorer not rerun."
+  },
+  "archive_sha256": "b7afb1fc014ca5613924a2feeeb062c5ba59a50af2128970b76b0e1c175b1431",
+  "archive_member_sha256": {
+    "manifest.json": "657c83f06a253c7521dedf98de75782f1786885429ac037651bef844044cce61",
+    "summary.json": "874b01e8796bbc6072a3351c57b09a3c3b1c8ffd1afcf072201dfeb7e7794779",
+    "sessions/ca9f2f1aaeb74285a71c19b431a9e046.json": "267e67eb71df2d4fd32056fb626234e67c1793d5d48c8e9b48d9a0f2e419fe98",
+    "runtime/1a37a168293142babdef7847e8c5a9d7.json": "9a7f8dd804baef6ec4c0ce7d0f302ede8f54558020200cba63a3973c7886a37e",
+    "runtime/1a37a168293142babdef7847e8c5a9d7-server.log": "d5a0b214962f453c186f3cac3ecbe0316f257e4210c7224778c705b32e841f57",
+    "cases/03dba60ce084bc34a7f417e6c421fb61d9dc0bf797698f24450517d19f809784/attempts/000001.json": "981ce29ce8aa262a4d32399201fc0ed1cad682f7a0bfeeafd378dcd5e88ae5cb"
+  },
+  "decision": "Retain the truncated outcome and all token/time cost at the frozen cap. Proceed to the 14B AWQ fallback timing diagnostic on the same development selection; generation and parser freezes unchanged."
+}

@@ -1,0 +1,199 @@
+{
+  "scope": "Four-model static development record audit; no official correctness or routing-effectiveness result",
+  "source_audit_sha256": "e5f505b102695ff95db98a13b7d143f0570909a8a455e0021fbd8d74f8375c7f",
+  "generation_code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+  "validator_sha256": "b7c1c56c035dab08d077e42021c45052e81f9b4558b4224ca36914d055f84aad",
+  "cases_per_model": 69,
+  "shared_canonical_groups": 51,
+  "total_records": 276,
+  "status_counts": {
+    "complete": 260,
+    "truncated": 11,
+    "invalid_evidence": 5
+  },
+  "valid_token_evidence_records": 271,
+  "whole_output_score_eligible_records": 260,
+  "models": {
+    "qwen15b": {
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "manifest_sha256": "90e2eeb9cfdab2e352ef74458b654d1cce445c71279fd4ccd1cbba9c1b86789d",
+      "summary_sha256": "69146bf541d2760923bc40f3541c6852e43325bb00427cd6c3adee3705706afc",
+      "status_counts": {
+        "complete": 69
+      },
+      "token_evidence_valid_count": 69,
+      "whole_output_score_eligible_count": 69,
+      "sessions": [
+        {
+          "id": "5532890c0244488ebb7fbe0eeb3be7e7",
+          "started_utc": "2026-10-14T04:37:11.454661+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-14T04:38:57.931057+00:00",
+          "batch_wall_seconds": 106.46709268199993
+        },
+        {
+          "id": "d29f5244a00845e1940286c3930077e4",
+          "started_utc": "2026-10-19T18:58:25.588059+00:00",
+          "status": "finished",
+          "processed": 0,
+          "resumed": 69,
+          "finished_utc": "2026-10-19T19:00:07.228838+00:00",
+          "batch_wall_seconds": 101.63396858199985
+        }
+      ],
+      "fresh_generation_sessions": [
+        {
+          "id": "5532890c0244488ebb7fbe0eeb3be7e7",
+          "started_utc": "2026-10-14T04:37:11.454661+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-14T04:38:57.931057+00:00",
+          "batch_wall_seconds": 106.46709268199993
+        }
+      ],
+      "token_totals": {
+        "prompt_tokens": 74949,
+        "completion_tokens": 7164,
+        "total_tokens": 82113
+      },
+      "record_fingerprint_count": 69
+    },
+    "llama3b": {
+      "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "manifest_sha256": "2ede204f7c4f192d79a0a684339f53f783cabcdd55a7603ea5e0f3e0ee74f0f9",
+      "summary_sha256": "a6db9e9d96bf3a268031897b4ff6770248d55d13f7a7a4da874e56bb1aaaa84a",
+      "status_counts": {
+        "truncated": 8,
+        "complete": 61
+      },
+      "token_evidence_valid_count": 69,
+      "whole_output_score_eligible_count": 61,
+      "sessions": [
+        {
+          "id": "6c33d3b37fd542fc8461004626cc193b",
+          "started_utc": "2026-10-19T19:18:43.513189+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-19T19:27:11.653022+00:00",
+          "batch_wall_seconds": 508.10763849299997
+        }
+      ],
+      "fresh_generation_sessions": [
+        {
+          "id": "6c33d3b37fd542fc8461004626cc193b",
+          "started_utc": "2026-10-19T19:18:43.513189+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-19T19:27:11.653022+00:00",
+          "batch_wall_seconds": 508.10763849299997
+        }
+      ],
+      "token_totals": {
+        "prompt_tokens": 76347,
+        "completion_tokens": 18056,
+        "total_tokens": 94403
+      },
+      "record_fingerprint_count": 69
+    },
+    "qwen7b": {
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "manifest_sha256": "657c83f06a253c7521dedf98de75782f1786885429ac037651bef844044cce61",
+      "summary_sha256": "874b01e8796bbc6072a3351c57b09a3c3b1c8ffd1afcf072201dfeb7e7794779",
+      "status_counts": {
+        "truncated": 1,
+        "complete": 68
+      },
+      "token_evidence_valid_count": 69,
+      "whole_output_score_eligible_count": 68,
+      "sessions": [
+        {
+          "id": "ca9f2f1aaeb74285a71c19b431a9e046",
+          "started_utc": "2026-10-22T04:25:00.566004+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-22T04:36:01.743020+00:00",
+          "batch_wall_seconds": 661.167963701
+        }
+      ],
+      "fresh_generation_sessions": [
+        {
+          "id": "ca9f2f1aaeb74285a71c19b431a9e046",
+          "started_utc": "2026-10-22T04:25:00.566004+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-22T04:36:01.743020+00:00",
+          "batch_wall_seconds": 661.167963701
+        }
+      ],
+      "token_totals": {
+        "prompt_tokens": 74949,
+        "completion_tokens": 11226,
+        "total_tokens": 86175
+      },
+      "record_fingerprint_count": 69
+    },
+    "qwen14b_awq": {
+      "model_id": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+      "manifest_sha256": "b737f48c1374a7e21499c327941abdafa0e77b6f3836df8aa9039996f66ed7b4",
+      "summary_sha256": "6041fddf56a2295a4ee7d22977e004baebbddb04ccef8f5180944ded8f35b0ae",
+      "status_counts": {
+        "complete": 62,
+        "invalid_evidence": 5,
+        "truncated": 2
+      },
+      "token_evidence_valid_count": 64,
+      "whole_output_score_eligible_count": 62,
+      "sessions": [
+        {
+          "id": "40935f3a26e1420b80c7b1458e653105",
+          "started_utc": "2026-10-22T05:39:44.865418+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-22T05:47:45.440927+00:00",
+          "batch_wall_seconds": 480.565455616
+        }
+      ],
+      "fresh_generation_sessions": [
+        {
+          "id": "40935f3a26e1420b80c7b1458e653105",
+          "started_utc": "2026-10-22T05:39:44.865418+00:00",
+          "status": "finished",
+          "processed": 69,
+          "resumed": 0,
+          "finished_utc": "2026-10-22T05:47:45.440927+00:00",
+          "batch_wall_seconds": 480.565455616
+        }
+      ],
+      "token_totals": {
+        "prompt_tokens": 74949,
+        "completion_tokens": 12067,
+        "total_tokens": 87016
+      },
+      "record_fingerprint_count": 69
+    }
+  },
+  "local_validation": [
+    "276 unique model/case pairs and identical 69-case sets across models; 51 groups per model.",
+    "Per-model status, usage, eligibility and session totals reconcile with the supplied audit.",
+    "All 260 exported score dictionaries are finite and nonnegative with consistent sequence/mean/max arithmetic.",
+    "All 16 raw non-complete records supplied previously match audit fingerprints; their prior frozen-validator replays are unchanged."
+  ],
+  "validation_boundary": "The Colab audit reports replay of all 276 Drive records. Local inspection checks its compact report, score/accounting arithmetic and the previously supplied 16 raw non-complete records; the other 260 raw records were not uploaded.",
+  "qwen15b_resume_reconciliation": {
+    "fresh_session_wall_seconds": 106.46709268199993,
+    "resume_only_session_wall_seconds": 101.63396858199985,
+    "resume_processed": 0,
+    "resume_skipped": 69,
+    "aggregate_wall_seconds": 208.10106126399978,
+    "decision": "Keep original fresh inference speed; report resume checking as additional overhead."
+  },
+  "decision": "Proceed to pinned official correctness scoring on all 276 attempts, retaining all statuses and unavailable probability scores. No status label is interpreted as correctness; no policy/threshold or held-out evaluation is selected."
+}

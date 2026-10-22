@@ -65,6 +65,34 @@ For each selected paper:
 - Distinguish published results from our interpretation.
 - Do not treat a saved link or abstract-only reading as a completed review.
 
+## Keep implementation and paper evidence synchronized
+
+At each substantive milestone, connect the supporting paper ID to the actual
+implementation, its evidence artifact, the affected protocol section, and the
+remaining limitation in `EVIDENCE_MATRIX.md`. Update `../PROGRESS.md` in the
+same documentation pass. A validated implementation does not by itself complete
+the literature review: P04–P09 remain pending until their notes, claims, and
+citations satisfy the review workflow above.
+
+Keep published findings, our design interpretations, measured project results,
+and future proposals distinct. Store project measurements under `../evidence/`,
+not as findings attributed to a paper. Record protocol decisions before held-out
+evaluation and identify decisions made after inspecting development results.
+Preserve the Task 1/Task 2 freeze files; document later amendments separately.
+
+For paper drafting, use the literature notes for related work, `../PROTOCOL.md`
+for methods, and `../evidence/` plus `../PROGRESS.md` for results and provenance.
+The Qwen 1.5B and Llama 3B throughput evidence is a runtime diagnostic, not tool-call accuracy
+or demonstrated routing benefit. Illustrative comparison graphs made during
+planning are not experimental figures and must not enter the results section.
+
+Before finalizing routing/calibration decisions, prioritize the pending
+uncertainty, selective-prediction, and cascade/router reviews (P04–P09).
+Jev and CP-Router are additional comparison candidates discussed during planning;
+they are not fully reviewed entries or committed experimental baselines here.
+Adding them requires primary-source verification, a note and citation, and an
+explicit scope decision rather than silently enlarging the experiment.
+
 ## Planned synthesis
 
 The completed review will support:

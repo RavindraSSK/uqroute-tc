@@ -1,0 +1,332 @@
+{
+  "scope": "Development-only 14B AWQ throughput and non-complete token-evidence audit; no official correctness or routing-benefit result",
+  "model_id": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+  "model_settings": {
+    "role": "fallback",
+    "model_id": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+    "model_revision": "539535859b135b0244c91f3e59816150c8056698",
+    "tokenizer_revision": "539535859b135b0244c91f3e59816150c8056698",
+    "dtype": "float16",
+    "quantization": "AWQ 4-bit checkpoint",
+    "model_card_license_tag": "apache-2.0",
+    "pilot_access": "served"
+  },
+  "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "split_sha256": "688c1013d8fe9d5c1b454d14d4cbe215659e48adc7bdfd63175580e83e2eb0db",
+  "freeze_sha256": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+  "runner_sha256": "15d38331c15246fb32aaf8f182f020edd27108119a9f9a8e4d33f115a2ce2f88",
+  "pilot_sha256": "b7c1c56c035dab08d077e42021c45052e81f9b4558b4224ca36914d055f84aad",
+  "selection": {
+    "cases": 69,
+    "canonical_development_groups": 51,
+    "clean_cases": 5,
+    "static_perturbed_cases": 64,
+    "source_files": 17,
+    "nonempty_strata": 69,
+    "eligible_rows": 1754,
+    "case_keys_and_source_hashes_match_qwen7b_manifest": true
+  },
+  "summary": {
+    "attempt_count": 69,
+    "status_counts": {
+      "complete": 62,
+      "invalid_evidence": 5,
+      "truncated": 2
+    },
+    "session_count": 1,
+    "unfinished_sessions": 0,
+    "measured_attempt_seconds": 477.41704878199903,
+    "measured_batch_wall_seconds": 480.565455616,
+    "known_token_totals": {
+      "prompt_tokens": 74949,
+      "completion_tokens": 12067,
+      "total_tokens": 87016
+    },
+    "missing_usage_attempts": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "completed_attempts_per_batch_second": 0.12901468317261164,
+    "completion_tokens_per_batch_second": 25.110002932966204,
+    "single_gpu_batch_allocation_hours_proxy": 0.13349040433777778,
+    "limitations": [
+      "Sequential client timings include prompt building, parsing and saving overhead.",
+      "Batch wall time is not GPU kernel-active time or total allocated runtime.",
+      "Setup, downloads, warm-up and idle GPU allocation are recorded separately in Colab.",
+      "Interrupted attempts have unknown elapsed time and possibly unknown billed tokens.",
+      "Coverage-stratified subset is not population-weighted; no accuracy/routing claim."
+    ]
+  },
+  "session": {
+    "id": "40935f3a26e1420b80c7b1458e653105",
+    "started_utc": "2026-10-22T05:39:44.865418+00:00",
+    "status": "finished",
+    "processed": 69,
+    "resumed": 0,
+    "finished_utc": "2026-10-22T05:47:45.440927+00:00",
+    "batch_wall_seconds": 480.565455616
+  },
+  "runtime_metadata": {
+    "run_id": "63dabf64007d4470bf81d73297b4e91b",
+    "code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+    "model_key": "qwen14b_awq",
+    "gpu": "NVIDIA L4, 23034 MiB",
+    "observed_gpu_start_utc": "2026-10-22T05:30:48.242193+00:00",
+    "server_command": [
+      "/usr/local/bin/vllm",
+      "serve",
+      "Qwen/Qwen2.5-14B-Instruct-AWQ",
+      "--revision",
+      "539535859b135b0244c91f3e59816150c8056698",
+      "--tokenizer-revision",
+      "539535859b135b0244c91f3e59816150c8056698",
+      "--dtype",
+      "float16",
+      "--max-model-len",
+      "8192",
+      "--gpu-memory-utilization",
+      "0.88",
+      "--port",
+      "8000",
+      "--quantization",
+      "awq"
+    ],
+    "torch_version": "2.13.0+cu130",
+    "vllm_version": "0.30.0",
+    "openai_version": "2.54.0",
+    "status": "runner_finished",
+    "startup_seconds": 310.0400198,
+    "observed_setup_seconds": 532.379930133,
+    "runner_exit_code": 0,
+    "observed_gpu_window_seconds_lower_bound": 1018.7072153939998,
+    "observed_gpu_window_hours_lower_bound": 0.28297422649833326,
+    "requested_temperature": 0.001,
+    "temperature_clamp_warning_count": 69,
+    "effective_temperature_reported_by_server": 0.01,
+    "note": "Observed one-GPU wall window, not kernel-active time or full billed allocation. Runtime remains allocated until disconnected."
+  },
+  "non_complete_records": [
+    {
+      "case_key": "TD.jsonl:apibank__level1_166",
+      "base_id": "apibank__level1_166",
+      "source_file": "TD.jsonl",
+      "benchmark": "apibank",
+      "status": "invalid_evidence",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 100,
+        "prompt_tokens": 951,
+        "total_tokens": 1051,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 4.152692801000057,
+      "archive_member": "cases/f370278a13c61a7ac81cba296f6348874370e7a3a6ba59e480b8483467473ab7/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": false,
+      "evidence_reason": "chosen-token bytes do not match visible UTF-8 output",
+      "generated_special_token_counts": {
+        "<|im_start|>": 2,
+        "<|im_end|>": 1
+      },
+      "saved_parser_call_count": 1
+    },
+    {
+      "case_key": "TD_AB.jsonl:apibank__level1_327",
+      "base_id": "apibank__level1_327",
+      "source_file": "TD_AB.jsonl",
+      "benchmark": "apibank",
+      "status": "invalid_evidence",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 181,
+        "prompt_tokens": 824,
+        "total_tokens": 1005,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 7.03446261199997,
+      "archive_member": "cases/9f2a2404b8892f13c111c2551ac1da452fe8b6f8b61e541b8d3f1d81788f8b9e/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": false,
+      "evidence_reason": "chosen-token bytes do not match visible UTF-8 output",
+      "generated_special_token_counts": {
+        "<|im_start|>": 124,
+        "<|im_end|>": 1
+      },
+      "saved_parser_call_count": 1
+    },
+    {
+      "case_key": "TD_AB.jsonl:toolalpaca__Nager.Date__inst6",
+      "base_id": "toolalpaca__Nager.Date__inst6",
+      "source_file": "TD_AB.jsonl",
+      "benchmark": "toolalpaca",
+      "status": "truncated",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1219,
+        "total_tokens": 2243,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 38.67676394699993,
+      "archive_member": "cases/9fe7a513d7e90ad36864e2484f0fa3f5670d45e0c78bbd21ba6b6cabc33bc82e/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": true,
+      "evidence_reason": null,
+      "generated_special_token_counts": {},
+      "saved_parser_call_count": 10
+    },
+    {
+      "case_key": "clean.jsonl:apibank__level1_166",
+      "base_id": "apibank__level1_166",
+      "source_file": "clean.jsonl",
+      "benchmark": "apibank",
+      "status": "invalid_evidence",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 97,
+        "prompt_tokens": 800,
+        "total_tokens": 897,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 3.947722160000012,
+      "archive_member": "cases/772aecd610dedbbeb310761bc42959afb7b4705cf7d5003c09f05fe61f12792b/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": false,
+      "evidence_reason": "chosen-token bytes do not match visible UTF-8 output",
+      "generated_special_token_counts": {
+        "<|im_start|>": 2,
+        "<|im_end|>": 1
+      },
+      "saved_parser_call_count": 1
+    },
+    {
+      "case_key": "query_paraphrase.jsonl:apibank__level1_150",
+      "base_id": "apibank__level1_150",
+      "source_file": "query_paraphrase.jsonl",
+      "benchmark": "apibank",
+      "status": "invalid_evidence",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 304,
+        "prompt_tokens": 811,
+        "total_tokens": 1115,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 11.568240225000181,
+      "archive_member": "cases/5d20b9deeead70509a212ff031805361a11650885640e8d3c42bd97dca2f1a1f/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": false,
+      "evidence_reason": "chosen-token bytes do not match visible UTF-8 output",
+      "generated_special_token_counts": {
+        "<|im_start|>": 71,
+        "<|im_end|>": 1
+      },
+      "saved_parser_call_count": 1
+    },
+    {
+      "case_key": "redundant.jsonl:apibank__level1_166",
+      "base_id": "apibank__level1_166",
+      "source_file": "redundant.jsonl",
+      "benchmark": "apibank",
+      "status": "invalid_evidence",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 97,
+        "prompt_tokens": 932,
+        "total_tokens": 1029,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 4.093457855999986,
+      "archive_member": "cases/7c19df472fff1c42250d8d18d3147f9f88fb4ff54aa946cfab634e9e57d5b88e/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": false,
+      "evidence_reason": "chosen-token bytes do not match visible UTF-8 output",
+      "generated_special_token_counts": {
+        "<|im_start|>": 2,
+        "<|im_end|>": 1
+      },
+      "saved_parser_call_count": 1
+    },
+    {
+      "case_key": "redundant.jsonl:toolalpaca__Nager.Date__inst6",
+      "base_id": "toolalpaca__Nager.Date__inst6",
+      "source_file": "redundant.jsonl",
+      "benchmark": "toolalpaca",
+      "status": "truncated",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 2031,
+        "total_tokens": 3055,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 39.66389462099983,
+      "archive_member": "cases/61a323f81e8f0333e0fa2b9923b405f61a4cbda66662e0431b7a5479aafb0507/attempts/000001.json",
+      "frozen_validator_replay_matches": true,
+      "evidence_valid": true,
+      "evidence_reason": null,
+      "generated_special_token_counts": {},
+      "saved_parser_call_count": 1
+    }
+  ],
+  "invalid_evidence_diagnosis": {
+    "cases": 5,
+    "benchmark": "apibank",
+    "base_task_groups": 3,
+    "im_start_counts": [
+      2,
+      2,
+      2,
+      71,
+      124
+    ],
+    "observation": "Generated internal <|im_start|> entries and a final <|im_end|> occur in chosen-token evidence but are absent from visible response content. Removing both marker types yields exact byte alignment in these five records as a forensic check only. All chosen log-probabilities are finite.",
+    "frozen_rule": "Only one final approved end token may be excluded after exact alignment; internal marker removal is outside the freeze.",
+    "decision": "Keep all five invalid and probability scores unavailable. No validator change, record rewrite, imputation or automatic rerun. These are not inferred correctness labels.",
+    "cause_limit": "No causal attribution to AWQ, numerical dtype, tokenizer or perturbation is established."
+  },
+  "truncation_diagnosis": {
+    "cases": 2,
+    "benchmark": "toolalpaca",
+    "base_task_groups": 1,
+    "finish_reason": "length",
+    "completion_tokens_each": 1024,
+    "token_evidence_valid": true,
+    "observation": "Function-like or code-formatted requests followed by extended model-generated holiday result-like content and summaries; official parser/scorer not replayed."
+  },
+  "validation": {
+    "successful_chat_http_responses": 69,
+    "temperature_clamp_warnings": 69,
+    "requested_temperature": 0.001,
+    "effective_temperature_reported_by_server": 0.01,
+    "non_complete_raw_records_replayed": 7,
+    "all_manifest_cases_primary_development": true,
+    "summary_arithmetic_checked": true,
+    "limitations": "62 complete raw records were not supplied; aggregate statuses and token totals cannot be rebuilt independently for all 69 attempts. Benchmark source hashes compared across manifests, not rehashed from source data locally. Official correctness unscored."
+  },
+  "archive_sha256": "ff838f79e0da6579ca8896dc746906a5677218fa7f6d88fdcbdbedfc39ba3bb7",
+  "archive_member_sha256": {
+    "manifest.json": "b737f48c1374a7e21499c327941abdafa0e77b6f3836df8aa9039996f66ed7b4",
+    "summary.json": "6041fddf56a2295a4ee7d22977e004baebbddb04ccef8f5180944ded8f35b0ae",
+    "sessions/40935f3a26e1420b80c7b1458e653105.json": "1f44f9064a627af4cdd5033b03f08824b97db7229f20834665a913a0c4a6f267",
+    "runtime/63dabf64007d4470bf81d73297b4e91b.json": "4981d181cbe423d9efe75f8db682af5bf3263e8703a6c32148f266e59e282a58",
+    "runtime/63dabf64007d4470bf81d73297b4e91b-server.log": "cbac48c10c923d3a50b33713aaf7ee8d21df64473ab640dc53b70c2774e02422",
+    "cases/f370278a13c61a7ac81cba296f6348874370e7a3a6ba59e480b8483467473ab7/attempts/000001.json": "10396de4471ea131a24ac5e02c309dc5fc886f9128cb24127a86533ee70c1e3a",
+    "cases/9f2a2404b8892f13c111c2551ac1da452fe8b6f8b61e541b8d3f1d81788f8b9e/attempts/000001.json": "8f26265cc872ed4607bb664ea1211a621c575fa044e308373a32e3c24ac4cb68",
+    "cases/9fe7a513d7e90ad36864e2484f0fa3f5670d45e0c78bbd21ba6b6cabc33bc82e/attempts/000001.json": "907914f7b02a6449eed79324e0f2a8ffd9a9c5b4ec73b951ee7c8aebfae0d9df",
+    "cases/772aecd610dedbbeb310761bc42959afb7b4705cf7d5003c09f05fe61f12792b/attempts/000001.json": "b2e754de3ae27b53b9979dcdb6e08131dfd1319ef1242ff76dbe97111f8ea213",
+    "cases/5d20b9deeead70509a212ff031805361a11650885640e8d3c42bd97dca2f1a1f/attempts/000001.json": "8f2884259d9b4649ec63ac07bb0972d7bed9806a6f14c3efd50f8827526c40a3",
+    "cases/7c19df472fff1c42250d8d18d3147f9f88fb4ff54aa946cfab634e9e57d5b88e/attempts/000001.json": "18f870aedae4a05fa0d86a821f63fcdc78e615715ce946d2466db440eb8ec611",
+    "cases/61a323f81e8f0333e0fa2b9923b405f61a4cbda66662e0431b7a5479aafb0507/attempts/000001.json": "df6c518a8b3e03aec0664dbd316a3545315739d7fb0fc4c628908fa5754989db"
+  },
+  "next_step": "CPU audit of all four saved 69-case development folders, then official correctness evaluation and development analysis. Preserve unavailable scores and all incurred costs; freeze missing-evidence routing separately before held-out evaluation."
+}
