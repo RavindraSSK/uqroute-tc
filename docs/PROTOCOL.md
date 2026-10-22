@@ -661,12 +661,14 @@ for local replay and official correctness scoring is pending. Compact evidence
 and source-artifact hashes are in
 `docs/evidence/qwen15b_throughput_dev69_summary.json`.
 
-A later user-pasted two-session aggregate retains 69 attempts and the same
-tokens but reports 208.10106126399978 seconds. Its per-session processed/resumed
-files have not been reviewed. It is not another independent speed measurement.
-The newly supplied later Qwen runtime log contains zero chat-generation
-requests, supporting a resume-only interpretation; its session file remains
-unavailable. Llama 3B completed a fresh session with 69 processed and zero
+A later two-session Qwen 1.5B aggregate retains 69 attempts and the same
+tokens but reports 208.10106126399978 seconds. The subsequently uploaded
+CPU audit supplies session accounting: original fresh generation takes
+106.46709268199993 seconds (69 processed, zero resumed), followed by
+101.63396858199985 seconds of checking (zero processed, 69 resumed).
+The later server log contains zero chat-generation requests. The aggregate
+rate is not another independent speed measurement.
+Llama 3B completed a fresh session with 69 processed and zero
 resumed requests: 61 complete and eight truncated outcomes, 508.107638493
 seconds batch wall, and 76,347 prompt / 18,056 completion tokens. The observed
 GPU window is at least 965.222259864 seconds including setup. Its selected
@@ -738,7 +740,24 @@ Across four summaries, 276 attempts comprise 260 complete, 11 truncated and
 five invalid-evidence outcomes. Completion status is not accuracy; compare
 hardware, quantization, dtype and output lengths alongside runtime. A CPU-only
 full saved-record audit precedes correctness and uncertainty-effectiveness
-analysis. No held-out response, routing policy or missing-evidence gate is
+analysis. The uploaded CPU audit now reports replay of all 276 original Drive
+records: 271 have valid token evidence, but only 260 complete responses are
+eligible for whole-output probability scores. Local checks reconcile compact
+rows, identities, status/usage/session totals and score arithmetic, plus the
+16 previously supplied raw non-complete fingerprints and parser replays.
+The other 260 raw records were not uploaded. Compact provenance and limits:
+`docs/evidence/four_model_static_dev69_record_audit_summary.json`.
+
+The next CPU diagnostic applies the pinned released loader/parser/scorer to
+all 276 saved responses. Source-file-qualified keys prevent collisions between
+variants sharing a row ID. Every response remains in official scoring,
+including truncations and invalid token evidence; the released scorer's
+correctness result and original response status are retained separately.
+An official match on a partial response is not silently changed or treated
+as an approved deployment acceptance. Unavailable probability scores remain
+unavailable. This implements the frozen distinction between correctness and
+evidence eligibility; it does not freeze a new routing or failure-status policy.
+No held-out response, routing policy or missing-evidence gate is
 selected by this timing diagnostic. The Task 2 validation rule is unchanged.
 
 Full-run feasibility and current quota remain pending. Do not
@@ -785,6 +804,7 @@ Qwen development diagnostic and later resume summary; it does not retroactively
 freeze Task 3–4 analysis choices or change frozen Task 1/Task 2 definitions.
 Paper-review status is independent of implementation completion. Jev comparison
 and adaptive sampling remain proposals until separately reviewed and scoped.
+
 
 
 
