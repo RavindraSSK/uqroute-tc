@@ -74,6 +74,17 @@ six have nonempty saved parser outputs. Extended listings/repetition are local
 post hoc observations, not published findings, official correctness or causal
 perturbation evidence. Protocol §§12 and 15 retain the status and incurred cost.
 
+The Qwen 7B throughput follow-up in
+`../evidence/qwen7b_throughput_dev69_summary.json` adds a fresh 69-request
+development diagnostic: 68 complete / one truncated outcome in 661.17 seconds.
+The same ToolAlpaca holiday case truncated for Llama; its supplied Qwen token
+evidence replays exactly. A function-like call followed by result-like text and
+saved holiday-name extractions reinforces the need to separate parsing from
+official correctness (P01), while remaining a local descriptive diagnosis
+(P03). This adds no correctness, calibration, causal or routing-benefit claim.
+Cost/routing literature reviews P08–P09 remain pending; protocol §15 records
+the accounting and evidence limitations.
+
 These local checkpoints do not upgrade any paper to `Reviewed` or establish a
 new research gap. Before claiming novelty, complete the relevant routing and
 uncertainty reviews and compare question, signal, routing stage, perturbation
@@ -87,4 +98,5 @@ setting, and measured outcomes. Model names alone are not a contribution.
 - Limitations are recorded before using a paper to justify a decision.
 - Closely related work is compared by research question, benchmark, signal, routing stage, and metrics.
 - Entries are revised when later evidence changes their interpretation.
+
 
