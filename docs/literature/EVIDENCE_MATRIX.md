@@ -66,6 +66,14 @@ Additional papers will be included only when they directly support a research qu
 | Llama 3B static throughput diagnostic | Same benchmark/cost links as above | `../../notebooks/UQRoute_TC_Task3_Llama3B_Throughput.ipynb`; `../evidence/llama3b_throughput_dev69_summary.json` | §§10, 15 | Checked summary/session/runtime/log: 69 fresh requests, 61 complete and eight truncated, 508.11 s; raw attempt replay and correctness pending |
 | Effective temperature observation | Local server logs, not a published-paper finding | Both model throughput evidence summaries | §§10, 15 | vLLM clamps requested 0.001 to 0.01 in both fresh runs; disclose effective settings and preserve freeze history |
 
+The Llama saved-attempt follow-up in
+`../evidence/llama3b_truncation_dev69_audit.json` connects P01's distinction
+between extraction and correctness with P03's descriptive failure diagnosis.
+All eight truncated records from five groups replay valid token evidence;
+six have nonempty saved parser outputs. Extended listings/repetition are local
+post hoc observations, not published findings, official correctness or causal
+perturbation evidence. Protocol §§12 and 15 retain the status and incurred cost.
+
 These local checkpoints do not upgrade any paper to `Reviewed` or establish a
 new research gap. Before claiming novelty, complete the relevant routing and
 uncertainty reviews and compare question, signal, routing stage, perturbation
@@ -79,3 +87,4 @@ setting, and measured outcomes. Model names alone are not a contribution.
 - Limitations are recorded before using a paper to justify a decision.
 - Closely related work is compared by research question, benchmark, signal, routing stage, and metrics.
 - Entries are revised when later evidence changes their interpretation.
+
