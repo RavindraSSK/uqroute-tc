@@ -12,7 +12,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Started; Qwen 1.5B and Llama 3B timing artifacts checked; other timings and broader evaluation pending |
+| Task 3 — Robustness study | Started; all three small-model timing artifacts checked; 14B AWQ timing and broader evaluation pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -28,7 +28,8 @@ development throughput diagnostic. Llama 3B has a checked fresh 69-request run:
 61 complete and eight truncated outcomes in 508.11 seconds. Both fresh server
 logs show requested temperature 0.001 clamped to 0.01; this effective setting
 must be disclosed without rewriting the frozen request configuration.
-Qwen 7B and the 14B AWQ timing runs remain pending. Held-out perturbed
+Qwen 7B has a checked fresh 69-request run: 68 complete and one truncated
+outcome in 661.17 seconds. The 14B AWQ timing run remains pending. Held-out perturbed
 evaluation has not begun. Literature review completion remains separate from
 these implementation milestones; see `docs/literature/EVIDENCE_MATRIX.md`.
 
@@ -79,7 +80,8 @@ Every completed component must include:
 - [ ] Measure representative per-model throughput and available GPU capacity before full inference.
 - [x] Implement the separate development-only throughput runner; user verified 68 tests and Ruff on Windows.
 - [x] Check supplied Qwen 1.5B manifest, original summary, runtime metadata and server log; retain the resume-accounting limitation.
-- [ ] Verify Llama 3B, Qwen 7B and Qwen 14B AWQ throughput evidence and current platform quota.
+- [x] Verify Llama 3B and Qwen 7B timing artifacts and replay their supplied truncated token evidence.
+- [ ] Verify Qwen 14B AWQ timing evidence and current platform quota.
 - [ ] Run the clean and static-perturbation experiments.
 - [ ] Calculate accuracy and failure-detection metrics.
 - [ ] Analyze risk–coverage and calibration.
@@ -130,6 +132,7 @@ only if those measurements show the available resources are insufficient.
 | Server temperature observation | Fresh Qwen and Llama logs each contain 69 warnings: requested temperature 0.001 is clamped to 0.01 by the server. Frozen request settings are preserved; effective settings must accompany reported results. |
 | Llama truncation evidence replay | Uploaded archive contains the 69-row compact audit and eight full truncated attempts: four ToolAlpaca / four RoTBench, across five base-task groups. All eight finish at length 1,024; pinned token-evidence replay matches every saved dictionary and reconstructed original-record hashes match the audit. Patterns: three holiday lists, two racing lists, one country example, two repetitive result-like outputs. Six have nonempty saved parser outputs, illustrating that extraction does not establish correctness. Truncations consumed 8,192/18,056 completion tokens and 229.56 s measured attempt time. Official correctness and raw replay of the other 61 responses remain pending. See `docs/evidence/llama3b_truncation_dev69_audit.json`. |
 | Benchmark revision | `d5d03180de41eb30a6c796d04a9bfbd9dad85c1d` |
+| Qwen 7B throughput diagnostic | Same 69 case identities as the Llama audit, all primary development, 51 groups; fresh session processed 69 and resumed zero. Summary: 68 complete / one truncated, 661.167963701 s batch wall, 74,949 prompt / 11,226 completion tokens. Manifest, split membership, summary arithmetic and 69 HTTP 200 responses checked. All 69 server warnings clamp requested temperature 0.001 to 0.01. The one supplied truncated record reaches 1,024 tokens and its token evidence replays exactly; it is the ToolAlpaca holiday case in `paraphrase_tool_description.jsonl`, also truncated for Llama. The other 68 raw records and official correctness are unreviewed/unscored. Evidence: `docs/evidence/qwen7b_throughput_dev69_summary.json`. |
 | Static JSONL files | 17 |
 | Stored rows | 2,718 |
 | Excluded multi-turn rows | 191 |
@@ -199,9 +202,11 @@ The uploaded Llama saved-attempt archive has now been checked: eight full
 truncated responses reach 1,024 tokens; all eight token-evidence dictionaries
 replay exactly. These are five underlying task groups with extended listings
 or repetitive result-like text. Keep their outcomes and incurred costs.
-Measure Qwen 7B next using `notebooks/UQRoute_TC_Task3_Qwen7B_Throughput.ipynb`,
-then the Qwen 14B AWQ fallback on the same selection and requested settings.
-The Qwen 1.5B and Llama timing artifacts are checked; a later resume must not be reported
+Qwen 7B timing and its one supplied truncated record are now checked.
+Measure the Qwen 14B AWQ fallback using
+`notebooks/UQRoute_TC_Task3_Qwen14B_AWQ_Throughput.ipynb` on the same
+development selection and frozen requested settings.
+All three small-model timing artifacts are checked; a later resume must not be reported
 as fresh inference or replace the original speed measurement. Record individual
 session outcomes, setup/observed allocation time, tokens, and current quota.
 Use those measurements to schedule resumable development inference batches.
@@ -214,4 +219,5 @@ remaining analysis and routing decisions are frozen. The five-case pilot did
 not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
+
 
