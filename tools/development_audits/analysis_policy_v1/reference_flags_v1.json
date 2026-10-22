@@ -1,0 +1,81 @@
+{
+  "version": "uqroute-reference-flags-1.0.0",
+  "scope": "post_hoc_review_of_eight_development_smoke_cases",
+  "changes_labels": false,
+  "excludes_cases": false,
+  "annotations": {
+    "CD_AB.jsonl:apibank__level1_301": {
+      "flags": [
+        "reference_latest_intent_conflict",
+        "cost_objective_not_explicit"
+      ],
+      "reason": "Latest dialogue requests 9AM to 10AM, gold is 7AM to 8AM. Prompt exposes cost differences but does not explicitly request minimization.",
+      "observed_model_issues": [
+        "violates_explicit_one_call_instruction",
+        "repeats_authentication_despite_existing_observation",
+        "fabricates_success_response"
+      ]
+    },
+    "clean.jsonl:apibank__level1_166": {
+      "flags": [
+        "reference_year_not_established_in_visible_dialogue"
+      ],
+      "reason": "Dialogue supplies month/day/time but no year; reference uses 2023 and output uses 2022.",
+      "observed_model_issues": [
+        "unsupported_year_choice"
+      ],
+      "strict_mismatch_notes": [
+        "content_capitalization",
+        "date_format_and_year"
+      ]
+    },
+    "clean.jsonl:rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.": {
+      "flags": [
+        "optional_default_argument_strict_mismatch"
+      ],
+      "reason": "Output adds declared if_global=True; released key-set requirement rejects it. Execution equivalence unverified."
+    },
+    "CD_AB.jsonl:rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.": {
+      "flags": [
+        "cost_objective_not_explicit",
+        "alternative_tool_semantics_unverified"
+      ],
+      "reason": "Reference chooses get_sho_tic. Output uses advertised get_all_ticker_data with undocumented fiats=ALL.",
+      "observed_model_issues": [
+        "argument_value_unsupported_by_available_description"
+      ]
+    },
+    "CD_AB.jsonl:toolalpaca__AviationAPI__inst1": {
+      "flags": [
+        "cost_objective_not_explicit",
+        "advertised_equivalent_tool_reference_preference"
+      ],
+      "reason": "charts and cha have identical displayed schema/description apart from cost; output matches requested airport/group, reference favors cheaper cha. Live equivalence unverified."
+    },
+    "clean.jsonl:toolalpaca__Free Dictionary__inst6": {
+      "flags": [
+        "research_track_literal_vocabulary_differs_from_upstream"
+      ],
+      "reason": "V2 exposes api_v2_entries_en_{word}; output substitutes ephemeral into the name.",
+      "observed_model_issues": [
+        "unknown_literal_tool_identifier"
+      ]
+    },
+    "clean.jsonl:bfcl_v3__BFCL_v3_multiple__multiple_66": {
+      "flags": [
+        "scorer_allows_reference_argument_omission"
+      ],
+      "reason": "This response matches all supplied reference arguments; general BFCL matcher limitation does not create an observed omission in this case."
+    },
+    "clean.jsonl:tooleyes__Turn 1: Please help me merge '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/protect.pdf' and '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/world.pdf' to '/workspace/Tool_learning_test/Tools/File/Pdf/test_file/merge.pdf'.": {
+      "flags": [
+        "name_only_scorer",
+        "two_file_invocation_contract_unverified"
+      ],
+      "reason": "Name relevance ignores arguments. Only one input path is supplied; live merge behavior is not verified.",
+      "observed_model_issues": [
+        "second_requested_path_not_present_in_output"
+      ]
+    }
+  }
+}
