@@ -673,9 +673,26 @@ GPU window is at least 965.222259864 seconds including setup. Its selected
 case keys, source hashes, split and frozen settings match Qwen's manifest;
 69 HTTP 200 responses and summary arithmetic were checked. Shutdown errors
 follow SIGTERM after the session finished and are not generation failures.
-Raw attempt evidence has not been replayed locally; the eight truncated case
-identities and official correctness remain unverified. Retain truncations and
-their token/time cost without silently increasing the frozen 1,024-token cap.
+The subsequently uploaded CPU-audit archive identifies all eight truncations
+(four ToolAlpaca and four RoTBench cases, five underlying base-task groups).
+All eight full records have `finish_reason=length` and 1,024 completion tokens;
+local replay of the pinned token-evidence function exactly matches their saved
+evidence. Reconstructing the original runner serialization matches each
+record's digest in the audit; ZIP members themselves were reserialized by
+the export notebook. The other 61 raw responses remain unavailable locally.
+
+Post hoc inspection finds three extended holiday listings, two racing-result
+listings, one API example followed by a country listing, and two repetitive
+result-like outputs. These are descriptive development observations, not causal
+perturbation findings or official correctness labels. Six partial responses
+have nonempty saved parser outputs, including names drawn from answer data;
+parsed output must not override a truncated status. No parser or prompt change
+is made on this basis. The eight truncated attempts account for 8,192 of
+18,056 completion tokens and 229.561204407 measured attempt seconds; retain
+these costs. Do not silently retry or increase the frozen 1,024-token cap.
+Official correctness remains unscored; finish status, parser extraction and
+token alignment are separate from correctness. Detailed checks and limitations
+are in `docs/evidence/llama3b_truncation_dev69_audit.json`.
 Compact evidence: `docs/evidence/llama3b_throughput_dev69_summary.json`.
 The temperature clamp applies to both fresh runs. Their different tokenizers
 and output lengths prevent treating token/s as a controlled model-speed test.
@@ -723,3 +740,4 @@ Qwen development diagnostic and later resume summary; it does not retroactively
 freeze Task 3–4 analysis choices or change frozen Task 1/Task 2 definitions.
 Paper-review status is independent of implementation completion. Jev comparison
 and adaptive sampling remain proposals until separately reviewed and scoped.
+
