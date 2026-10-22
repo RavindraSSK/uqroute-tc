@@ -1,0 +1,255 @@
+{
+  "scope": "Post hoc development-only truncation audit; descriptive output patterns, not official correctness scoring or causal attribution",
+  "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+  "generation_code_revision": "adb48d1cfea33f4c10394e75a85e2cbdbaf6fe53",
+  "validator_source_sha256": "90bfaf6227d292bce7c819d6ed9d1b238b6573e4bc0accf0807959a556f41c1e",
+  "input_archive_sha256": "0b20b3096c8e3752e7d76bfc6f9d7acfbffaa9245641baef12e303c792a22ec4",
+  "archive_member_sha256": {
+    "saved_attempt_audit.json": "01e95c21526c554e987a326a843ae895036d606dfb911482348f8f6baafde466",
+    "truncated_attempts/01.json": "263893fc7017efab3463621e5c25b4e36664798691deae140bf3766209434b1d",
+    "truncated_attempts/02.json": "e9a493b79bd7a5c943f303f8a441d7e0bae26961d89d077ea6107cfb92a5b2e9",
+    "truncated_attempts/03.json": "80a5e3075187a6913235b2c7e805d5904f7b182da298cfab7dedb3e553b84ef6",
+    "truncated_attempts/04.json": "36e73ee0376e0592fbfc77d2f8b00440a69d66ce2ec3530c8cfda49f950e6c63",
+    "truncated_attempts/05.json": "2654fe7db024d5a659942cfb4eb34788c5a7f2c9ddc019f5782b36d6bd661e6e",
+    "truncated_attempts/06.json": "fb2e79c5d0fe5042bd6e862a3f13391f46e56e8fef87137eefdfe8436482d646",
+    "truncated_attempts/07.json": "cb88e4baeee9ed9d77a084b65a1f4f57addeb419928405ab94bdffa36a058690",
+    "truncated_attempts/08.json": "97abf13a4ed57138e2132516841f4df4d5f02c5f9f30ae37853040343ce19bb4"
+  },
+  "all_saved_rows": 69,
+  "reported_status_counts": {
+    "truncated": 8,
+    "complete": 61
+  },
+  "benchmark_selected_case_counts": {
+    "toolalpaca": 17,
+    "tooleyes": 6,
+    "rotbench": 17,
+    "apibank": 17,
+    "bfcl_v3": 12
+  },
+  "truncated_by_benchmark": {
+    "toolalpaca": 4,
+    "rotbench": 4
+  },
+  "truncated_by_source_file": {
+    "paraphrase_tool_description.jsonl": 1,
+    "same_name_C.jsonl": 1,
+    "same_name_B.jsonl": 1,
+    "same_name_A.jsonl": 1,
+    "redundant.jsonl": 1,
+    "CD_AB.jsonl": 1,
+    "TD_NT.jsonl": 1,
+    "TD_AB.jsonl": 1
+  },
+  "truncated_cases": 8,
+  "truncated_base_task_groups": 5,
+  "pattern_counts": {
+    "extended_holiday_listing": 3,
+    "extended_racing_result_listing": 2,
+    "api_example_then_country_listing": 1,
+    "repetitive_ticker_result": 1,
+    "repetitive_met_result": 1
+  },
+  "truncated_completion_tokens": 8192,
+  "all_completion_tokens_from_prior_verified_summary": 18056,
+  "truncated_fraction_of_completion_tokens": 0.45369960124058484,
+  "truncated_attempt_seconds": 229.56120440699988,
+  "local_checks": [
+    "69 unique compact case rows; eight full truncated records match compact metadata.",
+    "All eight finish_reason=length and completion_tokens=1024.",
+    "Pinned token_evidence replay exactly matches all eight saved evidence dictionaries.",
+    "Each original record digest matches after reconstructing the runner serialization (ensure_ascii=False, indent=2, trailing newline). Archive bytes differ due to exporter reserialization.",
+    "All eight chosen-token byte streams match visible UTF-8; chosen log-probabilities are finite."
+  ],
+  "interpretation": [
+    "The reviewed partial responses contain extended answer/example/result-like content; two exhibit overt repetition.",
+    "Six truncated responses have nonempty saved parser outputs; names such as holidays, countries or a driver are extracted. Parsing is not correctness and truncation status takes precedence.",
+    "These observations do not establish that a particular perturbation caused a failure or that more tokens would repair it."
+  ],
+  "rows": [
+    {
+      "case_key": "paraphrase_tool_description.jsonl:toolalpaca__Nager.Date__inst6",
+      "base_id": "toolalpaca__Nager.Date__inst6",
+      "benchmark": "toolalpaca",
+      "source_file": "paraphrase_tool_description.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1259,
+        "total_tokens": 2283,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.330031430999952,
+      "archive_member": "truncated_attempts/01.json",
+      "original_record_sha256_reconstructed": "c5628165774ee3cfb7efe0dd0ea65dd2de1707ad0adc09b8a3a2ec09fbd1c347",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 12,
+      "descriptive_pattern": "extended_holiday_listing",
+      "manual_observation": "Extended JSON-like holiday list preceded by prose; no actual tool result is evidenced by the archive."
+    },
+    {
+      "case_key": "same_name_C.jsonl:rotbench__Turn 1: How did driver with ID \u201cricciardo\u201d perform at circuit named \u201cMarina Bay Street Circuit\u201d during his career?",
+      "base_id": "rotbench__Turn 1: How did driver with ID \u201cricciardo\u201d perform at circuit named \u201cMarina Bay Street Circuit\u201d during his career?",
+      "benchmark": "rotbench",
+      "source_file": "same_name_C.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 3196,
+        "total_tokens": 4220,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 29.15679793199979,
+      "archive_member": "truncated_attempts/02.json",
+      "original_record_sha256_reconstructed": "55f4cbba153bf8c9b3131dc9188b63fdaf9043de2fd0f274c34f9179175cebd4",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 1,
+      "descriptive_pattern": "extended_racing_result_listing",
+      "manual_observation": "Result-prefixed driver object and long race list; saved parser extracts driver name as a call name."
+    },
+    {
+      "case_key": "same_name_B.jsonl:rotbench__Turn 1: How did driver with ID \u201cricciardo\u201d perform at circuit named \u201cMarina Bay Street Circuit\u201d during his career?",
+      "base_id": "rotbench__Turn 1: How did driver with ID \u201cricciardo\u201d perform at circuit named \u201cMarina Bay Street Circuit\u201d during his career?",
+      "benchmark": "rotbench",
+      "source_file": "same_name_B.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 3173,
+        "total_tokens": 4197,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 29.493098207000003,
+      "archive_member": "truncated_attempts/03.json",
+      "original_record_sha256_reconstructed": "c2057007d81d4fbc20a94a414d66622c0003e4c914bb33177d19dfddf0aa689e",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 1,
+      "descriptive_pattern": "extended_racing_result_listing",
+      "manual_observation": "Result-prefixed driver object and long race list; saved parser extracts driver name as a call name."
+    },
+    {
+      "case_key": "same_name_A.jsonl:toolalpaca__Nager.Date__inst2",
+      "base_id": "toolalpaca__Nager.Date__inst2",
+      "benchmark": "toolalpaca",
+      "source_file": "same_name_A.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1307,
+        "total_tokens": 2331,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.354439261000152,
+      "archive_member": "truncated_attempts/04.json",
+      "original_record_sha256_reconstructed": "071ad8d5eab7e3eb3fb26d955599ebb28be9fc20ea66a2cdcd5f54f0489ee514",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 45,
+      "descriptive_pattern": "api_example_then_country_listing",
+      "manual_observation": "Mentions GET /CountryAvailableCountries, then emits a long example country response; saved parser extracts country names."
+    },
+    {
+      "case_key": "redundant.jsonl:toolalpaca__Nager.Date__inst6",
+      "base_id": "toolalpaca__Nager.Date__inst6",
+      "benchmark": "toolalpaca",
+      "source_file": "redundant.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 2045,
+        "total_tokens": 3069,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.768852420999792,
+      "archive_member": "truncated_attempts/05.json",
+      "original_record_sha256_reconstructed": "9b4f860112bf2a79b798621f6d3757f3a842ec5aa0480899f337f0f761f398c5",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 1,
+      "descriptive_pattern": "extended_holiday_listing",
+      "manual_observation": "Long holiday lists by state/territory; saved parser extracts Wales as a name despite the prose format."
+    },
+    {
+      "case_key": "CD_AB.jsonl:rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.",
+      "base_id": "rotbench__Turn 1: I need to see basic ticker information about Ethereum across all available fiats.",
+      "benchmark": "rotbench",
+      "source_file": "CD_AB.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1308,
+        "total_tokens": 2332,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.324785120999877,
+      "archive_member": "truncated_attempts/06.json",
+      "original_record_sha256_reconstructed": "cc46bc0a3bb248958cdd0930a5dde0e76109cad7268f3486f3a8866164cd3dbe",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 0,
+      "descriptive_pattern": "repetitive_ticker_result",
+      "manual_observation": "Result-prefixed ticker string repeats ETHFTDOGEUSDT; no saved parsed calls."
+    },
+    {
+      "case_key": "TD_NT.jsonl:rotbench__Turn 1: What is the MET value for an intense workout activity level?",
+      "base_id": "rotbench__Turn 1: What is the MET value for an intense workout activity level?",
+      "benchmark": "rotbench",
+      "source_file": "TD_NT.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1964,
+        "total_tokens": 2988,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.749636862999978,
+      "archive_member": "truncated_attempts/07.json",
+      "original_record_sha256_reconstructed": "7040273389cc88716c1448b170f3456a00c37dab6c43318fac4e97c2d581bce8",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 0,
+      "descriptive_pattern": "repetitive_met_result",
+      "manual_observation": "Result-prefixed MET mapping repeats the extremely high key with increasing numbers; no saved parsed calls."
+    },
+    {
+      "case_key": "TD_AB.jsonl:toolalpaca__Nager.Date__inst6",
+      "base_id": "toolalpaca__Nager.Date__inst6",
+      "benchmark": "toolalpaca",
+      "source_file": "TD_AB.jsonl",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 1024,
+        "prompt_tokens": 1235,
+        "total_tokens": 2259,
+        "completion_tokens_details": null,
+        "prompt_tokens_details": null
+      },
+      "elapsed_seconds": 28.383563171000333,
+      "archive_member": "truncated_attempts/08.json",
+      "original_record_sha256_reconstructed": "7a1b1e36fe5c9ebcc17c1df4dd331b1716ded8e358b7fd248aef07235c729556",
+      "token_evidence_replayed_valid": true,
+      "visible_token_count": 1024,
+      "saved_parser_call_count": 12,
+      "descriptive_pattern": "extended_holiday_listing",
+      "manual_observation": "Extended JSON-like holiday list preceded by prose; no actual tool result is evidenced by the archive."
+    }
+  ],
+  "limitations": [
+    "Raw records for the other 61 complete outcomes were not supplied; their summary fields are checked only through the compact report.",
+    "The official parser was not rerun and official scorer correctness is pending; saved parser outputs were inspected.",
+    "Prompts/tool schemas/ground truth are not included in the archive; no schema-validated correctness label is assigned.",
+    "Five base-task groups underlie eight cases; no independent-case inference or population prevalence estimate.",
+    "Descriptive pattern labels were assigned after inspecting these development outputs; they are not a frozen classifier."
+  ],
+  "decision": "Retain truncations and all incurred token/time cost at the frozen 1024-token cap; do not silently retry, modify prompts/parser or change generation settings. Proceed with Qwen 7B timing; finalize routing/status handling before held-out evaluation."
+}
