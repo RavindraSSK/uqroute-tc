@@ -97,6 +97,16 @@ P08–P09 cost/routing reviews must account for all attempted calls and unavaila
 signals. Protocol §15 retains statuses/costs; Task 4 missing-evidence routing
 remains to be frozen. Full correctness and routing benefit are unmeasured.
 
+The four-model CPU record audit is summarized in
+`../evidence/four_model_static_dev69_record_audit_summary.json`: 276
+development responses, 271 with valid token evidence and 260 complete responses
+eligible for whole-output scores. Uncertainty values are not correctness
+labels. P01/P02 motivate the next pinned official-scoring step with source-file
+qualified identities, while P04–P06 justification and effectiveness remain
+pending. Qwen 1.5B resume-only overhead is now identified explicitly in session
+accounting (protocol §15); cost/routing conclusions still require correctness.
+No new literature review or held-out result is claimed.
+
 These local checkpoints do not upgrade any paper to `Reviewed` or establish a
 new research gap. Before claiming novelty, complete the relevant routing and
 uncertainty reviews and compare question, signal, routing stage, perturbation
@@ -110,6 +120,7 @@ setting, and measured outcomes. Model names alone are not a contribution.
 - Limitations are recorded before using a paper to justify a decision.
 - Closely related work is compared by research question, benchmark, signal, routing stage, and metrics.
 - Entries are revised when later evidence changes their interpretation.
+
 
 
 
