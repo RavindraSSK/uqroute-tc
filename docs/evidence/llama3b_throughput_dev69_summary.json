@@ -111,7 +111,7 @@
     "manifest_matches_frozen_config_and_runner_hashes": true,
     "summary_arithmetic_checked": true,
     "shutdown_error_context": "SIGTERM at 19:27:12 follows finished session at 19:27:11.653022 UTC; AsyncLLM EngineDeadError occurs during teardown after all 69 HTTP 200 responses.",
-    "scope_limit": "Uploaded manifest, summary, session, runtime and server log checked. Raw per-attempt responses/token evidence were not supplied; cannot independently recompute status labels, identify eight truncated cases, or score correctness."
+    "scope_limit": "Original checkpoint checked manifest, summary, session, runtime and server log. Follow-up archive now supplies all eight truncated raw responses: exact pinned token-evidence replay and original-serialization digests checked. Raw responses for 61 complete outcomes and official correctness remain unavailable/unscored."
   },
   "input_artifact_sha256": {
     "manifest (1).json": "2ede204f7c4f192d79a0a684339f53f783cabcdd55a7603ea5e0f3e0ee74f0f9",
@@ -126,5 +126,11 @@
     "Different tokenizers and output lengths prevent treating token/s as a controlled model-speed comparison.",
     "Batch wall and observed allocation window are not kernel-active GPU time or full billing.",
     "Coverage-stratified development sample is not population weighted; held-out evaluation remains pending."
-  ]
+  ],
+  "truncation_follow_up": {
+    "evidence_path": "docs/evidence/llama3b_truncation_dev69_audit.json",
+    "full_truncated_records_checked": 8,
+    "base_task_groups": 5,
+    "official_correctness_scored": false
+  }
 }
