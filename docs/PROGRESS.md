@@ -126,8 +126,9 @@ only if those measurements show the available resources are insufficient.
 |---|---|
 | Qwen 1.5B throughput diagnostic | 69 primary development cases (5 clean / 64 perturbed), 51 canonical groups, 69 nonempty benchmark/file strata, 17 files. Original summary reports 69 complete attempts in 106.46709268199993 s, with 74,949 prompt and 7,164 completion tokens; observed GPU window at least 769.8995201580001 s. Settings/source fingerprints, split membership, arithmetic and 69 HTTP-200 generation requests checked. Raw attempt evidence was not locally replayed; official correctness is unscored. See `docs/evidence/qwen15b_throughput_dev69_summary.json`. |
 | Throughput resume limitation | Later pasted aggregate has 2 sessions, the same 69 attempts/tokens, and 208.10106126399978 s total session wall time. Aggregate rate includes checking overhead; retain the original run for fresh timing. Later per-session processed/resumed records still need inspection. |
-| Task 3 runner and Llama timing | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook at `d031146` produced 69 fresh requests: 61 complete, eight truncated, 508.107638493 s; 76,347 prompt / 18,056 completion tokens. Manifest/session/runtime/log checked, including 69 HTTP 200 responses; raw attempt replay and correctness remain pending. See `docs/evidence/llama3b_throughput_dev69_summary.json`. |
+| Task 3 runner and Llama timing | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook at `d031146` produced 69 fresh requests: 61 complete, eight truncated, 508.107638493 s; 76,347 prompt / 18,056 completion tokens. Manifest/session/runtime/log checked, including 69 HTTP 200 responses; the eight truncations were subsequently replayed as recorded below. Raw replay of 61 complete responses and correctness remain pending. See `docs/evidence/llama3b_throughput_dev69_summary.json`. |
 | Server temperature observation | Fresh Qwen and Llama logs each contain 69 warnings: requested temperature 0.001 is clamped to 0.01 by the server. Frozen request settings are preserved; effective settings must accompany reported results. |
+| Llama truncation evidence replay | Uploaded archive contains the 69-row compact audit and eight full truncated attempts: four ToolAlpaca / four RoTBench, across five base-task groups. All eight finish at length 1,024; pinned token-evidence replay matches every saved dictionary and reconstructed original-record hashes match the audit. Patterns: three holiday lists, two racing lists, one country example, two repetitive result-like outputs. Six have nonempty saved parser outputs, illustrating that extraction does not establish correctness. Truncations consumed 8,192/18,056 completion tokens and 229.56 s measured attempt time. Official correctness and raw replay of the other 61 responses remain pending. See `docs/evidence/llama3b_truncation_dev69_audit.json`. |
 | Benchmark revision | `d5d03180de41eb30a6c796d04a9bfbd9dad85c1d` |
 | Static JSONL files | 17 |
 | Stored rows | 2,718 |
@@ -194,9 +195,12 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Next action
 
-Audit the eight Llama truncations from saved attempt records on a CPU runtime;
-retain their outcomes and the frozen 1,024-token cap. Then measure Qwen 7B and
-the Qwen 14B AWQ fallback on the same selection and requested settings.
+The uploaded Llama saved-attempt archive has now been checked: eight full
+truncated responses reach 1,024 tokens; all eight token-evidence dictionaries
+replay exactly. These are five underlying task groups with extended listings
+or repetitive result-like text. Keep their outcomes and incurred costs.
+Measure Qwen 7B next using `notebooks/UQRoute_TC_Task3_Qwen7B_Throughput.ipynb`,
+then the Qwen 14B AWQ fallback on the same selection and requested settings.
 The Qwen 1.5B and Llama timing artifacts are checked; a later resume must not be reported
 as fresh inference or replace the original speed measurement. Record individual
 session outcomes, setup/observed allocation time, tokens, and current quota.
@@ -210,3 +214,4 @@ remaining analysis and routing decisions are frozen. The five-case pilot did
 not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
+
