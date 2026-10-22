@@ -696,7 +696,24 @@ are in `docs/evidence/llama3b_truncation_dev69_audit.json`.
 Compact evidence: `docs/evidence/llama3b_throughput_dev69_summary.json`.
 The temperature clamp applies to both fresh runs. Their different tokenizers
 and output lengths prevent treating token/s as a controlled model-speed test.
-Qwen 7B and 14B AWQ timing, full-run feasibility and current quota remain pending. Do not
+Qwen 7B's subsequent artifacts establish one fresh 69-request session with
+68 complete and one truncated outcome, 661.167963701 seconds batch wall,
+74,949 prompt / 11,226 completion tokens, and an observed GPU window of at
+least 1,214.435654 seconds including setup. Its 69 case identities match the
+Llama saved audit and all map to primary development groups. Frozen settings,
+summary arithmetic and 69 HTTP 200 responses were checked; its server also
+clamps all requested temperatures from 0.001 to 0.01.
+The supplied truncated ToolAlpaca record in `paraphrase_tool_description.jsonl`
+reaches 1,024 completion tokens; pinned token-evidence replay matches exactly.
+Its output contains a function-like call followed by generated holiday
+result-like content and a trailing summary. The saved parser extracts holiday
+names; official correctness is unscored. The same case truncated for Llama,
+but this paired observation does not establish a causal perturbation effect.
+The 68 complete raw responses were not supplied and their statuses/usage
+cannot be independently rebuilt from raw attempts. Evidence and source hashes:
+`docs/evidence/qwen7b_throughput_dev69_summary.json`.
+
+The 14B AWQ timing, full-run feasibility and current quota remain pending. Do not
 extrapolate population runtime from this unweighted diagnostic mean alone.
 
 ## 16. Statistical analysis
@@ -740,4 +757,5 @@ Qwen development diagnostic and later resume summary; it does not retroactively
 freeze Task 3–4 analysis choices or change frozen Task 1/Task 2 definitions.
 Paper-review status is independent of implementation completion. Jev comparison
 and adaptive sampling remain proposals until separately reviewed and scoped.
+
 
