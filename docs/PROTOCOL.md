@@ -1,5 +1,13 @@
 # UQRoute-TC Evaluation Protocol
 
+## Development-only preparation implementation
+
+The [development export/audit implementation](research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
+is based on commit `05a95bf`. Its trusted exporter filters mixed raw sources
+using the frozen split; the separate auditor receives development-only
+inputs. Synthetic tests do not certify a real full-population run. Existing
+labels, partitions, frozen methods and main-readiness decisions are unchanged.
+
 ## Corrected research-track planning addendum
 
 The proposed [main-experiment protocol](research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)

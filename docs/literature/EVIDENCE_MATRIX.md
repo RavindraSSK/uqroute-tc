@@ -1,5 +1,14 @@
 # UQRoute-TC Literature Evidence Matrix
 
+## Development preparation evidence boundary
+
+The [development pipeline implementation](../research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
+adds synthetic partition-isolation, provenance and audit checks. This is
+engineering evidence, not a full-development measurement, a literature result
+or an uncertainty/routing claim. The trusted export and analysis-access
+boundaries are documented separately; held-out examples/labels are not audit
+inputs. Main evaluation remains subject to the pending protocol decisions.
+
 ## Corrected research-track claim boundary
 
 The [main-experiment proposal](../research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)

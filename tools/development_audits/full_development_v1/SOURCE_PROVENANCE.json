@@ -1,0 +1,34 @@
+{
+  "baseline_commit": "05a95bfb0d18755a834819862da46c014b4ccae2",
+  "source_repository": "RavindraSSK/uqroute-tc",
+  "reviewed_sources": [
+    {
+      "path": "src/uqroute_tc/data/identity.py",
+      "git_blob_sha": "6b44da3d67a8f55b4f42ac6b4f9187e20e2922b5"
+    },
+    {
+      "path": "src/uqroute_tc/data/split.py",
+      "git_blob_sha": "f5d101c6ff3defc34f7b70381dea0e16da328c17"
+    },
+    {
+      "path": "src/uqroute_tc/data/audit.py",
+      "git_blob_sha": "d48acdaf93bce6a883c446cfaa654326c84ea4cb"
+    },
+    {
+      "path": "src/uqroute_tc/inference/throughput.py",
+      "git_blob_sha": "889119df727cc089d3e021d75fccd78ad2aefc7d"
+    },
+    {
+      "path": "docs/research_track_v1/DEVELOPMENT_POPULATION_AUDIT_PLAN_V1.md",
+      "git_blob_sha": "a0806d24f009f1e11e7b99cb723bca942a507ab8"
+    },
+    {
+      "path": "docs/config/task1_single_sample_v1.json",
+      "git_blob_sha": "86d9fbf8276c9283cdb822523a5f668521568bca"
+    }
+  ],
+  "data_access_during_implementation": "Synthetic fixtures only; no split manifest, benchmark records or held-out labels fetched",
+  "identity_module": "Frozen canonical identity logic copied as identity_v1.py",
+  "repair_module": "Previously reviewed research v2 build function, not its 69-case prepare/CLI",
+  "reference_rules": "Previously reviewed 69-case audit_case function, used per case without loosening its original diagnostic CLI"
+}
