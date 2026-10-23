@@ -1,5 +1,16 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
+## Corrected development-generation implementation
+
+The [corrected development workflow](research_track_v1/CORRECTED_DEVELOPMENT_GENERATION_V1.md)
+prepares hash-bound requests from the preserved development audit, supports
+explicit local-server dispatch with write-once intent and response records,
+and replays frozen Task 2 evidence on CPU. Synthetic tests do not establish
+real model feasibility or corrected full-population results. Local source and
+request-plan verification, followed by five-benchmark feasibility for the
+selected model roles, are the next checks. Held-out access and main readiness
+remain disabled; official labels and existing outputs are unchanged.
+
 ## Development-only preparation implementation
 
 A [trusted development exporter and separate full-population auditor](research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
@@ -238,10 +249,11 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Validate the preserved original development audit with the separate population
-policy sidecar, then resolve the shared population/reference and metric rules.
-Build corrected generation/evidence validation before broader development
-runs. Task 3 still requires measured static results, uncertainty metrics,
+The owner supplied a passing 19-test population-policy run and reconciled
+development denominator report after commit `85de782`. Next verify the corrected
+request/evidence workflow locally and prepare the five-benchmark development
+feasibility selection before any model dispatch. Resolve the shared
+population/reference and metric rules before broader development runs. Task 3 still requires measured static results, uncertainty metrics,
 calibration, risk–coverage, group-aware intervals and a failure catalogue;
 Task 4 gate/fallback/recovery implementation remains separate. Held-out
 access stays disabled until final shared evaluation decisions are frozen.

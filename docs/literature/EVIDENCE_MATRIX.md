@@ -1,5 +1,14 @@
 # UQRoute-TC Literature Evidence Matrix
 
+## Corrected generation engineering evidence
+
+The [corrected development workflow](../research_track_v1/CORRECTED_DEVELOPMENT_GENERATION_V1.md)
+adds synthetic tests for prompt identity, frozen evidence, durable request
+intent, resume and CPU replay. These are engineering checks, not literature
+findings, model-performance measurements or routing-benefit evidence. No paper
+review status is upgraded. Real corrected-generation feasibility and broader
+static outcomes remain pending local execution and review.
+
 ## Task 3 evidence reconciliation
 
 The [Task 3 requirements review](../research_track_v1/TASK3_REQUIREMENTS_REVIEW_V1.md)

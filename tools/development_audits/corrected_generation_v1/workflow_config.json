@@ -1,0 +1,18 @@
+{
+  "version": "uqroute-corrected-development-generation-1.0.0",
+  "baseline_commit": "85de7822d768d71548a1fbb7ceb45e65a2a5792e",
+  "main_experiment_ready": false,
+  "held_out_access_enabled": false,
+  "network_on_prepare_or_replay": false,
+  "dispatch_requires_explicit_development_flag": true,
+  "default_selection": "feasibility-five",
+  "selection_seed": 1729,
+  "selections": ["feasibility-five", "coverage", "full-development"],
+  "automatic_retries": 0,
+  "resume": "skip every prior durable intent; never resubmit unknown outcomes",
+  "generation_settings_authority": "docs/config/task1_single_sample_v1.json",
+  "evidence_authority": "frozen Task 2 methods plus recorded behavior-preserving maintenance",
+  "official_scoring": "not performed; references and labels are not generation inputs",
+  "prior_summary_sha256": "1ec20a634aa08a9bf660b0963ea58e8791ebe36d55e13afda445d393df8c0b4d",
+  "prior_inventory_sha256": "99af596ebf79a97bbdb98e89b2f6536e98f5e24880271e90ce31a5eeead454e0"
+}
