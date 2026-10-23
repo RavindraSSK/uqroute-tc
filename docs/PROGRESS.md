@@ -4,8 +4,10 @@
 
 A [trusted development exporter and separate full-population auditor](research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
 have been implemented from commit `05a95bf` and tested on synthetic partitions.
-Real primary-development export/audit and repaired-coverage measurements remain
-pending local execution and review. No model or held-out analysis is performed
+The original local primary-development audit retained 1,754 rows / 140 groups,
+with 1,728 construction candidates and 26 retained blocks. The subsequent
+diagnostic replay classified 12 missing declarations and 14 conflicting
+schemas; candidate eligibility was unchanged. No model or held-out analysis is performed
 by the auditor; the exporter necessarily reads mixed source bytes to filter
 partitions. Official references and the existing split remain unchanged.
 
@@ -33,7 +35,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Four-model timing and uploaded 276-record audit checked; official correctness and broader evaluation pending |
+| Task 3 — Robustness study | Development construction audit complete; corrected broader runs, uncertainty effectiveness, final static evaluation and figures pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -101,6 +103,15 @@ Every completed component must include:
 - [x] Approve and publish the parser and uncertainty freeze in `docs/config/task2_uncertainty_v1.json` at commit `b03ddf4`. It pins the implementation fingerprints, score formulas, format eligibility, and unavailable-evidence rules. The full patched suite passed 53 tests on Windows. ReAct duplicate JSON keys are rejected; Task 3–4 analysis, calibration, routing, and recovery decisions remain draft.
 
 ## Task 3 — Robustness study
+
+The [requirements review](research_track_v1/TASK3_REQUIREMENTS_REVIEW_V1.md)
+maps repository requirements to evidence at `d8f70b6`. The
+[development denominator proposal](research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
+adds a separate CPU sidecar; no final analysis freeze or inference is enabled.
+
+- [x] Complete the original primary-development construction/reference audit with all rows retained.
+- [x] Diagnose all 26 construction blocks without changing schemas or official labels.
+- [ ] Run and review the separate development denominator sidecar on the preserved original audit.
 
 - [ ] Measure representative per-model throughput and available GPU capacity before full inference.
 - [x] Implement the separate development-only throughput runner; user verified 68 tests and Ruff on Windows.
@@ -225,7 +236,20 @@ decisions are frozen.
 
 Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen before splitting. Report those clean scores descriptively. Use development groups for tuning and reserve unseen perturbed test cases for confirmatory analysis.
 
-## Next action
+## Current next action
+
+Validate the preserved original development audit with the separate population
+policy sidecar, then resolve the shared population/reference and metric rules.
+Build corrected generation/evidence validation before broader development
+runs. Task 3 still requires measured static results, uncertainty metrics,
+calibration, risk–coverage, group-aware intervals and a failure catalogue;
+Task 4 gate/fallback/recovery implementation remains separate. Held-out
+access stays disabled until final shared evaluation decisions are frozen.
+
+## Earlier diagnostic next action (historical)
+
+The following describes the earlier saved-output scoring workflow, not
+a claim that those outputs evaluate the corrected research adapter.
 
 Run `notebooks/UQRoute_TC_Task3_Four_Model_Official_Scoring.ipynb` on CPU.
 Use the pinned benchmark loader, parser and deterministic scorer for all 276

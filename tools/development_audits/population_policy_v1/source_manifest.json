@@ -1,0 +1,11 @@
+{
+  "baseline_commit": "d8f70b64f0c2cc3e4757fe0c4ffd2387f8200bd8",
+  "scope": "Source Git identities only; no split or benchmark data",
+  "source_git_blobs": {
+    "docs/PROJECT_TASKS.md": "78de67ec410195c516438aa0d38c88cd3e8f0e23",
+    "docs/PROGRESS.md": "e61074e5037953b9f9cecb0767c89c09602e93c8",
+    "docs/PROTOCOL.md": "60ca2e1ac7015d7232669af3b5d584bc25777929",
+    "docs/research_track_v1/DEVELOPMENT_AUDIT_FINDINGS_V1.md": "a1a6d1c07649e2e38e2094063a837f61ef31d950",
+    "docs/research_track_v1/main_experiment_plan_v1.json": "2379b7d47d8b8b54bc4492943e2e45a732426ff1"
+  }
+}

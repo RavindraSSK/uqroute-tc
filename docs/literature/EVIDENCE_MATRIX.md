@@ -1,5 +1,15 @@
 # UQRoute-TC Literature Evidence Matrix
 
+## Task 3 evidence reconciliation
+
+The [Task 3 requirements review](../research_track_v1/TASK3_REQUIREMENTS_REVIEW_V1.md)
+distinguishes completed preparation from pending robustness results. The
+[development denominator sidecar](../research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
+is engineering validation only. Existing literature review statuses are not
+upgraded; no routing, uncertainty-effectiveness or execution-success claim is
+established. The original development construction audit is recorded in
+DEVELOPMENT_AUDIT_FINDINGS_V1.md; final evaluation remains blocked.
+
 ## Development preparation evidence boundary
 
 The [development pipeline implementation](../research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
