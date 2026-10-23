@@ -1,0 +1,86 @@
+{
+  "config_version": "uqroute-analysis-policy-1.0.0",
+  "status": "implemented_development_diagnostics_only",
+  "main_experiment_ready": false,
+  "scope": "Eight saved research-prompt-v2 development smoke responses; no new inference or held-out access",
+  "benchmark_revision": "d5d03180de41eb30a6c796d04a9bfbd9dad85c1d",
+  "allowed_inputs": {
+    "audit_sha256": "669eee55ea13f2e683d5fa7bdf914a62dc96b4603df5f3a32c1c0b5f54ad19e9",
+    "archive_sha256": "ae5f624b23094de957f1642eca3e9f45d8df26a9f5b33ee011d143e541d740d8"
+  },
+  "official_labels": {
+    "immutable": true,
+    "primary_name": "official_reference_compliance",
+    "primary_benchmarks": [
+      "apibank",
+      "bfcl_v3",
+      "rotbench",
+      "toolalpaca"
+    ],
+    "separate_relevance_benchmarks": [
+      "tooleyes"
+    ],
+    "retain_all_benchmark_supplement": true,
+    "ambiguity_exclusions": false,
+    "scorer_methods": {
+      "apibank": "exact_match",
+      "bfcl_v3": "exact_match",
+      "rotbench": "rule_based",
+      "toolalpaca": "exact_match",
+      "tooleyes": "name_match"
+    },
+    "decision_timing": "Label stratification selected after development smoke inspection; no held-out outcomes inspected. Not a preregistration."
+  },
+  "diagnostics": {
+    "label_effect": "none",
+    "scope": "shallow declared-argument diagnostics, not full JSON Schema validation or execution validation",
+    "missing_required_metadata": "unknown",
+    "duplicate_names": "retain_every_occurrence_and_report_ambiguity",
+    "type_aliases": {
+      "str": "string",
+      "int": "integer",
+      "float": "number",
+      "bool": "boolean",
+      "dict": "object",
+      "list": "array"
+    },
+    "coerce_values": false,
+    "datetime_normalization": false,
+    "case_insensitive_reference_matching": false,
+    "invented_aliases": false,
+    "unknown_schema_keyword_handling": "full_schema_validity_not_assessed",
+    "raw_action_markers": "line-based lower-bound diagnostic; not a replacement parser"
+  },
+  "uncertainty": {
+    "smoke_alignment_validated": false,
+    "smoke_scores_eligible": false,
+    "unavailable_score_value": null,
+    "impute_missing": false,
+    "ranking_population": "eligible responses only, with conditional denominator reported",
+    "routing_execution_enabled": false,
+    "missing_score_gate_action": "pending_full_protocol_freeze"
+  },
+  "reference_review": {
+    "source": "reference_flags_v1.json",
+    "review_scope": "post_hoc_development_review",
+    "unreviewed_cases": "unknown",
+    "change_official_scores": false,
+    "cost_latency_objective": "do_not_infer_user_objective_from_reference_preference",
+    "sensitivity_exclusion_policy": "none",
+    "ambiguity_flag_names": [
+      "reference_latest_intent_conflict",
+      "reference_year_not_established_in_visible_dialogue",
+      "cost_objective_not_explicit",
+      "advertised_equivalent_tool_reference_preference",
+      "alternative_tool_semantics_unverified"
+    ]
+  },
+  "pending_before_main_experiments": [
+    "Full corrected population and grouped exclusion/pairing rules",
+    "Systematic development-only reference and cost/latency-objective audit",
+    "Four-model corrected inference with frozen evidence validation",
+    "Gate behavior for missing uncertainty and fallback-output acceptance",
+    "Development-only threshold selection, baselines, primary metrics and grouped confidence intervals",
+    "Timing/cost accounting configuration and repeated-sampling overhead"
+  ]
+}

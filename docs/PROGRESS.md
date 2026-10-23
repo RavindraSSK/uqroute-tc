@@ -1,5 +1,26 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
+## Development-only preparation implementation
+
+A [trusted development exporter and separate full-population auditor](research_track_v1/DEVELOPMENT_PIPELINE_V1.md)
+have been implemented from commit `05a95bf` and tested on synthetic partitions.
+Real primary-development export/audit and repaired-coverage measurements remain
+pending local execution and review. No model or held-out analysis is performed
+by the auditor; the exporter necessarily reads mixed source bytes to filter
+partitions. Official references and the existing split remain unchanged.
+
+## Corrected research-track planning
+
+A [main-experiment proposal](research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)
+and [full-development audit design](research_track_v1/DEVELOPMENT_POPULATION_AUDIT_PLAN_V1.md)
+have been prepared from commit `344234f`. These are planning artifacts, not
+a completed full-development audit, an implemented main-experiment runner or
+a final protocol freeze. The existing 69-case corrected diagnostic and
+eight-response smoke do not certify the full 140-group development inventory.
+Reference labels and the grouped split are unchanged; ToolEyes relevance and
+cost/latency-preference interpretation remain distinct. No held-out record is
+needed for the supplied plan/configuration checks.
+
 ## Current position
 
 Task 1 and Task 2 are complete within their recorded scope. The benchmark,

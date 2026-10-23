@@ -1,0 +1,39 @@
+{
+  "repository": "RavindraSSK/uqroute-tc",
+  "baseline_commit": "344234f156dd4ea2fc1f6713330cf02ded38d5f1",
+  "access_scope": "Source code, configuration and documentation only; no split manifest, benchmark records, held-out examples or held-out labels fetched.",
+  "sources": [
+    {
+      "path": "docs/PROTOCOL.md",
+      "git_blob_sha": "67a4a27a563cb7f35421863fd18d94cd07e4f421"
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "git_blob_sha": "258a737b5f8f62bb7861e23ced9e6d11147bf2d7"
+    },
+    {
+      "path": "docs/config/task1_single_sample_v1.json",
+      "git_blob_sha": "86d9fbf8276c9283cdb822523a5f668521568bca"
+    },
+    {
+      "path": "docs/config/task2_uncertainty_v1.json",
+      "git_blob_sha": "2bd6ae76ee811a0d550682235ee4b22ace844ed5"
+    },
+    {
+      "path": "docs/config/task2_repeated_sampling_v1.json",
+      "git_blob_sha": "24aeb25e5830b0b2760a83fd7c99727018aad674"
+    },
+    {
+      "path": "tools/development_audits/analysis_policy_v1/analysis_config_v1.json",
+      "git_blob_sha": "10cd07a1481e3814257d05f0538e037c20118a02"
+    },
+    {
+      "path": "tools/development_audits/development_reference_audit_v1/audit_rules_v1.json",
+      "git_blob_sha": "93310d631e3340b7db5faada0d22b2f100f83851"
+    },
+    {
+      "path": "docs/literature/EVIDENCE_MATRIX.md",
+      "git_blob_sha": "ebfb2ea45a8545428990bace3ae91794e8d32014"
+    }
+  ]
+}

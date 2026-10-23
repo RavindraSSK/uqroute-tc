@@ -1,0 +1,24 @@
+{
+  "version": "uqroute-development-reference-audit-1.0.0",
+  "allowed_audit_sha256": "669eee55ea13f2e683d5fa7bdf914a62dc96b4603df5f3a32c1c0b5f54ad19e9",
+  "allowed_candidates_sha256": "498728420b2bf837f2b54d215be30fde31d766c7205632e5fd46de091b9ae365",
+  "cost_objective_regex": "\\b(?:cost[- ]effective|most economical|cheapest|least expensive|lowest[- ]cost|minimi[sz]e (?:the )?cost|(?:reduce|save) (?:the )?cost)\\b",
+  "latency_objective_regex": "\\b(?:fastest|quickest|lowest[- ]latency|shortest (?:response )?time|minimi[sz]e (?:the )?(?:latency|response time)|(?:reduce|avoid) (?:the )?latency)\\b",
+  "objective_source": "Explicit embedded user turns plus system instruction text outside JSON tool arrays",
+  "no_match_interpretation": "not_detected_not_proven_absent",
+  "advertised_equivalence_rule": "Identical metadata-stripped description and full parameter schema; no execution equivalence claim",
+  "reference_checks": [
+    "literal tool-name availability",
+    "argument-key membership for at least one duplicate occurrence",
+    "duplicate-name multiplicity",
+    "date year literal in explicit user turns",
+    "latest explicit HH:MM AM/PM range versus from_time/to_time",
+    "declared minimum cost/latency within syntactically identical advertised groups"
+  ],
+  "outcomes_used": false,
+  "changes_official_labels": false,
+  "exclusions": false,
+  "held_out_access": false,
+  "population": "69 selected corrected development cases only",
+  "decision_timing": "Rules developed after earlier development smoke review, then applied without reading model outputs; not preregistered."
+}
