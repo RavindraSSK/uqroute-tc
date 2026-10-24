@@ -1,5 +1,24 @@
 # UQRoute-TC Evaluation Protocol
 
+## Corrected development-generation boundary
+
+The [corrected development generation and replay workflow](research_track_v1/CORRECTED_DEVELOPMENT_GENERATION_V1.md)
+binds corrected candidate prompt hashes, frozen model/generation settings and
+source fingerprints. Preparation and replay are CPU-only; development dispatch
+is an explicit separate action. Write-once intents prevent automatic retries
+of unknown outcomes, and raw responses precede evidence validation. This adds
+no official scores, gate, recovery policy, calibration rule or held-out freeze.
+
+## Development construction denominator proposal
+
+The [development population policy](research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
+reconciles preserved development audit outputs without rerunning repairs or
+reading raw benchmark/split data. Construction coverage, released-reference
+compliance, ToolEyes relevance and overlapping reward objectives remain
+distinct. This proposal does not select model-outcome denominators, thresholds
+or a final held-out freeze; official labels and frozen Task 1/2 methods remain
+unchanged.
+
 ## Development-only preparation implementation
 
 The [development export/audit implementation](research_track_v1/DEVELOPMENT_PIPELINE_V1.md)

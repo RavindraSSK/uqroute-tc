@@ -1,0 +1,29 @@
+{
+  "version": "uqroute-development-population-policy-1.0.0",
+  "status": "development_analysis_proposal_not_final_freeze",
+  "baseline_commit": "d8f70b64f0c2cc3e4757fe0c4ffd2387f8200bd8",
+  "main_experiment_ready": false,
+  "inference_enabled": false,
+  "held_out_access_enabled": false,
+  "official_labels_immutable": true,
+  "ambiguity_exclusions": false,
+  "source_inventory": {"population": "primary", "partition": "development", "rows": 1754, "groups": 140, "candidates": 1728, "blocked": 26},
+  "original_audit_attestation_sha256": "77071dc342a19b0f32995fed9f9f9e25840294e633ef5368830f07a3ccf3ccb9",
+  "panels": {
+    "official_reference_compliance": ["apibank", "bfcl_v3", "rotbench", "toolalpaca"],
+    "tooleyes_relevance": ["tooleyes"],
+    "reward_preference_source_files": ["CD.jsonl", "CD_AB.jsonl", "CD_NT.jsonl", "TD.jsonl", "TD_AB.jsonl", "TD_NT.jsonl"]
+  },
+  "rules": {
+    "blocked_rows": "retain_in_source_inventory_and_coverage_denominator; no_generated_correctness_label",
+    "construction_candidate": "request_construction_only; not_inference_or_score_approval",
+    "reference_review_signals": "retain_flagged_rows; no_reference_corrections_or_automatic_exclusions",
+    "unresolved_reference_audit": "retain_with_unassessed_objective_status; not_semantic_clearance",
+    "pairing": "same_canonical_group_with_exactly_one_clean_anchor; retain_unconstructed_pairs",
+    "paired_performance": "future_joint_model_outcome_denominator_separate_from_construction_pairs",
+    "objective_status": "cost_and_latency_booleans_from_completed_bounded_audit; nondetection_not_absence",
+    "reward_overlap": "overlaps_official_reference_panel; never_add_to_panel_totals",
+    "score_availability": "not_assigned_before_inference; no_automatic_use_of_construction_count_for_AUROC",
+    "missing_outcomes": "report_attempts_and_missing_errors_separately; future_metric_policy_requires_freeze"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "baseline_commit": "85de7822d768d71548a1fbb7ceb45e65a2a5792e",
+  "source_files": {
+    "docs/config/task1_single_sample_v1.json": {
+      "sha256_lf": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+      "git_blob": "86d9fbf8276c9283cdb822523a5f668521568bca"
+    },
+    "docs/config/task2_implementation_maintenance_v1.json": {
+      "sha256_lf": "42a89a97de8250404240608a24a6e9381bc2144b6affade35d785a52b001e927",
+      "git_blob": "848915c2b42371f2e9c08ac8ab2e0c9994803d83"
+    },
+    "docs/config/task2_uncertainty_v1.json": {
+      "sha256_lf": "dd006a8e8a229177f296ad1a2203debf18a6ba4dc159da911378c65c83dc8eda",
+      "git_blob": "2bd6ae76ee811a0d550682235ee4b22ace844ed5"
+    },
+    "src/uqroute_tc/inference/pilot.py": {
+      "sha256_lf": "b7c1c56c035dab08d077e42021c45052e81f9b4558b4224ca36914d055f84aad",
+      "git_blob": "0de8cc92fbac3ad723fda9c287fc9ef306c485e8"
+    },
+    "src/uqroute_tc/parsing/canonical.py": {
+      "sha256_lf": "64c9af5dd93c957ec88d26b736847213bd56f1232a2f603e1025037b42bbb80d",
+      "git_blob": "b65e395f49d8128277c890b2ed6c3ce082719de9"
+    },
+    "src/uqroute_tc/uncertainty/alignment.py": {
+      "sha256_lf": "8a2832836da6e20906c74551a17c34814ef4c6e3bab9fd2f56cbe2874e2c2f1c",
+      "git_blob": "27dea6e70ade2c223558be71ed77bdd40c04cebf"
+    },
+    "src/uqroute_tc/uncertainty/single.py": {
+      "sha256_lf": "6ca9b72fad4b306fd1bdbfaad4058715ea5eaa9362c923239a63dfdce6c4f6f9",
+      "git_blob": "10087738fa1c4547f9f606df267ec612514fb866"
+    },
+    "tools/development_audits/full_development_v1/official_runner.py": {
+      "sha256_lf": "e305a816c96ed574ad18ca90871775721fd79fcf3533a60077b26d1fdeef20d8",
+      "git_blob": "fffd39bbbfd7ed6d9619e1b31a38dee2a3173362"
+    },
+    "tools/development_audits/population_policy_v1/plan_population.py": {
+      "sha256_lf": "c3224b9e480e74809b1ef65dd9247f495deabbe814f759b92a83e28ddb2f0be9",
+      "git_blob": "b1a8d7da4dda1da8706b156f1acedce070309257"
+    },
+    "tools/development_audits/population_policy_v1/population_policy_v1.json": {
+      "sha256_lf": "d3168b2fb511d71c2867f2badd2f8d1cfb2381ccfb911bf93cef002e4c3f322b",
+      "git_blob": "90daf00c1c81717d0b5a8b073f1ff3928a90b808"
+    }
+  }
+}
