@@ -2,7 +2,7 @@
 
 ## Progress update — 2026-10-24
 
-Verified repository milestone: `6dfed20` (`6dfed208793f0061b79dba76359b91d6ea484fcf`),
+Verified repository milestone: `65058a0` (`65058a0cce3867c10fe5ede19114a9c06a777f22`),
 committed and pushed by the owner; the supplied Git status was clean.
 This update separates verified local results from prepared implementation
 packages and experiments that have not yet run.
@@ -15,7 +15,9 @@ packages and experiments that have not yet run.
 | CPU evidence replay | All five raw-response validations reproduced; whole-output eligibility 5/5, meaningful-token eligibility 4/5. ToolAlpaca retains its frozen meaningful-token exclusion. Owner also replayed the imported archive locally. | Verified; eligibility is not correctness |
 | Development-only reference scoring | Four reference-compliance rows: APIBank 1/1, BFCL 1/1, RoTBench 0/1, ToolAlpaca 0/1; combined 2/4. ToolEyes relevance is separate: 0/1. | Locally measured five-case diagnostic; no population-accuracy claim |
 | Scoring implementation and Windows portability | `6dfed20`; owner verified 31 tests with one Windows symlink skip after the relative-path fixes; 34 generation regression tests also passed. | Committed and pushed |
-| Bounded development coverage package | Preparation helper, context preflight, complete Qwen 1.5B notebook and local instructions supplied; package-author CPU checks report 25 new and 34 generation tests passing. | Prepared only; owner integration, real preparation, tokenizer preflight and GPU execution not yet supplied |
+| Bounded development coverage implementation | Owner verified 25 new CPU tests and 34 generation tests; six files committed and pushed as `65058a0`. | Locally verified and published |
+| Corrected Qwen 1.5B coverage run | 69 cases / 55 groups: five clean and 64 perturbed; all 69 complete. Context preflight passed; whole-output eligibility 69/69 and meaningful-token eligibility 39/69. | GPU generation and uploaded raw-evidence validation verified; owner local coverage replay/scoring pending |
+| Coverage CPU-scoring package | Separate evidence-bound adapter and aggregate review supplied; package-author checks: 37 new tests, 31 unchanged five-case scoring tests and 34 generation tests pass. | Prepared only; owner import, tests, reference scores and commit not yet supplied |
 | Final Task 3 results and Task 4 policies | Broader corrected runs, uncertainty effectiveness, calibration, risk–coverage, group-aware intervals, failure catalogue, routing and recovery remain outstanding. | Not complete; held-out access remains disabled |
 
 The corrected feasibility batch recorded 4.731887112 seconds of session wall
@@ -33,15 +35,45 @@ preference was not assessed. The official scorer results and original labels
 are retained; no ambiguity exclusions, reference corrections or held-out
 evaluation were applied.
 
-The next package proposes one constructed candidate per available
-benchmark/source-file stratum, using the existing outcome-independent hash
-selector. There are at most 85 requests; the actual count remains unmeasured
-until local preparation. The prior five clean cases are deliberately repeated
-in a separate run, never retried or pooled with the earlier outcomes. This is
-a coverage diagnostic, not a paired robustness design or a representative
-accuracy estimate. The notebook must stop all dispatch if any rendered prompt
-plus the frozen completion cap exceeds context. Available quota and broader
-runtime feasibility still require review.
+The owner prepared and ran the bounded coverage selection: one constructed
+candidate per available benchmark/source-file stratum, selected using the
+existing outcome-independent hash rule. The measured plan contains 69 requests
+across 55 groups: APIBank 17, BFCL 12, RoTBench 17, ToolAlpaca 17 and ToolEyes six.
+All 26 original construction blocks remain retained. Sixteen possible
+benchmark/source combinations have no construction candidate; they are not
+silently treated as completed strata. The five clean cases deliberately repeat
+the earlier feasibility selection in a separate run, never retried or pooled.
+Only one of the 64 selected perturbed cases has its clean anchor selected.
+This is a coverage diagnostic, not a paired robustness design or a
+representative accuracy estimate.
+
+The coverage notebook passed context preflight: maximum rendered prompt length
+4,633 tokens, plus the frozen 1,024-token completion allowance, within the
+8,192-token context. No prompts were truncated and no rows were dropped.
+Generation completed all 69 requests with zero resumed visits, no unfinished
+sessions and no missing usage counters. Recorded usage is 88,220 prompt and
+3,519 completion tokens (91,739 total); session wall is 55.488206979 seconds
+and summed request elapsed time is 54.439490916 seconds. These exclude complete
+setup/loading/idle allocation and do not measure GPU active time or monetary
+cost. Remaining GPU quota is unrecorded.
+
+The uploaded coverage ZIP passes integrity checks. All 293 archive members
+are bound by the new scoring policy; all 279 recorded outcome-file hashes
+reconcile and all 69 request hashes and frozen response validations reproduce.
+Whole-output eligibility is 69/69. Meaningful-token eligibility is 39/69:
+APIBank 5/17, BFCL 12/12, RoTBench 16/17, ToolAlpaca 0/17 and ToolEyes 6/6.
+The 30 unavailable cases comprise 17 existing ToolAlpaca scope exclusions,
+five APIBank no-parsed-call outcomes, seven APIBank format exclusions and one
+RoTBench output with two ReAct actions. The generic saved alignment message is
+preserved; new diagnostic categories explain the exclusions without modifying
+frozen methods or scores. Ineligibility is not an official correctness label.
+
+Coverage reference scoring remains pending locally. The supplied separate
+adapter will retain 63 reference-compliance cases and six ToolEyes relevance
+cases, including alignment-unavailable outcomes. Reference flags and explicit
+cost/latency-objective diagnostics remain distinct; preference success is not
+assessed. No coverage accuracy, AUROC/AP, calibration, risk–coverage result,
+routing benefit or Task 3 completion is asserted.
 
 ## Corrected development-generation implementation
 
@@ -50,7 +82,8 @@ prepares hash-bound requests from the preserved development audit, supports
 explicit local-server dispatch with write-once intent and response records,
 and replays frozen Task 2 evidence on CPU. Synthetic tests do not establish
 corrected full-population results. Local source/request-plan verification and
-a five-benchmark corrected Qwen 1.5B run have now passed, as recorded above.
+the corrected Qwen 1.5B five-case feasibility and 69-case coverage generation/
+evidence checks have now passed, as recorded above.
 Corrected feasibility for Llama 3B, Qwen 7B and the fallback, and broader static
 runs, remain pending; the earlier serving pilots are distinct evidence.
 Held-out access and main readiness remain disabled; official labels and existing outputs are unchanged.
@@ -91,7 +124,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Construction audit and denominator reconciliation verified; corrected Qwen 1.5B five-case generation/replay/scoring verified; bounded coverage package prepared; broader runs and effectiveness analysis pending |
+| Task 3 — Robustness study | Development audit/reconciliation, corrected Qwen five-case scoring and 69-case coverage generation/evidence review verified; local coverage scoring, other corrected model runs and effectiveness analysis pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -165,7 +198,8 @@ maps repository requirements to evidence at `d8f70b6`. The
 [development denominator proposal](research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
 adds a separate CPU sidecar. Its reconciliation is verified; no final analysis
 freeze or held-out access is enabled. Corrected development-only inference has
-been explicitly run for the five-case Qwen feasibility selection.
+been explicitly run for the five-case Qwen feasibility and 69-case coverage
+selections.
 
 - [x] Complete the original primary-development construction/reference audit with all rows retained.
 - [x] Diagnose all 26 construction blocks without changing schemas or official labels.
@@ -175,9 +209,13 @@ been explicitly run for the five-case Qwen feasibility selection.
 - [x] Reproduce all five saved response validations and complete the owner's local CPU replay; whole-output eligibility 5/5 and meaningful-token eligibility 4/5.
 - [x] Implement and locally verify the development-only reference-scoring adapter, including Windows relative-path regression coverage; publish at `6dfed20`.
 - [x] Record the five-case reference-compliance result (2/4) separately from ToolEyes relevance (0/1), without changing labels or applying exclusions.
-- [ ] Integrate and locally verify the supplied bounded coverage package; the package-author 25-test result is not owner execution evidence.
-- [ ] Prepare and review the measured coverage report, manifest hash, intentional repeated cases, pairing limits and current GPU quota.
-- [ ] Pass the pinned-tokenizer context preflight, run the bounded corrected Qwen coverage selection and review a new immutable evidence archive.
+- [x] Integrate and locally verify bounded coverage preparation: owner supplied 25 new tests and 34 generation tests passing; implementation committed and pushed as `65058a0`.
+- [x] Prepare and review the measured 69-case / 55-group coverage report, approved manifest hash, five intentionally repeated clean cases and pairing limits.
+- [x] Pass the pinned-tokenizer context preflight, complete all 69 corrected Qwen coverage requests and export a new evidence archive.
+- [x] Verify the uploaded coverage archive, 279 recorded outcome-file hashes and all 69 request hashes/frozen response validations; document the 30 meaningful-token exclusions without changing methods.
+- [ ] Import and locally verify the separate coverage CPU-scoring package; package-author 37/31/34 tests are not owner execution evidence.
+- [ ] Replay coverage evidence on the owner's CPU and score against unchanged development references; report 63 reference-compliance cases separately from six ToolEyes relevance cases.
+- [ ] Review coverage reference flags, explicit-objective diagnostics, uncertainty missingness and actual per-benchmark scores before broader claims.
 - [ ] Verify corrected five-benchmark feasibility for the other selected model roles before their broader corrected runs.
 
 - [ ] Measure representative per-model throughput and available GPU capacity before full inference.
@@ -235,7 +273,11 @@ only if those measurements show the available resources are insufficient.
 | Corrected five-case reference scores | Owner local scorer output: APIBank and BFCL pass; RoTBench and ToolAlpaca fail reference compliance, yielding 2/4. ToolEyes relevance is reported separately at 0/1. No bounded reference flags detected; cost/latency preference unassessed; no label changes or ambiguity exclusions. This result is not comparable to the earlier four-model BFCL-only five-case pilot as a model-performance trend. |
 | Corrected scoring verification | Owner supplied 31 tests passing with one Windows symlink skip and clean staged whitespace checks; four source/configuration/documentation files committed and pushed as `6dfed20`. Generation regression suite: 34 tests passed. See `research_track_v1/CORRECTED_DEVELOPMENT_SCORING_V1.md`. |
 | Development denominator reconciliation | Owner report: 1,754 rows / 140 groups, 1,728 constructed candidates / 26 blocks; 1,538 reference-panel inventory rows (1,512 candidates) and 216 separate ToolEyes relevance rows. Reward overlap: 498 rows, 486 assessed and 12 construction-blocked; 61 cost-objective and 61 latency-objective detections, with 364 objective-nondetected rows. Flags do not exclude cases and detection is not semantic adjudication. All 1,614 perturbed rows have a clean anchor; 1,588 pairs have both prompts constructed. Owner population-policy suite: 19 tests pass. |
-| Bounded coverage package | Supplied from baseline `6dfed20`: at most 85 hash-selected benchmark/source-file strata, existing frozen generation methods, context preflight and a complete Colab notebook. Package-author verification: 25 new CPU tests and 34 generation regression tests pass. Actual coverage counts, local verification, GPU execution and official coverage scores remain pending. |
+| Bounded coverage implementation and plan | Owner verified 25 new CPU tests plus 34 generation regression tests, then committed/pushed six files as `65058a0`. Prepared plan: 69 cases / 55 groups, five clean / 64 perturbed; per-benchmark counts 17 APIBank, 12 BFCL, 17 RoTBench, 17 ToolAlpaca and six ToolEyes. All 26 blocks remain retained. Only one selected perturbed case has its selected clean anchor; this is not a paired robustness design. |
+| Corrected 69-case coverage evidence | Archive SHA256 `700c65c545d5965d72e0f6c9796f589a69ebd8080a924562fca1c832048155f8`; prepared manifest SHA256 `a00a33c9bbc40a15acb02a3a26ebcfdcb6bfdf00aa0dcdde39544e658f075ffb`. ZIP integrity and 279 recorded outcome hashes checked; all 69 request hashes and frozen response validations reproduced. All 69 complete; 69 whole-output eligible, 39 meaningful-token eligible, no missing usage, resumed visits or unfinished sessions. Raw evidence review is complete; owner local coverage replay/reference scoring remains pending. |
+| Coverage meaningful-token exclusions | 17 ToolAlpaca scoped exclusions, five APIBank no-parsed-call outcomes, seven APIBank frozen-format exclusions and one RoTBench multi-action response. Saved messages and frozen methods remain unchanged; exclusion is not an incorrect-call label. The repeated clean APIBank output changes format from the prior run and is now alignment-ineligible; this does not establish an implementation regression. |
+| Coverage context/runtime observation | Maximum rendered prompt 4,633 tokens; frozen completion allowance 1,024, context 8,192, no truncation or dropped prompts. Usage 88,220 prompt / 3,519 completion / 91,739 total tokens; session wall 55.488206979 s, request elapsed sum 54.439490916 s. Setup/loading/idle allocation and monetary cost are not included; provider quota remains unrecorded. |
+| Coverage scoring package status | Separate archive-bound development adapter supplied from `65058a0`; package-author synthetic CPU checks: 37 new scoring, 31 unchanged five-case scoring and 34 generation tests pass. Proposed output retains 63 reference-compliance and six separate ToolEyes relevance cases; actual scores, flags, owner checks and publication remain pending. No held-out access or preference-success scoring is enabled. |
 | Qwen 1.5B throughput diagnostic | 69 primary development cases (5 clean / 64 perturbed), 51 canonical groups, 69 nonempty benchmark/file strata, 17 files. Original summary reports 69 complete attempts in 106.46709268199993 s, with 74,949 prompt and 7,164 completion tokens; observed GPU window at least 769.8995201580001 s. Settings/source fingerprints, split membership, arithmetic and 69 HTTP-200 generation requests checked. Raw attempt evidence was not locally replayed; official correctness is unscored. See `docs/evidence/qwen15b_throughput_dev69_summary.json`. |
 | Throughput resume reconciliation | The uploaded CPU audit includes Qwen 1.5B's original 69-processed / zero-resumed session (106.467092682 s) and later zero-processed / 69-resumed session (101.633968582 s). Aggregate wall is 208.101061264 s. Retain original fresh inference speed and report resume checking as additional overhead. |
 | Task 3 runner and Llama timing | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook at `d031146` produced 69 fresh requests: 61 complete, eight truncated, 508.107638493 s; 76,347 prompt / 18,056 completion tokens. Manifest/session/runtime/log checked, including 69 HTTP 200 responses; the eight truncations were subsequently replayed as recorded below. Raw replay of 61 complete responses and correctness remain pending. See `docs/evidence/llama3b_throughput_dev69_summary.json`. |
@@ -310,21 +352,24 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Integrate and CPU-test the supplied bounded development coverage package, then
-prepare its plan from the preserved original audit and reconciled denominators.
-Review the measured stratum count, manifest hash, deliberate five-case overlap,
-pairing limitations, context preflight and available GPU quota before dispatch.
-Preserve the completed feasibility and scoring folders. Do not repoint the
-five-case scorer or edit its evidence fingerprints to accept coverage results;
-a separate coverage-evidence-bound scoring step follows generation review.
+Import the supplied coverage CPU-scoring package and run its 37 tests, the
+unchanged five-case scorer's 31 tests and the 34 generation regression tests
+on the owner's computer. Import the reviewed coverage ZIP into a fresh ignored
+directory, replay it locally on CPU, then score against the unchanged approved
+development reference sidecar. Preserve all prior plans, evidence and outputs.
+Keep the 63 reference-compliance cases separate from six ToolEyes relevance
+cases; retain all alignment-unavailable rows in the official denominator.
+Review reference ambiguity flags, explicit-objective diagnostics and uncertainty
+missingness before interpreting actual scores. Do not edit the five-case
+scorer's fingerprints to accept coverage evidence.
 
-After the bounded coverage diagnostic, complete corrected feasibility for the
-remaining model roles and schedule broader development runs from measured
-capacity. Finalize the shared population/reference, metric and calibration
-rules before main-result claims. Task 3 still requires static model outcomes,
-uncertainty metrics, calibration, risk–coverage, group-aware intervals and a
-failure catalogue. Task 4 gate/fallback/recovery implementation remains separate.
-Held-out access stays disabled until the final shared evaluation freeze.
+Then complete corrected feasibility for the remaining model roles and plan
+broader development runs from measured capacity and available quota. Finalize
+the shared population/reference, metric and calibration rules before main-result
+claims. Task 3 still requires broader static model outcomes, uncertainty metrics,
+calibration, risk–coverage, group-aware intervals and a failure catalogue.
+Task 4 gate/fallback/recovery implementation remains separate. Held-out access
+stays disabled until the final shared evaluation freeze.
 
 ## Earlier diagnostic next action (historical)
 
