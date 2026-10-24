@@ -1,15 +1,59 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
+## Progress update — 2026-10-24
+
+Verified repository milestone: `6dfed20` (`6dfed208793f0061b79dba76359b91d6ea484fcf`),
+committed and pushed by the owner; the supplied Git status was clean.
+This update separates verified local results from prepared implementation
+packages and experiments that have not yet run.
+
+| Workstream | Latest evidence | Status |
+|---|---|---|
+| Development population reconciliation | Owner supplied the reconciled 1,754-row / 140-group denominator report and 19 passing population-policy tests. All 26 construction blocks remain retained. | Verified development denominators; metric denominators and final freeze remain pending |
+| Corrected generation workflow | `9ee8393`; owner verified 34 CPU tests, source fingerprints and the five-benchmark request plan. | Implemented and locally verified |
+| Corrected Qwen 1.5B feasibility | Five prepared clean development requests completed on an L4; no retries or unfinished sessions. | Serving and evidence feasibility verified for this model and selection |
+| CPU evidence replay | All five raw-response validations reproduced; whole-output eligibility 5/5, meaningful-token eligibility 4/5. ToolAlpaca retains its frozen meaningful-token exclusion. Owner also replayed the imported archive locally. | Verified; eligibility is not correctness |
+| Development-only reference scoring | Four reference-compliance rows: APIBank 1/1, BFCL 1/1, RoTBench 0/1, ToolAlpaca 0/1; combined 2/4. ToolEyes relevance is separate: 0/1. | Locally measured five-case diagnostic; no population-accuracy claim |
+| Scoring implementation and Windows portability | `6dfed20`; owner verified 31 tests with one Windows symlink skip after the relative-path fixes; 34 generation regression tests also passed. | Committed and pushed |
+| Bounded development coverage package | Preparation helper, context preflight, complete Qwen 1.5B notebook and local instructions supplied; package-author CPU checks report 25 new and 34 generation tests passing. | Prepared only; owner integration, real preparation, tokenizer preflight and GPU execution not yet supplied |
+| Final Task 3 results and Task 4 policies | Broader corrected runs, uncertainty effectiveness, calibration, risk–coverage, group-aware intervals, failure catalogue, routing and recovery remain outstanding. | Not complete; held-out access remains disabled |
+
+The corrected feasibility batch recorded 4.731887112 seconds of session wall
+time and 4.661208910 seconds of summed request elapsed time, with 9,176 prompt
+tokens and 286 completion tokens (9,462 total). These figures exclude setup,
+model loading and idle GPU allocation; they are not GPU-seconds, monetary cost
+or a reliable forecast for perturbed coverage runs. Requested temperature
+remains 0.001; the runtime constructor probe recorded effective normalization
+to 0.01. That probe is an observation, not an independent per-request setting
+or loaded-weight attestation.
+
+No reference-review flags were detected on these five cases. Absence of a
+bounded signal does not certify semantic reference validity. Cost/latency
+preference was not assessed. The official scorer results and original labels
+are retained; no ambiguity exclusions, reference corrections or held-out
+evaluation were applied.
+
+The next package proposes one constructed candidate per available
+benchmark/source-file stratum, using the existing outcome-independent hash
+selector. There are at most 85 requests; the actual count remains unmeasured
+until local preparation. The prior five clean cases are deliberately repeated
+in a separate run, never retried or pooled with the earlier outcomes. This is
+a coverage diagnostic, not a paired robustness design or a representative
+accuracy estimate. The notebook must stop all dispatch if any rendered prompt
+plus the frozen completion cap exceeds context. Available quota and broader
+runtime feasibility still require review.
+
 ## Corrected development-generation implementation
 
 The [corrected development workflow](research_track_v1/CORRECTED_DEVELOPMENT_GENERATION_V1.md)
 prepares hash-bound requests from the preserved development audit, supports
 explicit local-server dispatch with write-once intent and response records,
 and replays frozen Task 2 evidence on CPU. Synthetic tests do not establish
-real model feasibility or corrected full-population results. Local source and
-request-plan verification, followed by five-benchmark feasibility for the
-selected model roles, are the next checks. Held-out access and main readiness
-remain disabled; official labels and existing outputs are unchanged.
+corrected full-population results. Local source/request-plan verification and
+a five-benchmark corrected Qwen 1.5B run have now passed, as recorded above.
+Corrected feasibility for Llama 3B, Qwen 7B and the fallback, and broader static
+runs, remain pending; the earlier serving pilots are distinct evidence.
+Held-out access and main readiness remain disabled; official labels and existing outputs are unchanged.
 
 ## Development-only preparation implementation
 
@@ -26,10 +70,11 @@ partitions. Official references and the existing split remain unchanged.
 
 A [main-experiment proposal](research_track_v1/MAIN_EXPERIMENT_PROTOCOL_V1.md)
 and [full-development audit design](research_track_v1/DEVELOPMENT_POPULATION_AUDIT_PLAN_V1.md)
-have been prepared from commit `344234f`. These are planning artifacts, not
-a completed full-development audit, an implemented main-experiment runner or
-a final protocol freeze. The existing 69-case corrected diagnostic and
-eight-response smoke do not certify the full 140-group development inventory.
+have been prepared from commit `344234f`. These documents remain planning
+artifacts, not a final protocol freeze or a claim of completed main experiments. The separate full-development audit and
+corrected generation/scoring implementations have since been completed within
+their recorded development-only scopes. The existing 69-case corrected
+diagnostic and eight-response smoke do not certify the full 140-group development inventory.
 Reference labels and the grouped split are unchanged; ToolEyes relevance and
 cost/latency-preference interpretation remain distinct. No held-out record is
 needed for the supplied plan/configuration checks.
@@ -46,7 +91,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Development construction audit complete; corrected broader runs, uncertainty effectiveness, final static evaluation and figures pending |
+| Task 3 — Robustness study | Construction audit and denominator reconciliation verified; corrected Qwen 1.5B five-case generation/replay/scoring verified; bounded coverage package prepared; broader runs and effectiveness analysis pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -118,11 +163,22 @@ Every completed component must include:
 The [requirements review](research_track_v1/TASK3_REQUIREMENTS_REVIEW_V1.md)
 maps repository requirements to evidence at `d8f70b6`. The
 [development denominator proposal](research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
-adds a separate CPU sidecar; no final analysis freeze or inference is enabled.
+adds a separate CPU sidecar. Its reconciliation is verified; no final analysis
+freeze or held-out access is enabled. Corrected development-only inference has
+been explicitly run for the five-case Qwen feasibility selection.
 
 - [x] Complete the original primary-development construction/reference audit with all rows retained.
 - [x] Diagnose all 26 construction blocks without changing schemas or official labels.
-- [ ] Run and review the separate development denominator sidecar on the preserved original audit.
+- [x] Run and review the separate development denominator sidecar on the preserved original audit; owner supplied the reconciled report and 19 passing tests.
+- [x] Verify corrected generation source fingerprints and the five-benchmark development request plan; 34 workflow tests passed locally.
+- [x] Run corrected Qwen 1.5B five-clean-case feasibility and preserve the transferred raw-response evidence.
+- [x] Reproduce all five saved response validations and complete the owner's local CPU replay; whole-output eligibility 5/5 and meaningful-token eligibility 4/5.
+- [x] Implement and locally verify the development-only reference-scoring adapter, including Windows relative-path regression coverage; publish at `6dfed20`.
+- [x] Record the five-case reference-compliance result (2/4) separately from ToolEyes relevance (0/1), without changing labels or applying exclusions.
+- [ ] Integrate and locally verify the supplied bounded coverage package; the package-author 25-test result is not owner execution evidence.
+- [ ] Prepare and review the measured coverage report, manifest hash, intentional repeated cases, pairing limits and current GPU quota.
+- [ ] Pass the pinned-tokenizer context preflight, run the bounded corrected Qwen coverage selection and review a new immutable evidence archive.
+- [ ] Verify corrected five-benchmark feasibility for the other selected model roles before their broader corrected runs.
 
 - [ ] Measure representative per-model throughput and available GPU capacity before full inference.
 - [x] Implement the separate development-only throughput runner; user verified 68 tests and Ruff on Windows.
@@ -175,6 +231,11 @@ only if those measurements show the available resources are insufficient.
 
 | Evidence | Result |
 |---|---|
+| Corrected Qwen 1.5B five-case evidence | Archive SHA256 `b0c985069e6c68c03eaa238bdcdf7d012ca5426a8ed19976a533e06a0d069191`; prepared manifest SHA256 `f83f7398e2cfb465f397f247a7e7cd815c422ecf6ba7d55fc95aef517ef8c3cf`. ZIP integrity and all 23 recorded outcome-file hashes checked; five frozen raw-response validations reproduced. Owner local replay reports five complete slots, no resumed visits or unfinished sessions, 5/5 whole-output and 4/5 meaningful-token eligibility, no missing usage and no prior file modification. |
+| Corrected five-case reference scores | Owner local scorer output: APIBank and BFCL pass; RoTBench and ToolAlpaca fail reference compliance, yielding 2/4. ToolEyes relevance is reported separately at 0/1. No bounded reference flags detected; cost/latency preference unassessed; no label changes or ambiguity exclusions. This result is not comparable to the earlier four-model BFCL-only five-case pilot as a model-performance trend. |
+| Corrected scoring verification | Owner supplied 31 tests passing with one Windows symlink skip and clean staged whitespace checks; four source/configuration/documentation files committed and pushed as `6dfed20`. Generation regression suite: 34 tests passed. See `research_track_v1/CORRECTED_DEVELOPMENT_SCORING_V1.md`. |
+| Development denominator reconciliation | Owner report: 1,754 rows / 140 groups, 1,728 constructed candidates / 26 blocks; 1,538 reference-panel inventory rows (1,512 candidates) and 216 separate ToolEyes relevance rows. Reward overlap: 498 rows, 486 assessed and 12 construction-blocked; 61 cost-objective and 61 latency-objective detections, with 364 objective-nondetected rows. Flags do not exclude cases and detection is not semantic adjudication. All 1,614 perturbed rows have a clean anchor; 1,588 pairs have both prompts constructed. Owner population-policy suite: 19 tests pass. |
+| Bounded coverage package | Supplied from baseline `6dfed20`: at most 85 hash-selected benchmark/source-file strata, existing frozen generation methods, context preflight and a complete Colab notebook. Package-author verification: 25 new CPU tests and 34 generation regression tests pass. Actual coverage counts, local verification, GPU execution and official coverage scores remain pending. |
 | Qwen 1.5B throughput diagnostic | 69 primary development cases (5 clean / 64 perturbed), 51 canonical groups, 69 nonempty benchmark/file strata, 17 files. Original summary reports 69 complete attempts in 106.46709268199993 s, with 74,949 prompt and 7,164 completion tokens; observed GPU window at least 769.8995201580001 s. Settings/source fingerprints, split membership, arithmetic and 69 HTTP-200 generation requests checked. Raw attempt evidence was not locally replayed; official correctness is unscored. See `docs/evidence/qwen15b_throughput_dev69_summary.json`. |
 | Throughput resume reconciliation | The uploaded CPU audit includes Qwen 1.5B's original 69-processed / zero-resumed session (106.467092682 s) and later zero-processed / 69-resumed session (101.633968582 s). Aggregate wall is 208.101061264 s. Retain original fresh inference speed and report resume checking as additional overhead. |
 | Task 3 runner and Llama timing | Runner published at `adb48d1`; user verified 68 tests and Ruff. Llama-specific notebook at `d031146` produced 69 fresh requests: 61 complete, eight truncated, 508.107638493 s; 76,347 prompt / 18,056 completion tokens. Manifest/session/runtime/log checked, including 69 HTTP 200 responses; the eight truncations were subsequently replayed as recorded below. Raw replay of 61 complete responses and correctness remain pending. See `docs/evidence/llama3b_throughput_dev69_summary.json`. |
@@ -249,14 +310,21 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-The owner supplied a passing 19-test population-policy run and reconciled
-development denominator report after commit `85de782`. Next verify the corrected
-request/evidence workflow locally and prepare the five-benchmark development
-feasibility selection before any model dispatch. Resolve the shared
-population/reference and metric rules before broader development runs. Task 3 still requires measured static results, uncertainty metrics,
-calibration, risk–coverage, group-aware intervals and a failure catalogue;
-Task 4 gate/fallback/recovery implementation remains separate. Held-out
-access stays disabled until final shared evaluation decisions are frozen.
+Integrate and CPU-test the supplied bounded development coverage package, then
+prepare its plan from the preserved original audit and reconciled denominators.
+Review the measured stratum count, manifest hash, deliberate five-case overlap,
+pairing limitations, context preflight and available GPU quota before dispatch.
+Preserve the completed feasibility and scoring folders. Do not repoint the
+five-case scorer or edit its evidence fingerprints to accept coverage results;
+a separate coverage-evidence-bound scoring step follows generation review.
+
+After the bounded coverage diagnostic, complete corrected feasibility for the
+remaining model roles and schedule broader development runs from measured
+capacity. Finalize the shared population/reference, metric and calibration
+rules before main-result claims. Task 3 still requires static model outcomes,
+uncertainty metrics, calibration, risk–coverage, group-aware intervals and a
+failure catalogue. Task 4 gate/fallback/recovery implementation remains separate.
+Held-out access stays disabled until the final shared evaluation freeze.
 
 ## Earlier diagnostic next action (historical)
 
@@ -283,7 +351,3 @@ remaining analysis and routing decisions are frozen. The five-case pilot did
 not test whether escalation helps.
 
 The seeded per-case predictions are not in the pinned release, so the differing Llama case cannot be identified from it. The one-case tolerance was chosen after observing the result and must be disclosed when reporting the reproduction.
-
-
-
-
