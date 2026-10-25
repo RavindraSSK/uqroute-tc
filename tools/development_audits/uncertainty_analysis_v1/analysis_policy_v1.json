@@ -1,0 +1,43 @@
+{
+  "version": "uqroute-development-uncertainty-analysis-1.0.0",
+  "baseline_commit": "e3c7b611b7835575ba23426030823b875006746b",
+  "scope": "retrospective-69-case-development-ranking-diagnostics-only",
+  "input_sha256": {
+    "scores.json": "73c6135dfd773c80a4758605eacb053ab3b64251f1f9275e44e51af3e2dc4903",
+    "provenance.json": "dec33e799518967670a52174385586da1a23fcebf39136ff5a9617e2a21fed56",
+    "prepared/manifest.json": "a00a33c9bbc40a15acb02a3a26ebcfdcb6bfdf00aa0dcdde39544e658f075ffb",
+    "prepared/requests.json": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83"
+  },
+  "measures": {
+    "sequence_nll": [
+      "whole_output_scores",
+      "sequence_nll"
+    ],
+    "mean_token_nll": [
+      "whole_output_scores",
+      "mean_token_nll"
+    ],
+    "max_token_surprisal": [
+      "whole_output_scores",
+      "max_token_surprisal"
+    ],
+    "meaningful_mean_token_nll": [
+      "meaningful_token_score",
+      "mean_token_nll"
+    ]
+  },
+  "positive_label": "official_noncompliance_or_tooleyes_irrelevance",
+  "higher_uncertainty_predicts_error": true,
+  "ties": "exact numeric equality; complete score blocks; AUROC half credit; AP noninterpolated block thresholds",
+  "acceptance": "uncertainty <= threshold; complete ties only; risk is null for zero accepted",
+  "missingness": "no imputation; retain official denominators; explicit maximum original-panel coverage; compare all measures again on their common eligible case set",
+  "area": "right-step risk area on eligible coverage; explicitly named, not an interpolated or full-panel area",
+  "calibration_enabled": false,
+  "routing_threshold_selection_enabled": false,
+  "bootstrap_enabled": false,
+  "official_labels_changed": false,
+  "reference_exclusions_applied": false,
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "decision_timing": "After inspecting this development coverage run and its reference review; not preregistered or a final protocol freeze."
+}
