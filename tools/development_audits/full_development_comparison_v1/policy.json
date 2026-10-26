@@ -1,0 +1,31 @@
+{
+  "version": "uqroute-two-model-full-development-comparison-1.0.0",
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "source_sha256_lf": {
+    "tools/development_audits/full_development_comparison_v1/run_comparison.py": "e9dcc122fc08d8470e462250769bb91e9167338318a0c78a2f3e88fe4a51e05d",
+    "tools/development_audits/full_development_comparison_v1/test_comparison.py": "df7dddad84211e8042abc0bc90eb9445e2d0dde3de0eaf2be39b70089a1ea423",
+    "tools/development_audits/full_development_comparison_v1/pairs.py": "8913a9d1c10019c3fbffc44e36855b7512fab4d8c72e27ae4b4ed92d9c734a87",
+    "tools/development_audits/full_development_comparison_v1/test_pairs.py": "5b2dac51d8569108e000616200ea50b75b86c0bc1ecd6eada3cae79a404c38ca",
+    "tools/development_audits/full_development_scoring_v1/score_full.py": "af44aee3371f62ba6d0ba5ec6b31764d46d4a21e61c30fb21b15ccb82ef880e8",
+    "tools/development_audits/full_development_scoring_v1/scoring_policy_v1.json": "b748c2e7e21f0fb29b1d4b682fcb3971f2eb7818833c68e70f91dcda01473ebf",
+    "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py": "875ff9b4e93a602d04d892e790d30277f7f3b73c5f3fa038b33fbd04e7e09190",
+    "tools/development_audits/llama_full_development_scoring_v1/scoring_policy_v1.json": "953a956d12af6a790bc3ae450f1ee5f807582a7aeb298f5e700b7baa1d3d1dbb",
+    "tools/development_audits/three_model_uncertainty_v1/engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "tools/development_audits/three_model_uncertainty_v1/metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff",
+    "tools/development_audits/three_model_uncertainty_v1/run_analysis.py": "eec51112eb5ed1f668a6652b6b93e53188ba02b7a7a7aea558ea8b2bbcf6f2cd",
+    "tools/development_audits/three_model_uncertainty_v1/policy.json": "aa68f1523869665798b6092a9be14f835a0b352bf96f117df16084a81f4f7166"
+  },
+  "models": {
+    "qwen15b": {
+      "evidence": "corrected_qwen15b_full_development_import_8517fd5d",
+      "scored": "corrected_qwen15b_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/full_development_scoring_v1/score_full.py"
+    },
+    "llama3b": {
+      "evidence": "corrected_llama3b_full_development_import_0a9a8a9b",
+      "scored": "corrected_llama3b_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py"
+    }
+  }
+}
