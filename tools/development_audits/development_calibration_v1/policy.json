@@ -1,0 +1,27 @@
+{
+  "version": "uqroute-development-calibration-1.0.0",
+  "scope": "exploratory-selected-development-only",
+  "folds": 5,
+  "seed": 1729,
+  "feature": "mean_token_nll",
+  "transform": "log1p then training-only population standardization",
+  "mapping": "ridge logistic error probability; sum log loss plus 0.5*slope^2; intercept unpenalized",
+  "selection": "fixed settings; no tuning; retrospective diagnostic, not final method selection",
+  "minimum_training_groups": 10,
+  "require_both_training_classes": true,
+  "bins": 10,
+  "baseline": "training-fold (errors+1)/(rows+2)",
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "source_sha256_lf": {
+    "calibration.py": "5a142257c560f25f9442d9a7d4ce63469a911f19fde96ba19003dc1fd892f217",
+    "run_calibration.py": "1020685744701d545691f31886f57eeb546863e5293c682b96bc9b9e621dd8a0",
+    "test_calibration.py": "4aaf82922dd268fe6c66cc4746b9e4d4b1922a8686fb4c66f370b779fdb3f10f"
+  },
+  "prior_source_sha256_lf": {
+    "run_analysis.py": "eec51112eb5ed1f668a6652b6b93e53188ba02b7a7a7aea558ea8b2bbcf6f2cd",
+    "engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff",
+    "policy.json": "aa68f1523869665798b6092a9be14f835a0b352bf96f117df16084a81f4f7166"
+  }
+}
