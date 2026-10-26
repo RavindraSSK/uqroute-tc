@@ -1,0 +1,26 @@
+{
+  "version": "uqroute-development-categories-1.0.0",
+  "scope": "retrospective-selected-development-category-diagnostics",
+  "development_samples_sha256": "23ac76ad69bf42e04ab6c2a0f9c274e6885c6c1c388aee8aa126f99341b2d533",
+  "prepared_requests_sha256": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83",
+  "expected_rows": 69,
+  "category_counts": {
+    "clean": 5,
+    "observation": 20,
+    "action": 24,
+    "reward": 20
+  },
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "source_sha256_lf": {
+    "categories.py": "c62289c5a00b3d1f448bbe3693ffbc7fe400ed569d30c7522705b2cb8a966aba",
+    "run_categories.py": "63cd10b63291ab62bfa604044aeace4371e62216c4a2011babe6a209b0e23684",
+    "test_categories.py": "40764a7e463ef1378c78a138e26d78b3685ab8409a028387d40d44e7c5858c28"
+  },
+  "prior_source_sha256_lf": {
+    "run_analysis.py": "eec51112eb5ed1f668a6652b6b93e53188ba02b7a7a7aea558ea8b2bbcf6f2cd",
+    "engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff",
+    "policy.json": "aa68f1523869665798b6092a9be14f835a0b352bf96f117df16084a81f4f7166"
+  }
+}
