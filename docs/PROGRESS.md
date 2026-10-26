@@ -1,6 +1,119 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
-## Progress update — 2026-10-24
+## Progress update — 2026-10-25
+
+Latest owner-verified milestone: `6a09541`, committed and pushed on
+`feat/task3-throughput`; the owner confirmed a clean working tree.
+Task 1 and Task 2 remain complete within their recorded scope. Task 3 is
+partially complete: corrected development generation and reference scoring
+are verified for two of the three selected small models. Task 4 and Task 5
+remain pending. No defensible overall completion percentage is assigned.
+
+| Workstream | Verified evidence | Status |
+|---|---|---|
+| Development population | 1,754 rows / 140 groups; 1,728 candidates and 26 retained blocks (12 missing declarations, 14 conflicting schemas); 19 population-policy tests | Development reconciliation complete; not final metric denominators |
+| Corrected Qwen 1.5B coverage | 69 cases / 55 groups; 69 complete; owner local replay matches; whole-output eligibility 69, meaningful-token eligibility 39 | Development generation and evidence verified |
+| Qwen coverage scoring | 21/63 reference-compliant; ToolEyes relevance 5/6 separately; 38 flagged reference cases retained; 42-test suite with one Windows skip; `478d46a` | Development scoring verified and published |
+| Bounded reference review | 69 rows; 11 credential-literal-absence signals, not confirmed reference errors; supplemental cost/latency phrase signals kept separate; 27 tests; `e3c7b61` | Retrospective diagnostic complete within bounded scope |
+| Qwen uncertainty analysis | 37 tests; AUROC, score-block AP and tied-score risk–coverage on available and common eligible cohorts, by panel and benchmark; `bbb1387` | Development ranking diagnostics verified; calibration and thresholds not selected |
+| Illustrative failure review | Six selected examples across five benchmarks; model errors, reference ambiguity and scorer limits distinguished; `48ab2eb` | Illustrative catalogue only; not a full confidence-band audit |
+| Review evidence manifest | Six case identities, rank intervals and 17 verified source/evidence hashes; `a88688c` | Retrospective explicit selection documented; hashes are not authenticated provenance |
+| Corrected Llama 3B coverage | Same 69 selected cases, prompt messages, order and request settings as Qwen apart from model ID; 68 complete, one truncated; owner local replay fully matches Colab including evidence hashes | Development generation and evidence verified |
+| Llama coverage scoring | 21/63 reference-compliant; ToolEyes name-only relevance 6/6 separately; all 69 retained, including truncation; 46 tests with one Windows skip; `6a09541` | Development scoring verified and published |
+| Other required experiments | Corrected Qwen 7B coverage, broader static populations, validated O/A/R comparisons, calibration, group-aware intervals and final reproducible figures | Pending |
+| Task 4 and held-out evaluation | Routing/fallback/recovery policies and final shared protocol freeze are not complete | Held-out access remains disabled |
+
+### Current corrected development scores
+
+| Benchmark/panel | Qwen 1.5B correct/rows | Llama 3B correct/rows |
+|---|---:|---:|
+| APIBank reference compliance | 5/17 | 7/17 |
+| BFCL reference compliance | 10/12 | 10/12 |
+| RoTBench reference compliance | 3/17 | 1/17 |
+| ToolAlpaca reference compliance | 3/17 | 3/17 |
+| Reference-compliance panel | 21/63 | 21/63 |
+| ToolEyes name-only relevance, separate panel | 5/6 | 6/6 |
+
+Equal reference-panel totals do not establish equal per-case outcomes or model
+quality. These selected development cases do not estimate population accuracy.
+Reference compliance is not semantic correctness or executable task success.
+ToolAlpaca source configurations recording gpt_judge use the pinned deterministic
+exact-match implementation here; ToolEyes uses deterministic name matching,
+not an LLM judge. Cost/latency preference success remains unassessed.
+
+### Uncertainty evidence and missingness
+
+For Qwen's 63 reference cases, mean-token NLL AUROC is 0.7982 and AP is
+0.8821; sequence NLL AUROC is 0.7982 and AP is 0.8725; maximum surprisal
+AUROC is 0.7268 and AP is 0.8022. Meaningful-token NLL uses only 33 reference
+cases (16 compliant, 17 noncompliant), with AUROC 0.8824 and AP 0.9316.
+That different subset prevents treating its larger values as evidence of the
+best measure. The implementation also reports common eligible cohorts and
+per-benchmark results. Mean-token AUROC varies from 0.8333 on APIBank to
+0.3000 on BFCL; pooled benchmark scales and outcome rates can confound ranking.
+ToolEyes has only six Qwen cases and one relevance mismatch.
+
+Llama whole-output eligibility is 63/63 reference cases and 5/6 ToolEyes cases.
+Meaningful-token eligibility is 19/63 reference cases and 5/6 ToolEyes cases:
+APIBank 0/17, BFCL 12/12, RoTBench 7/17, ToolAlpaca 0/17, ToolEyes 5/6.
+All 17 APIBank outcomes retain frozen format exclusions; ten RoTBench outcomes
+retain single-action-rule exclusions. These are eligibility findings, not
+correctness labels. Llama ranking metrics and matched-cohort model comparisons
+remain pending; the existing Qwen uncertainty adapter is evidence-bound and
+must not be repointed by changing its hashes.
+
+The one Llama truncation is a ToolEyes response that passes name-only relevance.
+It remains in the six-row relevance denominator, but both uncertainty measures
+are unavailable for that response. No completion, replacement, retry or
+automatic zero label was applied.
+
+### Llama run provenance and runtime limits
+
+Prepared manifest SHA256:
+`5c1bea90df16b527257e6303f44806a3ca03c2279b3cc4d39b0480e9dae6521f`.
+
+Export archive: `uqroute_llama3b_corrected_coverage_08f32900.zip`;
+SHA256 `43e0868797e40fdc6c5c627b34dd501d4f6a7f85f68a2b90f80e853c8b68bac4`.
+The archive contains 292 files, including an inventory of 291 evidence-file
+hashes. Owner import and full local replay match the exported summary.
+Generation used repository revision
+`a88688c8a2e3dcb548103303f1dd70b7ac98ebaf` and the frozen Llama model/tokenizer
+revision `0cb88a4f764b7a12671c53f0838cd831a0843b95`, BF16 on an L4.
+The runtime reports vLLM 0.30.0, Torch 2.13.0 with CUDA 13.0 and Transformers
+5.20.2. Model revision/loading identity is operator-attested.
+
+The valid tokenizer preflight counted 89,327 prompt tokens, maximum 4,513;
+adding the 1,024-token output allowance fits the 8,192 context for every case.
+An earlier two-per-prompt container-length count was invalid and superseded.
+Requested temperature stays 0.001; a local installed constructor check observed
+normalization to 0.01 and inherited top-p 0.9, not an independent per-request
+server observation. Model-default sampling can differ across models.
+
+The run processed 69 slots with zero resumed visits, one finished session and
+no missing usage counters. Usage: 89,327 prompt plus 7,028 completion tokens,
+96,355 total. Session wall time: 206.907237585 seconds; summed request elapsed
+time: 205.805151834 seconds. These exclude full setup/loading/idle allocation,
+are not GPU active time or monetary cost, and do not establish a controlled
+speed comparison with Qwen. Remaining provider quota was not measured.
+The server was stopped and evidence exported; GPU disconnection was advised.
+
+Official labels, reference files, original split, frozen methods and prior
+outputs remain unchanged. All 38 flagged reference rows remain included.
+No ambiguity exclusions, calibration, routing threshold, final protocol freeze
+or new held-out evaluation is asserted.
+
+Related records:
+[Qwen analysis](research_track_v1/DEVELOPMENT_UNCERTAINTY_ANALYSIS_V1.md),
+[reference review](research_track_v1/COVERAGE_REFERENCE_REVIEW_V1.md),
+[failure review](research_track_v1/DEVELOPMENT_FAILURE_REVIEW_V1.md),
+[review manifest](research_track_v1/DEVELOPMENT_FAILURE_REVIEW_MANIFEST_V1.json),
+[Llama scoring](research_track_v1/LLAMA_COVERAGE_SCORING_V1.md).
+
+## Historical progress snapshot — 2026-10-24
+
+The following snapshot preserves the earlier status. Pending coverage scoring
+and Llama statements in this historical section are superseded by the update
+above and the current Task 3 checklist below.
 
 Verified repository milestone: `65058a0` (`65058a0cce3867c10fe5ede19114a9c06a777f22`),
 committed and pushed by the owner; the supplied Git status was clean.
@@ -84,8 +197,9 @@ and replays frozen Task 2 evidence on CPU. Synthetic tests do not establish
 corrected full-population results. Local source/request-plan verification and
 the corrected Qwen 1.5B five-case feasibility and 69-case coverage generation/
 evidence checks have now passed, as recorded above.
-Corrected feasibility for Llama 3B, Qwen 7B and the fallback, and broader static
-runs, remain pending; the earlier serving pilots are distinct evidence.
+Corrected Llama 3B 69-case development generation and scoring are now verified.
+Corrected Qwen 7B and fallback runs and broader static runs remain pending;
+the earlier serving pilots are distinct evidence.
 Held-out access and main readiness remain disabled; official labels and existing outputs are unchanged.
 
 ## Development-only preparation implementation
@@ -124,7 +238,7 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Development audit/reconciliation, corrected Qwen five-case scoring and 69-case coverage generation/evidence review verified; local coverage scoring, other corrected model runs and effectiveness analysis pending |
+| Task 3 — Robustness study | Partial: corrected Qwen and Llama 69-case development generation/scoring verified; Qwen ranking diagnostics and six illustrative reviews published. Qwen 7B corrected coverage, Llama uncertainty, broader experiments, calibration, intervals and final freeze remain pending |
 | Task 4 — Routing and recovery | Pending |
 | Task 5 — Final package | Pending |
 
@@ -213,9 +327,13 @@ selections.
 - [x] Prepare and review the measured 69-case / 55-group coverage report, approved manifest hash, five intentionally repeated clean cases and pairing limits.
 - [x] Pass the pinned-tokenizer context preflight, complete all 69 corrected Qwen coverage requests and export a new evidence archive.
 - [x] Verify the uploaded coverage archive, 279 recorded outcome-file hashes and all 69 request hashes/frozen response validations; document the 30 meaningful-token exclusions without changing methods.
-- [ ] Import and locally verify the separate coverage CPU-scoring package; package-author 37/31/34 tests are not owner execution evidence.
-- [ ] Replay coverage evidence on the owner's CPU and score against unchanged development references; report 63 reference-compliance cases separately from six ToolEyes relevance cases.
-- [ ] Review coverage reference flags, explicit-objective diagnostics, uncertainty missingness and actual per-benchmark scores before broader claims.
+- [x] Import and locally verify Qwen coverage CPU scoring; owner passed the 42-test suite with one Windows skip; published at `478d46a`.
+- [x] Replay Qwen coverage locally and score unchanged development references: 21/63 reference compliance, separate ToolEyes relevance 5/6.
+- [x] Complete bounded reference/objective diagnostics (`e3c7b61`) and Qwen available/common-cohort uncertainty diagnostics (`bbb1387`), with per-benchmark results and missingness retained.
+- [x] Publish six illustrative failure reviews and a six-case evidence manifest with 17 verified hashes (`48ab2eb`, `a88688c`); no exhaustive confidence-band catalogue claim.
+- [x] Complete corrected Llama 3B 69-case development generation, full local replay, separate-panel scoring and 46-test Windows verification with one skip (`6a09541`).
+- [ ] Implement Llama uncertainty analysis and model comparisons on explicitly matched eligible cohorts.
+- [ ] Complete corrected Qwen 7B coverage and the remaining required broader model experiments.
 - [ ] Verify corrected five-benchmark feasibility for the other selected model roles before their broader corrected runs.
 
 - [ ] Measure representative per-model throughput and available GPU capacity before full inference.
@@ -352,24 +470,26 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Import the supplied coverage CPU-scoring package and run its 37 tests, the
-unchanged five-case scorer's 31 tests and the 34 generation regression tests
-on the owner's computer. Import the reviewed coverage ZIP into a fresh ignored
-directory, replay it locally on CPU, then score against the unchanged approved
-development reference sidecar. Preserve all prior plans, evidence and outputs.
-Keep the 63 reference-compliance cases separate from six ToolEyes relevance
-cases; retain all alignment-unavailable rows in the official denominator.
-Review reference ambiguity flags, explicit-objective diagnostics and uncertainty
-missingness before interpreting actual scores. Do not edit the five-case
-scorer's fingerprints to accept coverage evidence.
+Implement and test a separate development-only uncertainty analysis for the
+verified Llama scoring outputs. Preserve the Qwen implementation, scores and
+evidence. Report reference compliance separately from ToolEyes relevance;
+retain all 69 outcomes while excluding unavailable probability evidence only
+from the corresponding uncertainty metric denominator. Llama ToolEyes has no
+negative relevance labels, so AUROC is undefined and must not be fabricated.
+Compare models on explicitly matched cases and eligible cohorts, with
+per-benchmark results and differences in prompt rendering/sampling disclosed.
 
-Then complete corrected feasibility for the remaining model roles and plan
-broader development runs from measured capacity and available quota. Finalize
-the shared population/reference, metric and calibration rules before main-result
-claims. Task 3 still requires broader static model outcomes, uncertainty metrics,
-calibration, risk–coverage, group-aware intervals and a failure catalogue.
-Task 4 gate/fallback/recovery implementation remains separate. Held-out access
-stays disabled until the final shared evaluation freeze.
+Then complete corrected Qwen 7B development generation/evidence/scoring and
+the required broader static experiments. Validate Observation/Action/Reward
+taxonomy and comparison denominators. Resolve calibration mapping, validation,
+bins, group-aware intervals, weighting, failure-catalogue selection and final
+figure rules before final analysis claims. The six illustrative reviews do not
+replace a complete high-confidence failure catalogue.
+
+Keep method selection on development groups. Freeze the final shared protocol
+before any new held-out evaluation. Task 4 gate/fallback/recovery policies and
+full cost accounting remain separate outstanding work. Preserve prior evidence,
+official labels and all historical diagnostic limitations.
 
 ## Earlier diagnostic next action (historical)
 
