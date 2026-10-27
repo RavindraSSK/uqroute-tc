@@ -1,0 +1,37 @@
+{
+  "baseline_commit": "6a09541",
+  "llama_scoring_source_sha256_lf": {
+    "score_llama.py": "f092c606b82412445658f3c145bbe3233216de60f87c3de6245631a1756ed73d",
+    "scoring_policy_v1.json": "78a4d6174fbad7e97df13e802b9a070b7ba2a6895ad14c53e594efab579c196a"
+  },
+  "measures": {
+    "max_token_surprisal": [
+      "whole_output_scores",
+      "max_token_surprisal"
+    ],
+    "mean_token_nll": [
+      "whole_output_scores",
+      "mean_token_nll"
+    ],
+    "meaningful_mean_token_nll": [
+      "meaningful_token_score",
+      "mean_token_nll"
+    ],
+    "sequence_nll": [
+      "whole_output_scores",
+      "sequence_nll"
+    ]
+  },
+  "own_source_sha256_lf": {
+    "engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff"
+  },
+  "qwen_input_sha256": {
+    "prepared/manifest.json": "a00a33c9bbc40a15acb02a3a26ebcfdcb6bfdf00aa0dcdde39544e658f075ffb",
+    "prepared/requests.json": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83",
+    "provenance.json": "dec33e799518967670a52174385586da1a23fcebf39136ff5a9617e2a21fed56",
+    "scores.json": "73c6135dfd773c80a4758605eacb053ab3b64251f1f9275e44e51af3e2dc4903"
+  },
+  "scope": "retrospective-Qwen-Llama-selected-development-comparison",
+  "version": "uqroute-paired-development-uncertainty-1.0.0"
+}

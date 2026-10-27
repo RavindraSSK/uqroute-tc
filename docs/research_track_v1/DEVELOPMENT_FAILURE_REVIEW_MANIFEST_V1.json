@@ -1,0 +1,158 @@
+{
+  "version": "uqroute-development-failure-review-manifest-1.0.0",
+  "review_commit": "48ab2eb",
+  "scope": "six-retrospectively-selected-development-examples",
+  "selection": "Explicit case list from manual review after inspecting mean-token NLL rankings and official outcomes; not a preregistered selection rule or an exhaustive lowest-uncertainty failure set. ToolEyes is a separate highest-uncertainty relevance comparator.",
+  "held_out_access_enabled": false,
+  "official_labels_changed": false,
+  "prior_outputs_modified": false,
+  "network_requests": 0,
+  "limits": [
+    "Hashes record local byte consistency, not authenticated provenance.",
+    "This manifest does not rerun scoring or adjudicate semantic correctness.",
+    "Intent lookup uses unique case-key text occurrence, not structural identity validation.",
+    "Ranks use exact score equality and report tie intervals."
+  ],
+  "source_sha256": {
+    "docs/research_track_v1/DEVELOPMENT_FAILURE_REVIEW_V1.md": "00d7b2dd1eea0f9421eaed7c0e65929b79811df0920e880665916af919fef14c",
+    "artifacts/local_development_audits/uncertainty_analysis_v1/case_measures.json": "b8e26a4b9d691f3020361fa86e66618ae2e239b364db84f261270c4710ada5f6",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_official_scoring_v1/scores.json": "73c6135dfd773c80a4758605eacb053ab3b64251f1f9275e44e51af3e2dc4903",
+    "artifacts/local_development_audits/coverage_reference_review_inputs_v1.json": "1a664818f376ae145d63619c85b922f32a3da3c21f72c8af0ef76f76b7bb8141",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/prepared/requests.json": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83"
+  },
+  "saved_evidence_sha256": {
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/868fa8460a2065a348dc2d319f5a8e428f6a19ef8386cc754417a9c5bd649bc4/intent.json": "e306bd341020661263be3030ea2b062f83dca0c62e5177b0bf0be7d1bc1a2d14",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/868fa8460a2065a348dc2d319f5a8e428f6a19ef8386cc754417a9c5bd649bc4/http_response.bin": "37a0139b1d761665f028171036206ab49156f1940b5b2fc0cd3d76a091005599",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/deb8d063cdca23270c296cbd6afb5d273abfc5ea89383cc4e98ccea215f9d056/intent.json": "0e048d030347b1af0841ebee5230e1b621f7474f04f4e84d862db8f22456f382",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/deb8d063cdca23270c296cbd6afb5d273abfc5ea89383cc4e98ccea215f9d056/http_response.bin": "d869e53b4adb4e688aeac60a9d7986d4cd5b1fa78915fe5f541d33a3b433cda0",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/c25212d849ba3d5a9eb57c258c781a92e2889d4ca7d0e9dcd38c12efb76e1924/intent.json": "3d0f451f1c519b73a0cf7a0b09f1970473c10eeef86e59fb060fd5886cc377de",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/c25212d849ba3d5a9eb57c258c781a92e2889d4ca7d0e9dcd38c12efb76e1924/http_response.bin": "90b4b0d8d314876a18395a64aaf2371207f1fa0513965edf97fbb8aa4969d7b0",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/da819bebddc178b85fe165debd7bbb34a18e094acaf9b70aa008a5ddf6d62209/intent.json": "0f3b9135949997e48e6cb559610dbc7b57a4704d96eec29ec11d15c7e424acb0",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/da819bebddc178b85fe165debd7bbb34a18e094acaf9b70aa008a5ddf6d62209/http_response.bin": "188596c83f685c57f1e6ee95e7886a472434dcce7f81b7be786625b3087d3ebe",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/b8c32240b0254cead0a2dc2cea82e1199a2acad391ec1424557d59cbf29f3584/intent.json": "4149da1634fe24a99cecda915b27582b98af448c949d117794362e095bcf5a15",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/b8c32240b0254cead0a2dc2cea82e1199a2acad391ec1424557d59cbf29f3584/http_response.bin": "fecc7384020348a44cad563c7095e63197d83ee32fe6008578baec6689bc5589",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/fcd60ce056373fff7deeaa96cde6d3764ebb805bbfaafbc41a747d609aca9713/intent.json": "0cc69cc97b6073e74c76f704819fcb03c6eaf96af3c2838109a59049443fe7d4",
+    "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/fcd60ce056373fff7deeaa96cde6d3764ebb805bbfaafbc41a747d609aca9713/http_response.bin": "0f6baed46f76251f55c7ce2213620c3c592ee6c4462a18623d59e5b04509ff27"
+  },
+  "cases": [
+    {
+      "case_key": "paraphrase_parameter_description.jsonl:bfcl_v3__BFCL_v3_multiple__multiple_61",
+      "benchmark": "bfcl_v3",
+      "panel": "official_reference_compliance",
+      "official_score": {
+        "correct": false,
+        "expected": 1,
+        "matched": 0,
+        "method": "exact_match",
+        "score": 0.0
+      },
+      "mean_token_nll": 0.006627321536473119,
+      "within_benchmark_eligible_rows": 12,
+      "ascending_rank_interval": [
+        5,
+        5
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/868fa8460a2065a348dc2d319f5a8e428f6a19ef8386cc754417a9c5bd649bc4/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/868fa8460a2065a348dc2d319f5a8e428f6a19ef8386cc754417a9c5bd649bc4/http_response.bin"
+    },
+    {
+      "case_key": "TD_AB.jsonl:bfcl_v3__BFCL_v3_multiple__multiple_13",
+      "benchmark": "bfcl_v3",
+      "panel": "official_reference_compliance",
+      "official_score": {
+        "correct": false,
+        "expected": 1,
+        "matched": 0,
+        "method": "exact_match",
+        "score": 0.0
+      },
+      "mean_token_nll": 0.005508262007522262,
+      "within_benchmark_eligible_rows": 12,
+      "ascending_rank_interval": [
+        4,
+        4
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/deb8d063cdca23270c296cbd6afb5d273abfc5ea89383cc4e98ccea215f9d056/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/deb8d063cdca23270c296cbd6afb5d273abfc5ea89383cc4e98ccea215f9d056/http_response.bin"
+    },
+    {
+      "case_key": "TD_NT.jsonl:rotbench__Turn 1: What is the translation of the English phrase 'See you later' in Japanese?",
+      "benchmark": "rotbench",
+      "panel": "official_reference_compliance",
+      "official_score": {
+        "content_filling": false,
+        "correct": false,
+        "method": "rule_based",
+        "parameter_identification": false,
+        "score": 0.3333333333333333,
+        "tool_selection": true
+      },
+      "mean_token_nll": 0.1474796528479608,
+      "within_benchmark_eligible_rows": 17,
+      "ascending_rank_interval": [
+        1,
+        1
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/c25212d849ba3d5a9eb57c258c781a92e2889d4ca7d0e9dcd38c12efb76e1924/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/c25212d849ba3d5a9eb57c258c781a92e2889d4ca7d0e9dcd38c12efb76e1924/http_response.bin"
+    },
+    {
+      "case_key": "realistic_typos.jsonl:toolalpaca__Free Dictionary__inst6",
+      "benchmark": "toolalpaca",
+      "panel": "official_reference_compliance",
+      "official_score": {
+        "correct": false,
+        "expected": 1,
+        "matched": 0,
+        "method": "exact_match",
+        "score": 0.0
+      },
+      "mean_token_nll": 0.027063192918937128,
+      "within_benchmark_eligible_rows": 17,
+      "ascending_rank_interval": [
+        3,
+        3
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/da819bebddc178b85fe165debd7bbb34a18e094acaf9b70aa008a5ddf6d62209/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/da819bebddc178b85fe165debd7bbb34a18e094acaf9b70aa008a5ddf6d62209/http_response.bin"
+    },
+    {
+      "case_key": "same_name_D.jsonl:apibank__level1_166",
+      "benchmark": "apibank",
+      "panel": "official_reference_compliance",
+      "official_score": {
+        "correct": false,
+        "expected": 1,
+        "matched": 0,
+        "method": "exact_match",
+        "score": 0.0
+      },
+      "mean_token_nll": 0.07733771223787476,
+      "within_benchmark_eligible_rows": 17,
+      "ascending_rank_interval": [
+        3,
+        3
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/b8c32240b0254cead0a2dc2cea82e1199a2acad391ec1424557d59cbf29f3584/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/b8c32240b0254cead0a2dc2cea82e1199a2acad391ec1424557d59cbf29f3584/http_response.bin"
+    },
+    {
+      "case_key": "clean.jsonl:tooleyes__Turn 1: Give me a mapping of all cryptocurrencies to unique CoinMarketCap ids",
+      "benchmark": "tooleyes",
+      "panel": "tooleyes_relevance",
+      "official_score": {
+        "correct": false,
+        "method": "name_match",
+        "score": 0.0
+      },
+      "mean_token_nll": 0.3458530668720075,
+      "within_benchmark_eligible_rows": 6,
+      "ascending_rank_interval": [
+        6,
+        6
+      ],
+      "intent_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/fcd60ce056373fff7deeaa96cde6d3764ebb805bbfaafbc41a747d609aca9713/intent.json",
+      "response_path": "artifacts/local_development_audits/corrected_qwen15b_coverage_import_217d4a47/run/cases/fcd60ce056373fff7deeaa96cde6d3764ebb805bbfaafbc41a747d609aca9713/http_response.bin"
+    }
+  ]
+}

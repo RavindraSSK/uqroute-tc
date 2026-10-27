@@ -1,0 +1,57 @@
+{
+  "baseline_commit": "ad0790b9dceb1b68ab40837747bbd1ac95309a49",
+  "measures": {
+    "max_token_surprisal": [
+      "whole_output_scores",
+      "max_token_surprisal"
+    ],
+    "mean_token_nll": [
+      "whole_output_scores",
+      "mean_token_nll"
+    ],
+    "meaningful_mean_token_nll": [
+      "meaningful_token_score",
+      "mean_token_nll"
+    ],
+    "sequence_nll": [
+      "whole_output_scores",
+      "sequence_nll"
+    ]
+  },
+  "models": {
+    "llama3b": {
+      "evidence": "corrected_llama3b_coverage_import_08f32900",
+      "folder": "llama_coverage_scoring_v1",
+      "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+      "module": "score_llama.py",
+      "scored": "corrected_llama3b_coverage_official_scoring_v1",
+      "source_sha256_lf": {
+        "score_llama.py": "f092c606b82412445658f3c145bbe3233216de60f87c3de6245631a1756ed73d",
+        "scoring_policy_v1.json": "78a4d6174fbad7e97df13e802b9a070b7ba2a6895ad14c53e594efab579c196a"
+      }
+    },
+    "qwen7b": {
+      "evidence": "corrected_qwen7b_coverage_import_b4ede513",
+      "folder": "qwen7b_coverage_scoring_v1",
+      "model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "module": "score_qwen7b.py",
+      "scored": "corrected_qwen7b_coverage_official_scoring_v1",
+      "source_sha256_lf": {
+        "score_qwen7b.py": "435ecc3dbb0932ce9bc089ce58534e63ea54805983c8d93aa7eb1b0031d0d611",
+        "scoring_policy_v1.json": "566d0c686c6a49a6f63e8f031d1b55d20b1554a65a482a96bac833b9edf23e7c"
+      }
+    }
+  },
+  "own_source_sha256_lf": {
+    "engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff"
+  },
+  "qwen_input_sha256": {
+    "prepared/manifest.json": "a00a33c9bbc40a15acb02a3a26ebcfdcb6bfdf00aa0dcdde39544e658f075ffb",
+    "prepared/requests.json": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83",
+    "provenance.json": "dec33e799518967670a52174385586da1a23fcebf39136ff5a9617e2a21fed56",
+    "scores.json": "73c6135dfd773c80a4758605eacb053ab3b64251f1f9275e44e51af3e2dc4903"
+  },
+  "scope": "retrospective-three-small-model-selected-development-comparison",
+  "version": "uqroute-three-model-development-uncertainty-1.0.0"
+}

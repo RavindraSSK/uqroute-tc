@@ -1,0 +1,31 @@
+{
+  "version": "uqroute-coverage-reference-review-1.0.0",
+  "baseline_commit": "478d46a30f07679d9fc9936b48656272e5a52b7b",
+  "scope": "retrospective-selected-primary-development-diagnostics-only",
+  "credential_argument_keys": [
+    "access_key",
+    "access_token",
+    "api_key",
+    "appid",
+    "key",
+    "password",
+    "token",
+    "username"
+  ],
+  "supplemental_user_phrase_patterns": {
+    "cost": "\\bminimal\\s+cost\\b",
+    "latency": "\\bmost\\s+responsive\\s+option\\b"
+  },
+  "input_sha256": {
+    "scores.json": "73c6135dfd773c80a4758605eacb053ab3b64251f1f9275e44e51af3e2dc4903",
+    "provenance.json": "dec33e799518967670a52174385586da1a23fcebf39136ff5a9617e2a21fed56",
+    "coverage_reference_review_inputs_v1.json": "1a664818f376ae145d63619c85b922f32a3da3c21f72c8af0ef76f76b7bb8141",
+    "prepared/manifest.json": "a00a33c9bbc40a15acb02a3a26ebcfdcb6bfdf00aa0dcdde39544e658f075ffb",
+    "prepared/requests.json": "2396787a096bddbce0a82e736dd1966754b24e414c738f12e2517a4d9c01ab83"
+  },
+  "official_labels_changed": false,
+  "original_detector_changed": false,
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "rule_timing": "After reviewing these development outcomes; not preregistered and not final intent adjudication."
+}

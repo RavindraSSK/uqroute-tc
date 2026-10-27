@@ -1,0 +1,27 @@
+{
+  "version": "uqroute-development-statistics-1.0.0",
+  "scope": "exploratory-selected-development-only",
+  "replicates": 2000,
+  "seed_base": 1729,
+  "confidence_level": 0.95,
+  "interval": "linear-interpolated percentile",
+  "minimum_groups": 10,
+  "minimum_valid_fraction": 0.9,
+  "cluster": "benchmark plus canonical_base_id",
+  "strata": "benchmark",
+  "weighting": "case weighted; all eligible selected rows per sampled cluster",
+  "shared_draws": "same cohort seed for all models and measures",
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "source_sha256_lf": {
+    "statistics.py": "1d4920995126b10a3b0b40514cc2ade8816b25709d1a45d30d35badca839ac38",
+    "run_statistics.py": "ad88f25e86ab8e36f52638f71f36e99f91dfd69f0eec7c44386f5fed9c95070d",
+    "test_statistics.py": "c1501b996cadb1ef64531408ebb9f3609e3e420c0cce80e9fbf463c12b0eab82"
+  },
+  "prior_source_sha256_lf": {
+    "run_analysis.py": "eec51112eb5ed1f668a6652b6b93e53188ba02b7a7a7aea558ea8b2bbcf6f2cd",
+    "engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff",
+    "policy.json": "aa68f1523869665798b6092a9be14f835a0b352bf96f117df16084a81f4f7166"
+  }
+}
