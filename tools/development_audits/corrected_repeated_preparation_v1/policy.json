@@ -1,0 +1,28 @@
+{
+  "version": "uqroute-corrected-repeated-preparation-1.0.0",
+  "models": {
+    "qwen15b": {
+      "prepared": "corrected_qwen15b_full_development_import_8517fd5d/prepared",
+      "manifest_sha256": "310daceecaedb4c5de38046fcab33222f7dd81bb54568192dca54f12be8d1aa0"
+    },
+    "llama3b": {
+      "prepared": "corrected_llama3b_full_development_import_0a9a8a9b/prepared",
+      "manifest_sha256": "c150b291712314af67607cd801d74ea7e6cd77ccb3b13c0f7c34d3e8764bef0a"
+    },
+    "qwen7b": {
+      "prepared": "corrected_qwen7b_full_development_import_cee21586/prepared",
+      "manifest_sha256": "4547ebed5cef4224b5966e393febb590281d875533297d47f4c7e8742b1a389c"
+    }
+  },
+  "source_sha256_lf": {
+    "tools/development_audits/three_model_uncertainty_v1/engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "tools/development_audits/corrected_generation_v1/support.py": "4aac9f16ed6a03fa833ab3fbaf321127c3043194273c91f79c4f2bda167dbc47",
+    "tools/development_audits/corrected_generation_v1/workflow.py": "01a881a67e9b80c81f09268e878502b48bb640398c9729f5eed1ffc47b843831",
+    "docs/config/task2_repeated_sampling_v1.json": "6742809ec6412a5a79b91e28d19dafacd2bef4b0098cd23252d2df38fcfcd2ef",
+    "tools/development_audits/corrected_repeated_preparation_v1/test_selection.py": "95f23194581b18fcd10d2fd5b6ff675ffc67b0a7489dd7c872135e2012fae4b9",
+    "tools/development_audits/corrected_repeated_preparation_v1/selection.py": "0726c93d2f2db80cdadb833e909b413c26c05150877ccb494ddfa5be0e690830",
+    "tools/development_audits/corrected_repeated_preparation_v1/prepare.py": "00f6909b733cbef3bb15018410d4b12963f8a29ea716efa1449137aa211db57d"
+  },
+  "held_out_access_enabled": false,
+  "dispatch_authorized": false
+}
