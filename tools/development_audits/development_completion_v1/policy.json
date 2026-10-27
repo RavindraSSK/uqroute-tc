@@ -1,0 +1,50 @@
+{
+  "version": "uqroute-development-completion-1.0.0",
+  "baseline_commit": "ff277c8",
+  "models": [
+    "qwen15b",
+    "llama3b",
+    "qwen7b"
+  ],
+  "scopes": [
+    "official_reference_compliance",
+    "tooleyes_relevance",
+    "apibank",
+    "bfcl_v3",
+    "rotbench",
+    "toolalpaca",
+    "tooleyes"
+  ],
+  "bootstrap_replicates": 2000,
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "source_sha256_lf": {
+    "tools/development_audits/three_model_full_development_v1/test_pairs.py": "5b2dac51d8569108e000616200ea50b75b86c0bc1ecd6eada3cae79a404c38ca",
+    "tools/development_audits/three_model_full_development_v1/pairs.py": "8913a9d1c10019c3fbffc44e36855b7512fab4d8c72e27ae4b4ed92d9c734a87",
+    "tools/development_audits/three_model_full_development_v1/run_comparison.py": "934c55118954c44d7e6335a03071f890fba4be5ad1bb426102bad5253f352cc5",
+    "tools/development_audits/three_model_full_development_v1/test_comparison.py": "c7d6dd27a7a946331269f1def423d529a26c19257dab195456ebf35d6efb1dfb",
+    "tools/development_audits/three_model_full_development_v1/test_joint.py": "fcb6d01af9b9491a0c4e1eaf4019e4731a7823262cb8a9acb40589718c2061bd",
+    "tools/development_audits/full_development_scoring_v1/score_full.py": "af44aee3371f62ba6d0ba5ec6b31764d46d4a21e61c30fb21b15ccb82ef880e8",
+    "tools/development_audits/full_development_scoring_v1/scoring_policy_v1.json": "b748c2e7e21f0fb29b1d4b682fcb3971f2eb7818833c68e70f91dcda01473ebf",
+    "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py": "875ff9b4e93a602d04d892e790d30277f7f3b73c5f3fa038b33fbd04e7e09190",
+    "tools/development_audits/llama_full_development_scoring_v1/scoring_policy_v1.json": "953a956d12af6a790bc3ae450f1ee5f807582a7aeb298f5e700b7baa1d3d1dbb",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/score_qwen7b_full.py": "61e7c590a5bafece6c95cf562b078f7e9a771b08112f7606813ee83adf606508",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/scoring_policy_v1.json": "0b52bd0144cf69da2c182e95a68a7c32ddb4e07f16a9d57b9ff0c0596955fb98",
+    "tools/development_audits/three_model_uncertainty_v1/engine.py": "c59ba1b0133b4e9a5dc102e8c34ce537a49a3145c8464bad360dd45d39e7bbaf",
+    "tools/development_audits/three_model_uncertainty_v1/metrics.py": "c42316319649629378b968915ed3cfeb366f5ce785364948c5c5a507d6d248ff",
+    "tools/development_audits/three_model_uncertainty_v1/run_analysis.py": "eec51112eb5ed1f668a6652b6b93e53188ba02b7a7a7aea558ea8b2bbcf6f2cd",
+    "tools/development_audits/three_model_uncertainty_v1/policy.json": "aa68f1523869665798b6092a9be14f835a0b352bf96f117df16084a81f4f7166",
+    "tools/development_audits/three_model_full_development_v1/policy.json": "e6d29d1570b6727e320e7fd58534c3bfefd869d9f53772f3b9c2333770168f80",
+    "tools/development_audits/development_statistics_v1/statistics.py": "1d4920995126b10a3b0b40514cc2ade8816b25709d1a45d30d35badca839ac38",
+    "tools/development_audits/development_statistics_v1/run_statistics.py": "ad88f25e86ab8e36f52638f71f36e99f91dfd69f0eec7c44386f5fed9c95070d",
+    "tools/development_audits/development_calibration_v1/calibration.py": "5a142257c560f25f9442d9a7d4ce63469a911f19fde96ba19003dc1fd892f217",
+    "tools/development_audits/development_categories_v1/categories.py": "c62289c5a00b3d1f448bbe3693ffbc7fe400ed569d30c7522705b2cb8a966aba",
+    "tools/development_audits/full_development_reporting_v1/run_reporting.py": "6529ac228f4cd93af85d8bac9a7b38ac385f45daa5d3275b25df48f558c9c150",
+    "tools/development_audits/full_development_reporting_v1/reporting.py": "98a0e01347870a8f3957bc1010da894baff94b2490c940f750605188210095d9",
+    "tools/development_audits/full_development_reporting_v1/test_reporting.py": "e77bd70df9e737e54cb4925279009c93a84cfaaa5a3afa5bd86aee8eafb059cc",
+    "tools/development_audits/development_completion_v1/test_completion.py": "014beffb99a31244d7b143b1d1408f026a80d6ce279f9eaa2a41da261bc95b9c",
+    "tools/development_audits/development_completion_v1/run_completion.py": "176df75592e37da33d89a05ca16ee3145d645e1481756385e61383f23460e182",
+    "tools/development_audits/development_completion_v1/calibration.py": "e1e78962227fec4832e71c3191630366f58057959116b43c4afbc68e671ff91b",
+    "tools/development_audits/development_completion_v1/paired_intervals.py": "62daa7d96d0de7bf782dc977d454ca731893532b3cd81c97bf5aa184d809d6f9"
+  }
+}
