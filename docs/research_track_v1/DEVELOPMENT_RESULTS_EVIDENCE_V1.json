@@ -1,0 +1,120 @@
+{
+  "version": "uqroute-development-results-evidence-1.0.0",
+  "recorded_date": "2026-11-05",
+  "parent_commit": "0bf4fe6a8069397525f42af3bf5579b977fdd05f",
+  "scope": "corrected-repeated-and-sensitivity-development",
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "official_labels_changed": false,
+  "inference_requests_during_git_update": 0,
+  "limits": [
+    "Hashes record local byte consistency, not authenticated provenance.",
+    "Archives and local outputs remain outside Git; fingerprints alone cannot reconstruct them.",
+    "Repeated results are owner-verified execution records; source and exported evidence fingerprints were rechecked for this update.",
+    "Sensitivity local replay and scores were verified in the working checkout; this index does not relabel outcomes."
+  ],
+  "completed_archive_fingerprints": {
+    "uqroute_qwen15b_corrected_repeated_6e710e52.zip": {
+      "sha256": "3487190ea5c1f8b20928207910c00ecf8c2cab913acf684c8f051b0ca47eb3bc",
+      "fingerprinted_evidence_members": 928,
+      "export_file_hashes_sha256": "0adc05d685f3f562b0ab94d9a75d018c95204933fddbd5b1d302c47741d0b5ed",
+      "prepared_manifest_sha256": "dcc66fe09db0db00adc860d6b1b0f4e19f2fbbaa225e2b0bc648c93b26d08b07",
+      "exported_replay_summary_sha256": "90a72e13faa97837a700d52e96364ed0ad0fe769ac99f3593d4306477e0ffb3b",
+      "exported_replay_records_sha256": "4ce9ee0aa7674f8d60e360117e81b6b44a9820c6d412d8a103391b9f8a162d97",
+      "rows": 300,
+      "status_counts": {
+        "complete": 300
+      },
+      "whole_output_eligible": 300,
+      "meaningful_token_eligible": 164
+    },
+    "uqroute_llama3b_corrected_repeated_91340333.zip": {
+      "sha256": "500f9784b4db5733a4168b19370eaa5ebd194c4c3e7537537a9b19c117f4105d",
+      "fingerprinted_evidence_members": 928,
+      "export_file_hashes_sha256": "8861ce9cfa3ad3365db3814750b0d6f5b96155b12852d93869371adcc5fb93c2",
+      "prepared_manifest_sha256": "4055b39bea20b3bfde8a188505a4251ebd64f9d2b23c0c9e87576c16b32cf12b",
+      "exported_replay_summary_sha256": "667d768a0e3b8726d9db1705a629111347419d4bcda529f4b123d7de1f4f6142",
+      "exported_replay_records_sha256": "feb885e5e2ceabaab156564c7a872128b403ceec5539dbdda62d5d08735fa40d",
+      "rows": 300,
+      "status_counts": {
+        "complete": 298,
+        "invalid_evidence": 1,
+        "truncated": 1
+      },
+      "whole_output_eligible": 298,
+      "meaningful_token_eligible": 126
+    },
+    "uqroute_qwen7b_corrected_repeated_de99cdcc.zip": {
+      "sha256": "b760086abb05d383f09cf126ae5472fc6d735d0a9d424c76a43e3718e0a3d6cf",
+      "fingerprinted_evidence_members": 928,
+      "export_file_hashes_sha256": "fa2f2cb3251ce950f5abd1302dcff3a28a0a5717ac6298c4ed30d1f99e682336",
+      "prepared_manifest_sha256": "0468034b1a302dfba56b294e69d09fe68aaa85132c6aa3069d61eae0a3e565ba",
+      "exported_replay_summary_sha256": "dea28373f4efaaa8348bc424436c2168f87f59037e9d9bb7d22015c22f67132a",
+      "exported_replay_records_sha256": "48c068c96396ad033156d4bfe9447db9b1842d44bf8ac65a64b5cf9e943148f5",
+      "rows": 300,
+      "status_counts": {
+        "complete": 300
+      },
+      "whole_output_eligible": 300,
+      "meaningful_token_eligible": 166
+    },
+    "uqroute_sensitivity_development_evidence_b5718d0f.zip": {
+      "sha256": "699d80a6441fbec37669857ee23cf0b5c6f7d969280e4a838b7d0d42281b57cf",
+      "models": {
+        "qwen15b": {
+          "fingerprinted_evidence_members": 168,
+          "export_file_hashes_sha256": "da1e84d689d76dbf5e0d143117dbd7024a409d56b38e702a6644f024ebc16331",
+          "prepared_manifest_sha256": "05455688519098cdf7cf9a360f11b7ca7ddcdb258510e07203ede68f8e6d31a6",
+          "exported_replay_summary_sha256": "49df49dc4f59b6e1989691f51fb3c8cc58ff9e92c27b710b57b2eb3a378011ae",
+          "status_counts": {
+            "complete": 35
+          },
+          "rows": 35
+        },
+        "llama3b": {
+          "fingerprinted_evidence_members": 168,
+          "export_file_hashes_sha256": "d7c259e3ebb786db6eea2167af120174e158f0195a55c39dfe17b45a7aed23dd",
+          "prepared_manifest_sha256": "4fd20b286142306a2cf808e2dbf354661b0ed8001cb8d3ba5638ccd84d4816de",
+          "exported_replay_summary_sha256": "d4124c77c7033f6aa30cf4f36710fc1d1ee72abddcb3118b620cbd70aa579aac",
+          "status_counts": {
+            "complete": 35
+          },
+          "rows": 35
+        },
+        "qwen7b": {
+          "fingerprinted_evidence_members": 168,
+          "export_file_hashes_sha256": "5e9c9daebceb8b281a52f384531737cc05f81281cf3fd4326edd60e7cae725a0",
+          "prepared_manifest_sha256": "47836624ee883705f279226185952eea0c2d2489c29b5f462e735023d3fc5053",
+          "exported_replay_summary_sha256": "c0cc9eb464aa98b86851a1964097106f28387dbdbbb6e1d9ef413cb6a931f973",
+          "status_counts": {
+            "complete": 35
+          },
+          "rows": 35
+        }
+      }
+    }
+  },
+  "sensitivity_verified_local_result_sha256": {
+    "summary.json": "dfd1482223b098b068f05543035e0b8e50885ae661733751d8ec08b2b8ee4a8b",
+    "provenance.json": "aeac0a9ab172be108b08921ab19514ef661d9575bc99b2817b90c3b8c15dd19c",
+    "REPORT.md": "1fd190d930457d3e61167b592742e633d6673ca8e3f65a4dbe3c6846ed7989c2",
+    "analysis_source.py": "0e3e298b158dadb5c65e6fb7c04dfb3e1d7501bbbcb7a0293c74454fc16d2659",
+    "qwen15b/scores.json": "450edc6432316c142ff39040e8d023f4681081a864aab7282208e0391ff65d1e",
+    "llama3b/scores.json": "833b3b3305b7f8fece8a4a9d87a364f3f22c7b46b8b41cc806278d4f8de140ae",
+    "qwen7b/scores.json": "97a8ef1e7aa039f305ef8382516a108f56241ae2a4246c15ff6693c9053e7624"
+  },
+  "published_source_sha256": {
+    "tools/development_audits/corrected_repeated_results_v1/import_qwen15b_corrected_repeated_v1.py": "64531abbee69f87f5c87b97ed020cbd1cd4293b864d9ae0ff5de9bc563a199e4",
+    "tools/development_audits/corrected_repeated_results_v1/run_llama3b_corrected_repeated_analysis_v1.py": "e17603a3adc4bd568534c0b812ed726b69bd00b97baed6059314f076ac8838d6",
+    "tools/development_audits/corrected_repeated_results_v1/run_qwen15b_corrected_repeated_analysis_v1.py": "3d3ef620b68dc3b4c5da0878f904eaf8e94fa78a4c3cd7a748328abc1bcfef8e",
+    "tools/development_audits/corrected_repeated_results_v1/run_qwen7b_corrected_repeated_analysis_v1.py": "14e6ed4d461b109f2931db913da7ef1c464552a669e25d083aaf9a45f81020f1",
+    "tools/development_audits/sensitivity_development_v1/prepare_sensitivity_small_models_v1.py": "27b04a18542b91489c42ba6dad9ce9427acf54db99e848628a63812d5d4c6547",
+    "tools/development_audits/sensitivity_development_v1/run_sensitivity_development_audit_v1.py": "4aa7b4888708f4b2379f37881e00a7ee64f36fee24836f423dc4e169944a1ffb",
+    "tools/development_audits/sensitivity_development_v1/run_sensitivity_results_v1.py": "0e3e298b158dadb5c65e6fb7c04dfb3e1d7501bbbcb7a0293c74454fc16d2659",
+    "notebooks/UQRoute_TC_Llama3B_Corrected_Repeated_v1.ipynb": "2b835dcd1d81c8c78fa1aad3cb14fe8138f6a1617117bc5b64ec96269064be04",
+    "notebooks/UQRoute_TC_Qwen15B_Corrected_Repeated_v1.ipynb": "03e3a631a55a9260f5a223e75b723011f56edbdc058f1bdb98301a6b7d6fc50c",
+    "notebooks/UQRoute_TC_Qwen7B_Corrected_Repeated_v1.ipynb": "9f04fa4233853c842d53161550778d7ef29786cbc69dd9ccaccd6d42067ea3b2",
+    "notebooks/UQRoute_TC_Sensitivity_Development_Google_Drive_v1.ipynb": "b83156777c9ec2b02b9ad351f1815aabe71af800c8c85a5bec8584d59ca9f547",
+    "notebooks/UQRoute_TC_Sensitivity_Development_Three_Models_v1.ipynb": "6dde356b423b7b117d90c5c77601992f95fb3d722377a31415278cec669c2be7"
+  }
+}

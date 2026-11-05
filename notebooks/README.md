@@ -32,6 +32,23 @@ Run one model notebook at a time. Each notebook pins its benchmark and pilot-cod
 
 The earlier Llama pilot notebook is superseded by the fixed notebook here. The four-model audit completed on the saved artifacts; its compact, user-reported five-case score table is in `docs/evidence/`.
 
+## Corrected development experiments
 
+The following notebooks reproduce the later corrected-prompt development
+experiments. Completed evidence should be analyzed from saved archives rather
+than regenerated. Their engine revisions and approved input hashes remain
+pinned; these are not held-out evaluation notebooks.
 
+| Notebook | Role |
+|---|---|
+| `UQRoute_TC_Qwen15B_Corrected_Repeated_v1.ipynb` | Corrected Qwen 1.5B 30-case / 300-slot development study; verified upload reuse repaired |
+| `UQRoute_TC_Llama3B_Corrected_Repeated_v1.ipynb` | Corrected Llama 3B 30-case / 300-slot study; authorized HF token read from environment/Colab Secrets |
+| `UQRoute_TC_Qwen7B_Corrected_Repeated_v1.ipynb` | Corrected Qwen 7B 30-case / 300-slot study with separate evidence identity |
+| `UQRoute_TC_Sensitivity_Development_Three_Models_v1.ipynb` | Three models on 35 sensitivity-only BFCL development cases each; upload-based input |
+| `UQRoute_TC_Sensitivity_Development_Google_Drive_v1.ipynb` | Same sensitivity runner with approved inputs and completed exports persisted through Google Drive |
 
+See [CPU reproduction and recovery instructions](../docs/research_track_v1/DEVELOPMENT_RESULTS_REPRODUCTION_V1.md).
+The Drive variant uses `MyDrive/UQRoute_TC/sensitivity_inputs` and
+`sensitivity_outputs`; the earlier pilots above use the distinct `UQRoute-TC`
+folder. Existing saved evidence blocks redispatch. Export to Drive is not a
+continuous backup before a run finishes.
