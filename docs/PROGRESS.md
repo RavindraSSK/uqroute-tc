@@ -6,8 +6,9 @@ Task 1 and Task 2 remain complete within their recorded scope. Task 3 now has
 completed corrected primary-development generation/scoring for all three small
 models, full-development statistical reporting, corrected repeated sampling,
 and the sensitivity-only development extension. Task 3 remains open for final
-protocol decisions and held-out evaluation. Task 4 routing/recovery and Task 5
-final packaging remain outstanding. No defensible overall completion percentage
+protocol decisions and held-out evaluation. Task 4 has an initial tested development routing kernel; measured routing,
+recovery and full cost evaluation remain outstanding. Task 5 final packaging
+remains outstanding. No defensible overall completion percentage
 is assigned.
 
 | Workstream | Completed development evidence | Status / remaining boundary |
@@ -280,7 +281,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Pending |
+| Task 4 — Routing and recovery | Initial offline development gate/frontier and baseline accounting implemented; matched fallback generation, operating-point selection, online dispatch, recovery and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -401,12 +402,21 @@ Final analysis freeze and new held-out access remain disabled.
 
 ## Task 4 — Routing and recovery
 
-- [ ] Implement the uncertainty gate.
-- [ ] Implement fallback-model escalation.
+See [development routing and fallback preparation](research_track_v1/DEVELOPMENT_ROUTING_V1.md).
+The implementation is development-only; no routing-effectiveness result or final
+threshold is supplied.
+
+- [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
+- [x] Implement offline threshold-frontier replay without choosing an operating point.
+- [x] Implement small-only, fallback-only, always-cascade and exact-count seeded random baseline replay, including rescues/harms and missing-usage accounting.
+- [x] Supply a tested preparation command for the prompt-matched 1,728-case corrected 14B AWQ development plan; actual owner-input preparation remains to be run.
+- [ ] Verify fallback tokenizer/context and runtime, generate the corrected matched development fallback evidence, replay and score it independently.
+- [ ] Implement evidence-bound paired-input loading and grouped development threshold selection under a fixed objective.
+- [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [ ] Implement post-fault recovery.
-- [ ] Add complete cost measurement.
-- [ ] Implement routing baselines.
-- [ ] Freeze thresholds before held-out evaluation.
+- [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
+- [ ] Validate all routing baselines on the matched development evidence.
+- [ ] Freeze the shared protocol and selected threshold before held-out evaluation.
 
 ## Task 5 — Final package
 
@@ -518,6 +528,12 @@ decisions are frozen.
 Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen before splitting. Report those clean scores descriptively. Use development groups for tuning and reserve unseen perturbed test cases for confirmatory analysis.
 
 ## Current next action
+
+Run the [matched fallback preparation command](research_track_v1/DEVELOPMENT_ROUTING_V1.md)
+on the preserved local primary-development audit. It prepares a reference-free
+14B AWQ transfer and prints its actual hashes; it sends no requests. Verify
+model-specific context feasibility before a separate GPU run. Measured routing
+requires those matched fallback responses and evidence-bound CPU scoring.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,
