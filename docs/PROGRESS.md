@@ -1,6 +1,48 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
-## Progress update — 2026-10-25
+## Progress update — 2026-11-05
+
+Task 1 and Task 2 remain complete within their recorded scope. Task 3 now has
+completed corrected primary-development generation/scoring for all three small
+models, full-development statistical reporting, corrected repeated sampling,
+and the sensitivity-only development extension. Task 3 remains open for final
+protocol decisions and held-out evaluation. Task 4 has an initial tested development routing kernel; measured routing,
+recovery and full cost evaluation remain outstanding. Task 5 final packaging
+remains outstanding. No defensible overall completion percentage
+is assigned.
+
+| Workstream | Completed development evidence | Status / remaining boundary |
+|---|---|---|
+| Primary static study | 1,728 responses per model; 5,184 total; 140 groups; 26 construction blocks retained separately | Three-model scoring, matched uncertainty and 1,588 pairs/model analyzed |
+| Statistics and calibration | 35 bootstrap entries / SVGs, 2,000 draws; 21 calibration scopes; constrained group-separated OOF calibration and paired-change intervals | Diagnostic policies; final choices and fitted mapping not frozen |
+| Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
+| Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
+| Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
+| Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
+
+Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
+Qwen 7B 790/1,512. Separate ToolEyes relevance is 174/216, 181/216 and 204/216.
+These are development results under the pinned deterministic reference scorer;
+they do not measure executable task success or cost/latency preference success.
+
+On the corrected 24-case repeated-sampling reference subset, canonical-entropy
+AUROC is 0.7685, 0.5898 and 0.9185 respectively; matched single mean-NLL AUROC
+is 0.7963, 0.6484 and 0.7481. The small cohort and extra ten-call cost prevent a
+final method-selection or superiority claim. Sensitivity reference matches
+are 10/35, 7/35 and 10/35, with all structural reference flags retained.
+
+See [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md),
+[reproduction instructions](research_track_v1/DEVELOPMENT_RESULTS_REPRODUCTION_V1.md)
+and [evidence fingerprints](research_track_v1/DEVELOPMENT_RESULTS_EVIDENCE_V1.json).
+New scripts/notebooks preserve the delivered source and input pins. The Qwen
+1.5B repeated notebook has an upload-only verified-file reuse fix; embedded
+execution sources and frozen sampling settings are unchanged.
+
+## Historical progress snapshot — 2026-10-25
+
+The following snapshot records the evidence available at that date. Its pending
+items are superseded by the current update and readiness v3 above.
+
 
 Latest owner-verified milestone: `6a09541`, committed and pushed on
 `feat/task3-throughput`; the owner confirmed a clean working tree.
@@ -238,8 +280,8 @@ with 53 tests passing in the local Windows verification.
 |---|---|
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
-| Task 3 — Robustness study | Partial: corrected Qwen and Llama 69-case development generation/scoring verified; Qwen ranking diagnostics and six illustrative reviews published. Qwen 7B corrected coverage, Llama uncertainty, broader experiments, calibration, intervals and final freeze remain pending |
-| Task 4 — Routing and recovery | Pending |
+| Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
+| Task 4 — Routing and recovery | Initial offline development gate/frontier and baseline accounting implemented; matched fallback generation, operating-point selection, online dispatch, recovery and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -308,12 +350,12 @@ Every completed component must include:
 ## Task 3 — Robustness study
 
 The [requirements review](research_track_v1/TASK3_REQUIREMENTS_REVIEW_V1.md)
-maps repository requirements to evidence at `d8f70b6`. The
-[development denominator proposal](research_track_v1/DEVELOPMENT_POPULATION_POLICY_V1.md)
-adds a separate CPU sidecar. Its reconciliation is verified; no final analysis
-freeze or held-out access is enabled. Corrected development-only inference has
-been explicitly run for the five-case Qwen feasibility and 69-case coverage
-selections.
+records the historical baseline. [Readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
+updates the completed development evidence and remaining closure requirements.
+The preserved original audit and denominator sidecar retain all 26 construction
+blocks. All three small models have now completed corrected primary-development
+runs, the corrected repeated subset and the separate sensitivity extension.
+Final analysis freeze and new held-out access remain disabled.
 
 - [x] Complete the original primary-development construction/reference audit with all rows retained.
 - [x] Diagnose all 26 construction blocks without changing schemas or official labels.
@@ -332,32 +374,49 @@ selections.
 - [x] Complete bounded reference/objective diagnostics (`e3c7b61`) and Qwen available/common-cohort uncertainty diagnostics (`bbb1387`), with per-benchmark results and missingness retained.
 - [x] Publish six illustrative failure reviews and a six-case evidence manifest with 17 verified hashes (`48ab2eb`, `a88688c`); no exhaustive confidence-band catalogue claim.
 - [x] Complete corrected Llama 3B 69-case development generation, full local replay, separate-panel scoring and 46-test Windows verification with one skip (`6a09541`).
-- [ ] Implement Llama uncertainty analysis and model comparisons on explicitly matched eligible cohorts.
-- [ ] Complete corrected Qwen 7B coverage and the remaining required broader model experiments.
-- [ ] Verify corrected five-benchmark feasibility for the other selected model roles before their broader corrected runs.
+- [x] Complete three-model primary-development uncertainty analysis on explicitly matched eligible cohorts.
+- [x] Complete corrected Qwen 7B coverage and all three 1,728-response primary-development small-model runs and CPU scoring.
+- [x] Verify corrected context/evidence feasibility for the three small models used in the completed five-benchmark primary-development runs.
+- [ ] Complete any remaining corrected fallback feasibility required by the final Task 4 policy; earlier fallback diagnostics do not establish routing benefit.
 
-- [ ] Measure representative per-model throughput and available GPU capacity before full inference.
+- [x] Record completed per-model development session timings, usage and runtime allocation attestations.
+- [ ] Check available quota and resource capacity before scheduling any further inference; session timing is not full policy cost.
 - [x] Implement the separate development-only throughput runner; user verified 68 tests and Ruff on Windows.
 - [x] Check supplied Qwen 1.5B manifest, original summary, runtime metadata and server log; retain the resume-accounting limitation.
 - [x] Verify Llama 3B and Qwen 7B timing artifacts and replay their supplied truncated token evidence.
 - [x] Verify 14B AWQ timing artifacts and replay all seven supplied non-complete records without changing frozen validation.
 - [x] Check the uploaded 276-record CPU audit, its score eligibility, record fingerprints, usage and session accounting.
-- [ ] Record current platform quota before scheduling broader inference.
-- [ ] Run the clean and static-perturbation experiments.
-- [ ] Calculate accuracy and failure-detection metrics.
-- [ ] Analyze risk–coverage and calibration.
-- [ ] Catalogue high-confidence failures.
-- [ ] Evaluate frozen methods on held-out groups.
-- [ ] Calculate group-aware confidence intervals.
+- [ ] Preserve current quota/budget evidence for future inference scheduling; do not infer it from completed runs.
+- [x] Run corrected primary-development clean/static experiments for all three small models; retain non-complete evidence statuses.
+- [x] Complete corrected repeated sampling: 900 slots across 30 selected cases per model, with saved-slot scoring and three-model signal comparisons.
+- [x] Complete separate sensitivity-only development audit, preparation, 105 responses, local replay and scoring; no clean anchors.
+- [x] Calculate development reference compliance, separate ToolEyes relevance, AUROC and noninterpolated AP, including missingness and shared cohorts.
+- [ ] Finalize success-proxy and reference/objective dispositions; execution success remains unmeasured.
+- [x] Analyze development risk–coverage and group-separated OOF calibration, including the constrained mapping diagnostic.
+- [ ] Freeze final mapping, validation, denominator, risk–coverage and figure rules; record immutable development-only method selection.
+- [x] Produce retrospective development failure bands/catalogue and illustrative cross-model review.
+- [ ] Finalize catalogue interpretation and failure-band rules for final evaluation.
+- [ ] Approve the final shared protocol, then evaluate frozen methods on held-out groups and preserve immutable final results.
+- [x] Calculate diagnostic group-bootstrap metric intervals and clean/perturbed paired-change intervals.
+- [ ] Freeze final interval/weighting settings and reproduce final result figures before Task 3 closure.
 
 ## Task 4 — Routing and recovery
 
-- [ ] Implement the uncertainty gate.
-- [ ] Implement fallback-model escalation.
+See [development routing and fallback preparation](research_track_v1/DEVELOPMENT_ROUTING_V1.md).
+The implementation is development-only; no routing-effectiveness result or final
+threshold is supplied.
+
+- [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
+- [x] Implement offline threshold-frontier replay without choosing an operating point.
+- [x] Implement small-only, fallback-only, always-cascade and exact-count seeded random baseline replay, including rescues/harms and missing-usage accounting.
+- [x] Supply a tested preparation command for the prompt-matched 1,728-case corrected 14B AWQ development plan; actual owner-input preparation remains to be run.
+- [ ] Verify fallback tokenizer/context and runtime, generate the corrected matched development fallback evidence, replay and score it independently.
+- [ ] Implement evidence-bound paired-input loading and grouped development threshold selection under a fixed objective.
+- [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [ ] Implement post-fault recovery.
-- [ ] Add complete cost measurement.
-- [ ] Implement routing baselines.
-- [ ] Freeze thresholds before held-out evaluation.
+- [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
+- [ ] Validate all routing baselines on the matched development evidence.
+- [ ] Freeze the shared protocol and selected threshold before held-out evaluation.
 
 ## Task 5 — Final package
 
@@ -470,26 +529,31 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Implement and test a separate development-only uncertainty analysis for the
-verified Llama scoring outputs. Preserve the Qwen implementation, scores and
-evidence. Report reference compliance separately from ToolEyes relevance;
-retain all 69 outcomes while excluding unavailable probability evidence only
-from the corresponding uncertainty metric denominator. Llama ToolEyes has no
-negative relevance labels, so AUROC is undefined and must not be fabricated.
-Compare models on explicitly matched cases and eligible cohorts, with
-per-benchmark results and differences in prompt rendering/sampling disclosed.
+Run the [matched fallback preparation command](research_track_v1/DEVELOPMENT_ROUTING_V1.md)
+on the preserved local primary-development audit. It prepares a reference-free
+14B AWQ transfer and prints its actual hashes; it sends no requests. Verify
+model-specific context feasibility before a separate GPU run. Measured routing
+requires those matched fallback responses and evidence-bound CPU scoring.
 
-Then complete corrected Qwen 7B development generation/evidence/scoring and
-the required broader static experiments. Validate Observation/Action/Reward
-taxonomy and comparison denominators. Resolve calibration mapping, validation,
-bins, group-aware intervals, weighting, failure-catalogue selection and final
-figure rules before final analysis claims. The six illustrative reviews do not
-replace a complete high-confidence failure catalogue.
+Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
+and record the final development-only signal decision. Resolve population,
+reference/objective interpretation, uncertainty applicability/missingness,
+calibration mapping and fitting, weighting, bootstrap settings, risk–coverage,
+failure-band and figure rules in an immutable shared protocol artifact.
+Completed diagnostic policies are not a final freeze.
 
-Keep method selection on development groups. Freeze the final shared protocol
-before any new held-out evaluation. Task 4 gate/fallback/recovery policies and
-full cost accounting remain separate outstanding work. Preserve prior evidence,
-official labels and all historical diagnostic limitations.
+Keep the primary and sensitivity populations, reference compliance and ToolEyes
+relevance distinct. Preserve official labels, all previous outputs and the
+pre-split clean-exposure disclosure. Repeated-sampling slots are dependent;
+small-cohort ranking gains do not establish deployment confidence or routing
+benefits. Mean NLL is a practical single-response candidate; Qwen 7B canonical
+entropy remains a ten-call challenger for further development comparison.
+
+Implement and validate the separate Task 4 gate/fallback/recovery workflow and
+full policy cost accounting under its own requirements. Freeze final shared
+evaluation decisions before any new held-out access; then run the separately
+authorized final static evaluation, reproduce final figures/catalogue and close
+Task 3 only after reviewing its original requirements.
 
 ## Earlier diagnostic next action (historical)
 
