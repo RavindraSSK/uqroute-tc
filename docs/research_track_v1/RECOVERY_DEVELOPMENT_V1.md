@@ -2,11 +2,13 @@
 
 This begins the separate Task 4 recovery implementation after review of the
 static OOF/conditional-bootstrap tradeoffs. It supplies reference-free request
-preparation and a pure CPU decision controller. Actual owner preparation, model
-context/resource checks, durable dispatch, fault-conditioned generation, recovery
-scoring and effectiveness evaluation remain pending. No readiness flag changes.
+preparation and a pure CPU decision controller. Owner preparation is complete:
+750/828/834 pending eligible episodes and 90/12/6 terminal no-injection plans for Qwen 1.5B/Llama 3B/Qwen 7B, with all
+52 checks passing. Model context/resource checks, durable dispatch, fault-conditioned
+generation, recovery scoring and effectiveness evaluation remain pending.
+No readiness flag changes.
 
-Run once from the updated owner repository root:
+Preparation command (already completed by the owner; preserve the occupied output):
 
 ```bash
 python tools/development_audits/recovery_development_v1/prepare.py
@@ -137,4 +139,7 @@ with invalid token evidence and a no-call output; it validates both role payload
 all six templates and ZIPs without calling reference scoring. Available saved
 fallback plan metadata also confirms the shared 140 clean prompts have supported
 system/user message shapes. Complete small-model owner sidecars are unavailable
-in the working implementation checkout, so actual preparation counts are pending.
+in the working implementation checkout. The owner subsequently supplied successful
+preparation counts and transfer fingerprints; those aggregates are recorded in
+[CPU context preflight](RECOVERY_CONTEXT_PREFLIGHT_V1.md). Run that preflight next;
+no actual context-fit or recovery-effectiveness result is established yet.
