@@ -4,8 +4,10 @@ This begins the separate Task 4 recovery implementation after review of the
 static OOF/conditional-bootstrap tradeoffs. It supplies reference-free request
 preparation and a pure CPU decision controller. Owner preparation is complete:
 750/828/834 pending eligible episodes and 90/12/6 terminal no-injection plans for Qwen 1.5B/Llama 3B/Qwen 7B, with all
-52 checks passing. Model context/resource checks, durable dispatch, fault-conditioned
-generation, recovery scoring and effectiveness evaluation remain pending.
+52 checks passing. The owner subsequently completed all 4,824 tokenizer-context
+checks with zero overflows. Bounded smoke staging and a small-stage request
+ledger are supplied separately; GPU runtime/quota checks, an execution launcher,
+fault-conditioned generation, recovery scoring and effectiveness remain pending.
 No readiness flag changes.
 
 Preparation command (already completed by the owner; preserve the occupied output):
@@ -141,5 +143,6 @@ fallback plan metadata also confirms the shared 140 clean prompts have supported
 system/user message shapes. Complete small-model owner sidecars are unavailable
 in the working implementation checkout. The owner subsequently supplied successful
 preparation counts and transfer fingerprints; those aggregates are recorded in
-[CPU context preflight](RECOVERY_CONTEXT_PREFLIGHT_V1.md). Run that preflight next;
-no actual context-fit or recovery-effectiveness result is established yet.
+[CPU context preflight](RECOVERY_CONTEXT_PREFLIGHT_V1.md). The owner completed
+that check with all contexts fitting. Run [bounded smoke staging](RECOVERY_RESOURCE_SMOKE_V1.md)
+next; recovery effectiveness is not evaluated.

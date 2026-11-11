@@ -17,9 +17,11 @@ paired group-bootstrap analysis on the saved evidence.
 Recovery context preparation and a bounded CPU controller are now implemented
 and tested. The owner completed preparation at `f2bbb44`: 2,412 pending eligible
 episodes and 108 terminal no-injection plans across the three small models. A CPU
-pinned-tokenizer preflight is supplied; actual context results, resource checks,
-recovery execution, the final objective/operating point and full cost evaluation
-remain outstanding. Task 5 final
+pinned-tokenizer preflight is owner-complete: all 4,824 potential role/context
+requests fit with zero overflows. Bounded Qwen 1.5B resource-smoke staging and
+a tested write-once small-stage ledger are supplied. Owner smoke staging, GPU
+runtime/quota checks, actual recovery execution, the final objective/operating
+point and full cost evaluation remain outstanding. Task 5 final
 packaging remains outstanding. No defensible overall completion percentage is
 assigned.
 
@@ -30,7 +32,7 @@ assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); tokenizer/resource checks, execution and final objective remain pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); all 4,824 tokenizer contexts fit; bounded smoke staging/ledger supplied; owner staging, GPU runtime/quota, execution and final objective remain pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -157,7 +159,29 @@ nonstreaming field and builds regression fixtures with the production static and
 recovery request constructors. All 19 corrected context checks and 52 existing
 preparation/controller/routing checks pass. Original archive pins and prepared
 outputs remain unchanged; rerun preflight only. Actual token counts, context fit
-and runtime/quota feasibility remain pending.
+and runtime/quota feasibility were pending at that point. The owner subsequently
+completed preflight at `2b9527d`, with all 19 context tests passing and all 4,824
+potential request contexts fitting without overflow, truncation or dropping:
+
+| Initial small model | Small contexts | Fallback contexts | Maximum small prompt tokens | Maximum fallback prompt tokens |
+|---|---:|---:|---:|---:|
+| Qwen 1.5B | 750 | 750 | 4,937 | 4,937 |
+| Llama 3B | 828 | 828 | 5,474 | 5,603 |
+| Qwen 7B | 834 | 834 | 4,954 | 4,954 |
+
+The largest prompt plus its full completion allowance is 5,603 + 1,024 = 6,627
+of 8,192 tokens. Prompt-token totals are 900,620/900,620 for Qwen 1.5B
+small/fallback roles, 1,029,804/1,017,510 for Llama-history small/fallback roles,
+and 986,566/986,566 for Qwen 7B. All role tokenizer/template/backend identities
+were reported. The original Qwen/Llama tokenizer differences remain explicit.
+These aggregate figures are owner-reported, not independently recomputed here.
+The new [bounded resource-smoke preparation](research_track_v1/RECOVERY_RESOURCE_SMOKE_V1.md)
+checks the actual saved per-request preflight before selecting at most one
+eligible clean group per benchmark, all six faults, and only Qwen 1.5B small-stage
+requests (at most 30). A tested write-once ledger distinguishes intents, observed
+local HTTP writes and saved/unknown responses; it is not a GPU launcher or final
+adaptive recovery executor. Owner smoke staging, runtime/quota checks, actual
+injection, response replay, full recovery/scoring and policy costs remain pending.
 Planned fault feedback is not observed injection or measured recovery. No new
 inference, reference scoring, held-out access or final threshold selection occurred.
 
@@ -420,7 +444,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; CPU tokenizer preflight supplied; actual context/runtime checks, recovery, final objective, live escalation and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; All 4,824 CPU tokenizer contexts fit; bounded smoke staging/ledger supplied; owner smoke staging, GPU runtime/quota, recovery, final objective, live escalation and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -547,7 +571,8 @@ supplied all-pair transition totals and the gated/random report. Fixed-cap match
 counts and saved usage/usability accounting are reviewed. Group-separated validation
 and conditional intervals are owner-executed and reviewed. Recovery preparation
 and a bounded CPU controller are supplied and owner preparation is complete;
-tokenizer/resource checks, actual recovery and the final objective remain pending.
+owner tokenizer checks are complete; bounded smoke staging/ledger are supplied;
+owner staging, runtime/quota checks, actual recovery and the final objective remain pending.
 No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
@@ -570,7 +595,9 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [x] Execute/review owner recovery preparation: 750/828/834 pending eligible episodes and 90/12/6 terminal no-injection plans; zero generation or observed injection.
 - [x] Supply an owner-archive-bound CPU tokenizer preflight for both roles, complete context inventories and overflow reporting; 19 synthetic checks pass, including production-built nonstreaming requests.
-- [ ] Run/review the pinned-tokenizer context preflight and complete server/runtime/quota feasibility checks.
+- [x] Run/review owner pinned-tokenizer context preflight at `2b9527d`: all 4,824 contexts fit with zero overflows; largest prompt plus output allowance is 6,627/8,192 tokens.
+- [x] Supply bounded, label-independent Qwen 1.5B smoke staging and a separate write-once small-stage ledger; 25 synthetic checks pass, including complete staging/publication and unknown-slot handling.
+- [ ] Execute/review owner smoke staging; prepare a pinned runtime-specific GPU smoke and complete server/runtime/quota feasibility checks.
 - [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
 - [ ] Validate all routing baselines on group-separated development evidence, then review full policy costs and uncertainty.
@@ -687,16 +714,16 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [CPU recovery context preflight](research_track_v1/RECOVERY_CONTEXT_PREFLIGHT_V1.md):
-`python tools/development_audits/recovery_context_preflight_v1/preflight.py`.
-Use the recorded `transformers==5.20.2` tokenizer runtime and existing authorized
-Hugging Face access for Llama. All three prepared owner ZIPs are fingerprint-bound
-before tokenizer downloads. The command checks every potential small/fallback
-request, reserves the full completion allowance, and saves overflows without
-trimming or dropping contexts. It sends no generation requests and authorizes no
-dispatch. Do not rerun preparation over its existing output. Review actual context
-counts before runtime/quota checks and a durable dedicated recovery executor.
-The static dispatcher is incompatible; all readiness flags remain false.
+Run the [bounded recovery resource-smoke staging](research_track_v1/RECOVERY_RESOURCE_SMOKE_V1.md):
+`python tools/development_audits/recovery_smoke_v1/stage.py`.
+This reads the completed per-request context preflight and original pinned
+recovery archives, then packages at most 30 Qwen 1.5B post-fault small-stage
+requests using one eligible clean group per available benchmark and all six
+faults. No fallback generation, downloads, inference, injection or scoring occur.
+Review actual selection counts and ZIP/manifest fingerprints before preparing
+an explicitly bounded, runtime-specific GPU smoke. Do not rerun preparation or
+context preflight over occupied outputs. Model serving, quota, actual response
+replay, full adaptive recovery and final policy decisions remain pending.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,

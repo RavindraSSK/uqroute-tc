@@ -17,10 +17,19 @@ observed recovery outcomes. All 52 owner checks passed. No model requests or
 observed injections occurred, and no reference scoring was performed. Original
 generation/preparation sources and evidence remain unchanged.
 
-## Run on CPU
+## Completed owner run
 
-Use Python 3.10–3.13 and the tokenizer runtime recorded by the existing corrected
-generation notebooks. From the updated repository root:
+The owner completed preflight at `2b9527d`. All 4,824 potential contexts fit,
+with zero overflows/truncations/dropped requests and all 19 checks passing.
+Maximum small/fallback prompt counts are 4,937/4,937 (Qwen 1.5B), 5,474/5,603
+(Llama history) and 4,954/4,954 (Qwen 7B). The largest context plus the full
+completion allowance is 6,627/8,192 tokens. No model inference or injection
+occurred. These figures are from the supplied terminal summary; the detailed
+private files remain on the owner machine.
+
+Next run [bounded smoke staging](RECOVERY_RESOURCE_SMOKE_V1.md). Preserve the
+occupied preflight output. The following command is retained for reproducibility
+on a fresh output, using Python 3.10–3.13 and the recorded tokenizer runtime:
 
 ```bash
 python -m pip install "transformers==5.20.2"
