@@ -6,8 +6,9 @@ Task 1 and Task 2 remain complete within their recorded scope. Task 3 now has
 completed corrected primary-development generation/scoring for all three small
 models, full-development statistical reporting, corrected repeated sampling,
 and the sensitivity-only development extension. Task 3 remains open for final
-protocol decisions and held-out evaluation. Task 4 has an initial tested development routing kernel; measured routing,
-recovery and full cost evaluation remain outstanding. Task 5 final packaging
+protocol decisions and held-out evaluation. Task 4 has a tested development routing kernel and a completed, independently
+replayed 1,728-response corrected 14B fallback run. Actual fallback reference
+scoring, measured routing, recovery and full cost evaluation remain outstanding. Task 5 final packaging
 remains outstanding. No defensible overall completion percentage
 is assigned.
 
@@ -18,6 +19,7 @@ is assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Actual reference scoring on preserved owner sidecars pending; no routing-benefit claim |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -281,7 +283,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Initial offline development gate/frontier and baseline accounting implemented; matched fallback generation, operating-point selection, online dispatch, recovery and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Reference scoring, operating-point selection, live escalation, recovery and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -410,7 +412,9 @@ threshold is supplied.
 - [x] Implement offline threshold-frontier replay without choosing an operating point.
 - [x] Implement small-only, fallback-only, always-cascade and exact-count seeded random baseline replay, including rescues/harms and missing-usage accounting.
 - [x] Supply a tested preparation command for the prompt-matched 1,728-case corrected 14B AWQ development plan; actual owner-input preparation remains to be run.
-- [ ] Verify fallback tokenizer/context and runtime, generate the corrected matched development fallback evidence, replay and score it independently.
+- [x] Verify all-request fallback context/runtime, generate all 1,728 corrected matched development responses, check all 6,942 evidence-file hashes and independently reproduce full local replay.
+- [x] Supply a separately evidence-bound fallback CPU scorer and import/replay command; synthetic regression tests pass.
+- [ ] Run/review actual fallback reference scoring using the preserved primary-development reference/audit sidecars on the owner checkout.
 - [ ] Implement evidence-bound paired-input loading and grouped development threshold selection under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [ ] Implement post-fault recovery.
@@ -529,11 +533,13 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [matched fallback preparation command](research_track_v1/DEVELOPMENT_ROUTING_V1.md)
-on the preserved local primary-development audit. It prepares a reference-free
-14B AWQ transfer and prints its actual hashes; it sends no requests. Verify
-model-specific context feasibility before a separate GPU run. Measured routing
-requires those matched fallback responses and evidence-bound CPU scoring.
+Run the [fallback CPU scoring command](research_track_v1/FALLBACK_FULL_DEVELOPMENT_SCORING_V1.md)
+on the owner checkout after downloading the completed evidence ZIP from
+`UQRoute_TC/fallback_outputs`. Actual generation and independent local replay
+are complete. Preserve all 128 invalid-evidence and 42 truncated outputs;
+uncertainty availability is not a correctness label. No new GPU requests or
+model retries are needed. The CPU scorer verifies the original reference/audit
+sidecars before computing any outcome metrics.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,
