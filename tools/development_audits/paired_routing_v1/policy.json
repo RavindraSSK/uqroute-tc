@@ -1,0 +1,67 @@
+{
+  "baseline_commit": "6962586e937d04fff2ea7e99b121dfbe513b6674",
+  "diagnostic_budget_caps": [
+    0,
+    0.1,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "fallback": "qwen14b_awq",
+  "held_out_access_enabled": false,
+  "inference_requests": 0,
+  "main_experiment_ready": false,
+  "model_order": [
+    "qwen15b",
+    "llama3b",
+    "qwen7b"
+  ],
+  "models": {
+    "llama3b": {
+      "evidence": "corrected_llama3b_full_development_import_0a9a8a9b",
+      "scored": "corrected_llama3b_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py"
+    },
+    "qwen14b_awq": {
+      "evidence": "corrected_qwen14b_awq_full_development_import_e21e0f54",
+      "scored": "corrected_qwen14b_awq_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/fallback_full_development_scoring_v1/score_fallback_full.py"
+    },
+    "qwen15b": {
+      "evidence": "corrected_qwen15b_full_development_import_8517fd5d",
+      "scored": "corrected_qwen15b_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/full_development_scoring_v1/score_full.py"
+    },
+    "qwen7b": {
+      "evidence": "corrected_qwen7b_full_development_import_cee21586",
+      "scored": "corrected_qwen7b_full_development_official_scoring_v1",
+      "scorer": "tools/development_audits/qwen7b_full_development_scoring_v1/score_qwen7b_full.py"
+    }
+  },
+  "random_seeds": [
+    1729,
+    1730,
+    1731,
+    1732,
+    1733,
+    1734,
+    1735,
+    1736,
+    1737,
+    1738
+  ],
+  "routing_threshold_selected": false,
+  "rows_per_model": 1728,
+  "source_sha256_lf": {
+    "src/uqroute_tc/routing/development.py": "4ed22b4a5e16ca574e2f30bae18b851cd09232fba95849285ce04100582ccb54",
+    "tools/development_audits/fallback_full_development_scoring_v1/score_fallback_full.py": "a4937a0586055256c02f4879b92a48be53a372d7b54709d2e1deddbbe993a6f7",
+    "tools/development_audits/fallback_full_development_scoring_v1/scoring_policy_v1.json": "0afe83c49f3853ce0483e2adb0eb96b2b03a203d465e956816f10ad1a5335300",
+    "tools/development_audits/full_development_scoring_v1/score_full.py": "af44aee3371f62ba6d0ba5ec6b31764d46d4a21e61c30fb21b15ccb82ef880e8",
+    "tools/development_audits/full_development_scoring_v1/scoring_policy_v1.json": "b748c2e7e21f0fb29b1d4b682fcb3971f2eb7818833c68e70f91dcda01473ebf",
+    "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py": "875ff9b4e93a602d04d892e790d30277f7f3b73c5f3fa038b33fbd04e7e09190",
+    "tools/development_audits/llama_full_development_scoring_v1/scoring_policy_v1.json": "953a956d12af6a790bc3ae450f1ee5f807582a7aeb298f5e700b7baa1d3d1dbb",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/score_qwen7b_full.py": "61e7c590a5bafece6c95cf562b078f7e9a771b08112f7606813ee83adf606508",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/scoring_policy_v1.json": "0b52bd0144cf69da2c182e95a68a7c32ddb4e07f16a9d57b9ff0c0596955fb98"
+  },
+  "version": "uqroute-paired-routing-development-1.0.0"
+}

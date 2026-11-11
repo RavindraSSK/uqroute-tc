@@ -47,18 +47,43 @@ summary, including outcome-file hashes**. Repeated import/replay verifies prior
 bytes and preserves existing outputs. Hashes establish local consistency, not
 authenticated provenance of the loaded weights or dataset.
 
-## Correctness remains a separate step
+## Correctness is measured separately from evidence status
 
 Complete/invalid/truncated are evidence statuses, not official correctness
-labels. All 1,728 generated texts must be scored as saved. The 170 outputs
+labels. All 1,728 generated texts are scored as saved. The 170 outputs
 without whole-output uncertainty are retained in correctness denominators;
 there are no repairs, replacement generations, retries, automatic zero labels
 or exclusions based on reference-review flags.
 
-This update verified actual generation and local replay. **Actual reference
-scores have not been computed in the working checkout**, because the preserved
-full primary reference/audit sidecars remain on the owner's laptop. The tests
-use synthetic outcomes and must not be presented as model results.
+The owner subsequently ran the CPU command successfully at `6962586` and
+provided its full terminal scoring summary on 2026-11-11 UTC. All 64 import/scoring
+tests passed (one Windows skip), and all 34 frozen generation checks passed.
+The command verified the archive/member/runtime bindings and full replay before
+scoring the preserved owner reference/audit inputs. The raw scoring sidecars
+remain on the owner checkout; this working checkout independently verified
+archive/replay and records the official results from the supplied terminal output.
+Synthetic tests are not the source of these model results.
+
+| Endpoint | Correct / rows | Fraction |
+|---|---:|---:|
+| Reference compliance | 787 / 1,512 | 52.05% |
+| APIBank reference compliance | 483 / 826 | 58.47% |
+| BFCL reference compliance | 149 / 182 | 81.87% |
+| RoTBench reference compliance | 58 / 253 | 22.92% |
+| ToolAlpaca reference compliance | 97 / 251 | 38.65% |
+| ToolEyes relevance, separate | 208 / 216 | 96.30% |
+
+Reference whole-output / meaningful-token eligibility is 1,342 / 415; ToolEyes
+eligibility is 216 / 216. All 128 invalid-evidence and 42 truncated outputs occur
+in APIBank and remain in its reference denominator. The 802 flagged reference
+rows remain scored without relabeling or exclusion. Qwen 7B has 790/1,512
+reference matches and 204/216 ToolEyes matches, so the aggregate fallback results
+do not establish uniform improvement or reveal individual rescues/harms.
+The quantized 14B and unquantized small-model configurations also differ in
+more than parameter count.
+
+Only aggregate results are recorded here. Detailed case identifiers and the
+owner scoring sidecars are not published by this update.
 
 The new scorer is a separate version of the reviewed full-development scoring
 adapter, with the new archive, file inventory, fallback model, manifest and
@@ -125,7 +150,7 @@ are unchanged; rerun the same CPU command after pulling this correction.
 
 ## Subsequent routing work
 
-Once the actual reference-scoring output is reviewed, join fallback and each
+The reference-scoring output is now reviewed. The next CPU command joins fallback and each
 small-model result by qualified case key, lineage, original prompt fingerprint,
 panel and development membership. Preserve unavailable probability evidence and
 all outcome statuses. Then measure rescues and harms, compare baselines and
@@ -133,3 +158,7 @@ threshold frontiers, and select an operating point under a recorded grouped
 development objective. The fallback's size alone does not establish better
 outcomes or justify extra cost. Held-out access remains disabled until the final
 shared protocol freeze.
+
+The [paired-routing development command](PAIRED_ROUTING_DEVELOPMENT_V1.md)
+implements this evidence-bound join and fixed diagnostic frontiers. Its actual
+owner execution and grouped threshold selection remain pending.
