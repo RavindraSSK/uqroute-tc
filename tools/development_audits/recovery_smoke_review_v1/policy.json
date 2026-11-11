@@ -1,0 +1,45 @@
+{
+  "baseline_commit": "e25c8e63d3b2aeddc3660154d0c31d596dbdd835",
+  "control_name_scope": [
+    "rotbench",
+    "tooleyes"
+  ],
+  "execution_success": "not_evaluated",
+  "expected_reference_panels": {
+    "official_reference_compliance": {
+      "groups": 4,
+      "initial_matches_repeated_per_episode": 18,
+      "match_to_mismatch": 14,
+      "mismatch_to_match": 0,
+      "postfault_matches": 4,
+      "rows": 24
+    },
+    "tooleyes_relevance": {
+      "groups": 1,
+      "initial_matches_repeated_per_episode": 6,
+      "match_to_mismatch": 3,
+      "mismatch_to_match": 0,
+      "postfault_matches": 3,
+      "rows": 6
+    }
+  },
+  "generation_requests_sent": 0,
+  "groups": 5,
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "react_control_name_literals": [
+    "ask_to_user",
+    "finish"
+  ],
+  "reference_labels_changed": false,
+  "rows": 30,
+  "scope": "development-smoke-only; no new outcome labels or exclusions",
+  "semantic_fault_recovery": "not_evaluated",
+  "source_sha256_lf": {
+    "tools/development_audits/recovery_gpu_smoke_v1/client.py": "3207177606a4261e7a974df7ade02a27cfbce506cce9596b586cef90bccb58b3",
+    "tools/development_audits/recovery_smoke_import_v1/import_smoke.py": "bbbca497a9b78c79b7a4de4e074fb1d564e7a9d44c7b5e20140190f9af0bea23",
+    "tools/development_audits/recovery_smoke_scoring_v1/policy.json": "8be68c1925a863cc67e29c8ddd80b13baf18c9834ab99ec91bf042fee9e716ba",
+    "tools/development_audits/recovery_smoke_scoring_v1/score_smoke.py": "ddd1db1e02930b009d56909c281f3607a17b7b9e23fed5d462f2adb1c0b589e0"
+  },
+  "version": "uqroute-recovery-smoke-behaviour-review-1.0.0"
+}

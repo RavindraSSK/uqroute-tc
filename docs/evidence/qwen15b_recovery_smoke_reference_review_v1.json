@@ -1,0 +1,59 @@
+{
+  "execution_success": "not_evaluated",
+  "generation_requests_sent_by_review": 0,
+  "held_out_access_enabled": false,
+  "independent_saved_text_structural_counts": {
+    "changed_name_sequence": 8,
+    "identical_canonical_calls": 4,
+    "initial_first_control_name_rows": 6,
+    "no_parsed_postfault_call": 11,
+    "postfault_control_name_rows": 8,
+    "rows": 30,
+    "rows_with_empty_string_replacement": 1,
+    "rows_with_removed_argument_keys": 2,
+    "same_name_sequence_changed_arguments": 7
+  },
+  "labels_changed": false,
+  "main_experiment_ready": false,
+  "owner_scoring_revision": "e25c8e63d3b2aeddc3660154d0c31d596dbdd835",
+  "panels": {
+    "official_reference_compliance": {
+      "by_fault_postfault_matches": {
+        "auth_error": 0,
+        "malformed_response": 1,
+        "rate_limit": 0,
+        "schema_drift": 2,
+        "server_error": 0,
+        "timeout": 1
+      },
+      "groups": 4,
+      "initial_matches_repeated_per_episode": 18,
+      "match_to_mismatch": 14,
+      "mismatch_to_match": 0,
+      "postfault_matches": 4,
+      "rows": 24
+    },
+    "tooleyes_relevance": {
+      "by_fault_postfault_matches": {
+        "auth_error": 0,
+        "malformed_response": 1,
+        "rate_limit": 0,
+        "schema_drift": 1,
+        "server_error": 1,
+        "timeout": 0
+      },
+      "groups": 1,
+      "initial_matches_repeated_per_episode": 6,
+      "match_to_mismatch": 3,
+      "mismatch_to_match": 0,
+      "postfault_matches": 3,
+      "rows": 6
+    }
+  },
+  "reference_cross_tabs_independently_verified": false,
+  "reference_results_source": "owner terminal report; not independently recomputed in this checkout",
+  "rows_excluded": 0,
+  "semantic_fault_recovery": "not_evaluated",
+  "smoke_archive_sha256": "dd91a73f5f565269f83d70773fd25fd64c82785029e3d96b139682c072b59595",
+  "version": "uqroute-recovery-smoke-reference-review-1.0.0"
+}

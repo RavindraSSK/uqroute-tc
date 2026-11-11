@@ -4,7 +4,10 @@ Owner local import at `be2ef44` completed successfully: all 152 hashes verify,
 all 30 saved records independently replay exactly, and no new generation occurred.
 Nine importer checks finished with one Windows symlink check skipped. The next
 step is deterministic CPU reference scoring of these saved outputs, before
-expanding GPU collection. Actual reference-match results remain pending.
+expanding GPU collection. The owner subsequently completed the command: reference matches are 4/24
+versus 18/24 repeated initial matches, and separate ToolEyes relevance is 3/6
+versus 6/6. No mismatch-to-match episodes were reported. See the
+[behaviour review](RECOVERY_SMOKE_BEHAVIOUR_REVIEW_V1.md) before larger collection.
 
 ```bash
 python tools/development_audits/recovery_smoke_scoring_v1/score_smoke.py
