@@ -55,7 +55,16 @@ share dependent fault scenarios and cannot establish broader recovery performanc
 The measured times exclude full installation/allocation/billing and must not be
 extrapolated as full-study cost or a monetary-saving result.
 
-## Import on the owner machine, CPU only
+## Owner local import complete
+
+The owner ran the importer at `be2ef44` successfully. Nine tests completed with
+one Windows symlink check skipped; all 152 hashes and exact independent replay
+of 30 records match. Counts, tokens and times match the results above. No new
+model request or original-evidence change occurred.
+
+Run [CPU smoke reference scoring](RECOVERY_SMOKE_REFERENCE_SCORING_V1.md) next.
+The following import instructions are retained for a fresh reproduction; preserve
+the existing completed owner output.
 
 Keep the downloaded OUTPUT ZIP in Downloads and run:
 
@@ -78,9 +87,9 @@ case-level files private. Nine synthetic import checks pass, including archive
 paths/hashes, runtime completion, tokenizer/usage contradictions and renamed-file
 discovery; lint and actual complete-archive replay also pass.
 
-Do not rerun the completed GPU smoke. Owner import should finish before staging
-broader recovery collection with explicit accounting for these 30 occupied
-requests. Remaining full-development Qwen 1.5B small-stage slots are 750 - 30 = 720;
+Do not rerun the completed GPU smoke. Owner import is complete. Review the
+saved-output reference diagnostic before broader collection, retaining all 30
+occupied requests. Remaining full-development Qwen 1.5B small-stage slots are 750 - 30 = 720;
 that arithmetic does not itself authorize or prepare another batch. Other model
 roles, fallback generation, post-fault scoring dispositions, a final objective/
 threshold, baselines, complete cost accounting and held-out evaluation remain open.

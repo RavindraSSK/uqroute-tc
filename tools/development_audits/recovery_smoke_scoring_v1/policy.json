@@ -1,0 +1,25 @@
+{
+  "baseline_commit": "be2ef44df723e34a05f8c1931c4d47fedd805ee0",
+  "endpoint": "Original clean-reference compliance after released fault feedback; not execution success or semantic fault appropriateness.",
+  "final_protocol_frozen": false,
+  "generation_requests_sent": 0,
+  "groups": 5,
+  "held_out_access_enabled": false,
+  "initial_evidence": "corrected_qwen15b_full_development_import_8517fd5d",
+  "main_experiment_ready": false,
+  "reference_rule": "Released Transition writer retains original golden_answers and eval_config; score post-fault text as generated with unchanged parser/scorer and reference flags.",
+  "rows": 30,
+  "scope": "development-smoke-only",
+  "scorer": "tools/development_audits/full_development_scoring_v1/score_full.py",
+  "smoke_export_manifest_sha256": "8d642e8e15bfd18c043d5edf3e13a046ee0d978e468070785f2ae323a7920d1f",
+  "source_sha256_lf": {
+    "src/uqroute_tc/routing/recovery.py": "2d5008ec4388be882d0e55c1b54bd0148552066661565c4cb478d15cc783fed1",
+    "tools/development_audits/full_development_scoring_v1/score_full.py": "af44aee3371f62ba6d0ba5ec6b31764d46d4a21e61c30fb21b15ccb82ef880e8",
+    "tools/development_audits/full_development_scoring_v1/scoring_policy_v1.json": "b748c2e7e21f0fb29b1d4b682fcb3971f2eb7818833c68e70f91dcda01473ebf",
+    "tools/development_audits/recovery_development_v1/policy.json": "3cfaac0da95819f99a26816a32cd54935f9d87b940eff8f4b1c9614d05ad06da",
+    "tools/development_audits/recovery_development_v1/prepare.py": "8263b762966d819ffe2e4bd17245b22c7e1103aefa27f3ab21fd6383590f2015",
+    "tools/development_audits/recovery_gpu_smoke_v1/client.py": "3207177606a4261e7a974df7ade02a27cfbce506cce9596b586cef90bccb58b3",
+    "tools/development_audits/recovery_smoke_import_v1/import_smoke.py": "bbbca497a9b78c79b7a4de4e074fb1d564e7a9d44c7b5e20140190f9af0bea23"
+  },
+  "version": "uqroute-recovery-smoke-reference-scoring-1.0.0"
+}

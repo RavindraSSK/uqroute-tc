@@ -600,6 +600,17 @@ For transition evaluation, pass-one output, injection status, injected fault typ
 
 A transition-labelled record with `prediction.transition_injected == false` did not receive a fault. Such records are excluded from all RQ3 denominators and reported separately as a no-fault-injected count; they are not treated as recovery successes or failures.
 
+The separate [development smoke reference diagnostic](research_track_v1/RECOVERY_SMOKE_REFERENCE_SCORING_V1.md)
+uses the pinned Transition writer's original clean `golden_answers` and
+`eval_config` for saved post-fault outputs. It reports reference compliance and
+separate ToolEyes name relevance, retaining all original flags and evidence
+statuses. No fault-specific reference, response repair or semantic adjudication
+is introduced. Auth/schema feedback does not provide replacement credentials or
+schema information; an appropriate refusal may still mismatch the original
+reference. These development diagnostics were specified after inspection of the
+smoke outputs/parser counts. They do not establish execution success, semantic
+fault recovery, an independent held-out result or the final RQ3/scoring freeze.
+
 ## 13. Primary metrics
 
 The study will report:
