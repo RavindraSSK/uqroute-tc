@@ -7,6 +7,7 @@ import unittest
 import warnings
 import zipfile
 from pathlib import Path
+from unittest.mock import patch
 
 import run_cpu as importer
 
@@ -15,7 +16,11 @@ def packed(names, symlink=False):
     stream = io.BytesIO()
     with zipfile.ZipFile(stream, "w") as z:
         for name in names:
-            entry = zipfile.ZipInfo(name)
+            # Passing name to ZipInfo's constructor would normalize it on the
+            # writer's platform, hiding the unsafe bytes this fixture tests.
+            entry = zipfile.ZipInfo()
+            entry.filename = name
+            entry.orig_filename = name
             if symlink:
                 entry.create_system = 3
                 entry.external_attr = (stat.S_IFLNK | 0o777) << 16
@@ -46,6 +51,28 @@ class ImportTests(unittest.TestCase):
         for name in names:
             with self.subTest(name=name), self.assertRaises(ValueError):
                 importer.safe_payloads(packed([name]))
+
+    def test_fixture_preserves_original_backslash_and_null_names(self):
+        for name in ("run\\file", "run/file\x00suffix"):
+            with self.subTest(name=name), zipfile.ZipFile(io.BytesIO(packed([name]))) as z:
+                self.assertEqual(z.infolist()[0].orig_filename, name)
+                with self.assertRaises(ValueError):
+                    importer.safe_payloads(packed([name]))
+
+    def test_windows_normalization_does_not_hide_unsafe_original_name(self):
+        raw = packed(["run\\file"])
+        # Exercise Python's actual Windows separator-normalization branch,
+        # including on the Linux CPU test host. No filesystem path is used.
+        with patch.object(zipfile.os, "sep", "\\"):
+            with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                self.assertEqual(z.infolist()[0].filename, "run/file")
+                self.assertEqual(z.infolist()[0].orig_filename, "run\\file")
+            with self.assertRaisesRegex(ValueError, "Unsafe"):
+                importer.safe_payloads(raw)
+            self.assertEqual(
+                importer.safe_payloads(packed(["run/safe.json"])),
+                {"run/safe.json": b"fixture"},
+            )
 
     def test_case_collision_and_duplicate_rejected(self):
         for names in (["run/A", "run/a"], ["run/A", "run/A"]):

@@ -112,6 +112,17 @@ without reading reference sidecars or claiming correctness scores.
 The command does not infer, retry model requests, change labels, stage, commit
 or push Git changes. It opens no raw benchmark or split records.
 
+### Windows ZIP-name regression
+
+The owner's first Windows run stopped in the synthetic import tests, before
+processing the real evidence. Python normalized the fixture's backslash when
+constructing its ZIP name. The fixture now preserves the original header name,
+and import validates `ZipInfo.orig_filename` before accepting Python's sanitized
+filename. Backslash and null-byte aliases are rejected on both platforms.
+Tests explicitly exercise Windows separator normalization and valid forward-slash
+names. The approved archive, fingerprints, scoring rules and saved GPU outputs
+are unchanged; rerun the same CPU command after pulling this correction.
+
 ## Subsequent routing work
 
 Once the actual reference-scoring output is reviewed, join fallback and each

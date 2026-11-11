@@ -27,27 +27,34 @@ def safe_payloads(raw):
     """Only bounded regular evidence files; reject Windows aliases and traversal."""
     with zipfile.ZipFile(io.BytesIO(raw)) as archive:
         entries = archive.infolist()
-        names = [entry.filename for entry in entries]
+        # ZipInfo.filename is sanitized by Python (including backslash
+        # conversion on Windows). Validate the original central-directory name
+        # before accepting that sanitized view or reading any member payload.
+        names = [entry.orig_filename for entry in entries]
         if (
             len({name.casefold() for name in names}) != len(names)
             or sum(entry.file_size for entry in entries) > 250_000_000
-            or archive.testzip() is not None
         ):
             raise ValueError("Archive inventory, size or integrity differs")
         for entry in entries:
-            path = PurePosixPath(entry.filename)
+            original = entry.orig_filename
+            path = PurePosixPath(original)
             if (
-                entry.is_dir()
+                original != entry.filename
+                or "\x00" in original
+                or entry.is_dir()
                 or path.is_absolute()
                 or not path.parts
-                or any(part in {"", ".", ".."} for part in entry.filename.split("/"))
-                or "\\" in entry.filename
-                or ":" in entry.filename
+                or any(part in {"", ".", ".."} for part in original.split("/"))
+                or "\\" in original
+                or ":" in original
                 or path.parts[0] not in {"prepared", "metadata", "run", "replay"}
                 or stat.S_ISLNK(entry.external_attr >> 16)
                 or any(part.endswith((" ", ".")) for part in path.parts)
             ):
                 raise ValueError("Unsafe or unsupported archive member")
+        if archive.testzip() is not None:
+            raise ValueError("Archive inventory, size or integrity differs")
         return {entry.filename: archive.read(entry) for entry in entries}
 
 
