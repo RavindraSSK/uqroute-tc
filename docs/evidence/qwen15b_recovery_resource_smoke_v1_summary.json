@@ -1,0 +1,50 @@
+{
+  "archive_sha256": "dd91a73f5f565269f83d70773fd25fd64c82785029e3d96b139682c072b59595",
+  "benchmarks": {
+    "apibank": 6,
+    "bfcl_v3": 6,
+    "rotbench": 6,
+    "toolalpaca": 6,
+    "tooleyes": 6
+  },
+  "dispatch_wall_seconds": 28.002410962000113,
+  "eligible_parsed_finite_nll_candidates": 19,
+  "fallback_requests": 0,
+  "fault_types": {
+    "auth_error": 5,
+    "malformed_response": 5,
+    "rate_limit": 5,
+    "schema_drift": 5,
+    "server_error": 5,
+    "timeout": 5
+  },
+  "gpu_name": "NVIDIA L4",
+  "held_out_access_enabled": false,
+  "independent_replay_matches": true,
+  "known_http_errors": 0,
+  "main_experiment_ready": false,
+  "missing_usage_slots": 0,
+  "new_generation_requests_sent_by_import": 0,
+  "observed_injected": 30,
+  "official_scoring": "not_performed",
+  "parser_status_counts": {
+    "calls": 19,
+    "unparsed_or_no_call": 11
+  },
+  "request_elapsed_seconds_sum": 26.103133738999304,
+  "requests": 30,
+  "rq3_outcomes": "not_evaluated",
+  "saved_responses": 30,
+  "server_stopped": true,
+  "supervisor_wall_seconds": 244.1318688010001,
+  "unknown_slots": 0,
+  "usage_totals": {
+    "completion_tokens": 1798,
+    "prompt_tokens": 56606
+  },
+  "validation_status_counts": {
+    "complete": 30
+  },
+  "verified_export_files": 152,
+  "version": "uqroute-recovery-smoke-import-1.0.0"
+}

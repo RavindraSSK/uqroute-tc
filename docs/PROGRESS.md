@@ -21,9 +21,11 @@ pinned-tokenizer preflight is owner-complete: all 4,824 potential role/context
 requests fit with zero overflows. Bounded Qwen 1.5B resource-smoke staging and
 a tested write-once small-stage ledger are supplied. Owner smoke staging is
 complete: 30 planned post-fault small requests, five groups and all five benchmarks, with no fallback
-requests. A fingerprint-bound L4 execution notebook is supplied; actual GPU
-runtime/quota results, recovery responses, the final objective/operating point
-and full cost evaluation remain outstanding. Task 5 final
+requests. The owner completed that L4 smoke: all 30 responses and submission
+records are present, all token evidence is complete, and independent CPU replay
+matches every saved record exactly. Nineteen outputs contain parsed calls; eleven
+are unparsed or contain no call. Correctness/RQ3 scoring, broader recovery, the
+final objective/operating point and full cost evaluation remain outstanding. Task 5 final
 packaging remains outstanding. No defensible overall completion percentage is
 assigned.
 
@@ -34,7 +36,7 @@ assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); all 4,824 tokenizer contexts fit; bounded smoke staging/ledger supplied; owner staging complete (30 requests, five groups); pinned L4 notebook supplied; actual runtime/quota, execution and final objective remain pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); all 4,824 tokenizer contexts fit; bounded smoke staging/ledger supplied; owner staging complete (30 requests, five groups); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import, broader recovery/scoring and final objective remain pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -198,7 +200,35 @@ CPU tests and 96 existing focused checks pass; actual GPU execution is untested
 in this checkout. No actual smoke generation, observed injection, correctness
 scoring, recovery result, final policy or readiness change is claimed. Runtime/
 quota results, responses/replay, full recovery/scoring and policy costs remain
-pending until owner execution and evidence review.
+pending at that point. The owner subsequently uploaded the completed smoke
+archive, SHA256 `dd91a73f5f565269f83d70773fd25fd64c82785029e3d96b139682c072b59595`.
+All 152 indexed evidence-file hashes, exact ZIP inventory, prepared/source
+fingerprints, local/server token sequences and returned prompt-token counts
+were verified. The 30 actual responses and all ledger records independently
+replay with both saved records and summary matching byte-for-byte. Results:
+
+| Qwen 1.5B recovery smoke metric | Verified value |
+|---|---:|
+| Requests / observed submissions / saved responses | 30 / 30 / 30 |
+| Frozen token-evidence status complete | 30 |
+| Parsed calls / unparsed or no call | 19 / 11 |
+| Parsed finite-NLL candidates | 19 |
+| HTTP errors / unknown slots | 0 / 0 |
+| Prompt / completion tokens | 56,606 / 1,798 |
+| Request elapsed sum / dispatch wall seconds | 26.103 / 28.002 |
+| Supervisor wall seconds | 244.132 |
+| Fallback requests | 0 |
+
+Both generation and server shutdown were recorded true. Official correctness
+and RQ3 outcomes remain unscored: complete evidence and a parsed call do not
+establish correct recovery. This is five groups with dependent fault scenarios,
+not a full-development effectiveness estimate. Times omit full environment setup,
+allocation and billing, with no monetary claim. See the
+[verified smoke evidence and owner import](research_track_v1/RECOVERY_SMOKE_EVIDENCE_V1.md)
+and aggregate-only `docs/evidence/qwen15b_recovery_resource_smoke_v1_summary.json`.
+A CPU owner import/replay command is supplied with nine synthetic safeguards and
+actual archive replay validation. Full source and raw case-level evidence remain
+ignored/private. No new generation was performed by the independent verification.
 Planned fault feedback is not observed injection or measured recovery. No new
 inference, reference scoring, held-out access or final threshold selection occurred.
 
@@ -461,7 +491,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; All 4,824 CPU tokenizer contexts fit; bounded smoke staging/ledger supplied; owner smoke staging complete (30 requests); pinned L4 notebook supplied; actual runtime/quota, recovery, final objective, live escalation and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; All 4,824 CPU tokenizer contexts fit; bounded smoke staging/ledger supplied; owner smoke staging complete (30 requests); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import, broader recovery/scoring, final objective, live escalation and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -587,10 +617,9 @@ The implementation and actual saved-pair replay are development-only. The owner
 supplied all-pair transition totals and the gated/random report. Fixed-cap match
 counts and saved usage/usability accounting are reviewed. Group-separated validation
 and conditional intervals are owner-executed and reviewed. Recovery preparation
-and a bounded CPU controller are supplied and owner preparation is complete;
-owner tokenizer checks are complete; bounded smoke staging/ledger are supplied;
-owner staging is complete and the L4 execution notebook is supplied; actual GPU
-runtime/quota, recovery and the final objective remain pending.
+and the bounded controller/ledger are implemented. Owner context checks and
+the 30-response L4 smoke are complete, with exact independent frozen replay.
+Owner local import, broader recovery/scoring and the final objective remain pending.
 No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
@@ -617,7 +646,10 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [x] Supply bounded, label-independent Qwen 1.5B smoke staging and a separate write-once small-stage ledger; 25 synthetic checks pass, including complete staging/publication and unknown-slot handling.
 - [x] Execute/review owner smoke-staging summary: 30 small-stage requests, five groups, all five benchmarks and zero fallback requests; generation remains zero.
 - [x] Supply an archive/manifest-bound Colab L4 smoke notebook with matching local/server token sequences, bounded dispatch, frozen replay, shutdown and partial export; 18 new CPU tests pass.
-- [ ] Execute/review the bounded 30-request L4 smoke and actual server/runtime/quota evidence; preserve all unknown and unusable outcomes.
+- [x] Execute/review the bounded L4 smoke: 30 complete responses, 30 recorded submissions, zero unknown/HTTP-failure slots, all 152 hashes verified and exact independent frozen replay; 19 parsed candidates, not a correctness claim.
+- [x] Supply a source/archive-bound CPU owner importer with nine synthetic safeguards; actual archive replay matches all records and summary exactly.
+- [ ] Run/review the owner local import before staging broader recovery, preserving these 30 occupied requests.
+- [ ] Complete broader recovery model/resource checks, collection and scoring dispositions; the smoke does not certify other roles or full-study quota/cost.
 - [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
 - [ ] Validate all routing baselines on group-separated development evidence, then review full policy costs and uncertainty.
@@ -734,15 +766,15 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [fingerprint-bound Colab L4 recovery smoke](research_track_v1/RECOVERY_GPU_SMOKE_V1.md)
-using `notebooks/UQRoute_TC_Qwen15B_Recovery_Resource_Smoke_v1.ipynb`.
-Upload the existing `qwen15b_recovery_resource_smoke_v1.zip` from the ignored
-smoke-preparation folder, enter the current quota note, execute once and save
-OUTPUT `uqroute_qwen15b_recovery_smoke_*.zip`, including partial evidence on failure.
-The reviewed execution cell authorizes at most 30 new small-stage responses only;
-no fallback, reference scoring or held-out access. Do not rerun preparation or
-reset/repeat an interrupted batch. Review the exported evidence before broader
-recovery generation or policy decisions. Original readiness flags remain false.
+Run the [CPU owner smoke import](research_track_v1/RECOVERY_SMOKE_EVIDENCE_V1.md):
+`python tools/development_audits/recovery_smoke_import_v1/import_smoke.py`.
+It locates the fingerprint-matching OUTPUT ZIP in Downloads (or accepts
+`--archive PATH`), verifies source/runtime/token evidence and independently
+replays all 30 saved responses without inference. Preserve the existing local
+preparation/context outputs and the completed GPU smoke. Do not rerun generation.
+Review owner import before staging broader recovery collection that accounts for
+these 30 occupied requests. Correctness/scoring, full recovery baselines/costs,
+final objective/threshold and held-out evaluation remain pending.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,

@@ -20,7 +20,14 @@ actual bytes, payload inventory, full request bodies, episode/context bindings,
 five groups and six faults before dispatch. Do not rerun staging over its occupied
 output or recreate the archive to bypass a mismatch.
 
-## Run once
+## Completed owner run
+
+The owner subsequently supplied the completed OUTPUT ZIP. All 152 indexed file
+hashes and 30 responses verify, and independent frozen replay matches all saved
+records and summary bytes. There are 19 parsed-call outputs and 11 unparsed/no-call
+outputs; correctness is unscored. See [evidence and CPU owner import](RECOVERY_SMOKE_EVIDENCE_V1.md).
+Do not rerun the completed smoke. The following instructions are retained as
+execution provenance.
 
 Notebook: `notebooks/UQRoute_TC_Qwen15B_Recovery_Resource_Smoke_v1.ipynb`.
 
@@ -95,7 +102,7 @@ usage missingness, unknown injection, setup-failure/partial export and notebook
 source identity/compilation. They do not claim an actual CUDA/vLLM run. The 96
 existing focused checks also pass; Ruff and diff checks are clean.
 
-Actual smoke runtime results remain pending. Even a complete smoke establishes
+The Qwen 1.5B smoke is now complete and independently verified. It establishes
 only bounded serving/evidence feasibility. Full recovery collection, other model
 roles, fallback generation, objective/threshold selection, post-fault scoring
 dispositions, baselines, full cost accounting and held-out evaluation remain open.

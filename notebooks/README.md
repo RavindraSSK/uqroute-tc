@@ -62,4 +62,6 @@ record the current quota note, execute once, then download the OUTPUT evidence Z
 and delete the GPU runtime. It preserves unknown slots, performs no fallback or
 reference scoring, and exports frozen parser/token replay plus partial evidence.
 See [execution scope](../docs/research_track_v1/RECOVERY_GPU_SMOKE_V1.md).
-Actual GPU execution remains pending.
+The owner completed this smoke; all 30 responses independently replay exactly.
+Correctness remains unscored. Do not rerun the completed batch; use the
+[CPU owner import](../docs/research_track_v1/RECOVERY_SMOKE_EVIDENCE_V1.md) next.
