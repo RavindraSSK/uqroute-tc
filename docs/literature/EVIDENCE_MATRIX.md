@@ -162,3 +162,19 @@ setting, and measured outcomes. Model names alone are not a contribution.
 
 
 
+
+## Development routing checkpoint — 2026-11-11
+
+The owner supplied group-separated development routing and conditional paired
+bootstrap output. Qwen 7B's 25% training-cap reference view has 829/1,512 matches;
+the match difference versus fallback is +2.778 pp [-0.653, 6.512], and its saved
+request-seconds/match difference is +1.454 [0.064, 2.776]. These are unadjusted
+conditional development intervals, not new paper findings, independent confirmation,
+monetary savings or a completed novelty claim. Zero-crossing intervals do not
+establish equivalence. See [the recorded interpretation](../research_track_v1/GROUPED_ROUTING_INTERVALS_V1.md).
+
+The next [recovery implementation](../research_track_v1/RECOVERY_DEVELOPMENT_V1.md)
+uses the existing released Transition feedback templates on clean-anchored
+primary development inputs. Its CPU preparation/controller tests are not recovery
+results. No paper review status is upgraded and no source-based literature claim
+is added by this implementation milestone.

@@ -638,6 +638,17 @@ Oracle policies are diagnostic references, not deployable systems. They must not
 
 For static cases, one cached fallback output per case and frozen fallback configuration will be reused across policy comparisons. Recovery requests with different observed context are separate inference events and cannot reuse a context-incompatible fallback record.
 
+Development-only routing status is recorded in
+[the conditional interval review](research_track_v1/GROUPED_ROUTING_INTERVALS_V1.md).
+The inspected OOF/conditional-bootstrap results do not select a final threshold
+or establish fallback dominance or monetary savings. The proposed
+[recovery preparation/controller](research_track_v1/RECOVERY_DEVELOPMENT_V1.md)
+uses corrected clean base prompts with the released error-feedback templates
+and two-turn append convention. Prepared eligible feedback is not an observed
+injection; pending or unresolved injection evidence must not become an automatic
+`false` or a recovery outcome. No-fault records remain separate under §12.
+This is development implementation status, not a final recovery/scoring freeze.
+
 ## 15. Cost accounting
 
 Every routing comparison must count all model calls required by that policy.

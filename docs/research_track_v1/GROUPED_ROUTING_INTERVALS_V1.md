@@ -3,8 +3,9 @@
 The owner completed five-fold group-separated development routing. Point estimates
 show reliability/usability/time tradeoffs, but do not quantify uncertainty or
 establish efficiency gains. This CPU subtask adds paired percentile intervals
-conditional on the existing OOF thresholds and decisions. Actual execution and
-interval review remain pending; synthetic checks are not model results.
+conditional on the existing OOF thresholds and decisions. The owner subsequently completed execution at `ec2317e` and supplied the
+printed interval report. Findings are recorded below; synthetic checks are not
+the source of the model results.
 
 Run once from the updated owner repository root:
 
@@ -103,3 +104,37 @@ After reviewing these conditional intervals, resolve the final development
 objective and protocol choices. Full policy costs, live escalation, post-fault
 recovery, final shared freeze and separately authorized held-out evaluation remain
 outstanding. This subtask changes no readiness flags.
+
+## Owner execution and interpretation — 2026-11-11
+
+The supplied successful terminal output reports all 73 focused checks passing,
+four source-run revalidations, reproduction of all saved OOF views, and conditional
+bootstrap results. The full artifacts remain on the owner checkout; the working
+implementation checkout records aggregate findings from the supplied report.
+
+| Reference view | Gate matches | Actual fallback calls | Match difference vs small, pp [95% interval] | Match difference vs fallback, pp [95% interval] | Saved seconds/match difference vs fallback [95% interval] |
+|---|---:|---:|---|---|---|
+| Qwen 1.5B, 25% cap | 721/1,512 | 381 | 9.854 [7.015, 12.755] | -4.365 [-9.007, -0.064] | -4.144 [-5.568, -2.891] |
+| Qwen 1.5B, 50% cap | 770/1,512 | 753 | 13.095 [8.895, 17.357] | -1.124 [-4.137, 1.982] | -2.022 [-3.163, -0.985] |
+| Qwen 7B, 10% cap | 812/1,512 | 150 | 1.455 [-0.066, 3.465] | 1.653 [-2.331, 5.674] | -0.021 [-1.471, 1.254] |
+| Qwen 7B, 25% cap | 829/1,512 | 382 | 2.579 [0.197, 5.468] | 2.778 [-0.653, 6.512] | 1.454 [0.064, 2.776] |
+| Qwen 7B, 50% cap | 818/1,512 | 754 | 1.852 [-1.526, 5.408] | 2.050 [-0.329, 4.809] | 4.534 [3.215, 5.898] |
+
+All differences are gate minus baseline. These inspected, unadjusted conditional
+intervals do not establish a model/cap that dominates fallback in reliability and
+cost. Qwen 7B's 25% reference interval versus fallback includes both loss and gain,
+while its saved time-proxy interval is positive. The interval versus its own small
+baseline is positive under this conditional analysis, which remains exploratory
+and excludes full threshold-learning uncertainty. Neither a zero-crossing interval
+nor failure to detect a difference establishes equivalence or noninferiority.
+Qwen 1.5B's lower cached time proxy comes with a reference-compliance tradeoff.
+
+ToolEyes relevance remains separate. Qwen 7B at the 25% cap has 206/216 relevance
+matches; its difference versus fallback is -0.926 pp [-2.315, 0.000], while the
+saved seconds/match difference is 2.096 [1.337, 3.356]. These are name-relevance
+and cached timing findings, not argument correctness, execution success or billing.
+
+No final model/cap, global threshold or monetary-saving claim is adopted. The
+next subtask supplies [recovery context preparation and a bounded controller](RECOVERY_DEVELOPMENT_V1.md)
+while final objectives, full cost evaluation, live dispatch, recovery evidence and
+shared evaluation freeze remain open.

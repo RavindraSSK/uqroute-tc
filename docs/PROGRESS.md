@@ -12,10 +12,11 @@ routing kernel and a completed, independently replayed 1,728-response corrected
 CPU replay against all three small models. All four saved scorers and full replays
 were revalidated, and the owner supplied the gated/random policy report.
 Retrospective fixed-cap matches and saved usage/usability accounting are reviewed.
-The owner has completed group-separated development validation on the saved
-evidence. A tested conditional paired group-bootstrap command is supplied; its
-actual execution, final objective/operating point, recovery and full cost
-evaluation remain outstanding. Task 5 final
+The owner has completed group-separated development validation and conditional
+paired group-bootstrap analysis on the saved evidence.
+Recovery context preparation and a bounded CPU controller are now implemented
+and tested. Actual recovery preparation/execution, the final objective/operating
+point and full cost evaluation remain outstanding. Task 5 final
 packaging remains outstanding. No defensible overall completion percentage is
 assigned.
 
@@ -26,7 +27,7 @@ assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation complete; conditional intervals and final objective/operating-point selection pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Recovery preparation and final objective remain pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -109,7 +110,28 @@ Other displayed nonzero-cap views cover every endpoint case. ToolEyes 25%
 OOF relevance matches are 194/216, 196/216 and 206/216, respectively.
 Group-separated fitting prevents direct fold-group overlap; it does not undo
 prior inspection of the full development data. No final threshold is refitted.
-Conditional paired group intervals are the next diagnostic, not yet a result.
+The owner subsequently completed the conditional paired group bootstrap at
+`ec2317e`: 26 interval, 27 grouped-validation and 20 routing-kernel checks passed,
+all source evidence was revalidated, and saved OOF results reproduced before
+2,000 within-benchmark group draws. Key reference-panel contrasts are:
+
+| OOF view | Match difference vs small, pp [95% interval] | Match difference vs fallback, pp [95% interval] | Saved seconds/match difference vs fallback [95% interval] |
+|---|---|---|---|
+| Qwen 1.5B, 25% training cap | 9.854 [7.015, 12.755] | -4.365 [-9.007, -0.064] | -4.144 [-5.568, -2.891] |
+| Qwen 1.5B, 50% training cap | 13.095 [8.895, 17.357] | -1.124 [-4.137, 1.982] | -2.022 [-3.163, -0.985] |
+| Qwen 7B, 10% training cap | 1.455 [-0.066, 3.465] | 1.653 [-2.331, 5.674] | -0.021 [-1.471, 1.254] |
+| Qwen 7B, 25% training cap | 2.579 [0.197, 5.468] | 2.778 [-0.653, 6.512] | 1.454 [0.064, 2.776] |
+
+These unadjusted percentile intervals condition on fixed OOF thresholds/decisions;
+they neither refit thresholds nor undo prior full-development exposure. An
+interval spanning zero is not an equivalence or noninferiority finding. The
+Qwen 7B 25% view does not establish fallback superiority and has a higher saved
+time proxy per match. Qwen 1.5B shows a reliability/time-proxy tradeoff. No final
+model, cap, threshold or monetary-saving claim is selected.
+
+The next implementation step is reference-free recovery-context preparation
+from preserved clean development outputs, plus a bounded decision controller.
+Planned fault feedback is not an observed injection or measured recovery result.
 No new inference, held-out access or final threshold selection occurred.
 
 These are development results under the pinned deterministic reference scorer;
@@ -371,7 +393,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals, final objective/operating point, live escalation, recovery and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Recovery preparation/controller supplied; actual recovery, final objective, live escalation and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -496,8 +518,9 @@ See [development routing and fallback preparation](research_track_v1/DEVELOPMENT
 The implementation and actual saved-pair replay are development-only. The owner
 supplied all-pair transition totals and the gated/random report. Fixed-cap match
 counts and saved usage/usability accounting are reviewed. Group-separated validation
-is implemented, tested and owner-executed; conditional intervals and final
-objective/operating-point validation remain pending.
+and conditional intervals are owner-executed and reviewed. Recovery preparation
+and a bounded CPU controller are supplied; actual recovery and the final objective
+remain pending.
 No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
@@ -514,10 +537,12 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [x] Implement five benchmark-stratified canonical-group folds, training-only label-independent cap thresholds, same-fold random controls, incomplete-coverage reporting and OOF accounting; 27 new synthetic checks pass.
 - [x] Execute/review owner five-fold group-separated validation at `5528f84`: all 75 focused checks pass; reference and ToolEyes OOF results/realized budgets supplied with incomplete views retained.
 - [x] Implement paired group-bootstrap contrasts conditional on fixed OOF decisions, with shared benchmark-stratified draws, usage/missingness safeguards and explicit learning-uncertainty limits; 26 new tests pass.
-- [ ] Execute/review the conditional intervals on owner evidence; no final reliability, timing-efficiency or monetary-saving conclusion is recorded.
+- [x] Execute/review owner conditional intervals at `ec2317e`, with 73 focused checks passing; no final reliability, timing-efficiency or monetary-saving conclusion is recorded.
+- [x] Implement a reference-free clean-development recovery preparer and bounded decision controller; separate planned/observed injection, no-fault/unknown partitions and context-bound responses. Synthetic only; owner preparation pending.
 - [ ] Select and validate a grouped development operating point under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
-- [ ] Implement post-fault recovery.
+- [ ] Execute the reference-free recovery preparation and review eligible/no-injection plans, then complete model-specific context/resource checks.
+- [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
 - [ ] Validate all routing baselines on group-separated development evidence, then review full policy costs and uncertainty.
 - [ ] Freeze the shared protocol and selected threshold before held-out evaluation.
@@ -633,17 +658,16 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [conditional paired group-bootstrap subtask](research_track_v1/GROUPED_ROUTING_INTERVALS_V1.md):
-`python tools/development_audits/grouped_routing_intervals_v1/run_intervals.py`.
-The command revalidates the four source runs, reproduces the previous normalized
-pairs, folds and complete OOF results, then computes 2,000 shared group-resampling
-contrasts against all three single/cascade baselines. It reports reference-match,
-usability, call/token and saved-time-proxy differences without selecting a final
-cap. Thresholds stay fixed inside the bootstrap: the intervals do not estimate
-all threshold-learning variability or undo full-development exposure. Incomplete
-OOF coverage and missing usage retain explicit unavailability.
-No new GPU requests, downloads or model retries are required. Existing outputs
-and official labels are preserved.
+Run the [development recovery preparation](research_track_v1/RECOVERY_DEVELOPMENT_V1.md):
+`python tools/development_audits/recovery_development_v1/prepare.py`.
+It verifies the three saved initial runs and clean development membership, reads
+the six released fault-feedback templates, and prepares context-bound small/fallback
+request plans. It reads no answer sidecars and performs no reference scoring.
+Eligible plans remain pending injection; terminal no-injection plans are retained.
+No GPU requests, downloads, retries or actual fault-conditioned submissions occur.
+Review the resulting counts before tokenizer/context and resource preflight or
+implementation of a dedicated recovery executor. The static dispatcher does not
+accept these recovery plans. Existing outputs and readiness flags are preserved.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,
