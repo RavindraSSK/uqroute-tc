@@ -142,3 +142,49 @@ and `baselines.json` before choosing an objective or drawing a policy comparison
 Do not rerun generation or overwrite the existing analysis to retrieve the report.
 Held-out access, final readiness and threshold-selection flags remain false;
 no inference or monetary-cost measurement was performed.
+
+## Supplied fixed-cap report review
+
+The owner supplied the generated report after the aggregate summary. The following
+reference-compliance points all use the same 1,512-case endpoint denominator.
+Random values are the mean across the ten fixed count-matched seeds.
+
+| Model | Escalation cap | Actual fallback calls | Gated matches | Rescues | Harms | Random mean matches |
+|---|---:|---:|---:|---:|---:|---:|
+| Qwen 1.5B | 25% | 378 | 722 | 162 | 12 | 624.50 |
+| Qwen 1.5B | 50% | 756 | 768 | 234 | 38 | 678.50 |
+| Llama 3B | 25% | 378 | 671 | 78 | 28 | 660.70 |
+| Llama 3B | 50% | 756 | 737 | 163 | 47 | 703.90 |
+| Qwen 7B | 10% | 151 | 811 | 32 | 11 | 790.50 |
+| Qwen 7B | 25% | 378 | 830 | 68 | 28 | 790.00 |
+| Qwen 7B | 50% | 756 | 817 | 98 | 71 | 790.00 |
+
+At the illustrative Qwen 7B 25% point, 790 + 68 - 28 = 830 reference matches
+(54.89%), compared with 790 (52.25%) for small-only and 787 (52.05%) for
+fallback-only. This replay uses 1,512 small attempts plus 378 fallback attempts,
+so 1,890 total attempts; fallback-only uses 1,512. Fewer fallback calls alone do
+not establish lower total monetary cost. The 50% Qwen 7B point has fewer matches
+than its 25% point, showing the harm/rescue tradeoff as escalation increases.
+The 25% point was inspected after development results; it is not a newly frozen
+objective or selected deployment threshold.
+
+Separate ToolEyes gated relevance matches at a 25% cap are 194/216, 196/216 and
+206/216 for Qwen 1.5B, Llama 3B and Qwen 7B, respectively. These are not argument
+correctness or execution-success results. No uncertainty interval, independent
+held-out confirmation, monotonic improvement or model superiority is claimed.
+
+Display the already saved accounting without recomputation:
+
+```bash
+python tools/development_audits/paired_routing_v1/review_accounting.py
+```
+
+This standard-library viewer reads `summary.json`, `baselines.json` and
+`budget_views.json`. It prints all three small models and both endpoints, with
+baseline/fixed-cap matches, fallback calls, total attempt slots, unusable final
+outputs, prompt/completion tokens, cached request seconds, and calls/seconds per
+match. Missing usage and zero/unknown match denominators remain unavailable.
+It writes nothing and does not independently revalidate original raw evidence.
+The existing scorer/replay evidence validation remains the authority for its
+saved inputs. Monetary costs, online latency and grouped validation are still
+pending; no rate or price is inferred from a call/token/time count.
