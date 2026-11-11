@@ -11,8 +11,10 @@ routing kernel and a completed, independently replayed 1,728-response corrected
 14B fallback run. The owner has completed reference scoring and the paired-routing
 CPU replay against all three small models. All four saved scorers and full replays
 were revalidated, and the owner supplied the gated/random policy report.
-Retrospective fixed-cap matches are reviewed; usage/usability accounting, grouped
-operating-point validation, recovery and full cost evaluation remain outstanding. Task 5 final
+Retrospective fixed-cap matches and saved usage/usability accounting are reviewed.
+A tested group-separated validation command is supplied; its actual owner
+execution, final operating-point validation, recovery and full cost evaluation
+remain outstanding. Task 5 final
 packaging remains outstanding. No defensible overall completion percentage is
 assigned.
 
@@ -23,7 +25,7 @@ assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches reviewed; usage/usability review and grouped operating-point validation pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; group-separated validation execution and final operating-point selection pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -71,7 +73,15 @@ Qwen 7B's 50% view yields fewer matches than its 25% view; escalation need not
 monotonically improve reference compliance. These inspected points are
 retrospective development findings, not a selected optimum, independent
 validation or statistical superiority claim. The ten-seed random mean is not
-a confidence interval. Usage and final-output usability require separate review.
+a confidence interval. The owner subsequently supplied the saved-accounting display.
+Qwen 7B's 25% reference point has 51 unusable final outputs (small-only 12;
+fallback-only 220), and 9,044.055 summed request seconds (fallback-only 7,503.086).
+Its saved request-time proxy per match is 10.896 versus 9.534 for fallback-only;
+there is no established timing-efficiency improvement at that point. Qwen 1.5B's
+25% point has a smaller time proxy per match (5.346), but fewer reference matches
+than fallback-only (722 versus 787). These are reference-compliance/usability
+tradeoffs, not executable-success or monetary-cost measurements. Missing usage
+was not reported in the supplied displayed totals.
 No new inference, held-out access or final threshold selection occurred.
 
 These are development results under the pinned deterministic reference scorer;
@@ -333,7 +343,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches reviewed; usage/usability review, grouped operating-point validation, live escalation, recovery and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner execution, final operating point, live escalation, recovery and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -457,7 +467,8 @@ Final analysis freeze and new held-out access remain disabled.
 See [development routing and fallback preparation](research_track_v1/DEVELOPMENT_ROUTING_V1.md).
 The implementation and actual saved-pair replay are development-only. The owner
 supplied all-pair transition totals and the gated/random report. Fixed-cap match
-counts are reviewed; usage/usability accounting and grouped validation remain.
+counts and saved usage/usability accounting are reviewed. Group-separated validation
+is implemented and tested; its actual owner execution remains pending.
 No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
@@ -470,12 +481,14 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [x] Implement evidence-bound paired-input loading, compact threshold frontiers and fixed-cap/random-count diagnostic views; 28 new synthetic checks and 20 existing kernel checks pass.
 - [x] Execute the paired-routing command on all four saved owner runs at `ca417d1`; full scorer/replay revalidation passed and all-pair aggregate counts reconcile.
 - [x] Review supplied fixed-cap gated/random match counts, including Qwen 7B 830/1,512 matches at 378 fallback calls, 68 rescues and 28 harms; retrospective only.
-- [ ] Review saved final-output usability, token totals and cached elapsed-time accounting before making efficiency claims.
+- [x] Review supplied saved final-output usability, token totals and cached elapsed-time accounting; Qwen 7B's 25% reference gate has a higher time proxy per match than fallback-only.
+- [x] Implement five benchmark-stratified canonical-group folds, training-only label-independent cap thresholds, same-fold random controls, incomplete-coverage reporting and OOF accounting; 27 new synthetic checks pass.
+- [ ] Execute/review the group-separated routing validation on the owner evidence; full-development exposure remains disclosed.
 - [ ] Select and validate a grouped development operating point under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [ ] Implement post-fault recovery.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
-- [ ] Validate all routing baselines on the matched development evidence.
+- [ ] Validate all routing baselines on group-separated development evidence, then review full policy costs and uncertainty.
 - [ ] Freeze the shared protocol and selected threshold before held-out evaluation.
 
 ## Task 5 — Final package
@@ -589,15 +602,16 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the read-only saved-accounting display:
-`python tools/development_audits/paired_routing_v1/review_accounting.py`.
-It displays baseline and fixed-cap model calls, token totals, cached request-time
-proxies, final-output usability and ratios per reference/relevance match. It uses
-the existing analysis and writes nothing; the four-run revalidation need not be
-repeated. Review these quantities before recording a grouped development objective
-and evaluating thresholds on group-separated validation folds. The supplied
-fixed-cap matches are retrospective. No new GPU requests, downloads or model
-retries are required. Existing outputs and official labels are preserved.
+Run the [group-separated development validation](research_track_v1/GROUPED_ROUTING_DEVELOPMENT_V1.md):
+`python tools/development_audits/grouped_routing_v1/run_validation.py`.
+The command revalidates the four saved runs and previous normalized pairs, then
+fits each fixed-cap score boundary on training groups and evaluates separate
+validation groups. It reports actual escalation, infeasible folds, same-row
+baselines, ten count-matched random controls, usability and saved usage. Training
+caps are not guarantees on validation groups. No model/cap is selected as a final
+operating point. This remains exploratory after prior full-development exposure.
+No new GPU requests, downloads or model retries are required. Existing outputs
+and official labels are preserved.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,

@@ -188,3 +188,25 @@ It writes nothing and does not independently revalidate original raw evidence.
 The existing scorer/replay evidence validation remains the authority for its
 saved inputs. Monetary costs, online latency and grouped validation are still
 pending; no rate or price is inferred from a call/token/time count.
+
+## Saved accounting reviewed
+
+The owner supplied the viewer output. Qwen 7B's 25% reference gate has 830 matches,
+1,890 total attempts, 51 unusable final outputs, 2,140,369 prompt tokens, 165,440
+completion tokens and 9,044.055 summed saved request seconds. Fallback-only has
+787 matches, 1,512 attempts, 220 unusable final outputs, 1,625,937 prompt tokens,
+180,006 completion tokens and 7,503.086 saved request seconds. Small-only has
+790 matches and 12 unusable final outputs. Thus higher reference compliance can
+coexist with more unusable final candidates than small-only.
+
+The saved request-time proxy per match is 10.896 for this Qwen 7B gate versus
+9.534 for fallback-only; these values do not establish a timing-efficiency gain.
+Qwen 1.5B's 25% point has a lower proxy (5.346), with fewer matches than
+fallback-only (722 versus 787). Llama's 25% point is 10.850 seconds/match with
+671 matches and 65 unusable final outputs. Neither token counts nor these
+separate-run elapsed sums establish money saved, online latency or billed GPU
+cost. No missing usage totals were reported by the supplied display.
+
+The next [group-separated validation command](GROUPED_ROUTING_DEVELOPMENT_V1.md)
+is supplied and tested. Actual owner execution is pending. It does not replace
+any saved retrospective result or select a final operating point.
