@@ -1,9 +1,9 @@
 # Paired development routing diagnostics v1
 
 This CPU subtask follows the owner's successful fallback scoring at `6962586`.
-It implements saved-pair development evaluation. Actual paired results remain
-pending owner execution; no final routing threshold or held-out evaluation is
-claimed by the implementation or synthetic tests.
+It implements saved-pair development evaluation. The owner subsequently completed
+the command at `ca417d1` and supplied the aggregate terminal summary. No final
+routing threshold or held-out evaluation is claimed.
 
 Run once from the repository root after pulling `feat/task3-throughput`:
 
@@ -103,3 +103,42 @@ Remaining work includes reviewing actual paired diagnostics, recording a fixed
 development objective and validating its operating point by canonical group,
 complete policy cost measurement, live escalation and post-fault recovery, and
 the final shared protocol freeze before separately authorized held-out access.
+
+## Owner execution and aggregate review — 2026-11-11
+
+The supplied successful terminal output reports all 28 new synthetic checks and
+20 routing-kernel checks passing, followed by revalidation of all four actual
+saved scorers/replays and computation of all 21 model/scope analyses. Output was
+published to the expected ignored directory. This records owner execution; the
+complete original sidecars and generated policy report are not present in the
+working implementation checkout.
+
+| Small model | Endpoint | Rows | Small matches | Fallback matches | IC | CI | Minimum forced fallback |
+|---|---|---:|---:|---:|---:|---:|---:|
+| Qwen 1.5B | Reference compliance | 1,512 | 572 | 787 | 326 | 111 | 227 |
+| Llama 3B | Reference compliance | 1,512 | 621 | 787 | 263 | 97 | 43 |
+| Qwen 7B | Reference compliance | 1,512 | 790 | 787 | 141 | 144 | 12 |
+| Qwen 1.5B | ToolEyes relevance | 216 | 174 | 208 | 35 | 1 | 2 |
+| Llama 3B | ToolEyes relevance | 216 | 181 | 208 | 28 | 1 | 1 |
+| Qwen 7B | ToolEyes relevance | 216 | 204 | 208 | 4 | 0 | 0 |
+
+IC denotes small mismatch/fallback match; CI denotes small match/fallback
+mismatch. They describe every saved pair, not the cases selected by an uncertainty
+gate. All six transition tables sum to their full endpoint denominators, contain
+zero unknown labels, and reproduce the model totals; IC minus CI equals the
+fallback-minus-small match count. No superiority, execution-success or
+cost-saving conclusion follows from these totals.
+
+The Qwen 1.5B reference gate forces at least 227/1,512 fallback calls even at its
+most permissive threshold, so a 10% escalation cap is infeasible under this
+candidate-acceptance rule. This is an evidence/parser availability constraint,
+not a correctness relabeling. Qwen 7B's 141 potential rescues and 144 potential
+harms show why its aggregate near tie with fallback does not resolve selective
+routing performance.
+
+The terminal summary does not print fixed-cap gated/random metrics or usage
+accounting. Review those in the already generated `REPORT.md`, `budget_views.json`
+and `baselines.json` before choosing an objective or drawing a policy comparison.
+Do not rerun generation or overwrite the existing analysis to retrieve the report.
+Held-out access, final readiness and threshold-selection flags remain false;
+no inference or monetary-cost measurement was performed.

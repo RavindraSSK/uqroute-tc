@@ -8,11 +8,12 @@ models, full-development statistical reporting, corrected repeated sampling,
 and the sensitivity-only development extension. Task 3 remains open for final
 protocol decisions and held-out evaluation. Task 4 has a tested development
 routing kernel and a completed, independently replayed 1,728-response corrected
-14B fallback run. The owner has now completed its reference scoring. An
-evidence-bound paired-routing CPU command is implemented and tested; its actual
-execution, grouped operating-point selection, recovery and full cost evaluation
-remain outstanding. Task 5 final packaging remains outstanding. No defensible overall completion percentage
-is assigned.
+14B fallback run. The owner has completed reference scoring and the paired-routing
+CPU replay against all three small models. All four saved scorers and full replays
+were revalidated. Review of the gated/random policy report, grouped operating-point
+selection, recovery and full cost evaluation remain outstanding. Task 5 final
+packaging remains outstanding. No defensible overall completion percentage is
+assigned.
 
 | Workstream | Completed development evidence | Status / remaining boundary |
 |---|---|---|
@@ -21,7 +22,7 @@ is assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Paired routing results pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; gated/random report review and final operating-point selection pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -35,6 +36,26 @@ Owner verification passed 64 import/scoring tests (one skip) and 34 frozen
 generation tests. The supplied terminal output supports these aggregate figures.
 The working analysis checkout independently verified generation/replay; the
 new official scores are recorded from owner output, not recomputed here.
+
+The owner ran the paired-routing command at `ca417d1` successfully: 28 new
+synthetic checks and 20 routing-kernel checks passed, then all four actual saved
+runs were re-scored/replayed before matching. The supplied terminal summary
+reports these aggregate reference-panel transitions on the same 1,512 cases:
+
+| Small model | Small matches | Fallback matches | Potential rescues (IC) | Potential harms (CI) | Minimum forced fallback rows |
+|---|---:|---:|---:|---:|---:|
+| Qwen 1.5B | 572 | 787 | 326 | 111 | 227 |
+| Llama 3B | 621 | 787 | 263 | 97 | 43 |
+| Qwen 7B | 790 | 787 | 141 | 144 | 12 |
+
+IC means small reference mismatch/fallback match; CI is the reverse. These are
+all-pair opportunities and tradeoffs, not the counts selected by a particular
+gate. All six endpoint/model transition tables reconcile with their raw model
+totals, with no unknown labels. Separate ToolEyes potential rescues/harms are
+35/1, 28/1 and 4/0, respectively. The CPU command generated compact frontiers,
+fixed-cap and count-matched random views; those policy metrics are not printed
+in the supplied terminal summary and still require review in `REPORT.md`.
+No new inference, held-out access or final threshold selection occurred.
 
 These are development results under the pinned deterministic reference scorer;
 they do not measure executable task success or cost/latency preference success.
@@ -295,7 +316,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring complete; paired routing execution, operating-point selection, live escalation, recovery and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; gated/random report review, operating-point selection, live escalation, recovery and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -417,8 +438,9 @@ Final analysis freeze and new held-out access remain disabled.
 ## Task 4 — Routing and recovery
 
 See [development routing and fallback preparation](research_track_v1/DEVELOPMENT_ROUTING_V1.md).
-The implementation is development-only; no routing-effectiveness result or final
-threshold is supplied.
+The implementation and actual saved-pair replay are development-only. The owner
+supplied all-pair transition totals; the gated/random report still requires review.
+No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
 - [x] Implement offline threshold-frontier replay without choosing an operating point.
@@ -428,7 +450,8 @@ threshold is supplied.
 - [x] Supply a separately evidence-bound fallback CPU scorer and import/replay command; synthetic regression tests pass.
 - [x] Run/review owner fallback reference scoring against preserved development sidecars: 787/1,512 reference matches and separate ToolEyes relevance 208/216; no exclusions or label changes.
 - [x] Implement evidence-bound paired-input loading, compact threshold frontiers and fixed-cap/random-count diagnostic views; 28 new synthetic checks and 20 existing kernel checks pass.
-- [ ] Execute/review the paired-routing command on all four saved owner runs; synthetic tests are not actual routing results.
+- [x] Execute the paired-routing command on all four saved owner runs at `ca417d1`; full scorer/replay revalidation passed and all-pair aggregate counts reconcile.
+- [ ] Review actual gated/random frontiers, usability and accounting in the generated report; all-pair counts alone do not establish routing benefit.
 - [ ] Select and validate a grouped development operating point under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [ ] Implement post-fault recovery.
@@ -547,13 +570,14 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [paired-routing CPU command](research_track_v1/PAIRED_ROUTING_DEVELOPMENT_V1.md)
-on the owner checkout. It revalidates the four saved scorers and complete replays,
-checks prompt-matched development pairs, and writes rescues/harms, baseline
-accounting and compact threshold frontiers. Fixed escalation caps and ten seeded
-count-matched random baselines are diagnostic views, not a final operating-point
-selection. Actual paired results remain pending. No new GPU requests, downloads
-or model retries are required. Existing outputs and official labels are preserved.
+Review the existing paired-routing report at
+`artifacts/local_development_audits/paired_routing_development_v1/REPORT.md`.
+The owner has already completed the [paired-routing CPU command](research_track_v1/PAIRED_ROUTING_DEVELOPMENT_V1.md);
+do not rerun it into the existing output. Inspect gated rescues/harms, final-output
+usability, fixed-cap/random comparisons and usage before recording a grouped
+development objective. All-pair transition totals alone are not policy results.
+No new GPU requests, downloads or model retries are required. Existing outputs
+and official labels are preserved.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,
