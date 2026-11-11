@@ -7,7 +7,8 @@ must account for reliability, usable outputs and costs instead of picking the
 largest development match count.
 
 This new CPU subtask implements exploratory group-separated validation of the
-existing fixed escalation-cap rule. Actual owner execution remains pending.
+existing fixed escalation-cap rule. The owner subsequently completed execution at `5528f84` and supplied its full
+terminal report; aggregate findings are recorded below.
 It fits no monetary model, uses no new inference and does not freeze a final
 routing objective or deployment threshold.
 
@@ -101,3 +102,44 @@ superiority, executable-success, monetary saving or online-latency claim follows
 Saved request-time sums remain separate-run proxies. Group-aware intervals,
 a fixed final objective, full policy costs, live escalation, recovery and the
 shared protocol freeze remain outstanding before separate held-out evaluation.
+
+## Owner OOF results — 2026-11-11
+
+The supplied terminal output reports all 27 new, 28 paired-input and 20 kernel
+checks passing, followed by four-model evidence revalidation and all 30
+model/endpoint/cap OOF analyses. This is owner-executed development evidence;
+complete scoring sidecars remain on the owner checkout.
+
+| Small model | Endpoint | Training cap | OOF rows | Matches | Fallback calls | Unusable final | Cap-exceeded folds | Request seconds/match |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| Qwen 1.5B | Reference | 25% | 1,512/1,512 | 721 | 381 | 90 | 3 | 5.390 |
+| Qwen 1.5B | Reference | 50% | 1,512/1,512 | 770 | 753 | 131 | 3 | 7.512 |
+| Llama 3B | Reference | 10% | 1,512/1,512 | 644 | 154 | 24 | 2 | 8.970 |
+| Llama 3B | Reference | 25% | 1,512/1,512 | 673 | 380 | 65 | 3 | 10.781 |
+| Llama 3B | Reference | 50% | 1,512/1,512 | 739 | 761 | 130 | 3 | 12.735 |
+| Qwen 7B | Reference | 10% | 1,512/1,512 | 812 | 150 | 20 | 1 | 9.512 |
+| Qwen 7B | Reference | 25% | 1,512/1,512 | 829 | 382 | 53 | 3 | 10.988 |
+| Qwen 7B | Reference | 50% | 1,512/1,512 | 818 | 754 | 120 | 2 | 14.068 |
+| Qwen 1.5B | ToolEyes relevance | 25% | 216/216 | 194 | 61 | 0 | 2 | 2.419 |
+| Llama 3B | ToolEyes relevance | 25% | 216/216 | 196 | 56 | 0 | 3 | 3.952 |
+| Qwen 7B | ToolEyes relevance | 25% | 216/216 | 206 | 53 | 0 | 1 | 5.372 |
+
+Reference zero-cap views have no OOF predictions for any model; Qwen 1.5B's
+reference 10% view also has none. They are infeasible training rules, not zero
+accuracy. ToolEyes zero-cap Qwen 1.5B/Llama views cover only 42/216 rows and
+retain unavailable full-cohort rates. Qwen 7B's zero-cap ToolEyes rule has full
+coverage but still escalates two validation cases beyond training maxima.
+The other displayed nonzero-cap views have complete OOF coverage.
+
+Qwen 7B at the 25% training cap has 829/1,512 reference matches (54.83%), versus
+790 small-only and 787 fallback-only. It escalates 382 cases (25.26%), exceeding
+the training cap in three folds. The saved request-time proxy per match remains
+higher than fallback-only, 10.988 versus 9.534. At the 10% training cap, 812
+reference matches and 9.512 seconds/match are point estimates; the small timing
+difference from fallback-only is not evidence of an established efficiency gain.
+
+The next [conditional paired interval subtask](GROUPED_ROUTING_INTERVALS_V1.md)
+is implemented and tested; actual execution is pending. It keeps the original
+OOF thresholds/decisions fixed while resampling canonical groups within benchmark.
+It is an exploratory uncertainty diagnostic, not full learning-procedure validation,
+monetary-cost evaluation, model selection or a final protocol freeze.
