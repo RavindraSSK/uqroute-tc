@@ -52,3 +52,14 @@ The Drive variant uses `MyDrive/UQRoute_TC/sensitivity_inputs` and
 `sensitivity_outputs`; the earlier pilots above use the distinct `UQRoute-TC`
 folder. Existing saved evidence blocks redispatch. Export to Drive is not a
 continuous backup before a run finishes.
+
+## Recovery resource smoke: Qwen 1.5B on L4
+
+`UQRoute_TC_Qwen15B_Recovery_Resource_Smoke_v1.ipynb` runs the fingerprint-bound
+30-request development small-stage smoke after completed owner staging and all
+4,824 context checks. Select L4, upload the existing smoke-preparation INPUT ZIP,
+record the current quota note, execute once, then download the OUTPUT evidence ZIP
+and delete the GPU runtime. It preserves unknown slots, performs no fallback or
+reference scoring, and exports frozen parser/token replay plus partial evidence.
+See [execution scope](../docs/research_track_v1/RECOVERY_GPU_SMOKE_V1.md).
+Actual GPU execution remains pending.
