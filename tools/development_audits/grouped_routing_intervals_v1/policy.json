@@ -1,0 +1,43 @@
+{
+  "baseline_commit": "5528f840b3df9a55465ca5b499f1f228e9d92a24",
+  "baselines": [
+    "small_only",
+    "fallback_only",
+    "always_cascade"
+  ],
+  "bootstrap_method": "Case-weighted metrics; canonical groups resampled within benchmark; shared multiplicities for all models/caps/baselines in each endpoint.",
+  "bootstrap_seed": 1729,
+  "conditioning": "Fixed original OOF thresholds and decisions; no refitting or reselection inside bootstrap. Does not capture full threshold-learning uncertainty.",
+  "context": "Exploratory after prior full-development inspection; not independent confirmation, execution success or billed monetary cost.",
+  "deployment_threshold_selected": false,
+  "display_caps": [
+    0.1,
+    0.25,
+    0.5
+  ],
+  "grouped_policy_sha256_lf": "049c6e9170eed3a7ea9f5bb70d3a956f6d59d0af7176d129b79223b1912713f9",
+  "held_out_access_enabled": false,
+  "inference_requests": 0,
+  "interval_method": "95% percentile with linear interpolation; no multiplicity correction.",
+  "main_experiment_ready": false,
+  "minimum_canonical_groups": 10,
+  "minimum_valid_fraction": 0.9,
+  "replicates": 2000,
+  "source_sha256_lf": {
+    "src/uqroute_tc/routing/development.py": "4ed22b4a5e16ca574e2f30bae18b851cd09232fba95849285ce04100582ccb54",
+    "tools/development_audits/fallback_full_development_scoring_v1/score_fallback_full.py": "a4937a0586055256c02f4879b92a48be53a372d7b54709d2e1deddbbe993a6f7",
+    "tools/development_audits/fallback_full_development_scoring_v1/scoring_policy_v1.json": "0afe83c49f3853ce0483e2adb0eb96b2b03a203d465e956816f10ad1a5335300",
+    "tools/development_audits/full_development_scoring_v1/score_full.py": "af44aee3371f62ba6d0ba5ec6b31764d46d4a21e61c30fb21b15ccb82ef880e8",
+    "tools/development_audits/full_development_scoring_v1/scoring_policy_v1.json": "b748c2e7e21f0fb29b1d4b682fcb3971f2eb7818833c68e70f91dcda01473ebf",
+    "tools/development_audits/grouped_routing_v1/policy.json": "049c6e9170eed3a7ea9f5bb70d3a956f6d59d0af7176d129b79223b1912713f9",
+    "tools/development_audits/grouped_routing_v1/run_validation.py": "5418a17895c6118cf6f94ab48cf866bb14dc5032f80dbabecbf9d3f0cf075211",
+    "tools/development_audits/grouped_routing_v1/validation.py": "77899b3ccce016b36a339508b5d6a3ad79bd84cd91ff2622797afe9125fd08d1",
+    "tools/development_audits/llama_full_development_scoring_v1/score_llama_full.py": "875ff9b4e93a602d04d892e790d30277f7f3b73c5f3fa038b33fbd04e7e09190",
+    "tools/development_audits/llama_full_development_scoring_v1/scoring_policy_v1.json": "953a956d12af6a790bc3ae450f1ee5f807582a7aeb298f5e700b7baa1d3d1dbb",
+    "tools/development_audits/paired_routing_v1/inputs.py": "19a6de8bd9578746615fbb67e02301ea6ca657a4724328c3b0e8fa24475bf633",
+    "tools/development_audits/paired_routing_v1/policy.json": "aaf434bd4900078d413056207e0a0b45a4b8890a8497d356b79bf02d711b7fe0",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/score_qwen7b_full.py": "61e7c590a5bafece6c95cf562b078f7e9a771b08112f7606813ee83adf606508",
+    "tools/development_audits/qwen7b_full_development_scoring_v1/scoring_policy_v1.json": "0b52bd0144cf69da2c182e95a68a7c32ddb4e07f16a9d57b9ff0c0596955fb98"
+  },
+  "version": "uqroute-grouped-routing-conditional-intervals-1.0.0"
+}

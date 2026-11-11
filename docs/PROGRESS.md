@@ -1,16 +1,27 @@
 # UQRoute-TC: Uncertainty-Gated Routing and Recovery for Reliable Tool Calling
 
-## Progress update — 2026-11-05
+## Progress update — 2026-11-11
 
 Task 1 and Task 2 remain complete within their recorded scope. Task 3 now has
 completed corrected primary-development generation/scoring for all three small
 models, full-development statistical reporting, corrected repeated sampling,
 and the sensitivity-only development extension. Task 3 remains open for final
-protocol decisions and held-out evaluation. Task 4 has a tested development routing kernel and a completed, independently
-replayed 1,728-response corrected 14B fallback run. Actual fallback reference
-scoring, measured routing, recovery and full cost evaluation remain outstanding. Task 5 final packaging
-remains outstanding. No defensible overall completion percentage
-is assigned.
+protocol decisions and held-out evaluation. Task 4 has a tested development
+routing kernel and a completed, independently replayed 1,728-response corrected
+14B fallback run. The owner has completed reference scoring and the paired-routing
+CPU replay against all three small models. All four saved scorers and full replays
+were revalidated, and the owner supplied the gated/random policy report.
+Retrospective fixed-cap matches and saved usage/usability accounting are reviewed.
+The owner has completed group-separated development validation and conditional
+paired group-bootstrap analysis on the saved evidence.
+Recovery context preparation and a bounded CPU controller are now implemented
+and tested. The owner completed preparation at `f2bbb44`: 2,412 pending eligible
+episodes and 108 terminal no-injection plans across the three small models. A CPU
+pinned-tokenizer preflight is supplied; actual context results, resource checks,
+recovery execution, the final objective/operating point and full cost evaluation
+remain outstanding. Task 5 final
+packaging remains outstanding. No defensible overall completion percentage is
+assigned.
 
 | Workstream | Completed development evidence | Status / remaining boundary |
 |---|---|---|
@@ -19,11 +30,137 @@ is assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Actual reference scoring on preserved owner sidecars pending; no routing-benefit claim |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); tokenizer/resource checks, execution and final objective remain pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
 Qwen 7B 790/1,512. Separate ToolEyes relevance is 174/216, 181/216 and 204/216.
+Fallback reference compliance is 787/1,512 (52.05%); separate ToolEyes relevance
+is 208/216 (96.30%). Qwen 7B has three more reference matches, while fallback
+has four more ToolEyes relevance matches. These totals alone do not reveal
+which cases are rescued or harmed by escalation. All 128 invalid-evidence and
+42 truncated outputs remain scored as generated; their uncertainty is unavailable.
+Owner verification passed 64 import/scoring tests (one skip) and 34 frozen
+generation tests. The supplied terminal output supports these aggregate figures.
+The working analysis checkout independently verified generation/replay; the
+new official scores are recorded from owner output, not recomputed here.
+
+The owner ran the paired-routing command at `ca417d1` successfully: 28 new
+synthetic checks and 20 routing-kernel checks passed, then all four actual saved
+runs were re-scored/replayed before matching. The supplied terminal summary
+reports these aggregate reference-panel transitions on the same 1,512 cases:
+
+| Small model | Small matches | Fallback matches | Potential rescues (IC) | Potential harms (CI) | Minimum forced fallback rows |
+|---|---:|---:|---:|---:|---:|
+| Qwen 1.5B | 572 | 787 | 326 | 111 | 227 |
+| Llama 3B | 621 | 787 | 263 | 97 | 43 |
+| Qwen 7B | 790 | 787 | 141 | 144 | 12 |
+
+IC means small reference mismatch/fallback match; CI is the reverse. These are
+all-pair opportunities and tradeoffs, not the counts selected by a particular
+gate. All six endpoint/model transition tables reconcile with their raw model
+totals, with no unknown labels. Separate ToolEyes potential rescues/harms are
+35/1, 28/1 and 4/0, respectively. The CPU command generated compact frontiers,
+fixed-cap and count-matched random views. The owner subsequently supplied the
+full `REPORT.md`, confirming these reference-panel diagnostic points:
+
+| Small model | 25% cap gated matches | Same-count random mean matches | Gated rescues / harms | 50% cap gated matches |
+|---|---:|---:|---:|---:|
+| Qwen 1.5B | 722/1,512 | 624.50 | 162 / 12 | 768/1,512 |
+| Llama 3B | 671/1,512 | 660.70 | 78 / 28 | 737/1,512 |
+| Qwen 7B | 830/1,512 | 790.00 | 68 / 28 | 817/1,512 |
+
+All 25% points escalate 378 cases. The Qwen 7B example has 40 more matches
+than small-only and 43 more than fallback-only, but requires 1,890 model attempt
+slots versus 1,512 for either single-model baseline. The 378 fallback calls are
+75% fewer than fallback-only; this is not a measured 75% reduction in total cost.
+Qwen 7B's 50% view yields fewer matches than its 25% view; escalation need not
+monotonically improve reference compliance. These inspected points are
+retrospective development findings, not a selected optimum, independent
+validation or statistical superiority claim. The ten-seed random mean is not
+a confidence interval. The owner subsequently supplied the saved-accounting display.
+Qwen 7B's 25% reference point has 51 unusable final outputs (small-only 12;
+fallback-only 220), and 9,044.055 summed request seconds (fallback-only 7,503.086).
+Its saved request-time proxy per match is 10.896 versus 9.534 for fallback-only;
+there is no established timing-efficiency improvement at that point. Qwen 1.5B's
+25% point has a smaller time proxy per match (5.346), but fewer reference matches
+than fallback-only (722 versus 787). These are reference-compliance/usability
+tradeoffs, not executable-success or monetary-cost measurements. Missing usage
+was not reported in the supplied displayed totals.
+The owner completed the five-fold grouped validation at `5528f84`, with all
+75 focused checks passing and all four source runs revalidated. Selected
+reference-panel OOF diagnostics from the supplied report are:
+
+| Model | Training cap | OOF matches | Actual fallback calls | Unusable final | Request seconds/match proxy |
+|---|---:|---:|---:|---:|---:|
+| Qwen 1.5B | 25% | 721/1,512 | 381 | 90 | 5.390 |
+| Llama 3B | 25% | 673/1,512 | 380 | 65 | 10.781 |
+| Qwen 7B | 10% | 812/1,512 | 150 | 20 | 9.512 |
+| Qwen 7B | 25% | 829/1,512 | 382 | 53 | 10.988 |
+| Qwen 7B | 50% | 818/1,512 | 754 | 120 | 14.068 |
+
+Qwen 7B's 25% training-cap view has 39 more reference matches than small-only
+and 42 more than fallback-only, but a higher saved time proxy per match than
+fallback-only (10.988 versus 9.534). Its realized escalation is 382/1,512
+(25.26%), and the training cap is exceeded in three validation folds. The 10%
+view has 812 matches and a proxy close to fallback-only (9.512 versus 9.534);
+no timing or reliability superiority is established by those point estimates.
+
+Reference zero-cap views and Qwen 1.5B's reference 10% view have no OOF
+predictions because the rule is infeasible on training groups. ToolEyes zero-cap
+Qwen 1.5B/Llama views cover only 42/216 rows and have no full-cohort rate.
+Other displayed nonzero-cap views cover every endpoint case. ToolEyes 25%
+OOF relevance matches are 194/216, 196/216 and 206/216, respectively.
+Group-separated fitting prevents direct fold-group overlap; it does not undo
+prior inspection of the full development data. No final threshold is refitted.
+The owner subsequently completed the conditional paired group bootstrap at
+`ec2317e`: 26 interval, 27 grouped-validation and 20 routing-kernel checks passed,
+all source evidence was revalidated, and saved OOF results reproduced before
+2,000 within-benchmark group draws. Key reference-panel contrasts are:
+
+| OOF view | Match difference vs small, pp [95% interval] | Match difference vs fallback, pp [95% interval] | Saved seconds/match difference vs fallback [95% interval] |
+|---|---|---|---|
+| Qwen 1.5B, 25% training cap | 9.854 [7.015, 12.755] | -4.365 [-9.007, -0.064] | -4.144 [-5.568, -2.891] |
+| Qwen 1.5B, 50% training cap | 13.095 [8.895, 17.357] | -1.124 [-4.137, 1.982] | -2.022 [-3.163, -0.985] |
+| Qwen 7B, 10% training cap | 1.455 [-0.066, 3.465] | 1.653 [-2.331, 5.674] | -0.021 [-1.471, 1.254] |
+| Qwen 7B, 25% training cap | 2.579 [0.197, 5.468] | 2.778 [-0.653, 6.512] | 1.454 [0.064, 2.776] |
+
+These unadjusted percentile intervals condition on fixed OOF thresholds/decisions;
+they neither refit thresholds nor undo prior full-development exposure. An
+interval spanning zero is not an equivalence or noninferiority finding. The
+Qwen 7B 25% view does not establish fallback superiority and has a higher saved
+time proxy per match. Qwen 1.5B shows a reliability/time-proxy tradeoff. No final
+model, cap, threshold or monetary-saving claim is selected.
+
+The owner completed reference-free recovery preparation at `f2bbb44`; all 52
+checks passed and all three saved initial model runs were revalidated without
+reference scoring. Each model has 140 clean anchors and 840 scenario slots:
+
+| Initial model | Pending eligible episodes | Terminal no injection | Maximum new calls if both roles dispatched |
+|---|---:|---:|---:|
+| Qwen 1.5B | 750 | 90 | 1,500 |
+| Llama 3B | 828 | 12 | 1,656 |
+| Qwen 7B | 834 | 6 | 1,668 |
+
+All 108 terminal plans have reason `initial_no_official_call`. The 2,412 eligible
+episodes have planned small/fallback contexts, totaling 4,824 potential requests;
+these are not occupied attempt slots or incurred generation costs. The three
+archive and manifest fingerprints are recorded in the new
+[CPU context preflight](research_track_v1/RECOVERY_CONTEXT_PREFLIGHT_V1.md).
+Counts and pins come from the supplied owner terminal summary; private transfer
+payloads were not independently inspected in this checkout. The preflight
+verifies the archives before rendering every role/context with its pinned tokenizer.
+The owner attempted preflight at `1908f8f`: 17 synthetic checks passed, but actual
+request validation stopped before tokenizer loading because the validator omitted
+`stream: false` from its expected body. The correction requires the preserved
+nonstreaming field and builds regression fixtures with the production static and
+recovery request constructors. All 19 corrected context checks and 52 existing
+preparation/controller/routing checks pass. Original archive pins and prepared
+outputs remain unchanged; rerun preflight only. Actual token counts, context fit
+and runtime/quota feasibility remain pending.
+Planned fault feedback is not observed injection or measured recovery. No new
+inference, reference scoring, held-out access or final threshold selection occurred.
+
 These are development results under the pinned deterministic reference scorer;
 they do not measure executable task success or cost/latency preference success.
 
@@ -283,7 +420,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Reference scoring, operating-point selection, live escalation, recovery and full cost evaluation pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; CPU tokenizer preflight supplied; actual context/runtime checks, recovery, final objective, live escalation and full cost evaluation pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -379,7 +516,7 @@ Final analysis freeze and new held-out access remain disabled.
 - [x] Complete three-model primary-development uncertainty analysis on explicitly matched eligible cohorts.
 - [x] Complete corrected Qwen 7B coverage and all three 1,728-response primary-development small-model runs and CPU scoring.
 - [x] Verify corrected context/evidence feasibility for the three small models used in the completed five-benchmark primary-development runs.
-- [ ] Complete any remaining corrected fallback feasibility required by the final Task 4 policy; earlier fallback diagnostics do not establish routing benefit.
+- [x] Complete corrected matched 14B AWQ fallback generation, context/runtime verification, replay and owner reference scoring; routing benefit remains a separate question.
 
 - [x] Record completed per-model development session timings, usage and runtime allocation attestations.
 - [ ] Check available quota and resource capacity before scheduling any further inference; session timing is not full policy cost.
@@ -405,21 +542,38 @@ Final analysis freeze and new held-out access remain disabled.
 ## Task 4 — Routing and recovery
 
 See [development routing and fallback preparation](research_track_v1/DEVELOPMENT_ROUTING_V1.md).
-The implementation is development-only; no routing-effectiveness result or final
-threshold is supplied.
+The implementation and actual saved-pair replay are development-only. The owner
+supplied all-pair transition totals and the gated/random report. Fixed-cap match
+counts and saved usage/usability accounting are reviewed. Group-separated validation
+and conditional intervals are owner-executed and reviewed. Recovery preparation
+and a bounded CPU controller are supplied and owner preparation is complete;
+tokenizer/resource checks, actual recovery and the final objective remain pending.
+No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
 - [x] Implement offline threshold-frontier replay without choosing an operating point.
 - [x] Implement small-only, fallback-only, always-cascade and exact-count seeded random baseline replay, including rescues/harms and missing-usage accounting.
-- [x] Supply a tested preparation command for the prompt-matched 1,728-case corrected 14B AWQ development plan; actual owner-input preparation remains to be run.
+- [x] Supply and execute the preparation command for the prompt-matched 1,728-case corrected 14B AWQ development plan.
 - [x] Verify all-request fallback context/runtime, generate all 1,728 corrected matched development responses, check all 6,942 evidence-file hashes and independently reproduce full local replay.
 - [x] Supply a separately evidence-bound fallback CPU scorer and import/replay command; synthetic regression tests pass.
-- [ ] Run/review actual fallback reference scoring using the preserved primary-development reference/audit sidecars on the owner checkout.
-- [ ] Implement evidence-bound paired-input loading and grouped development threshold selection under a fixed objective.
+- [x] Run/review owner fallback reference scoring against preserved development sidecars: 787/1,512 reference matches and separate ToolEyes relevance 208/216; no exclusions or label changes.
+- [x] Implement evidence-bound paired-input loading, compact threshold frontiers and fixed-cap/random-count diagnostic views; 28 new synthetic checks and 20 existing kernel checks pass.
+- [x] Execute the paired-routing command on all four saved owner runs at `ca417d1`; full scorer/replay revalidation passed and all-pair aggregate counts reconcile.
+- [x] Review supplied fixed-cap gated/random match counts, including Qwen 7B 830/1,512 matches at 378 fallback calls, 68 rescues and 28 harms; retrospective only.
+- [x] Review supplied saved final-output usability, token totals and cached elapsed-time accounting; Qwen 7B's 25% reference gate has a higher time proxy per match than fallback-only.
+- [x] Implement five benchmark-stratified canonical-group folds, training-only label-independent cap thresholds, same-fold random controls, incomplete-coverage reporting and OOF accounting; 27 new synthetic checks pass.
+- [x] Execute/review owner five-fold group-separated validation at `5528f84`: all 75 focused checks pass; reference and ToolEyes OOF results/realized budgets supplied with incomplete views retained.
+- [x] Implement paired group-bootstrap contrasts conditional on fixed OOF decisions, with shared benchmark-stratified draws, usage/missingness safeguards and explicit learning-uncertainty limits; 26 new tests pass.
+- [x] Execute/review owner conditional intervals at `ec2317e`, with 73 focused checks passing; no final reliability, timing-efficiency or monetary-saving conclusion is recorded.
+- [x] Implement a reference-free clean-development recovery preparer and bounded decision controller; separate planned/observed injection, no-fault/unknown partitions and context-bound responses. Owner preparation completed at `f2bbb44` with 52 checks passing.
+- [ ] Select and validate a grouped development operating point under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
-- [ ] Implement post-fault recovery.
+- [x] Execute/review owner recovery preparation: 750/828/834 pending eligible episodes and 90/12/6 terminal no-injection plans; zero generation or observed injection.
+- [x] Supply an owner-archive-bound CPU tokenizer preflight for both roles, complete context inventories and overflow reporting; 19 synthetic checks pass, including production-built nonstreaming requests.
+- [ ] Run/review the pinned-tokenizer context preflight and complete server/runtime/quota feasibility checks.
+- [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
-- [ ] Validate all routing baselines on the matched development evidence.
+- [ ] Validate all routing baselines on group-separated development evidence, then review full policy costs and uncertainty.
 - [ ] Freeze the shared protocol and selected threshold before held-out evaluation.
 
 ## Task 5 — Final package
@@ -533,13 +687,16 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [fallback CPU scoring command](research_track_v1/FALLBACK_FULL_DEVELOPMENT_SCORING_V1.md)
-on the owner checkout after downloading the completed evidence ZIP from
-`UQRoute_TC/fallback_outputs`. Actual generation and independent local replay
-are complete. Preserve all 128 invalid-evidence and 42 truncated outputs;
-uncertainty availability is not a correctness label. No new GPU requests or
-model retries are needed. The CPU scorer verifies the original reference/audit
-sidecars before computing any outcome metrics.
+Run the [CPU recovery context preflight](research_track_v1/RECOVERY_CONTEXT_PREFLIGHT_V1.md):
+`python tools/development_audits/recovery_context_preflight_v1/preflight.py`.
+Use the recorded `transformers==5.20.2` tokenizer runtime and existing authorized
+Hugging Face access for Llama. All three prepared owner ZIPs are fingerprint-bound
+before tokenizer downloads. The command checks every potential small/fallback
+request, reserves the full completion allowance, and saves overflows without
+trimming or dropping contexts. It sends no generation requests and authorizes no
+dispatch. Do not rerun preparation over its existing output. Review actual context
+counts before runtime/quota checks and a durable dedicated recovery executor.
+The static dispatcher is incompatible; all readiness flags remain false.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,
