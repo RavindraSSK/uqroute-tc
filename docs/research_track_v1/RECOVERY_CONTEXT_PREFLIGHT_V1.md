@@ -74,9 +74,30 @@ baselines, full cost accounting and scoring dispositions remain pending. There
 is no selected recovery threshold or final operating objective. All dispatch,
 held-out access and main-experiment readiness flags remain false.
 
-The 17 synthetic checks exercise archive/JSON integrity, population and stage
+The 19 synthetic checks exercise archive/JSON integrity, population and stage
 coverage, frozen settings, injection partitions, exact context boundaries,
 overflow preservation, invalid token IDs and all four distinct tokenizer roles.
 A synthetic complete-run test publishes both reports using fake tokenizers and
 the existing publication helper, verifies preserved inputs and rejects a second
 write. These tests do not establish actual tokenizer counts or context fit.
+
+## Nonstreaming request compatibility correction
+
+The owner attempted preflight at `1908f8f`. All 17 then-current synthetic checks
+passed, but real-plan validation stopped at `Role request/context binding differs`
+before actual tokenizer loading or report publication. The corrected-generation
+producer includes explicit `stream: false`, and recovery preparation preserves
+that body field. The first preflight expected-body dictionary omitted it, so
+its exact comparison rejected valid prepared requests. This was a validator
+compatibility bug, not evidence of altered owner plans or a context overflow.
+
+The expected body now requires `stream: false`. Synthetic fixtures now use the
+production `workflow.make_requests` and `prepare.episode` constructors with the
+released fault templates, replacing the manually duplicated request schema.
+Regression checks cover both model roles and reject a missing field or
+`stream: true` even after recomputing the body hash. All 19 context checks and
+52 existing preparation/controller/routing checks pass. The original archive pins,
+prepared payloads, request hashes and all authorization flags are unchanged.
+Rerun only the preflight command after pulling the correction; Transformers is
+already installed. Actual owner token counts, context fit and runtime feasibility
+remain pending.

@@ -150,7 +150,14 @@ archive and manifest fingerprints are recorded in the new
 Counts and pins come from the supplied owner terminal summary; private transfer
 payloads were not independently inspected in this checkout. The preflight
 verifies the archives before rendering every role/context with its pinned tokenizer.
-Actual token counts, context fit and runtime/quota feasibility remain pending.
+The owner attempted preflight at `1908f8f`: 17 synthetic checks passed, but actual
+request validation stopped before tokenizer loading because the validator omitted
+`stream: false` from its expected body. The correction requires the preserved
+nonstreaming field and builds regression fixtures with the production static and
+recovery request constructors. All 19 corrected context checks and 52 existing
+preparation/controller/routing checks pass. Original archive pins and prepared
+outputs remain unchanged; rerun preflight only. Actual token counts, context fit
+and runtime/quota feasibility remain pending.
 Planned fault feedback is not observed injection or measured recovery. No new
 inference, reference scoring, held-out access or final threshold selection occurred.
 
@@ -562,7 +569,7 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [ ] Select and validate a grouped development operating point under a fixed objective.
 - [ ] Implement and measure live fallback escalation; offline cached timing is not online latency.
 - [x] Execute/review owner recovery preparation: 750/828/834 pending eligible episodes and 90/12/6 terminal no-injection plans; zero generation or observed injection.
-- [x] Supply an owner-archive-bound CPU tokenizer preflight for both roles, complete context inventories and overflow reporting; 17 synthetic checks pass.
+- [x] Supply an owner-archive-bound CPU tokenizer preflight for both roles, complete context inventories and overflow reporting; 19 synthetic checks pass, including production-built nonstreaming requests.
 - [ ] Run/review the pinned-tokenizer context preflight and complete server/runtime/quota feasibility checks.
 - [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.

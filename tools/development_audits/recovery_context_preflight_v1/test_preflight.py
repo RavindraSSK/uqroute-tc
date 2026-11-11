@@ -1,5 +1,6 @@
 """Synthetic integrity, eligibility and CPU context checks; no tokenizer downloads."""
 
+import importlib.util
 import json
 import sys
 import tempfile
@@ -11,6 +12,32 @@ from pathlib import Path
 from unittest.mock import patch
 
 import preflight as p
+
+
+def load_source(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+# Exercise the real producers, rather than duplicating their request schema.
+support = load_source(
+    "_context_fixture_support",
+    p.REPO / "tools/development_audits/corrected_generation_v1/support.py",
+)
+with patch.dict(sys.modules, {"support": support}):
+    workflow = load_source(
+        "_context_fixture_workflow",
+        p.REPO / "tools/development_audits/corrected_generation_v1/workflow.py",
+    )
+preparer = load_source(
+    "_context_fixture_preparer",
+    p.REPO / "tools/development_audits/recovery_development_v1/prepare.py",
+)
+with patch.object(sys, "path", [str(p.REPO / "src"), *sys.path]):
+    from uqroute_tc.routing import recovery
 
 
 class Tokenizer:
@@ -25,14 +52,9 @@ class Tokenizer:
 
 def fixture(key="qwen15b"):
     config = json.loads((p.REPO / "docs/config/task1_single_sample_v1.json").read_text())
-    faults = [
-        "timeout",
-        "rate_limit",
-        "auth_error",
-        "server_error",
-        "malformed_response",
-        "schema_drift",
-    ]
+    errors = preparer.released_templates(
+        (p.REPO / "tools/development_audits/full_development_v1/official_runner.py").read_text()
+    )
     manifest = {
         "version": "uqroute-recovery-development-preparation-1.0.0",
         "small_model_key": key,
@@ -51,51 +73,35 @@ def fixture(key="qwen15b"):
         "small_requests.json": [],
         "fallback_requests.json": [],
     }
-    for fault in faults:
-        messages = [
-            {"role": "system", "content": "tools"},
-            {"role": "user", "content": "task"},
-            {"role": "assistant", "content": "api()"},
-            {"role": "user", "content": fault},
-        ]
-        context = p.sha(p.canonical(messages).encode())
-        ekey = p.sha(p.canonical([key, "synthetic", fault]).encode())
-        data["episodes.json"].append(
-            {
-                "episode_key": ekey,
-                "canonical_base_id": "synthetic",
-                "split": "development",
-                "population": "primary",
-                "source_file": "clean.jsonl",
-                "fault_type": fault,
-                "injection_eligible": True,
-                "transition_injected": None,
-                "no_injection_reason": None,
-                "context_messages_sha256": context,
-            }
+    messages = [{"role": "system", "content": "tools"}, {"role": "user", "content": "task"}]
+    candidate = {
+        "case_key": "clean.jsonl:synthetic",
+        "canonical_base_id": "synthetic",
+        "benchmark": "bfcl_v3",
+        "messages": messages,
+        "messages_sha256": recovery.messages_sha256(messages),
+        "tools": [],
+    }
+    initial = workflow.make_requests(
+        [candidate],
+        {candidate["case_key"]: {"source_file": "clean.jsonl"}},
+        manifest["model_settings"]["small"],
+        config["single_sample"],
+    )[0]
+    for fault in errors:
+        episode, roles = preparer.episode(
+            initial,
+            "api()",
+            [{"name": "api", "parameters": {}}],
+            key,
+            fault,
+            errors,
+            manifest["model_settings"]["fallback"]["model_id"],
+            recovery,
         )
-        for role, filename, model_role in (
-            ("postfault_small", "small_requests.json", "small"),
-            ("postfault_fallback", "fallback_requests.json", "fallback"),
-        ):
-            body = {
-                "model": manifest["model_settings"][model_role]["model_id"],
-                "messages": messages,
-                **{
-                    n: config["single_sample"][n]
-                    for n in ("temperature", "max_tokens", "logprobs", "top_logprobs")
-                },
-            }
-            data[filename].append(
-                {
-                    "episode_key": ekey,
-                    "stage": role,
-                    "request_id": p.sha(p.canonical([ekey, role]).encode()),
-                    "request": body,
-                    "context_messages_sha256": context,
-                    "request_sha256": p.sha(p.canonical(body).encode()),
-                }
-            )
+        data["episodes.json"].append(episode)
+        data["small_requests.json"].append(roles["postfault_small"])
+        data["fallback_requests.json"].append(roles["postfault_fallback"])
     return config, data
 
 
@@ -197,6 +203,25 @@ class ContextTests(unittest.TestCase):
         self.data["small_requests.json"][0]["request"]["max_tokens"] = 1
         with self.assertRaises(ValueError):
             self.validate()
+
+    def test_production_requests_preserve_explicit_nonstreaming(self):
+        for filename in ("small_requests.json", "fallback_requests.json"):
+            for row in self.data[filename]:
+                self.assertIs(row["request"]["stream"], False)
+        self.validate()
+
+    def test_stream_true_or_missing_rejected_even_with_recomputed_request_hash(self):
+        for filename in ("small_requests.json", "fallback_requests.json"):
+            for changed in (True, "missing"):
+                _, self.data = fixture()
+                row = self.data[filename][0]
+                if changed == "missing":
+                    del row["request"]["stream"]
+                else:
+                    row["request"]["stream"] = changed
+                row["request_sha256"] = p.sha(p.canonical(row["request"]).encode())
+                with self.assertRaises(ValueError):
+                    self.validate()
 
     def test_modified_context_or_request_id_rejected(self):
         for field in ("request_id", "context_messages_sha256", "request_sha256"):

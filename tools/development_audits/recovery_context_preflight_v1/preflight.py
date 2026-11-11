@@ -172,6 +172,7 @@ def validate_plan(data, key, config, eligible_count, clean_count=140):
             expected_body = {
                 "model": manifest["model_settings"][model_role]["model_id"],
                 "messages": messages,
+                "stream": False,
                 **{
                     n: config["single_sample"][n]
                     for n in ("temperature", "max_tokens", "logprobs", "top_logprobs")
