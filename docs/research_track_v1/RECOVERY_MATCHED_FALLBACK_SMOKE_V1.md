@@ -84,8 +84,9 @@ original implementation and hashes are unchanged. It admits only the frozen
 fallback model/role, valid paired-small identities, a known parent-smoke binding,
 up to 30 request slots and explicit execution. Intent/submission/response stages,
 unknown slots, raw responses, hashes, HTTP failures and writer locks retain the
-same no-retry safeguards. There is no runnable GPU launcher in this preparation
-package. The static/small-stage dispatchers are incompatible with this transfer.
+same no-retry safeguards. At preparation time this package supplied no GPU launcher. A separate
+[pinned L4 notebook](RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md) is now supplied
+after successful owner preparation; execution remains pending. The static/small-stage dispatchers are incompatible with this transfer.
 `dispatch_authorized`, held-out access and main-experiment readiness remain false.
 
 The eventual smoke has **30 new fallback requests and zero new small requests**.
@@ -100,8 +101,13 @@ exact messages, forbidden appended/static contexts, frozen settings, unchanged
 review labels and selected 14B token boundaries. Actual saved thirty-episode
 histories and receipts also pass construction checks locally. The original full
 750-row transfer and completed owner review files are unavailable in this
-implementation checkout, so actual owner staging and archive pins remain pending.
+implementation checkout. The owner subsequently completed staging and supplied
+the transfer fingerprints; the selected transfer was independently reconstructed
+from preserved parent evidence with both hashes matching exactly.
 
-Run preparation and review its final summary before preparing/executing the
-bounded fallback GPU notebook. Do not rerun the completed small smoke, generate
+The owner completed preparation at `c3cbf9f` with thirty successful checks
+(one Windows symlink skip). Both transfer hashes match an independent
+reconstruction; maximum selected prompt tokens are 3,872 with zero overflows.
+Run the [bounded fallback GPU notebook](RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md)
+next and preserve the completed preparation. Do not rerun the completed small smoke, generate
 the remaining 720 small requests, change labels or enable held-out evaluation.

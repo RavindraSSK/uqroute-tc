@@ -1,0 +1,45 @@
+{
+  "archive": "qwen14b_matched_recovery_fallback_smoke_v1.zip",
+  "archive_sha256": "2e2bc38f6104c06d9a6084344a5d89b1dfcd2ddb7b3ec53791a7d9d65c3abc61",
+  "benchmarks": [
+    "apibank",
+    "bfcl_v3",
+    "rotbench",
+    "toolalpaca",
+    "tooleyes"
+  ],
+  "canonical_groups": 5,
+  "completion_allowance": 1024,
+  "context_limit": 8192,
+  "context_overflows": 0,
+  "dispatch_authorized": false,
+  "fallback_gpu_runtime": "pending",
+  "generation_requests_sent_by_this_step": 0,
+  "gpu_client_cpu_tests": 25,
+  "held_out_access_enabled": false,
+  "independent_transfer_reconstruction": {
+    "archive_hash_matches": true,
+    "manifest_hash_matches": true,
+    "pinned_gpu_client_loads_all_30": true,
+    "source": "preserved parent histories/receipts and production episode builder; original full750 transfer not available in implementation checkout"
+  },
+  "initial_control_name_rows_retained": 6,
+  "known_parent_small_responses": 30,
+  "labels_used_for_selection": false,
+  "main_experiment_ready": false,
+  "manifest_sha256": "3bc0762f233ebfcad69f55bc20285235a8962b6a93417b73fab96d24094d816d",
+  "matched_episodes": 30,
+  "model_id": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+  "model_revision": "539535859b135b0244c91f3e59816150c8056698",
+  "owner_preparation_revision": "c3cbf9f44334547a747585c613afe34d381bd070",
+  "owner_tests": {
+    "run": 30,
+    "skipped": 1,
+    "status": "OK"
+  },
+  "parent_no_parsed_call_rows_retained": 11,
+  "planned_new_fallback_requests": 30,
+  "planned_new_small_requests": 0,
+  "selected_prompt_tokens_max": 3872,
+  "version": "uqroute-matched-recovery-fallback-smoke-preparation-evidence-1.0.0"
+}
