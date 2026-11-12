@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "4f7b584baef6368c3a4e72ddbdc3ad46e0776381",
+  "dispatch_authorized": false,
+  "fresh_small_requests": 0,
+  "generation_requests_sent": 0,
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "parent_smoke_archive_sha256": "dd91a73f5f565269f83d70773fd25fd64c82785029e3d96b139682c072b59595",
+  "planned_fallback_requests": 30,
+  "selection": "All 30 existing smoke episodes; no correctness or uncertainty filtering",
+  "source_sha256_lf": {
+    "docs/config/task1_single_sample_v1.json": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+    "tools/development_audits/recovery_context_preflight_v1/preflight.py": "c2029ce27c8fbc92924f373479c4261624c808686169f0c347660816fab99ae9",
+    "tools/development_audits/recovery_smoke_import_v1/import_smoke.py": "bbbca497a9b78c79b7a4de4e074fb1d564e7a9d44c7b5e20140190f9af0bea23",
+    "tools/development_audits/recovery_smoke_review_v1/policy.json": "a2bf1b8106b8273f53d297665cea30cc4c0ab2c993dc9aef81da2bc7ef3a7377",
+    "tools/development_audits/recovery_smoke_review_v1/review.py": "98a6cb1e567b1ef6a8918c9c5d1a912d06a4b4f307bde6563cd986126c3a5681",
+    "tools/development_audits/recovery_smoke_scoring_v1/policy.json": "8be68c1925a863cc67e29c8ddd80b13baf18c9834ab99ec91bf042fee9e716ba",
+    "tools/development_audits/recovery_smoke_v1/ledger.py": "98c162c520b568adc2f67d3a3fa6900c41cf8159dbb0bc939baf1d5af0496813"
+  },
+  "version": "uqroute-matched-recovery-fallback-smoke-1.0.0"
+}

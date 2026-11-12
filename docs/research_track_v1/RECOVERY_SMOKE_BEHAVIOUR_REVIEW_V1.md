@@ -51,7 +51,15 @@ or fault repair. The next review explicitly measures whether any matching
 responses removed initial keys or replaced empty strings; those per-outcome
 cross-tabs remain pending the owner's complete reference-score recomputation.
 
-## Run the CPU review
+## Owner review complete
+
+The owner ran the command at `4f7b584`: all 14 tests passed and the prior scores
+reproduced exactly. The supplied cross-tabs attribute 11/14 reference losses to
+no-call outputs, two to changed name sequences and one to changed arguments.
+All three ToolEyes relevance losses have changed name sequences. These supplied
+cross-tabs do not assign semantic correctness or justify exclusions.
+Run [matched fallback preparation](RECOVERY_MATCHED_FALLBACK_SMOKE_V1.md) next;
+preserve the completed review. The command below is retained for a fresh replay.
 
 ```bash
 python tools/development_audits/recovery_smoke_review_v1/review.py
@@ -89,9 +97,8 @@ new tests use the actual frozen parser to check unchanged/reordered dictionaries
 argument/type changes, name/order changes, no-call ambiguity, control-name scope,
 empty strings, endpoint separation, reference-independent buckets, private text
 fencing and identifier-free aggregate rendering. Ruff passes. Actual saved-text
-structural counts above were verified locally; the complete owner-side review
-and per-outcome cross-tabs remain pending because the private references are not
-available in this checkout.
+structural counts above were verified locally; the owner-side review and cross-tabs were subsequently supplied. Protected
+references remain unavailable here, so those cross-tabs are owner-reported.
 
 Review fault semantics and the benchmark endpoint before further GPU allocation.
 No original label, cohort, uncertainty definition or score is changed; no control

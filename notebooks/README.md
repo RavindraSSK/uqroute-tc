@@ -63,7 +63,7 @@ and delete the GPU runtime. It preserves unknown slots, performs no fallback or
 reference scoring, and exports frozen parser/token replay plus partial evidence.
 See [execution scope](../docs/research_track_v1/RECOVERY_GPU_SMOKE_V1.md).
 The owner completed this smoke; all 30 responses independently replay exactly.
-Owner local import and reference scoring are complete (4/24 reference matches;
-separate relevance 3/6). Do not rerun the completed batch. Use the
-[CPU smoke behaviour review](../docs/research_track_v1/RECOVERY_SMOKE_BEHAVIOUR_REVIEW_V1.md)
-next; semantic/execution recovery remains unmeasured.
+Owner local import, reference scoring and behaviour review are complete. Do not
+rerun the completed small batch. Use the
+[matched 14B fallback preparation](../docs/research_track_v1/RECOVERY_MATCHED_FALLBACK_SMOKE_V1.md)
+next; its GPU launcher/execution remains pending and semantic recovery is unmeasured.

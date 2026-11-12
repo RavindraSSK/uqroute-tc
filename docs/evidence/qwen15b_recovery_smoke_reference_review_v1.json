@@ -15,6 +15,49 @@
   },
   "labels_changed": false,
   "main_experiment_ready": false,
+  "owner_behaviour_review_completed": true,
+  "owner_behaviour_review_revision": "4f7b584baef6368c3a4e72ddbdc3ad46e0776381",
+  "owner_reference_cross_tabs": {
+    "official_reference_compliance": {
+      "changed_name_sequence": {
+        "match_to_mismatch": 2,
+        "postfault_reference_matches": 0,
+        "rows": 5
+      },
+      "identical_canonical_calls": {
+        "match_to_mismatch": 0,
+        "postfault_reference_matches": 2,
+        "rows": 2
+      },
+      "no_parsed_postfault_call": {
+        "match_to_mismatch": 11,
+        "postfault_reference_matches": 0,
+        "rows": 11
+      },
+      "same_name_sequence_changed_arguments": {
+        "match_to_mismatch": 1,
+        "postfault_reference_matches": 2,
+        "rows": 6
+      }
+    },
+    "tooleyes_relevance": {
+      "changed_name_sequence": {
+        "match_to_mismatch": 3,
+        "postfault_reference_matches": 0,
+        "rows": 3
+      },
+      "identical_canonical_calls": {
+        "match_to_mismatch": 0,
+        "postfault_reference_matches": 2,
+        "rows": 2
+      },
+      "same_name_sequence_changed_arguments": {
+        "match_to_mismatch": 0,
+        "postfault_reference_matches": 1,
+        "rows": 1
+      }
+    }
+  },
   "owner_scoring_revision": "e25c8e63d3b2aeddc3660154d0c31d596dbdd835",
   "panels": {
     "official_reference_compliance": {
@@ -51,6 +94,7 @@
     }
   },
   "reference_cross_tabs_independently_verified": false,
+  "reference_cross_tabs_source": "owner aggregate report; not independently recomputed in this checkout",
   "reference_results_source": "owner terminal report; not independently recomputed in this checkout",
   "rows_excluded": 0,
   "semantic_fault_recovery": "not_evaluated",
