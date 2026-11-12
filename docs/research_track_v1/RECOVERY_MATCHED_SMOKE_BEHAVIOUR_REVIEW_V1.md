@@ -27,6 +27,23 @@ owner's paired records; the two sets of six must not be assumed identical.
 | Same names, changed arguments | 6 |
 | Changed names | 10 |
 
+## Owner review complete
+
+The existing completed output was preserved when a repeat command stopped.
+The owner supplied its aggregate report: five of six primary-panel reference
+gains are no-call-to-call changes and one is changed names. A sixth no-call-to-call
+change remains a mismatch. Primary both-match rows are two identical calls and
+two same-name argument changes; fourteen pairs mismatch under both models.
+ToolEyes has two gained and two lost name-relevance matches, all with changed
+names; its both-match/both-mismatch pairs both change arguments. All six initial
+control-name episodes remain. These supplied score joins are owner-reported;
+only structural totals are independently verified in this checkout.
+
+The bounded smoke is closed. Run
+[remaining development preparation](RECOVERY_REMAINING_DEVELOPMENT_V1.md) next.
+The command below is retained for fresh reproduction; do not rerun completed
+review or overwrite its outputs.
+
 ## Final smoke review on CPU
 
 ```bash
@@ -69,8 +86,8 @@ argument/type/order distinctions, label-independent buckets, all four paired
 reference cells, unknown/duplicate rejection, endpoint separation, literal
 control scope, argument removals/replacements, unchanged rows, private-text
 fencing and identifier-free reporting. Ruff passes. Actual thirty-pair structural
-counts match independent checks. The complete owner reference join remains
-pending because protected scoring inputs are unavailable here.
+counts match independent checks. The complete owner reference join was subsequently supplied as recorded above;
+protected scoring inputs remain unavailable here.
 
 This review closes interpretation of the bounded smoke. Review the fault-feedback
 semantics and choose the next recovery scope/endpoint and resource plan before

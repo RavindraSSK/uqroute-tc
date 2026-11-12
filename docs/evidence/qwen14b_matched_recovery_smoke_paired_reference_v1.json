@@ -6,7 +6,68 @@
   "labels_changed": false,
   "main_experiment_ready": false,
   "original_small_scores_reproduced_exactly": true,
+  "owner_behaviour_review_completed": true,
+  "owner_behaviour_review_revision": "22453b1f2a8f328c8eeea4d40d104b2594fa566f",
+  "owner_review_initial_control_name_rows_retained": 6,
   "owner_scoring_revision": "1cf2bd7d9aa92f06fa294bf104a33fda1432b1a9",
+  "owner_structure_reference_cross_tabs": {
+    "official_reference_compliance": {
+      "both_match": {
+        "rows": 4,
+        "transitions": {
+          "identical_calls": 2,
+          "same_names_changed_arguments": 2
+        }
+      },
+      "both_mismatch": {
+        "rows": 14,
+        "transitions": {
+          "changed_names": 5,
+          "neither_parsed": 5,
+          "same_names_changed_arguments": 2,
+          "small_call_to_fallback_no_call": 1,
+          "small_no_call_to_fallback_call": 1
+        }
+      },
+      "reference_match_gained": {
+        "rows": 6,
+        "transitions": {
+          "changed_names": 1,
+          "small_no_call_to_fallback_call": 5
+        }
+      },
+      "reference_match_lost": {
+        "rows": 0,
+        "transitions": {}
+      }
+    },
+    "tooleyes_relevance": {
+      "both_match": {
+        "rows": 1,
+        "transitions": {
+          "same_names_changed_arguments": 1
+        }
+      },
+      "both_mismatch": {
+        "rows": 1,
+        "transitions": {
+          "same_names_changed_arguments": 1
+        }
+      },
+      "reference_match_gained": {
+        "rows": 2,
+        "transitions": {
+          "changed_names": 2
+        }
+      },
+      "reference_match_lost": {
+        "rows": 2,
+        "transitions": {
+          "changed_names": 2
+        }
+      }
+    }
+  },
   "owner_tests": {
     "run": 24,
     "status": "OK"
@@ -137,5 +198,6 @@
     "small_no_call_to_fallback_call": 6
   },
   "structure_reference_cross_tabs_independently_verified": false,
+  "structure_reference_cross_tabs_source": "owner aggregate review report; not independently recomputed in implementation checkout",
   "version": "uqroute-matched-recovery-smoke-paired-reference-evidence-1.0.0"
 }

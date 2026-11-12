@@ -32,8 +32,10 @@ eleven of fourteen lost reference matches; the other three losses involve
 changed calls. The owner completed the matched thirty-response 14B L4 smoke; all 155 export
 hashes and exact independent replay pass. Twenty-four outputs contain parsed
 calls and six are unparsed/no-call. Owner fallback import is complete. Paired scoring is owner-complete: reference 4/24 versus 10/24, with six gains
-and zero losses; relevance 3/6 each, with two gains/losses. A final smoke behaviour
-review is supplied. Semantic/execution recovery, broader
+and zero losses; relevance 3/6 each, with two gains/losses. The paired behaviour review is owner-complete: five primary gains are
+no-call-to-call changes and one changes names. The bounded smoke is closed.
+Remaining original development preparation is supplied, reusing 60 responses
+and inventorying at most 4,764 pending role calls. Semantic/execution recovery, broader
 collection, the final objective/operating point and full costs remain open. Task 5 final
 packaging remains outstanding. No defensible overall completion percentage is
 assigned.
@@ -45,7 +47,7 @@ assigned.
 | Categories and failures | Released clean/Observation/Action/Reward summaries; 489 catalogue entries / 460 unique model-cases; illustrative reviews | Reference flags retained; no executable-success or exhaustive semantic-adjudication claim |
 | Corrected repeated sampling | 30 cases / 15 groups per model, ten slots/case; 900 slots, scored and compared | Small selected development subset; dependent samples, no confidence guarantee |
 | Sensitivity extension | 35 BFCL same-name cases / 34 additional development groups per model; all 105 responses complete, verified and scored | Separate population without clean anchors; no paired estimate or calibration refit |
-| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); all 4,824 tokenizer contexts fit; bounded smoke staging/ledger supplied; owner staging complete (30 requests, five groups); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import complete; owner reference diagnostic complete (4/24; separate relevance 3/6); owner structural review complete; owner matched 30-response fallback smoke complete; 155 file hashes and exact independent replay verified; 24 parsed / six no-call outputs; owner import and paired scoring complete (reference 4/24 versus 10/24, six gains/zero losses; relevance 3/6 each, two gains/losses); paired behaviour review supplied; broader recovery and final objective remain pending |
+| Corrected 14B AWQ fallback | 1,728 responses; 1,558 complete / 128 invalid evidence / 42 truncated; all 6,942 evidence hashes and full local replay verified | Owner CPU scoring: 787/1,512 reference matches; separate ToolEyes relevance 208/216. Owner paired replay complete; Fixed-cap matches and saved accounting reviewed; Group-separated development validation and conditional intervals complete; no fallback dominance/cost-saving claim. Owner recovery preparation complete (2,412 eligible episodes / 108 terminal no injection); all 4,824 tokenizer contexts fit; bounded smoke staging/ledger supplied; owner staging complete (30 requests, five groups); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import complete; owner reference diagnostic complete (4/24; separate relevance 3/6); owner structural review complete; owner matched 30-response fallback smoke complete; 155 file hashes and exact independent replay verified; 24 parsed / six no-call outputs; owner import and paired scoring complete (reference 4/24 versus 10/24, six gains/zero losses; relevance 3/6 each, two gains/losses); paired behaviour review complete; remaining development preparation supplied; broader recovery and final objective remain pending |
 | Final static evaluation | No new held-out evaluation | Final shared protocol freeze and immutable development decision artifact still required |
 
 Primary reference compliance is Qwen 1.5B 572/1,512, Llama 3B 621/1,512 and
@@ -330,8 +332,19 @@ and no schema-drift gain occur. No labels/cases change. The
 is supplied with fourteen passing tests. Actual saved structural counts were
 independently checked: six small-no-call to fallback-call, one converse,
 five neither-parsed, two identical, six same-name argument changes and ten name
-changes. Their score joins remain owner-only, and cannot be inferred by equating
-the two counts of six. The review retains all thirty cases and private text. Literal control-action injection, appropriate
+changes. The owner supplied the completed review: five primary gains are
+no-call-to-call changes, one changes names, and one other no-call-to-call change
+remains a mismatch. All ToolEyes gains/losses change names. All six initial
+control episodes and all thirty pairs remain. These score joins are owner-reported.
+The smoke is closed; the
+[remaining development preparer](research_track_v1/RECOVERY_REMAINING_DEVELOPMENT_V1.md)
+verifies original plans/context evidence and the completed review, reuses all 60
+known slots and inventories 720/828/834 pending requests per role (4,764 maximum
+potential new calls). It keeps all eligible original cases and 108 no-injection
+plans separate, with at most 30 requests per batch and known-parent fallback
+requirements. Fourteen new production-based checks pass. Owner preparation,
+current runtime/quota feasibility and a new durable executor remain pending;
+this package sends no requests or enables held-out access. Literal control-action injection, appropriate
 deferral and the released matcher's argument limits remain explicit boundaries. No original score/label/cohort is changed,
 and no larger collection, final threshold or held-out access is enabled.
 Planned fault feedback is not observed injection or measured recovery. No new
@@ -596,7 +609,7 @@ with 53 tests passing in the local Windows verification.
 | Task 1 — Benchmark and experiment engine | Complete; settings frozen |
 | Task 2 — Parser and uncertainty engine | Complete; methods frozen with scoped format exclusions |
 | Task 3 — Robustness study | Development studies complete for three small models: primary static, corrected repeated and sensitivity; diagnostics/reporting supplied. Final protocol decisions, held-out evaluation and final result freeze remain pending |
-| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; All 4,824 CPU tokenizer contexts fit; bounded smoke staging/ledger supplied; owner smoke staging complete (30 requests); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import complete; owner reference diagnostic complete (4/24; relevance 3/6); owner structural review complete; owner matched fallback smoke complete, all 155 hashes and exact independent replay verified; owner import and paired scoring complete (reference 4/24 versus 10/24, six gains/zero losses; relevance 3/6 each, two gains/losses); paired behaviour review supplied; broader recovery, final objective, live escalation and full costs pending |
+| Task 4 — Routing and recovery | Offline gate/frontier/baseline accounting implemented; corrected matched fallback generation and local replay complete. Owner reference scoring and paired CPU replay complete; Fixed-cap matches and saved accounting reviewed; tested group-separated validation supplied. Owner group-separated development validation complete. Conditional paired intervals reviewed; no final dominance/cost claim. Owner recovery preparation complete; All 4,824 CPU tokenizer contexts fit; bounded smoke staging/ledger supplied; owner smoke staging complete (30 requests); pinned L4 notebook supplied; 30-response L4 smoke complete and independently replayed; owner CPU import complete; owner reference diagnostic complete (4/24; relevance 3/6); owner structural review complete; owner matched fallback smoke complete, all 155 hashes and exact independent replay verified; owner import and paired scoring complete (reference 4/24 versus 10/24, six gains/zero losses; relevance 3/6 each, two gains/losses); paired behaviour review complete; remaining development preparation supplied; broader recovery, final objective, live escalation and full costs pending |
 | Task 5 — Final package | Pending |
 
 The reference Llama 3B clean run scored 102/199 against 103/199 on the seeded leaderboard. We accepted the one-case difference as a near reproduction after reviewing the result; the published score was not matched exactly. The split uses dataset identities alone, without model scores.
@@ -729,8 +742,9 @@ Matched thirty-episode fallback preparation is owner-complete, with an exact
 independently reconstructed transfer. The L4 fallback smoke is owner-complete; all thirty responses independently
 replay exactly, with all 155 export hashes verified. Owner CPU import is complete;
 paired reference scoring is owner-complete, with six primary-panel gains and
-zero losses. Paired structural review, broader recovery and the final objective
-remain pending.
+zero losses. Paired structural review is owner-complete; remaining original
+development preparation is supplied. Broader recovery, runtime/quota feasibility
+and the final objective remain pending.
 No final threshold or held-out routing-effectiveness claim is supplied.
 
 - [x] Implement a label-independent CPU gate with inclusive threshold ties and explicit unavailable/invalid-evidence escalation.
@@ -771,7 +785,9 @@ No final threshold or held-out routing-effectiveness claim is supplied.
 - [x] Supply a reference-preserving paired CPU scorer with byte-exact original small-score reproduction, all 30 pairs and separate ToolEyes relevance; 24 new plus 16 original scorer tests pass.
 - [x] Run/review owner paired scores at `1cf2bd7`: 24 tests pass; reference 4/24 versus 10/24 with six gains/no losses; relevance 3/6 each with two gains/two losses. Original scores and all 30 pairs remain.
 - [x] Supply a paired structural/private-example review with 14 passing frozen-parser checks and independently verified all 30 structural transitions.
-- [ ] Execute/review owner structural/reference joins and fault semantics before choosing recovery scope/endpoint/resource plan or expanding GPU collection.
+- [x] Execute/review owner structural/reference joins: five primary gains are no-call-to-call, one changes names; ToolEyes gains/losses change names. All 30 pairs/control cases and original labels remain; smoke is closed.
+- [x] Supply remaining original three-model development preparation with 60 known-slot reuse, at most 30 requests per batch and known-parent fallback requirements; 14 tests pass.
+- [ ] Run/review owner remaining inventories, resource/quota feasibility and bounded executor before new development generation.
 - [ ] Complete broader recovery model/resource checks, collection and scoring dispositions; the smoke does not certify other roles or full-study quota/cost.
 - [ ] Implement durable recovery dispatch, record actual injection/response evidence, and evaluate recovery/baselines with the frozen scoring dispositions.
 - [ ] Add complete policy cost measurement, including repeated sampling/recovery/overhead and uncertainty in usage/pricing.
@@ -889,15 +905,15 @@ Clean results for Qwen 1.5B and Llama 3B and five Qwen 7B clean cases were seen 
 
 ## Current next action
 
-Run the [paired behaviour review](research_track_v1/RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md):
-`python tools/development_audits/recovery_matched_smoke_review_v1/review_pairs.py`.
-Paired reference scoring is complete at `1cf2bd7`. The final smoke review
-reproduces all prior scores exactly, joins reference gains/losses to frozen
-structural changes, and writes all thirty private examples. Read PRIVATE_REVIEW.md
-locally and paste only the aggregate report. This closes smoke interpretation
-before deciding recovery scope, endpoint and resource feasibility for larger
-collection. It performs no inference, relabeling, exclusions, threshold choice
-or held-out access; preserve both completed GPU runs and original scores.
+Run the [remaining recovery development preparer](research_track_v1/RECOVERY_REMAINING_DEVELOPMENT_V1.md):
+`python tools/development_audits/recovery_remaining_development_v1/prepare.py`.
+The matched smoke is closed. This CPU step reuses all sixty known responses,
+checks the original three plans and complete context evidence, and inventories
+pending work without label-based exclusions: 720/828/834 requests per role,
+4,764 maximum potential new calls. Paste only its aggregate summary/transfer
+fingerprints. No generation or runnable dispatcher is supplied. Review current
+quota/runtime feasibility and pin a durable executor before any new model call;
+keep no-injection/unknown partitions, all labels and held-out boundaries intact.
 
 Review [readiness v3](research_track_v1/TASK3_DEVELOPMENT_READINESS_V3.md)
 and record the final development-only signal decision. Resolve population,

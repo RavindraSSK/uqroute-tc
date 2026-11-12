@@ -68,8 +68,9 @@ rerun the completed small batch. Matched fallback CPU preparation and the thirty
 14B L4 notebook are also complete. All 155 export hashes and exact independent
 replay pass; 24 outputs contain parsed calls and six are unparsed/no-call.
 Owner fallback import is complete at `d5be459`. Do not rerun either completed
-GPU smoke. Run the
-[paired behaviour review](../docs/research_track_v1/RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md)
-next. Paired scoring is owner-complete: reference 4/24 versus 10/24 (six gains,
-zero losses); separate relevance 3/6 each (two gains/losses). Semantic recovery
-remains unevaluated.
+GPU smoke. The paired behaviour review is also complete: five primary gains
+are no-call-to-call changes and one is changed names, with no primary losses.
+Next run [remaining development preparation](../docs/research_track_v1/RECOVERY_REMAINING_DEVELOPMENT_V1.md)
+on CPU. It reuses all 60 saved smoke responses and inventories the original
+remaining requests in bounded batches; it performs no generation. Semantic
+recovery and full runtime/quota feasibility remain unresolved.

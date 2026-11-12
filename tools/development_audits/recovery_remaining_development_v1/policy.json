@@ -1,0 +1,32 @@
+{
+  "baseline_commit": "22453b1f2a8f328c8eeea4d40d104b2594fa566f",
+  "collection": "All original eligible development pairs; completed smoke slots reused; no label-based selection",
+  "dispatch_authorized": false,
+  "expected_pending": {
+    "llama3b": {
+      "postfault_fallback": 828,
+      "postfault_small": 828
+    },
+    "qwen15b": {
+      "postfault_fallback": 720,
+      "postfault_small": 720
+    },
+    "qwen7b": {
+      "postfault_fallback": 834,
+      "postfault_small": 834
+    }
+  },
+  "held_out_access_enabled": false,
+  "main_experiment_ready": false,
+  "maximum_batch_requests": 30,
+  "source_sha256_lf": {
+    "docs/config/task1_single_sample_v1.json": "a9a3a8a6309c943759b0cbb412f07ed51a0dfa0d149751f13dc20bde66deb179",
+    "tools/development_audits/recovery_context_preflight_v1/preflight.py": "c2029ce27c8fbc92924f373479c4261624c808686169f0c347660816fab99ae9",
+    "tools/development_audits/recovery_fallback_smoke_scoring_v1/policy.json": "134836189c964b322df81fc8d338e3d8524f392cca308df1a63017894a320a8a",
+    "tools/development_audits/recovery_fallback_smoke_scoring_v1/score_pairs.py": "5fb96699448c96194118394dfb12a46cd0c57da6bc9e2626ca8d912d910c3afb",
+    "tools/development_audits/recovery_matched_smoke_review_v1/policy.json": "76099c62e725a695e845ab631a12a196ffc5753c82ee4c07136986ad734f91fb",
+    "tools/development_audits/recovery_matched_smoke_review_v1/review_pairs.py": "a389b30b6b85940a30bd1931c4c5ff960b7529704feeb03d197722b8ddbddf9c",
+    "tools/development_audits/recovery_smoke_scoring_v1/score_smoke.py": "ddd1db1e02930b009d56909c281f3607a17b7b9e23fed5d462f2adb1c0b589e0"
+  },
+  "version": "uqroute-remaining-recovery-development-preparation-1.0.0"
+}
