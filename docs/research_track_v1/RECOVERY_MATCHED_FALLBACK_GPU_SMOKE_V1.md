@@ -102,8 +102,12 @@ match the owner's reported values exactly, and the pinned GPU client loads all
 thirty requests. The original full750 owner transfer is unavailable in this
 checkout; its owner-side staging verification is recorded separately.
 
-Actual L4 loading, memory feasibility, installed sampler observations and new
-fallback outputs remain pending. After export, independently replay and import
-the evidence before applying the original reference/relevance endpoints and
-comparing pairs. No fallback benefit, execution rescue, final threshold, monetary
+The owner subsequently completed this L4 smoke: thirty saved responses, zero
+HTTP errors/unknown slots, all thirty complete token-evidence records, and exact
+independent CPU replay of all saved records. All 155 export file hashes match.
+There are 24 parsed calls and six unparsed/no-call outputs. See
+[verified evidence and owner CPU import](RECOVERY_MATCHED_FALLBACK_SMOKE_EVIDENCE_V1.md)
+for the current next step; preserve this completed notebook run. The observed
+14B repetition penalty is 1.05, its pinned inherited default. Owner local import
+and paired reference/relevance scoring remain pending. No fallback benefit, execution rescue, final threshold, monetary
 saving, broader study readiness or held-out result is claimed.

@@ -1,0 +1,68 @@
+{
+  "archive_sha256": "f85c1c51bb4a3cc19bda831ee87e64b0235af08d8a8f3868a0334415acce14b9",
+  "benchmarks": {
+    "apibank": 6,
+    "bfcl_v3": 6,
+    "rotbench": 6,
+    "toolalpaca": 6,
+    "tooleyes": 6
+  },
+  "collection_mode": "all_matched_smoke_episodes_no_threshold",
+  "dispatch_wall_seconds": 74.00728504200015,
+  "effective_sampling_constructor": {
+    "constructed_temperature": 0.01,
+    "max_tokens": 1024,
+    "n": 1,
+    "repetition_penalty": 1.05,
+    "requested_temperature": 0.001,
+    "scope": "Installed local constructor; server sampler not independently observed",
+    "seed": null,
+    "top_k": 20,
+    "top_p": 0.8
+  },
+  "eligible_parsed_finite_nll_candidates": 24,
+  "fallback_requests": 30,
+  "fault_types": {
+    "auth_error": 5,
+    "malformed_response": 5,
+    "rate_limit": 5,
+    "schema_drift": 5,
+    "server_error": 5,
+    "timeout": 5
+  },
+  "gpu_name": "NVIDIA L4",
+  "held_out_access_enabled": false,
+  "import_cpu_tests": 15,
+  "independent_replay_matches": true,
+  "known_http_errors": 0,
+  "main_experiment_ready": false,
+  "missing_usage_slots": 0,
+  "new_generation_requests_sent_by_import": 0,
+  "new_small_requests": 0,
+  "observed_injected": 30,
+  "official_scoring": "not_performed",
+  "owner_local_import": "pending",
+  "paired_parent_responses": 30,
+  "parent_pairing_matches": true,
+  "parser_status_counts": {
+    "calls": 24,
+    "unparsed_or_no_call": 6
+  },
+  "request_elapsed_seconds_sum": 71.95258545699926,
+  "requests": 30,
+  "rq3_outcomes": "not_evaluated",
+  "saved_responses": 30,
+  "server_stopped": true,
+  "source": "uploaded owner GPU export; independent CPU import and exact frozen replay in implementation checkout",
+  "supervisor_wall_seconds": 370.675353867,
+  "unknown_slots": 0,
+  "usage_totals": {
+    "completion_tokens": 1754,
+    "prompt_tokens": 56606
+  },
+  "validation_status_counts": {
+    "complete": 30
+  },
+  "verified_export_files": 155,
+  "version": "uqroute-matched-recovery-fallback-smoke-import-1.0.0"
+}

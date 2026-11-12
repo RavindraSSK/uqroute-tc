@@ -108,6 +108,9 @@ from preserved parent evidence with both hashes matching exactly.
 The owner completed preparation at `c3cbf9f` with thirty successful checks
 (one Windows symlink skip). Both transfer hashes match an independent
 reconstruction; maximum selected prompt tokens are 3,872 with zero overflows.
-Run the [bounded fallback GPU notebook](RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md)
-next and preserve the completed preparation. Do not rerun the completed small smoke, generate
+The owner subsequently completed the
+[bounded fallback GPU notebook](RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md), with
+all thirty responses independently replayed exactly. Run the
+[owner CPU import](RECOVERY_MATCHED_FALLBACK_SMOKE_EVIDENCE_V1.md) next and preserve
+the completed preparation and generation. Do not rerun the completed small smoke, generate
 the remaining 720 small requests, change labels or enable held-out evaluation.

@@ -64,12 +64,9 @@ reference scoring, and exports frozen parser/token replay plus partial evidence.
 See [execution scope](../docs/research_track_v1/RECOVERY_GPU_SMOKE_V1.md).
 The owner completed this smoke; all 30 responses independently replay exactly.
 Owner local import, reference scoring and behaviour review are complete. Do not
-rerun the completed small batch. Matched fallback CPU preparation is also complete. Use
-[`UQRoute_TC_Qwen14B_Matched_Recovery_Fallback_Smoke_v1.ipynb`](UQRoute_TC_Qwen14B_Matched_Recovery_Fallback_Smoke_v1.ipynb)
-on a fresh **Colab L4** runtime next. Upload the staged
-`qwen14b_matched_recovery_fallback_smoke_v1.zip`, run execution once, download
-completed/partial output and delete the runtime after saving. This authorizes at
-most thirty matched 14B fallback requests and zero new small calls. It preserves
-unknown slots without retries and performs no scoring. See
-[scope and evidence checks](../docs/research_track_v1/RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md).
-Actual fallback generation and semantic recovery remain unmeasured.
+rerun the completed small batch. Matched fallback CPU preparation and the thirty-response
+14B L4 notebook are also complete. All 155 export hashes and exact independent
+replay pass; 24 outputs contain parsed calls and six are unparsed/no-call.
+Do not rerun either completed GPU smoke. Run the
+[matched fallback CPU importer](../docs/research_track_v1/RECOVERY_MATCHED_FALLBACK_SMOKE_EVIDENCE_V1.md)
+next. Paired reference/relevance scoring and semantic recovery remain pending.
