@@ -64,8 +64,10 @@ threshold, held-out result or full-study readiness is established.
 
 The owner ran the importer at `d5be459`; fifteen tests completed successfully
 with one Windows symlink skip. All 155 hashes, original parent pairs and exact
-independent replay match the aggregate evidence above. The next action is
-[paired CPU reference scoring](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md).
+independent replay match the aggregate evidence above. Paired CPU scoring is also owner-complete at `1cf2bd7`: reference matches 4/24
+versus 10/24 (six gains, zero losses); relevance 3/6 each (two gains, two losses).
+The next action is the
+[paired behaviour review](RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md).
 The import instructions below remain for a fresh reproduction.
 
 ## Import on the owner's CPU
@@ -93,7 +95,7 @@ Fresh ignored output:
 Existing output is never overwritten. Paste only the printed aggregate summary;
 keep case-level files local. The owner local import is complete.
 
-Run the [paired CPU diagnostic](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
-next, applying the unchanged original reference/relevance endpoints. Correctness and semantic/execution
-recovery remain unevaluated for these fallback outputs. Do not rerun either GPU
+The [paired CPU diagnostic](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
+is owner-complete with unchanged original reference/relevance endpoints. Semantic/
+execution recovery remains unevaluated. Review the paired structure next. Do not rerun either GPU
 smoke or expand the cohort before the matched results are reviewed.

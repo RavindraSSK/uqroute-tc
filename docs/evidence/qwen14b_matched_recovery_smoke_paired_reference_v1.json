@@ -1,0 +1,141 @@
+{
+  "execution_success": "not_evaluated",
+  "generation_requests_sent_by_this_step": 0,
+  "groups": 5,
+  "held_out_access_enabled": false,
+  "labels_changed": false,
+  "main_experiment_ready": false,
+  "original_small_scores_reproduced_exactly": true,
+  "owner_scoring_revision": "1cf2bd7d9aa92f06fa294bf104a33fda1432b1a9",
+  "owner_tests": {
+    "run": 24,
+    "status": "OK"
+  },
+  "panels": {
+    "official_reference_compliance": {
+      "both_match_derived": 4,
+      "both_mismatch_derived": 14,
+      "by_fault": {
+        "auth_error": {
+          "fallback_matches": 0,
+          "gained": 0,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 0
+        },
+        "malformed_response": {
+          "fallback_matches": 3,
+          "gained": 2,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 1
+        },
+        "rate_limit": {
+          "fallback_matches": 0,
+          "gained": 0,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 0
+        },
+        "schema_drift": {
+          "fallback_matches": 2,
+          "gained": 0,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 2
+        },
+        "server_error": {
+          "fallback_matches": 3,
+          "gained": 3,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 0
+        },
+        "timeout": {
+          "fallback_matches": 2,
+          "gained": 1,
+          "lost": 0,
+          "rows": 4,
+          "small_matches": 1
+        }
+      },
+      "fallback_postfault_matches": 10,
+      "groups": 4,
+      "initial_matches_repeated_per_episode": 18,
+      "reference_matches_gained": 6,
+      "reference_matches_lost": 0,
+      "rows": 24,
+      "small_postfault_matches": 4
+    },
+    "tooleyes_relevance": {
+      "both_match_derived": 1,
+      "both_mismatch_derived": 1,
+      "by_fault": {
+        "auth_error": {
+          "fallback_matches": 0,
+          "gained": 0,
+          "lost": 0,
+          "rows": 1,
+          "small_matches": 0
+        },
+        "malformed_response": {
+          "fallback_matches": 1,
+          "gained": 0,
+          "lost": 0,
+          "rows": 1,
+          "small_matches": 1
+        },
+        "rate_limit": {
+          "fallback_matches": 1,
+          "gained": 1,
+          "lost": 0,
+          "rows": 1,
+          "small_matches": 0
+        },
+        "schema_drift": {
+          "fallback_matches": 0,
+          "gained": 0,
+          "lost": 1,
+          "rows": 1,
+          "small_matches": 1
+        },
+        "server_error": {
+          "fallback_matches": 0,
+          "gained": 0,
+          "lost": 1,
+          "rows": 1,
+          "small_matches": 1
+        },
+        "timeout": {
+          "fallback_matches": 1,
+          "gained": 1,
+          "lost": 0,
+          "rows": 1,
+          "small_matches": 0
+        }
+      },
+      "fallback_postfault_matches": 3,
+      "groups": 1,
+      "initial_matches_repeated_per_episode": 6,
+      "reference_matches_gained": 2,
+      "reference_matches_lost": 2,
+      "rows": 6,
+      "small_postfault_matches": 3
+    }
+  },
+  "policy_evaluation": false,
+  "rows": 30,
+  "rows_excluded": 0,
+  "semantic_fault_recovery": "not_evaluated",
+  "source": "owner aggregate terminal report; protected references and paired scores not available in implementation checkout",
+  "structural_counts_independently_verified": {
+    "changed_names": 10,
+    "identical_calls": 2,
+    "neither_parsed": 5,
+    "same_names_changed_arguments": 6,
+    "small_call_to_fallback_no_call": 1,
+    "small_no_call_to_fallback_call": 6
+  },
+  "structure_reference_cross_tabs_independently_verified": false,
+  "version": "uqroute-matched-recovery-smoke-paired-reference-evidence-1.0.0"
+}

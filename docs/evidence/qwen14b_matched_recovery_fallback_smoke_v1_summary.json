@@ -49,7 +49,9 @@
   "owner_local_import": "completed",
   "owner_local_import_revision": "d5be459d8f0cdeca71ddf11a06b9dcb849f2bf2f",
   "paired_parent_responses": 30,
-  "paired_reference_scoring": "not_performed",
+  "paired_reference_evidence": "docs/evidence/qwen14b_matched_recovery_smoke_paired_reference_v1.json",
+  "paired_reference_scoring": "owner_completed",
+  "paired_reference_scoring_revision": "1cf2bd7d9aa92f06fa294bf104a33fda1432b1a9",
   "parent_pairing_matches": true,
   "parser_status_counts": {
     "calls": 24,

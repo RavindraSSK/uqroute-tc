@@ -111,5 +111,7 @@ for the current next step; preserve this completed notebook run. The observed
 14B repetition penalty is 1.05, its pinned inherited default. Owner local import
 is complete at `d5be459`; the
 [paired CPU reference scorer](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
-is supplied, with actual paired outcomes still pending. No fallback benefit, execution rescue, final threshold, monetary
+is owner-complete at `1cf2bd7`: reference matches 4/24 versus 10/24, with six
+gains and no losses; separate relevance remains 3/6 each, with two gains/losses.
+The [paired behaviour review](RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md) is next. No fallback benefit, execution rescue, final threshold, monetary
 saving, broader study readiness or held-out result is claimed.

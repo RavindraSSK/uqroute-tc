@@ -14,6 +14,16 @@ python tools/development_audits/recovery_fallback_smoke_scoring_v1/score_pairs.p
 CPU only: no model, external judge, tool-execution or held-out request occurs.
 No additional GPU batch or final protocol decision is authorized by scoring.
 
+## Owner scoring complete
+
+The owner ran this command at `1cf2bd7`; all 24 tests passed. Reference compliance
+is 4/24 for small and 10/24 for fallback, with six gains and zero losses. Separate
+ToolEyes relevance is 3/6 for each, with two gains and two losses. Original small
+scores reproduce exactly and all thirty cases remain. These are owner-reported
+results; protected references are unavailable in this checkout. Run the
+[paired behaviour review](RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md) next;
+the scoring command above is retained for a fresh reproduction.
+
 ## Cohort and unchanged endpoint
 
 All thirty previously selected episodes remain, including eleven unparsed/no-call
@@ -99,5 +109,5 @@ also pass, as do Ruff and diff checks.
 Actual imported fallback/runtime/pairing verification passes locally for all
 thirty episodes. Protected reference sidecars and original small-score files are
 unavailable in this implementation checkout; actual paired reference outcomes
-remain pending the owner's command. No fallback reference result is supplied or
-inferred from parser counts.
+were subsequently supplied by the owner as recorded above. They are not
+independently recomputed here or inferred from parser counts.

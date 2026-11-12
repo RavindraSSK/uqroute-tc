@@ -69,5 +69,7 @@ rerun the completed small batch. Matched fallback CPU preparation and the thirty
 replay pass; 24 outputs contain parsed calls and six are unparsed/no-call.
 Owner fallback import is complete at `d5be459`. Do not rerun either completed
 GPU smoke. Run the
-[paired CPU reference scorer](../docs/research_track_v1/RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
-next. Actual paired reference outcomes and semantic recovery remain pending.
+[paired behaviour review](../docs/research_track_v1/RECOVERY_MATCHED_SMOKE_BEHAVIOUR_REVIEW_V1.md)
+next. Paired scoring is owner-complete: reference 4/24 versus 10/24 (six gains,
+zero losses); separate relevance 3/6 each (two gains/losses). Semantic recovery
+remains unevaluated.

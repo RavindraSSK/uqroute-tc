@@ -1,0 +1,36 @@
+{
+  "baseline_commit": "1cf2bd7d9aa92f06fa294bf104a33fda1432b1a9",
+  "expected_panels": {
+    "official_reference_compliance": {
+      "fallback_postfault_matches": 10,
+      "groups": 4,
+      "initial_matches_repeated_per_episode": 18,
+      "rows": 24,
+      "small_match_to_fallback_mismatch": 0,
+      "small_mismatch_to_fallback_match": 6,
+      "small_postfault_matches": 4
+    },
+    "tooleyes_relevance": {
+      "fallback_postfault_matches": 3,
+      "groups": 1,
+      "initial_matches_repeated_per_episode": 6,
+      "rows": 6,
+      "small_match_to_fallback_mismatch": 2,
+      "small_mismatch_to_fallback_match": 2,
+      "small_postfault_matches": 3
+    }
+  },
+  "groups": 5,
+  "held_out_access_enabled": false,
+  "labels_changed": false,
+  "main_experiment_ready": false,
+  "rows": 30,
+  "rows_excluded": 0,
+  "semantic_fault_recovery": "not_evaluated",
+  "source_sha256_lf": {
+    "tools/development_audits/recovery_fallback_smoke_scoring_v1/policy.json": "134836189c964b322df81fc8d338e3d8524f392cca308df1a63017894a320a8a",
+    "tools/development_audits/recovery_fallback_smoke_scoring_v1/score_pairs.py": "5fb96699448c96194118394dfb12a46cd0c57da6bc9e2626ca8d912d910c3afb",
+    "tools/development_audits/recovery_smoke_review_v1/review.py": "98a6cb1e567b1ef6a8918c9c5d1a912d06a4b4f307bde6563cd986126c3a5681"
+  },
+  "version": "uqroute-matched-smoke-structural-review-1.0.0"
+}
