@@ -41,8 +41,15 @@
   "new_small_requests": 0,
   "observed_injected": 30,
   "official_scoring": "not_performed",
-  "owner_local_import": "pending",
+  "owner_import_tests": {
+    "run": 15,
+    "skipped": 1,
+    "status": "OK"
+  },
+  "owner_local_import": "completed",
+  "owner_local_import_revision": "d5be459d8f0cdeca71ddf11a06b9dcb849f2bf2f",
   "paired_parent_responses": 30,
+  "paired_reference_scoring": "not_performed",
   "parent_pairing_matches": true,
   "parser_status_counts": {
     "calls": 24,

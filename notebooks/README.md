@@ -67,6 +67,7 @@ Owner local import, reference scoring and behaviour review are complete. Do not
 rerun the completed small batch. Matched fallback CPU preparation and the thirty-response
 14B L4 notebook are also complete. All 155 export hashes and exact independent
 replay pass; 24 outputs contain parsed calls and six are unparsed/no-call.
-Do not rerun either completed GPU smoke. Run the
-[matched fallback CPU importer](../docs/research_track_v1/RECOVERY_MATCHED_FALLBACK_SMOKE_EVIDENCE_V1.md)
-next. Paired reference/relevance scoring and semantic recovery remain pending.
+Owner fallback import is complete at `d5be459`. Do not rerun either completed
+GPU smoke. Run the
+[paired CPU reference scorer](../docs/research_track_v1/RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
+next. Actual paired reference outcomes and semantic recovery remain pending.

@@ -111,6 +111,7 @@ reconstruction; maximum selected prompt tokens are 3,872 with zero overflows.
 The owner subsequently completed the
 [bounded fallback GPU notebook](RECOVERY_MATCHED_FALLBACK_GPU_SMOKE_V1.md), with
 all thirty responses independently replayed exactly. Run the
-[owner CPU import](RECOVERY_MATCHED_FALLBACK_SMOKE_EVIDENCE_V1.md) next and preserve
-the completed preparation and generation. Do not rerun the completed small smoke, generate
+[paired CPU reference diagnostic](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
+next; owner CPU import is complete at `d5be459`. Preserve the completed
+preparation and generation. Do not rerun the completed small smoke, generate
 the remaining 720 small requests, change labels or enable held-out evaluation.

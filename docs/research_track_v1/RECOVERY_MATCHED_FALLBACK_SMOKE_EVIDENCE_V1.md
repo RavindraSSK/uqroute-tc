@@ -60,6 +60,14 @@ population latency estimate, a provider-unit measurement or a monetary-saving
 result. The five groups have dependent fault variants. No gate benefit, final
 threshold, held-out result or full-study readiness is established.
 
+## Owner local import complete
+
+The owner ran the importer at `d5be459`; fifteen tests completed successfully
+with one Windows symlink skip. All 155 hashes, original parent pairs and exact
+independent replay match the aggregate evidence above. The next action is
+[paired CPU reference scoring](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md).
+The import instructions below remain for a fresh reproduction.
+
 ## Import on the owner's CPU
 
 Keep the downloaded OUTPUT ZIP in Downloads, then run:
@@ -83,9 +91,9 @@ scoring, accesses no held-out inputs and preserves original evidence.
 Fresh ignored output:
 `artifacts/local_development_audits/recovery_fallback_smoke_import_f85c1c51/`.
 Existing output is never overwritten. Paste only the printed aggregate summary;
-keep case-level files local. Owner local import remains pending.
+keep case-level files local. The owner local import is complete.
 
-After owner import, apply the unchanged original reference/relevance endpoints
-in a separately reviewed paired CPU diagnostic. Correctness and semantic/execution
+Run the [paired CPU diagnostic](RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
+next, applying the unchanged original reference/relevance endpoints. Correctness and semantic/execution
 recovery remain unevaluated for these fallback outputs. Do not rerun either GPU
 smoke or expand the cohort before the matched results are reviewed.

@@ -611,6 +611,13 @@ reference. These development diagnostics were specified after inspection of the
 smoke outputs/parser counts. They do not establish execution success, semantic
 fault recovery, an independent held-out result or the final RQ3/scoring freeze.
 
+The [matched fallback smoke diagnostic](research_track_v1/RECOVERY_MATCHED_SMOKE_PAIRED_REFERENCE_SCORING_V1.md)
+applies this same endpoint to every saved matched fallback response after exact
+reproduction of the small-model scores. Gains/losses describe paired reference
+matches, not executed rescues/harms or a threshold-policy effect. All thirty
+selected episodes and per-model pinned defaults remain; no relabeling, outcome-
+based exclusions, final operating point or held-out freeze is introduced.
+
 ## 13. Primary metrics
 
 The study will report:

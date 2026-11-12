@@ -1,0 +1,26 @@
+{
+  "baseline_commit": "d5be459d8f0cdeca71ddf11a06b9dcb849f2bf2f",
+  "endpoint": "Original clean-reference compliance after released fault feedback; not execution success or semantic fault appropriateness.",
+  "fallback_archive_sha256": "f85c1c51bb4a3cc19bda831ee87e64b0235af08d8a8f3868a0334415acce14b9",
+  "fallback_export_manifest_sha256": "709754a8a670261a9f4b95caa936b0dcf281c4ff362dbb4ebfef583d1d932790",
+  "final_protocol_frozen": false,
+  "groups": 5,
+  "held_out_access_enabled": false,
+  "initial_evidence": "corrected_qwen15b_full_development_import_8517fd5d",
+  "main_experiment_ready": false,
+  "new_generation_requests": 0,
+  "policy_evaluation": false,
+  "reference_rule": "Released Transition writer retains original golden_answers and eval_config; score post-fault text as generated with unchanged parser/scorer and reference flags.",
+  "rows": 30,
+  "scorer": "tools/development_audits/full_development_scoring_v1/score_full.py",
+  "selection": "All30 pre-existing matched smoke episodes; no outcome/uncertainty filtering",
+  "small_scoring_policy_sha256": "8be68c1925a863cc67e29c8ddd80b13baf18c9834ab99ec91bf042fee9e716ba",
+  "source_sha256_lf": {
+    "tools/development_audits/recovery_fallback_smoke_import_v1/import_smoke.py": "4003fe83bf7b3194c5043d3550ccfb102750e8f4540eef4709c0525da9fcf63d",
+    "tools/development_audits/recovery_fallback_smoke_v1/ledger.py": "03f316935e64aa8b4570f40b05d6a15810e8d939bbe5bebabce2d208f4e59082",
+    "tools/development_audits/recovery_gpu_fallback_smoke_v1/client.py": "71a2324de6ad8ba6d4580c20f8c57076df40dbb4f96805187abdba84bb704b16",
+    "tools/development_audits/recovery_smoke_scoring_v1/policy.json": "8be68c1925a863cc67e29c8ddd80b13baf18c9834ab99ec91bf042fee9e716ba",
+    "tools/development_audits/recovery_smoke_scoring_v1/score_smoke.py": "ddd1db1e02930b009d56909c281f3607a17b7b9e23fed5d462f2adb1c0b589e0"
+  },
+  "version": "uqroute-matched-recovery-smoke-paired-reference-scoring-1.0.0"
+}
